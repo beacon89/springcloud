@@ -15,6 +15,7 @@ public class ConsumerController {
 	
     @RequestMapping("/hello/{name}")
     public String index(@PathVariable("name") String name) {
+    		System.out.println("1111");
         return helloremote.hello(name);
     }
 }
