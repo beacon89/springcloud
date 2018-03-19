@@ -57,5 +57,6 @@
 		<module>cloud-configservice</module>
 		<module>cloud-registerservice</module>
 		<module>cloud-toolservice</module>
+		<module>cloud-hystrixdashboard</module>
 	</modules>
 </project>
