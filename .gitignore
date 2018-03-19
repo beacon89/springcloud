@@ -3,3 +3,8 @@
 1.5.2/beacon-tools/cloud-eurekaservice/target/classes
 1.5.2/beacon-tools/cloud-toolservice/target/classes
 1.5.2/beacon-tools/cloud-configservice/target/classes
+1.5.2/kayak-tools/cloud-toolservice/target
+1.5.2/kayak-tools/cloud-registerservice/target
+1.5.2/kayak-tools/cloud-eurekaservice/target
+1.5.2/kayak-tools/cloud-configservice/target
+1.5.2/kayak-tools/cloud-adminservice/target
