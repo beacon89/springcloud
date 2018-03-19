@@ -58,5 +58,6 @@
 		<module>cloud-registerservice</module>
 		<module>cloud-toolservice</module>
 		<module>cloud-hystrixdashboard</module>
+		<module>cloud-turbineservice</module>
 	</modules>
 </project>
