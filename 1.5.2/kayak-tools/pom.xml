@@ -59,5 +59,6 @@
 		<module>cloud-toolservice</module>
 		<module>cloud-hystrixdashboard</module>
 		<module>cloud-turbineservice</module>
+		<module>cloud-sleuthservice</module>
 	</modules>
 </project>

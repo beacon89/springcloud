@@ -8,3 +8,6 @@
 1.5.2/kayak-tools/cloud-eurekaservice/target
 1.5.2/kayak-tools/cloud-configservice/target
 1.5.2/kayak-tools/cloud-adminservice/target
+1.5.2/kayak-tools/cloud-hystrixdashboard/target
+1.5.2/kayak-tools/cloud-sleuthservice/target
+1.5.2/kayak-tools/cloud-turbineservice/target
