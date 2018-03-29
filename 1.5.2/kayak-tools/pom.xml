@@ -60,5 +60,6 @@
 		<module>cloud-hystrixdashboard</module>
 		<module>cloud-turbineservice</module>
 		<module>cloud-sleuthservice</module>
+		<module>cloud-zuulservice</module>
 	</modules>
 </project>
