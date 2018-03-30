@@ -1,0 +1,6 @@
+spring:
+  cloud:
+     config:
+        label: master
+        uri: http://localhost:9092
+        name: author,config-info,default

@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: kayak-dockerser
+server:
+  port: 9030
