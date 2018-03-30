@@ -9,9 +9,9 @@ import zipkin.server.EnableZipkinServer;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableZipkinServer
-public class Application {
+public class SleuthApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		SpringApplication.run(SleuthApplication.class, args);
 	}
 }

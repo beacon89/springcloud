@@ -2,17 +2,15 @@ package cn.com.beacon;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.feign.EnableFeignClients;
+import org.springframework.cloud.config.server.EnableConfigServer;
 
+@EnableConfigServer
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableFeignClients
-@EnableCircuitBreaker
-public class Application {
+public class ConfigApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		SpringApplication.run(ConfigApplication.class, args);
 	}
 }
