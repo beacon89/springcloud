@@ -20,5 +20,21 @@ exports.install = function (Vue, options) {
                                 return null;
 
     };
+
+    Vue.prototype.$checkNull = (x) => {
+        if(x !== '' && x !== null && typeof(x) !== undefined){
+            return true;
+        }else{
+            return false;
+        }
+    };
+
+    Vue.prototype.$checkUndefined = (x) => {
+            if(typeof(x) === 'undefined' || x === NaN){
+                return true;
+            }else{
+                return false;
+            }
+        };
 };
 
