@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: cuiyifeng
+Build-Jdk: 10
+Implementation-Title: aliyun-boxs
+Implementation-Version: 1.0
+Implementation-Vendor-Id: com.kayak
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/kayak-tools/aliyun-boxs
+Created-By: Maven Integration for Eclipse
+

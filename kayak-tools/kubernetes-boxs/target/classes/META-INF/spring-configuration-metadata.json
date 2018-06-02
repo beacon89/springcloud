@@ -1,0 +1,47 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.kayak.model.KubModel",
+      "name": "kubernetes",
+      "type": "com.kayak.model.KubModel"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.kayak.model.KubModel",
+      "name": "kubernetes.connectiontimeout",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.kayak.model.KubModel",
+      "name": "kubernetes.master",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.kayak.model.KubModel",
+      "name": "kubernetes.namespace",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.kayak.model.KubModel",
+      "name": "kubernetes.password",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.kayak.model.KubModel",
+      "name": "kubernetes.requesttimeout",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.kayak.model.KubModel",
+      "name": "kubernetes.token",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.kayak.model.KubModel",
+      "name": "kubernetes.username",
+      "type": "java.lang.String"
+    }
+  ]
+}

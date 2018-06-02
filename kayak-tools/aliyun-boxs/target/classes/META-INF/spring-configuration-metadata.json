@@ -1,0 +1,82 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.kayak.properties.AliyunDnsPropertie",
+      "name": "alidns",
+      "type": "com.kayak.properties.AliyunDnsPropertie"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.kayak.properties.AliyunDnsPropertie",
+      "name": "alidns.accesskeyid",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.kayak.properties.AliyunDnsPropertie",
+      "name": "alidns.accesskeysecret",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.kayak.properties.AliyunDnsPropertie",
+      "name": "alidns.connect-timeout",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.kayak.properties.AliyunDnsPropertie",
+      "name": "alidns.defaultdomain",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.kayak.properties.AliyunDnsPropertie",
+      "name": "alidns.domain",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.kayak.properties.AliyunDnsPropertie",
+      "name": "alidns.encoding",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.kayak.properties.AliyunDnsPropertie",
+      "name": "alidns.formattype",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.kayak.properties.AliyunDnsPropertie",
+      "name": "alidns.methodtype",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.kayak.properties.AliyunDnsPropertie",
+      "name": "alidns.page-number",
+      "type": "java.lang.Long"
+    },
+    {
+      "sourceType": "com.kayak.properties.AliyunDnsPropertie",
+      "name": "alidns.page-size",
+      "type": "java.lang.Long"
+    },
+    {
+      "sourceType": "com.kayak.properties.AliyunDnsPropertie",
+      "name": "alidns.product",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.kayak.properties.AliyunDnsPropertie",
+      "name": "alidns.protocoltype",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.kayak.properties.AliyunDnsPropertie",
+      "name": "alidns.read-timeout",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.kayak.properties.AliyunDnsPropertie",
+      "name": "alidns.regionid",
+      "type": "java.lang.String"
+    }
+  ]
+}

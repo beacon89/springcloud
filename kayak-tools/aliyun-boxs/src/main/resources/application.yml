@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: aliyun-boxs
+server:
+  port: 8000
