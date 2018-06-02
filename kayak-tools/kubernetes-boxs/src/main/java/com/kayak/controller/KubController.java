@@ -12,7 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.kayak.beans.KayakReplicationControllerList;
 import com.kayak.utils.KubUtils;
 

@@ -57,10 +57,9 @@
 	<modules>
 		<module>aliyun-boxs</module>
 		<module>kubernetes-boxs</module>
-		<module>kayak-cloud-database</module>
-		<module>database-box</module>
-		<module>box-base</module>
 		<module>eureka-boxs</module>
-		
+		<module>gateway-boxs</module>
+		<module>database-boxs</module>
+		<module>base-boxs</module>
 	</modules>
 </project>
