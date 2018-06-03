@@ -1,0 +1,21 @@
+spring: 
+  application:
+    name: kayak-zuul
+server:
+  port: 8400
+zuul: 
+  ignoredServices: '*' #忽略所有未配置的service
+  host:
+    connect-timeout-millis: 20000
+    socket-timeout-millis: 20000
+  routes:
+    aliyun: #自定义名称
+      path: /aliyun/**
+      serviceId: kayak-aliyun #/aliyun/开头的路径转发至kayak-aliyun微服务
+    k8s:
+      path: /k8s/**
+      serviceId: kayak-kubernetes
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8000/eureka/

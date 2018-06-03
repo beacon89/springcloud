@@ -10384,7 +10384,7 @@
         methods: {
             query: function () {
                 let _this = this;
-                this.$http.post(this.httpurl.toString() + '/getReplicationControllerLists', this.$qs.stringify({
+                this.$http.post(this.httpurl.toString() + '/k8s/getReplicationControllerLists', this.$qs.stringify({
                     pageNumber: this.pageNumber,
                     pageSize: this.pageSize
                 })).then(function (response) {
@@ -10417,22 +10417,22 @@
                 let _this = this;
                 let str = JSON.stringify(this.delinfo);
                 _this.detelmodal = false;
-                return ;
-                // this.$http.post(this.httpurl.toString() + '/deleteReplicationController', this.$qs.stringify({
-                //     'str': str
-                // })).then(function (response) {
-                //     if (response.data === true) {
-                //         _this.$Message.info("删除成功");
-                //         _this.delinfo = {};
-                //         this.query();
-                //     }
-                // }).catch(function (error) {
-                //     if (typeof(error.response) === "undefined") {
-                //         _this.$Message.error("错误信息：" + error);
-                //     } else {
-                //         _this.$Message.error("错误信息：" + error.response.data.message);
-                //     }
-                // });
+
+                this.$http.post(this.httpurl.toString() + '/k8s/deleteReplicationController', this.$qs.stringify({
+                     'str': str
+                })).then(function (response) {
+                    if (response.data === true) {
+                        _this.$Message.info("删除成功");
+                        _this.delinfo = {};
+                        this.query();
+                    }
+                }).catch(function (error) {
+                    if (typeof(error.response) === "undefined") {
+                        _this.$Message.error("错误信息：" + error);
+                    } else {
+                        _this.$Message.error("错误信息：" + error.response.data.message);
+                    }
+                });
             },
             clearnewdata: function () {
 
@@ -10578,7 +10578,7 @@
                         }
 
                         let str = JSON.stringify(_this.newdata);
-                        this.$http.post(this.httpurl.toString() + '/createReplicationController', this.$qs.stringify({
+                        this.$http.post(this.httpurl.toString() + '/k8s/createReplicationController', this.$qs.stringify({
                             'str': str
                         })).then(function (response) {
                             _this.$Message.info("添加成功!");

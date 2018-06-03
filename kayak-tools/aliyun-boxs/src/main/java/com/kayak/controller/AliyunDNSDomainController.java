@@ -4,7 +4,6 @@ package com.kayak.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -84,7 +83,6 @@ public class AliyunDNSDomainController {
 	 *  - DnsServer DNS服务器名称，如dns1.hichina.com
 	 * TODO 过
 	 */
-	@CrossOrigin
 	@RequestMapping(value = "addDomain")
 	public AddDomainResponse addDomain(String domainName,String groupId) throws ClientException {
 		AddDomainResponse response = null;
@@ -110,7 +108,6 @@ public class AliyunDNSDomainController {
 	 * TDOO 过
 	 * @throws ClientException 
 	 */
-	@CrossOrigin 
 	@RequestMapping(value = "deleteDomain")
 	public DeleteDomainResponse delDomain(String domainName) throws ClientException {
 		DeleteDomainResponse response = null;
@@ -147,7 +144,6 @@ public class AliyunDNSDomainController {
 	 * 	--DnsServer DNS服务器名称，如dns1.hichina.com
 	 * TODO 过
 	 */
-	@CrossOrigin
 	@RequestMapping(value = "describeDomains")
 	public DescribeDomainsResponse describeDomains(Long pageNumber,Long pageSize,String keyWord,String groupId) {
 		DescribeDomainsResponse response = null;
@@ -192,7 +188,6 @@ public class AliyunDNSDomainController {
 	 * 
 	 * TODO 过
 	 */
-	@CrossOrigin
 	@RequestMapping(value = "describeDomainInfo")
 	public DescribeDomainInfoResponse describeDomainInfo(String domainName) throws ClientException {
 		DescribeDomainInfoResponse response = null;
@@ -224,7 +219,6 @@ public class AliyunDNSDomainController {
 	 * 
 	 * TODO 过 
 	 */
-	@CrossOrigin
 	@RequestMapping(value = "describeDomainWhoIsInfo")
 	public DescribeDomainWhoisInfoResponse describeDomainWhoIsInfo(String domainName) throws ClientException {
 		DescribeDomainWhoisInfoResponse response = null;
@@ -249,7 +243,6 @@ public class AliyunDNSDomainController {
 	 * @throws ClientException 
 	 * TODO 过
 	 */
-	@CrossOrigin
 	@RequestMapping(value = "modifyhichinaDomainDns")
 	public ModifyHichinaDomainDNSResponse modifyhichinaDomainDns(String domainName) throws ClientException {
 		ModifyHichinaDomainDNSResponse response = null;
@@ -274,7 +267,6 @@ public class AliyunDNSDomainController {
 	 * @throws ClientException 
 	 * TODO 过
 	 */
-	@CrossOrigin
 	@RequestMapping(value="getMainDomainName")
 	public GetMainDomainNameResponse getMainDomainName(String inputString) throws ClientException {
 		GetMainDomainNameResponse response = null;
@@ -305,7 +297,6 @@ public class AliyunDNSDomainController {
 	 * -Message 操作消息
 	 * -ClientIp 操作者IP
 	 */
-	@CrossOrigin
 	@RequestMapping(value="describeDomainLogs")
 	public DescribeDomainLogsResponse describeDomainLogs(Long pageNumber,Long pageSize,String keyWord) {
 		DescribeDomainLogsResponse response = null;

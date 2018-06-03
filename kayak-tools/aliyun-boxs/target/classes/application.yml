@@ -1,5 +1,9 @@
 spring:
   application:
-    name: aliyun-boxs
+    name: kayak-aliyun
 server:
-  port: 8000
+  port: 8100
+eureka:  
+  client:
+    serviceUrl:  
+      defaultZone: http://localhost:8000/eureka/

@@ -3,7 +3,6 @@ package com.kayak.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -63,7 +62,6 @@ private final Logger log = LoggerFactory.getLogger(AliyunDNSResolverController.c
 	 * TODO 过
 	 * @throws ClientException 
 	 */
-	@CrossOrigin
 	@RequestMapping(value = "describeDnsProductInstances")
 	public DescribeDnsProductInstancesResponse describeDnsProductInstances(Long pageNumber,Long pageSize) throws ClientException {
 		DescribeDnsProductInstancesResponse response = null;
@@ -90,7 +88,6 @@ private final Logger log = LoggerFactory.getLogger(AliyunDNSResolverController.c
 	 * @return OriginalDomain 原始绑定的域名，如果为空，则为第一次绑定
 	 * @throws ClientException 
 	 */
-	@CrossOrigin
 	@RequestMapping(value = "changeDomainOfDnsProduct")
 	public ChangeDomainOfDnsProductResponse changeDomainOfDnsProduct(String instanceId,String newDomain) throws ClientException {
 		ChangeDomainOfDnsProductResponse response = null;

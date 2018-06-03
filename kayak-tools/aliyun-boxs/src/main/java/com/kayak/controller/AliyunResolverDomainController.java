@@ -3,7 +3,6 @@ package com.kayak.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -41,7 +40,6 @@ public class AliyunResolverDomainController {
 	 * @return DomainName 域名名称
 	 * @return WhoisEmail 接收验证码的whois邮箱
 	 */
-	@CrossOrigin
 	@RequestMapping(value = "retrievalDomainName")
 	public RetrievalDomainNameResponse retrievalDomainName(String domainName) {
 		RetrievalDomainNameResponse response = null;
@@ -60,7 +58,6 @@ public class AliyunResolverDomainController {
 	 * @return RequestId 唯一请求识别码
 	 * @return DomainName 域名名称
 	 */
-	@CrossOrigin
 	@RequestMapping(value="applyForRetrievalDomainName")
 	public ApplyForRetrievalDomainNameResponse applyForRetrievalDomainName(String domainName) {
 		ApplyForRetrievalDomainNameResponse response = null;
@@ -82,7 +79,6 @@ public class AliyunResolverDomainController {
 	 * @return RequestId 唯一请求识别码
 	 * @return IsExist 是否存在解析记录。true为存在，false为不存在。	
 	 */
-	@CrossOrigin
 	@RequestMapping(value="checkDomainRecord")
 	public CheckDomainRecordResponse checkDomainRecord(String domainName,String type,String rr,String value) {
 		CheckDomainRecordResponse response = null;

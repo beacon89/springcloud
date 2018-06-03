@@ -3,7 +3,6 @@ package com.kayak.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -57,7 +56,6 @@ public class AliyunDNSGroupController {
 	 * @return GroupName 域名分组名称
 	 * @throws ClientException 
 	 */
-	@CrossOrigin
 	@RequestMapping(value = "addDomainGroup")
 	public AddDomainGroupResponse addDomainGroup(String groupName) throws ClientException {
 		AddDomainGroupResponse response = null;
@@ -80,7 +78,6 @@ public class AliyunDNSGroupController {
 	 * @return GroupName 域名分组名称
 	 * @throws ClientException 
 	 */
-	@CrossOrigin
 	@RequestMapping(value = "updateDomainGroup")
 	public UpdateDomainGroupResponse updateDomainGroup(String groupId,String groupName) throws ClientException {
 		UpdateDomainGroupResponse response = null;
@@ -103,7 +100,6 @@ public class AliyunDNSGroupController {
 	 * @return GroupName 域名分组名称
 	 * @throws ClientException 
 	 */
-	@CrossOrigin
 	@RequestMapping(value = "deleteDomainGroup")
 	public DeleteDomainGroupResponse deleteDomainGroup(String groupId) throws ClientException {
 		DeleteDomainGroupResponse response = null;
@@ -127,7 +123,6 @@ public class AliyunDNSGroupController {
 	 * @return GroupName 目标域名分组名称
 	 * @throws ClientException 
 	 */
-	@CrossOrigin
 	@RequestMapping(value = "changeDomainGroup")
 	public ChangeDomainGroupResponse changeDomainGroup(String domainName,String groupId) throws ClientException {
 		ChangeDomainGroupResponse response = null;
@@ -150,7 +145,6 @@ public class AliyunDNSGroupController {
 	 * @return
 	 * @throws ClientException 
 	 */
-	@CrossOrigin
 	@RequestMapping(value = "describeDomainGroups")
 	public DescribeDomainGroupsResponse describeDomainGroups(Long pageNumber,Long pageSize,String keyWord) throws ClientException {
 		DescribeDomainGroupsResponse response = null;

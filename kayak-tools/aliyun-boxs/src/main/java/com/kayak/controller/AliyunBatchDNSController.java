@@ -8,7 +8,6 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -51,7 +50,6 @@ public class AliyunBatchDNSController {
 	 * @return TraceId 批量任务ID
 	 * @throws ClientException 
 	 */
-	@CrossOrigin
 	@RequestMapping(value = "deleteBatchDomains")
 	public DeleteBatchDomainsResponse deleteBatchDomains(String domains) throws ClientException {
 		DeleteBatchDomainsResponse response = null;
@@ -80,7 +78,6 @@ public class AliyunBatchDNSController {
 	 * @return TraceId 批量任务ID
 	 * @throws ClientException 
 	 */
-	@CrossOrigin
 	@RequestMapping(value = "addBatchDomainRecords")
 	public AddBatchDomainRecordsResponse addBatchDomainRecords(String records) throws ClientException {
 		AddBatchDomainRecordsResponse response = null;
@@ -109,7 +106,6 @@ public class AliyunBatchDNSController {
 	 * @return TraceId 批量任务ID
 	 * @throws ClientException 
 	 */
-	@CrossOrigin
 	@RequestMapping(value = "updateBatchDomainRecords")
 	public UpdateBatchDomainRecordsResponse updateBatchDomainRecords(String records) throws ClientException {
 		UpdateBatchDomainRecordsResponse response = null;
@@ -138,7 +134,6 @@ public class AliyunBatchDNSController {
 	 * @return TraceId 批量任务ID
 	 * @throws ClientException 
 	 */
-	@CrossOrigin
 	@RequestMapping(value = "deleteBatchDomainRecords")
 	public DeleteBatchDomainRecordsResponse deleteBatchDomainRecords(String records) throws ClientException {
 		DeleteBatchDomainRecordsResponse response = null;
@@ -170,7 +165,6 @@ public class AliyunBatchDNSController {
 	 * @return FailResults 批量任务ID(object)
 	 * @throws ClientException 
 	 */
-	@CrossOrigin
 	@RequestMapping(value = "describeBatchResult")
 	public DescribeBatchResultResponse describeBatchResult(String traceId) throws ClientException {
 		DescribeBatchResultResponse response = null;

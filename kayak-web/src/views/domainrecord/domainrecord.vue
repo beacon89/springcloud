@@ -326,7 +326,7 @@
         methods: {
             query() {
                 let _this = this;
-                this.$http.post(this.httpurl.toString() + '/describeDomainRecords', this.$qs.stringify({
+                this.$http.post(this.httpurl.toString() + '/aliyun/describeDomainRecords', this.$qs.stringify({
                     pageNumber: this.pageNumber,
                     pageSize: this.pageSize,
                     domainName: this.querydata.domainName,
@@ -345,6 +345,7 @@
                     }else{
                         _this.$Message.error("错误信息：" + error.response.data.message);
                     }
+                    console.log(error);
                 });
             },
             changePage(pageNumber) {
@@ -362,7 +363,7 @@
                 this.adddata = {};
             },add(){
                 let _this = this;
-                this.$http.post(this.httpurl.toString() + '/addDomainRecord', this.$qs.stringify({
+                this.$http.post(this.httpurl.toString() + '/aliyun/addDomainRecord', this.$qs.stringify({
                     rr:this.adddata.rr,
                     type:this.adddata.type,
                     value:this.adddata.value,
@@ -380,7 +381,7 @@
                 });
             },delete(row){
                 let _this = this;
-                this.$http.post(this.httpurl.toString() + '/deleteDomainRecord', this.$qs.stringify({
+                this.$http.post(this.httpurl.toString() + '/aliyun/deleteDomainRecord', this.$qs.stringify({
                     recordId:row.recordId
                 })).then(function (response) {
                     _this.query();
@@ -403,7 +404,7 @@
                 this.modmodel = false;
             },mod(){
                 let _this = this;
-                this.$http.post(this.httpurl.toString() + '/updateDomainRecord', this.$qs.stringify({
+                this.$http.post(this.httpurl.toString() + '/aliyun/updateDomainRecord', this.$qs.stringify({
                     recordId:this.moddata.recordId,
                     rr:this.moddata.rr,
                     type:this.moddata.type,
@@ -427,7 +428,7 @@
                 }else{
                     row.status = 'ENABLE';
                 }
-                this.$http.post(this.httpurl.toString() + '/setDomainRecordStatus', this.$qs.stringify({
+                this.$http.post(this.httpurl.toString() + '/aliyun/setDomainRecordStatus', this.$qs.stringify({
                     recordId:row.recordId,
                     status:row.status
                 })).then(function (response) {
@@ -441,7 +442,7 @@
                 });
             },infoobj(row){
                 let _this = this;
-                this.$http.post(this.httpurl.toString() + '/describeDomainRecordInfo', this.$qs.stringify({
+                this.$http.post(this.httpurl.toString() + '/aliyun/describeDomainRecordInfo', this.$qs.stringify({
                     recordId:row.recordId
                 })).then(function (response) {
                     _this.infodata.requestId = response.data.requestId;

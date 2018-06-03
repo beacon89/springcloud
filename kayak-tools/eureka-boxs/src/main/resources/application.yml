@@ -1,8 +1,14 @@
 server:
-  port: 9871
+  port: 8000
 eureka:
   instance:
     hostname: localhost
+    metadata-map:
+          user.name: admin
+          user.password: admin
+          health-check-url-path: /actuator/health
+          home-page-url-path: /actuator
+          status-page-url-path: /actuator/info
   client:
     registerWithEureka: false
     fetchRegistry: false

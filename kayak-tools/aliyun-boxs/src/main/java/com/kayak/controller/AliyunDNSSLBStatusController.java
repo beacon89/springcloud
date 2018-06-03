@@ -3,7 +3,6 @@ package com.kayak.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -46,7 +45,6 @@ public class AliyunDNSSLBStatusController {
 	 * @return Open 解析负载均衡的最新状态
 	 * @throws ClientException 
 	 */
-	@CrossOrigin
 	@RequestMapping(value = "setDNSSLBStatus")
 	public SetDNSSLBStatusResponse setDNSSLBStatus(String subDomain,Boolean open) throws ClientException {
 		SetDNSSLBStatusResponse response = null;
@@ -77,7 +75,6 @@ public class AliyunDNSSLBStatusController {
 	 *  -RecordCount 解析记录数量
 	 *  -Open 解析负载均衡状态
 	 */
-	@CrossOrigin
 	@RequestMapping(value = "describeDNSSLBSubDomains")
 	public DescribeDNSSLBSubDomainsResponse describeDNSSLBSubDomains(String domainName,Long pageNumber,Long pageSize) {
 		DescribeDNSSLBSubDomainsResponse response = null;
@@ -104,7 +101,6 @@ public class AliyunDNSSLBStatusController {
 	 * @return RecordId 解析记录ID
 	 * @return Weight 修改后的权重值
 	 */
-	@CrossOrigin
 	@RequestMapping(value = "updateDNSSLBWeight")
 	public UpdateDNSSLBWeightResponse updateDNSSLBWeight(String recordId,Integer weight) {
 		UpdateDNSSLBWeightResponse response = null;
