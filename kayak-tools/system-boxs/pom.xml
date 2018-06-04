@@ -9,34 +9,38 @@
 	</parent>
 	<artifactId>system-boxs</artifactId>
 	<dependencies>
-		<!-- 访问数据库模块 -->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency> 
-		
-		<!-- 公关实体类各个模块依赖 -->
-		<dependency>
-            <groupId>com.kayak</groupId>
-            <artifactId>object-boxs</artifactId>
-            <version>1.0</version>
-        </dependency>
-
+			<groupId>com.kayak</groupId>
+			<artifactId>tools-boxs</artifactId>
+			<version>1.0</version>
+		</dependency>
 		<!-- web模块 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
-		<!-- MYSQL-->
+		<!-- MYSQL -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		<!-- MYSQL -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-		</dependency> 
+		</dependency>
 
+		<!-- eureka -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>1.1.10</version>
+		</dependency>
+
 	</dependencies>
 </project>

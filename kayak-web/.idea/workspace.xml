@@ -5,14 +5,21 @@
       <change beforePath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/META-INF/maven/com.kayak/aliyun-boxs/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/META-INF/maven/com.kayak/aliyun-boxs/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kayak-tools/config-boxs/target/classes/META-INF/maven/com.kayak/config-boxs/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/config-boxs/target/classes/META-INF/maven/com.kayak/config-boxs/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kayak-tools/eureka-boxs/target/classes/META-INF/maven/com.kayak/eureka-boxs/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/eureka-boxs/target/classes/META-INF/maven/com.kayak/eureka-boxs/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/feign-boxs/.project" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/feign-boxs/.project" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/feign-boxs/target/classes/META-INF/maven/com.kayak/feign-boxs/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/feign-boxs/target/classes/META-INF/maven/com.kayak/feign-boxs/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/META-INF/maven/com.kayak/kubernetes-boxs/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/META-INF/maven/com.kayak/kubernetes-boxs/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/object-boxs/src/main/java/com/kayak/user/UserInfoObj.java" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/object-boxs/src/main/java/com/kayak/user/UserInfoObj.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/object-boxs/target/classes/META-INF/maven/com.kayak/object-boxs/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/object-boxs/target/classes/META-INF/maven/com.kayak/object-boxs/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/object-boxs/target/classes/com/kayak/user/UserInfoObj.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/object-boxs/target/classes/com/kayak/user/UserInfoObj.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/system-boxs/.project" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/system-boxs/.project" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/system-boxs/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/system-boxs/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/system-boxs/src/main/java/com/kayak/dao/imp/UserInfoDaoImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/system-boxs/src/main/java/com/kayak/dao/imp/UserInfoDaoImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/system-boxs/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/system-boxs/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/system-boxs/target/classes/META-INF/maven/com.kayak/system-boxs/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/system-boxs/target/classes/META-INF/maven/com.kayak/system-boxs/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/system-boxs/target/classes/META-INF/maven/com.kayak/system-boxs/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/system-boxs/target/classes/META-INF/maven/com.kayak/system-boxs/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/system-boxs/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/system-boxs/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/system-boxs/target/classes/com/kayak/dao/imp/UserInfoDaoImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/system-boxs/target/classes/com/kayak/dao/imp/UserInfoDaoImp.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kayak-tools/zuul-boxs/target/classes/META-INF/maven/com.kayak/zuul-boxs/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/zuul-boxs/target/classes/META-INF/maven/com.kayak/zuul-boxs/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kayakjs/hashmap.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/kayakjs/hashmap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/k8s/k8sreplicationcontroller.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/k8s/k8sreplicationcontroller.vue" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -308,16 +315,15 @@
       <workItem from="1527937591973" duration="1067000" />
       <workItem from="1527954227558" duration="1379000" />
       <workItem from="1528009306204" duration="180000" />
-      <workItem from="1528015439510" duration="4595000" />
+      <workItem from="1528015439510" duration="4747000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="435314000" />
+    <option name="totallyTimeSpent" value="435466000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="822" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -330,10 +336,10 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32905984" />
       <window_info id="npm" order="2" side_tool="true" weight="0.3297568" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49928468" visible="true" weight="0.25925925" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49928468" visible="true" weight="0.25925925" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" weight="0.2160229" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2160229" />
       <window_info anchor="right" id="Database" order="6" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32905984" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />

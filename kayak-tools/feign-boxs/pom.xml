@@ -23,9 +23,9 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.kayak</groupId>
-			<artifactId>object-boxs</artifactId>
-			<version>1.0</version>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20180130</version>
 		</dependency>
 	</dependencies>
 </project>

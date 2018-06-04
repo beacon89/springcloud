@@ -33,6 +33,13 @@
 		</dependencies>
 	</dependencyManagement>
 
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+		</dependency>
+	</dependencies>
+
 	<repositories>
 		<repository>
 			<id>spring-milestones</id>
@@ -59,7 +66,7 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 	<modules>
 		<module>aliyun-boxs</module>
 		<module>kubernetes-boxs</module>
@@ -67,7 +74,7 @@
 		<module>zuul-boxs</module>
 		<module>config-boxs</module>
 		<module>feign-boxs</module>
-		<module>object-boxs</module>
 		<module>system-boxs</module>
+		<module>tools-boxs</module>
 	</modules>
 </project>

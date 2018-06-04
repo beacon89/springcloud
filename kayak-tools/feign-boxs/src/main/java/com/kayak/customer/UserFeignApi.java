@@ -1,12 +1,14 @@
 package com.kayak.customer;
 
+
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kayak.client.UserFeignClient;
-import com.kayak.user.UserInfoObj;
 
 
 @RestController
@@ -16,8 +18,8 @@ public class UserFeignApi {
 	private UserFeignClient userClient;
 	
 	@RequestMapping("/login")
-	public UserInfoObj login() {
-		return this.userClient.getUserInfoByNamePwd("1111","2222");
+	public Map<String, Object> login(String userloginnname, String userpwd) {
+		return this.userClient.getUserInfoByNamePwd(userloginnname, userpwd);
 	}
 
 }
