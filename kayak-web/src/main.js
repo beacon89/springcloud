@@ -13,12 +13,14 @@ import qs from 'qs';
 import hashmap from './kayakjs/hashmap'
 
 
+
 Vue.use(VueI18n);
 Vue.use(iView);
 Vue.use(hashmap);
 Vue.prototype.$http = axios;
 Vue.prototype.$qs = qs;
 Vue.prototype.httpurl = "http://localhost:8400";
+
 
 
 new Vue({

@@ -11,10 +11,13 @@ zuul:
   routes:
     aliyun: #自定义名称
       path: /aliyun/**
-      serviceId: kayak-aliyun #/aliyun/开头的路径转发至kayak-aliyun微服务
+      service-id: kayak-aliyun #/aliyun/开头的路径转发至kayak-aliyun微服务
     k8s:
       path: /k8s/**
-      serviceId: kayak-kubernetes
+      service-id: kayak-kubernetes
+    system:
+      path: /feigen/**
+      service-id: kayak-feigen
 eureka:
   client:
     serviceUrl:

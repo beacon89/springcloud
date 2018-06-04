@@ -9177,6 +9177,7 @@
     </Card>
 </template>
 <script>
+    import uuid from 'uuid';
 
     export default {
         name: "k8s",

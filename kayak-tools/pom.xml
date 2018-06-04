@@ -66,5 +66,8 @@
 		<module>eureka-boxs</module>
 		<module>zuul-boxs</module>
 		<module>config-boxs</module>
+		<module>feign-boxs</module>
+		<module>object-boxs</module>
+		<module>system-boxs</module>
 	</modules>
 </project>
