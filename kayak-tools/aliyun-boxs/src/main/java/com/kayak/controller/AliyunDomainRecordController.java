@@ -1,9 +1,13 @@
 package com.kayak.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.aliyuncs.IAcsClient;
@@ -29,7 +33,7 @@ import com.aliyuncs.exceptions.ClientException;
 import com.kayak.utils.AliyunUtils;
 
 @RestController
-public class AliyunDomainRecordController {
+public class AliyunDomainRecordController extends BaseController{
 
 	private final Logger log = LoggerFactory.getLogger(AliyunDomainRecordController.class);
 	
@@ -77,9 +81,7 @@ public class AliyunDomainRecordController {
 	 * TODO 过
 	 */
 	@RequestMapping(value = "addDomainRecord")
-	public AddDomainRecordResponse addDomainRecord(String domainName,String rr,String type,String value,Long ttl,Long priority,String line) throws ClientException {
-		AddDomainRecordResponse response = null;
-		try {
+	public Map<String, Object> addDomainRecord(String domainName,String rr,String type,String value,Long ttl,Long priority,String line) throws ClientException {
 			if(AliyunUtils.canSet(domainName)) {
 				this.addDomainRecord.setDomainName(domainName);
 			}
@@ -101,12 +103,11 @@ public class AliyunDomainRecordController {
 			if(AliyunUtils.canSet(line)) {
 				this.addDomainRecord.setLine(line);
 			}
-			response = iacsClient.getAcsResponse(this.addDomainRecord);
-		} catch (ClientException e) {
-			log.error(e.getErrCode(),e.getErrMsg());
-			throw e;
-		}
-		return response;
+			AddDomainRecordResponse response = iacsClient.getAcsResponse(this.addDomainRecord);
+			Map<String, Object> map = new HashMap<>();
+			map.put("requestId", response.getRecordId());
+			map.put("recordId", response.getRequestId());
+			return this.responseMessage(map);
 	}
 	
 	/**
@@ -118,16 +119,13 @@ public class AliyunDomainRecordController {
 	 * TODO 过
 	 */
 	@RequestMapping(value = "deleteDomainRecord")
-	public DeleteDomainRecordResponse deleteDomainRecord(String recordId) throws ClientException {
-		DeleteDomainRecordResponse response = null;
-		try {
-			this.deleteDomainRecord.setRecordId(recordId);
-			response = iacsClient.getAcsResponse(this.deleteDomainRecord);
-		} catch (ClientException e) {
-			log.error(e.getErrCode(),e.getErrMsg());
-			throw e;
-		}
-		return response;
+	public Map<String, Object> deleteDomainRecord(String recordId) throws ClientException {
+		this.deleteDomainRecord.setRecordId(recordId);
+		DeleteDomainRecordResponse response = iacsClient.getAcsResponse(this.deleteDomainRecord);
+		Map<String, Object> map = new HashMap<>();
+		map.put("requestId", response.getRecordId());
+		map.put("recordId", response.getRequestId());
+		return this.responseMessage(map);
 	}
 	
 	/**
@@ -144,29 +142,26 @@ public class AliyunDomainRecordController {
 	 * @throws ClientException 
 	 * TODO 过
 	 */
-	@RequestMapping(value = "updateDomainRecord")
-	public UpdateDomainRecordResponse updateDomainRecord(String recordId,String rr,String type,String value,Long ttl,Long priority,String line) throws ClientException {
-		UpdateDomainRecordResponse response = null;
-		try {
-			this.updateDomainRecord.setRecordId(recordId);
-			this.updateDomainRecord.setRR(rr);
-			this.updateDomainRecord.setType(type);
-			this.updateDomainRecord.setValue(value);
-			if(AliyunUtils.canSet(ttl)) {
-				this.updateDomainRecord.setTTL(ttl);
-			}
-			if(AliyunUtils.canSet(priority)) {
-				this.updateDomainRecord.setPriority(priority);
-			}
-			if(AliyunUtils.canSet(line)) {
-				this.updateDomainRecord.setLine(line);
-			}
-			response = iacsClient.getAcsResponse(this.updateDomainRecord);
-		} catch (ClientException e) {
-			log.error(e.getErrCode(),e.getErrMsg());
-			throw e;
+	@RequestMapping(value = "updateDomainRecord",method = RequestMethod.POST)
+	public Map<String, Object> updateDomainRecord(String recordId,String rr,String type,String value,Long ttl,Long priority,String line) throws ClientException {
+		this.updateDomainRecord.setRecordId(recordId);
+		this.updateDomainRecord.setRR(rr);
+		this.updateDomainRecord.setType(type);
+		this.updateDomainRecord.setValue(value);
+		if(AliyunUtils.canSet(ttl)) {
+			this.updateDomainRecord.setTTL(ttl);
 		}
-		return response;
+		if(AliyunUtils.canSet(priority)) {
+			this.updateDomainRecord.setPriority(priority);
+		}
+		if(AliyunUtils.canSet(line)) {
+			this.updateDomainRecord.setLine(line);
+		}
+		UpdateDomainRecordResponse response = iacsClient.getAcsResponse(this.updateDomainRecord);
+		Map<String, Object> map = new HashMap<>();
+		map.put("requestId", response.getRecordId());
+		map.put("recordId", response.getRequestId());
+		return this.responseMessage(map);
 	}
 	
 	/**
@@ -180,17 +175,15 @@ public class AliyunDomainRecordController {
 	 * TODO 过
 	 */
 	@RequestMapping(value = "setDomainRecordStatus")
-	public SetDomainRecordStatusResponse setDomainRecordStatus(String recordId,String status) throws ClientException {
-		SetDomainRecordStatusResponse response = null;
-		try {
+	public Map<String, Object> setDomainRecordStatus(String recordId,String status) throws ClientException {
 			this.setDomainRecordStatus.setRecordId(recordId);
 			this.setDomainRecordStatus.setStatus(status);
-			response = iacsClient.getAcsResponse(this.setDomainRecordStatus);
-		} catch (ClientException e) {
-			log.error(e.getErrCode(),e.getErrMsg());
-			throw e;
-		}
-		return response;
+			SetDomainRecordStatusResponse response = iacsClient.getAcsResponse(this.setDomainRecordStatus);
+			Map<String, Object> map = new HashMap<>();
+			map.put("requestId", response.getRecordId());
+			map.put("recordId", response.getRequestId());
+			map.put("status", response.getStatus());
+			return this.responseMessage(map);
 	}
 	
 	/**
@@ -216,34 +209,30 @@ public class AliyunDomainRecordController {
 	 * @throws ClientException 
 	 * TODO 过
 	 */
-	@RequestMapping(value="describeDomainRecords")
-	public DescribeDomainRecordsResponse describeDomainRecords(String domainName,Long pageNumber,Long pageSize,String rRKeyWord,String typeKeyWord,String valueKeyWord) throws ClientException {
-		DescribeDomainRecordsResponse response = null;
-		try {
-			if(AliyunUtils.canSet(domainName)) {
-				this.describeDomainRecords.setDomainName(domainName);
-			}
-			if(AliyunUtils.canSet(pageNumber)) {
-				this.describeDomainRecords.setPageNumber(pageNumber);
-			}
-			if(AliyunUtils.canSet(pageSize)) {
-				this.describeDomainRecords.setPageSize(pageSize);
-			}
-			if(AliyunUtils.canSet(rRKeyWord)) {
-				this.describeDomainRecords.setRRKeyWord(rRKeyWord);
-			}
-			if(AliyunUtils.canSet(typeKeyWord)) {
-				this.describeDomainRecords.setTypeKeyWord(typeKeyWord);
-			}
-			if(AliyunUtils.canSet(valueKeyWord)) {
-				this.describeDomainRecords.setValueKeyWord(valueKeyWord);
-			}
-			response = iacsClient.getAcsResponse(this.describeDomainRecords);
-		} catch (ClientException e) {
-			log.error(e.getErrCode(),e.getErrMsg());
-			throw e;
+	@RequestMapping(value="describeDomainRecords",method = RequestMethod.POST)
+	public Map<String, Object> describeDomainRecords(String domainName,Long pageNumber,Long pageSize,String rRKeyWord,String typeKeyWord,String valueKeyWord) throws ClientException {
+		if(AliyunUtils.canSet(domainName)) {
+			this.describeDomainRecords.setDomainName(domainName);
 		}
-		return response;
+		if(AliyunUtils.canSet(pageNumber)) {
+			this.describeDomainRecords.setPageNumber(pageNumber);
+		}
+		if(AliyunUtils.canSet(pageSize)) {
+			this.describeDomainRecords.setPageSize(pageSize);
+		}
+		if(AliyunUtils.canSet(rRKeyWord)) {
+			this.describeDomainRecords.setRRKeyWord(rRKeyWord);
+		}
+		if(AliyunUtils.canSet(typeKeyWord)) {
+			this.describeDomainRecords.setTypeKeyWord(typeKeyWord);
+		}
+		if(AliyunUtils.canSet(valueKeyWord)) {
+			this.describeDomainRecords.setValueKeyWord(valueKeyWord);
+		}
+		DescribeDomainRecordsResponse response = iacsClient.getAcsResponse(this.describeDomainRecords);
+		Map<String, Object> map = new HashMap<>();
+		map.put("requestId", response.getRequestId());
+		return this.responseMessage(response.getDomainRecords(), response.getPageNumber(), response.getPageSize(), response.getTotalCount(), map);
 	}
 	
 	/**
@@ -264,14 +253,39 @@ public class AliyunDomainRecordController {
 	 */
 	@RequestMapping(value="describeDomainRecordInfo")
 	public DescribeDomainRecordInfoResponse describeDomainRecordInfo(String recordId) throws ClientException {
-		DescribeDomainRecordInfoResponse response = null;
-		try {
 			this.describeDomainRecordInfo.setRecordId(recordId);
-			response = iacsClient.getAcsResponse(this.describeDomainRecordInfo);
-		} catch (ClientException e) {
-			log.error(e.getErrCode(),e.getErrMsg());
-			throw e;
-		}
+			DescribeDomainRecordInfoResponse response = iacsClient.getAcsResponse(this.describeDomainRecordInfo);
+			Map<String, Object> map = new HashMap<>();
+			map.put("requestId", response.getRequestId());
+			map.put("domainId", response.getDomainId());
+			private String ;
+
+			private String domainName;
+
+			private String punyCode;
+
+			private String groupId;
+
+			private String groupName;
+
+			private String recordId;
+
+			private String rR;
+
+			private String type;
+
+			private String value;
+
+			private Long tTL;
+
+			private Long priority;
+
+			private String line;
+
+			private String status;
+
+			private Boolean locked;
+			
 		return response;
 	}
 	

@@ -2,24 +2,69 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2495aecf-d3e1-4879-b308-60188cf2d6bc" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/views/system/userinfo.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/META-INF/maven/com.kayak/aliyun-boxs/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/META-INF/maven/com.kayak/aliyun-boxs/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/AliyunApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/AliyunApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/beans/AliyunClientBeans.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/beans/AliyunClientBeans.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/controller/AliyunBatchDNSController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/controller/AliyunBatchDNSController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/controller/AliyunDNSDomainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/controller/AliyunDNSDomainController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/controller/AliyunDNSGroupController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/controller/AliyunDNSGroupController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/controller/AliyunDNSResolverController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/controller/AliyunDNSResolverController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/controller/AliyunDNSSLBStatusController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/controller/AliyunDNSSLBStatusController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/controller/AliyunDomainRecordController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/controller/AliyunDomainRecordController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/controller/AliyunResolverDomainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/controller/AliyunResolverDomainController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/properties/AliyunDnsPropertie.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/properties/AliyunDnsPropertie.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/utils/AliyunUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/utils/AliyunUtils.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kayak-tools/config-boxs/target/classes/META-INF/maven/com.kayak/config-boxs/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/config-boxs/target/classes/META-INF/maven/com.kayak/config-boxs/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/eureka-boxs/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/eureka-boxs/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kayak-tools/eureka-boxs/target/classes/META-INF/maven/com.kayak/eureka-boxs/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/eureka-boxs/target/classes/META-INF/maven/com.kayak/eureka-boxs/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/feign-boxs/.project" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/feign-boxs/.project" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/eureka-boxs/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/eureka-boxs/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/eureka-boxs/target/classes/com/kayak/EurekaApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/eureka-boxs/target/classes/com/kayak/EurekaApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/feign-boxs/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/feign-boxs/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/feign-boxs/src/main/java/com/kayak/FeignApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/feign-boxs/src/main/java/com/kayak/FeignApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/feign-boxs/src/main/java/com/kayak/client/UserFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/feign-boxs/src/main/java/com/kayak/client/UserFeignClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/feign-boxs/src/main/java/com/kayak/customer/UserFeignApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/feign-boxs/src/main/java/com/kayak/customer/UserFeignApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/feign-boxs/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/feign-boxs/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kayak-tools/feign-boxs/target/classes/META-INF/maven/com.kayak/feign-boxs/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/feign-boxs/target/classes/META-INF/maven/com.kayak/feign-boxs/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/feign-boxs/target/classes/META-INF/maven/com.kayak/feign-boxs/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/feign-boxs/target/classes/META-INF/maven/com.kayak/feign-boxs/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/feign-boxs/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/feign-boxs/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/feign-boxs/target/classes/com/kayak/FeignApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/feign-boxs/target/classes/com/kayak/FeignApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/feign-boxs/target/classes/com/kayak/client/UserFeignClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/feign-boxs/target/classes/com/kayak/client/UserFeignClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/feign-boxs/target/classes/com/kayak/customer/UserFeignApi.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/feign-boxs/target/classes/com/kayak/customer/UserFeignApi.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/META-INF/maven/com.kayak/kubernetes-boxs/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/META-INF/maven/com.kayak/kubernetes-boxs/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/object-boxs/src/main/java/com/kayak/user/UserInfoObj.java" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/object-boxs/src/main/java/com/kayak/user/UserInfoObj.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/object-boxs/target/classes/META-INF/maven/com.kayak/object-boxs/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/object-boxs/target/classes/META-INF/maven/com.kayak/object-boxs/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/object-boxs/target/classes/com/kayak/user/UserInfoObj.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/object-boxs/target/classes/com/kayak/user/UserInfoObj.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/system-boxs/.project" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/system-boxs/.project" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/system-boxs/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/system-boxs/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/system-boxs/src/main/java/com/kayak/dao/imp/UserInfoDaoImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/system-boxs/src/main/java/com/kayak/dao/imp/UserInfoDaoImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/META-INF/spring-configuration-metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/META-INF/spring-configuration-metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/KubernetesApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/KubernetesApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/beans/KayakReplicationControllerList.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/beans/KayakReplicationControllerList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/beans/KubernetesKayakClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/beans/KubernetesKayakClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/controller/KubernetesController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/controller/KubernetesController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/model/KayakRcModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/model/KayakRcModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/model/KubModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/model/KubModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/model/KubRCMetadataModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/model/KubRCMetadataModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/model/KubRCSpecModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/model/KubRCSpecModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/model/KubRcShowModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/model/KubRcShowModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/model/KubRcStatusModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/model/KubRcStatusModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/model/KubRctTemplateModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/model/KubRctTemplateModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/model/KubTemplateMetadata.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/model/KubTemplateMetadata.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/model/TestModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/model/TestModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/utils/KubernetesUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/utils/KubernetesUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/system-boxs/src/main/java/com/kayak/controller/UserInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/system-boxs/src/main/java/com/kayak/controller/UserInfoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kayak-tools/system-boxs/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/system-boxs/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kayak-tools/system-boxs/target/classes/META-INF/maven/com.kayak/system-boxs/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/system-boxs/target/classes/META-INF/maven/com.kayak/system-boxs/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/system-boxs/target/classes/META-INF/maven/com.kayak/system-boxs/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/system-boxs/target/classes/META-INF/maven/com.kayak/system-boxs/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kayak-tools/system-boxs/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/system-boxs/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/system-boxs/target/classes/com/kayak/dao/imp/UserInfoDaoImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/system-boxs/target/classes/com/kayak/dao/imp/UserInfoDaoImp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/system-boxs/target/classes/com/kayak/controller/UserInfoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/system-boxs/target/classes/com/kayak/controller/UserInfoController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/tools-boxs/.project" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/tools-boxs/.project" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/tools-boxs/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/tools-boxs/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/tools-boxs/target/classes/META-INF/maven/com.kayak/tools-boxs/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/tools-boxs/target/classes/META-INF/maven/com.kayak/tools-boxs/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/tools-boxs/target/classes/META-INF/maven/com.kayak/tools-boxs/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/tools-boxs/target/classes/META-INF/maven/com.kayak/tools-boxs/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/zuul-boxs/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/zuul-boxs/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/zuul-boxs/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/zuul-boxs/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kayak-tools/zuul-boxs/target/classes/META-INF/maven/com.kayak/zuul-boxs/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/zuul-boxs/target/classes/META-INF/maven/com.kayak/zuul-boxs/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/zuul-boxs/target/classes/META-INF/maven/com.kayak/zuul-boxs/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/zuul-boxs/target/classes/META-INF/maven/com.kayak/zuul-boxs/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/zuul-boxs/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/zuul-boxs/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/k8s/k8sreplicationcontroller.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/k8s/k8sreplicationcontroller.vue" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,35 +76,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main.js">
+      <file leaf-file-name="domainrecord.vue" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/views/domainrecord/domainrecord.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" selection-start-line="10" selection-end-line="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="k8sreplicationcontroller.vue" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/views/k8s/k8sreplicationcontroller.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="10386" column="33" selection-start-line="10386" selection-start-column="33" selection-end-line="10386" selection-end-column="33" />
+            <state relative-caret-position="575">
+              <caret line="430" column="88" selection-start-line="430" selection-start-column="67" selection-end-line="430" selection-end-column="88" />
               <folding>
-                <element signature="e#935619#994352#0" />
-                <element signature="e#937413#980601#0" />
-                <element signature="e#939084#980551#0" />
-                <element signature="e#959901#963389#0" />
+                <element signature="n#style#0;n#div#0;n#Form#0;n#Row#0;n#Card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#Row#1;n#Card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#Row#1;n#Card#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#Row#4;n#Card#0;n#template#0;n#!!top" />
+                <element signature="e#9745#13469#0" />
+                <element signature="e#13646#13811#0" />
+                <element signature="e#13869#14067#0" />
+                <element signature="e#14127#14617#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="hashmap.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/kayakjs/hashmap.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="38" column="29" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -75,36 +106,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>addnewdataspectemplatespeccontainersports</find>
-      <find>addnewdataspectemplatespeccontainersvolumeMounts</find>
-      <find>path</find>
-      <find>addnewdataspectemplatespecvolumes</find>
-      <find>ruleK8sNewDataSpec</find>
-      <find>ruleK8sNewData</find>
-      <find>FormItem</find>
-      <find>&lt;FormItem&gt;</find>
-      <find>newdata</find>
-      <find>container_name</find>
-      <find>container_image</find>
-      <find>hostname</find>
-      <find>container_hostname</find>
-      <find>container_subdomain</find>
-      <find>commands</find>
-      <find>volumes</find>
-      <find>spec_template_spec_containers_name</find>
-      <find>containerName</find>
-      <find>spec_replicas</find>
-      <find>tempnodeSelector</find>
-      <find>templabels</find>
-      <find>$checkUndefined</find>
-      <find>length</find>
       <find>delloading</find>
+      <find>detelmodal</find>
+      <find>deldata</find>
       <find>deleterow</find>
-      <find>axios</find>
+      <find>showoutpage</find>
+      <find>showdelpage</find>
+      <find>infoclean</find>
+      <find>cleanmod</find>
+      <find>delrow</find>
+      <find>loginoutcleanrow</find>
+      <find>delcleanrow</find>
+      <find>新增</find>
+      <find>addmodel</find>
+      <find>userridno</find>
+      <find>showaddpage</find>
       <find>httpurl</find>
-      <find>utilutil</find>
-      <find>$checkNull</find>
-      <find>util</find>
+      <find>pageNumber</find>
+      <find>validateIsuPattern</find>
+      <find>用户id</find>
+      <find>moddata</find>
+      <find>Validate</find>
+      <find>modValidate</find>
+      <find>delUserInfo</find>
+      <find>newValidate</find>
+      <find>validateCheckLoginName</find>
+      <find>color</find>
+      <find>initColorList</find>
+      <find>saveUserInfo</find>
+      <find>k8s</find>
+      <find>httpurl.toString()</find>
     </findStrings>
     <replaceStrings>
       <replace>this.showflag</replace>
@@ -112,6 +143,9 @@
       <replace>true</replace>
       <replace>j</replace>
       <replace>[j]</replace>
+      <replace>150</replace>
+      <replace>120</replace>
+      <replace>moddata</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -122,7 +156,6 @@
       <list>
         <option value="$PROJECT_DIR$/build/webpack.base.config.js" />
         <option value="$PROJECT_DIR$/src/views/k8s/K8sReplicationController.vue" />
-        <option value="$PROJECT_DIR$/src/router/router.js" />
         <option value="$PROJECT_DIR$/src/views/k8s/k8smetadata.vue" />
         <option value="$PROJECT_DIR$/src/views/k8s/1.vue" />
         <option value="$PROJECT_DIR$/src/views/domainrecord/domainsubrecord.vue" />
@@ -131,11 +164,13 @@
         <option value="$PROJECT_DIR$/node_modules/iview/src/components/input/input.vue" />
         <option value="$PROJECT_DIR$/src/js/hashmap.js" />
         <option value="$PROJECT_DIR$/src/kayakjs/HashMap.vue" />
-        <option value="$PROJECT_DIR$/src/views/domainrecord/domainrecord.vue" />
         <option value="$PROJECT_DIR$/src/libs/Uuid.js" />
-        <option value="$PROJECT_DIR$/src/main.js" />
         <option value="$PROJECT_DIR$/src/kayakjs/hashmap.js" />
+        <option value="$PROJECT_DIR$/src/router/router.js" />
+        <option value="$PROJECT_DIR$/src/views/domainrecord/domainrecord.vue" />
         <option value="$PROJECT_DIR$/src/views/k8s/k8sreplicationcontroller.vue" />
+        <option value="$PROJECT_DIR$/src/main.js" />
+        <option value="$PROJECT_DIR$/src/views/system/userinfo.vue" />
       </list>
     </option>
   </component>
@@ -183,18 +218,6 @@
               <item name="kayak-web" type="b2602c69:ProjectViewProjectNode" />
               <item name="kayak-web" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="kayakjs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kayak-web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kayak-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="libs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kayak-web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kayak-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -202,15 +225,30 @@
               <item name="kayak-web" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="k8s" type="462c0819:PsiDirectoryNode" />
+              <item name="system" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kayak-web" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kayak-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="tables" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kayak-web" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kayak-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="tables" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -316,14 +354,17 @@
       <workItem from="1527954227558" duration="1379000" />
       <workItem from="1528009306204" duration="180000" />
       <workItem from="1528015439510" duration="4747000" />
+      <workItem from="1528168696042" duration="24361000" />
+      <workItem from="1528288963181" duration="4461000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="435466000" />
+    <option name="totallyTimeSpent" value="464288000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="822" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -336,12 +377,11 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32905984" />
       <window_info id="npm" order="2" side_tool="true" weight="0.3297568" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49928468" visible="true" weight="0.25925925" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49928468" weight="0.25925925" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Designer" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2160229" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.22174536" />
       <window_info anchor="right" id="Database" order="6" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32905984" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="4" />
@@ -355,14 +395,14 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32905984" />
     </layout>
     <layout-to-restore>
       <window_info id="Designer" order="3" />
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Image Layers" order="7" />
       <window_info anchor="bottom" id="TypeScript" order="11" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="4" />
@@ -386,6 +426,7 @@
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
     </layout-to-restore>
   </component>
@@ -397,93 +438,39 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="31" />
+      <option name="time" value="35" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main.js">
+    <entry file="file://$PROJECT_DIR$/src/views/system/userinfo.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
+        <state relative-caret-position="14985">
+          <caret line="999" selection-start-line="999" selection-end-line="999" selection-end-column="63" />
+          <folding>
+            <element signature="n#style#0;n#Card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#Row#0;n#Card#0;n#template#0;n#!!top" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#Form#0;n#Row#0;n#Card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#Row#1;n#Card#0;n#template#0;n#!!top" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#Row#1;n#Card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#Row#1;n#Card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#Row#1;n#Card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#Row#2;n#Card#0;n#template#0;n#!!top" />
+            <element signature="n#style#0;n#p#0;n#Modal#0;n#div#0;n#Row#2;n#Card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#Modal#0;n#div#0;n#Row#2;n#Card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#Modal#0;n#div#0;n#Row#2;n#Card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#div#0;n#Card#0;n#template#0;n#!!top" />
+            <element signature="n#div#1;n#Card#0;n#template#0;n#!!top" />
+            <element signature="n#Row#4;n#Card#0;n#template#0;n#!!top" />
+            <element signature="n#style#0;n#p#0;n#Modal#0;n#div#0;n#Row#4;n#Card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#Modal#0;n#div#0;n#Row#4;n#Card#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-502" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/webpack.dev.config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-89">
-          <caret line="20" column="6" lean-forward="true" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/webpack.prod.config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-944" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/webpack.base.config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-437">
-          <caret line="12" column="18" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/dnsproduct/dnsproduct.vue" />
-    <entry file="file://$PROJECT_DIR$/src/views/k8s/metadata.vue" />
-    <entry file="file://$PROJECT_DIR$/src/views/domain/domain.vue" />
-    <entry file="file://$PROJECT_DIR$/src/views/domain/table-expand.vue" />
-    <entry file="file://$PROJECT_DIR$/src/views/components/table.less" />
     <entry file="file://$PROJECT_DIR$/src/views/domainrecord/domainsubrecord.vue" />
-    <entry file="file://$PROJECT_DIR$/src/router/router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="93" column="47" selection-start-line="93" selection-start-column="23" selection-end-line="93" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/tables/components/table_data.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-324" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/html2canvas/dist/html2canvas.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-173" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/tables/searchable-table.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-968" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/tables/editable-table.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="87" column="46" selection-start-line="87" selection-start-column="46" selection-end-line="87" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/tables/components/canEditTable.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3639" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/tables/dragable-table.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="74" column="45" selection-start-line="74" selection-start-column="45" selection-end-line="74" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/tables/table-to-image.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-149">
-          <caret line="34" column="29" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/k8s/spec.vue" />
@@ -505,13 +492,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
           <caret line="210" column="22" selection-start-line="210" selection-start-column="22" selection-end-line="210" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/tables/components/table.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="9" lean-forward="true" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -553,27 +533,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="24" selection-start-column="24" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/iview/src/components/button/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="26" lean-forward="true" selection-start-column="26" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/iview/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="63" column="5" selection-start-line="63" selection-start-column="5" selection-end-line="63" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/iview/src/components/button/button.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-427">
-          <caret line="8" column="61" selection-start-line="8" selection-start-column="61" selection-end-line="8" selection-end-column="61" />
         </state>
       </provider>
     </entry>
@@ -629,13 +588,6 @@
         <state relative-caret-position="-735" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/domainrecord/domainrecord.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1374">
-          <caret line="444" column="44" selection-start-line="444" selection-start-column="37" selection-end-line="444" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/libs/table2excel.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-264" />
@@ -645,46 +597,188 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="2" lean-forward="true" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/libs/Uuid.js">
+    <entry file="file://$PROJECT_DIR$/src/libs/Uuid.js" />
+    <entry file="file://$PROJECT_DIR$/src/kayakjs/hashmap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="38" column="29" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router/router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="410">
+          <caret line="114" column="64" selection-start-line="114" selection-start-column="56" selection-end-line="114" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/tables/dragable-table.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1372">
+          <caret line="74" column="45" selection-start-line="74" selection-start-column="45" selection-end-line="74" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/tables/editable-table.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1305">
+          <caret line="87" column="46" selection-start-line="87" selection-start-column="46" selection-end-line="87" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/tables/exportable-table.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1211" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/tables/searchable-table.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1178" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/tables/table-to-image.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1958">
+          <caret line="34" column="29" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/tables/components/canEditTable.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3662" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/tables/components/dragableTable.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-203" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/tables/components/multiPageTable.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1048" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/tables/components/table.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-398">
+          <caret line="5" column="9" lean-forward="true" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/tables/components/table_data.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1297">
+          <caret line="129" column="6" lean-forward="true" selection-start-line="129" selection-start-column="6" selection-end-line="129" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/tinymce/themes/inlite/theme.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="18680" column="11" selection-start-line="18680" selection-start-column="11" selection-end-line="18680" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/iview/src/components/button/button.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-224">
+          <caret line="23" column="106" selection-start-line="23" selection-start-column="99" selection-end-line="23" selection-end-column="106" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/iview/src/components/button/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret selection-end-line="14" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
+          <caret column="27" lean-forward="true" selection-start-column="27" selection-end-column="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        <state relative-caret-position="174">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/kayakjs/hashmap.js">
+    <entry file="file://$PROJECT_DIR$/node_modules/iview/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="38" column="29" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="29" />
+        <state relative-caret-position="165">
+          <caret line="115" column="6" selection-start-line="115" selection-start-column="6" selection-end-line="115" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/iview/src/components/tag/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="21" selection-start-column="21" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/iview/src/components/tag/tag.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="18" column="32" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/system/userinfo.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="607" column="52" lean-forward="true" selection-start-line="607" selection-start-column="52" selection-end-line="607" selection-end-column="52" />
+          <folding>
+            <element signature="n#style#0;n#Card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#Row#0;n#Card#0;n#template#0;n#!!top" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#Form#0;n#Row#0;n#Card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#Row#1;n#Card#0;n#template#0;n#!!top" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#Row#1;n#Card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#Row#1;n#Card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#Row#1;n#Card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#Row#2;n#Card#0;n#template#0;n#!!top" />
+            <element signature="n#style#0;n#p#0;n#Modal#0;n#div#0;n#Row#2;n#Card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#Modal#0;n#div#0;n#Row#2;n#Card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#Modal#0;n#div#0;n#Row#2;n#Card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#div#0;n#Card#0;n#template#0;n#!!top" />
+            <element signature="n#div#1;n#Card#0;n#template#0;n#!!top" />
+            <element signature="n#Row#4;n#Card#0;n#template#0;n#!!top" />
+            <element signature="n#style#0;n#p#0;n#Modal#0;n#div#0;n#Row#4;n#Card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#Modal#0;n#div#0;n#Row#4;n#Card#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/k8s/k8sreplicationcontroller.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="10386" column="33" selection-start-line="10386" selection-start-column="33" selection-end-line="10386" selection-end-column="33" />
+        <state relative-caret-position="203">
+          <caret line="10580" column="99" selection-start-line="10580" selection-start-column="72" selection-end-line="10580" selection-end-column="99" />
           <folding>
-            <element signature="e#935619#994352#0" />
-            <element signature="e#937413#980601#0" />
-            <element signature="e#939084#980551#0" />
-            <element signature="e#959901#963389#0" />
+            <element signature="n#div#0;n#Card#0;n#template#0;n#!!top" />
+            <element signature="n#div#1;n#Card#0;n#template#0;n#!!top" />
+            <element signature="e#4836#4842#0" expanded="true" />
+            <element signature="n#div#2;n#Card#0;n#template#0;n#!!top" />
+            <element signature="e#984613#986008#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/domainrecord/domainrecord.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="430" column="88" selection-start-line="430" selection-start-column="67" selection-end-line="430" selection-end-column="88" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#Form#0;n#Row#0;n#Card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#Row#1;n#Card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#Row#1;n#Card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#Row#4;n#Card#0;n#template#0;n#!!top" />
+            <element signature="e#9745#13469#0" />
+            <element signature="e#13646#13811#0" />
+            <element signature="e#13869#14067#0" />
+            <element signature="e#14127#14617#0" />
           </folding>
         </state>
       </provider>

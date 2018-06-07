@@ -2,7 +2,7 @@ server:
   port: 8000
 eureka:
   instance:
-    hostname: localhost
+    hostname: beaconliupc
     metadata-map:
           user.name: admin
           user.password: admin
@@ -10,10 +10,13 @@ eureka:
           home-page-url-path: /actuator
           status-page-url-path: /actuator/info
   client:
-    registerWithEureka: false
-    fetchRegistry: false
-    serviceUrl:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
 spring:
   application:
     name: kayak-eureka
+  cloud:
+    inetutils:
+      default-ip-address: localhost

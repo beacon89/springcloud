@@ -99,6 +99,23 @@ export const appRouter = [
             },
 
         ]
+    },
+    {
+        path: '/systemuserifo',
+        icon: 'egg',
+        name: 'systemuserifo',
+        title: '用户管理',
+        component: Main,
+        children: [
+            {
+                path: 'systemuserifo',
+                title: '用户管理',
+                icon: 'egg',
+                name: 'systemuserifo_index',
+                component: () => import('@/views/system/userinfo.vue')
+            },
+
+        ]
     }
 ];
 

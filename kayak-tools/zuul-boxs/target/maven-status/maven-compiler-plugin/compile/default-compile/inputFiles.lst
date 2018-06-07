@@ -1,0 +1,6 @@
+/Users/cuiyifeng/GitFork/springcloud/kayak-tools/zuul-boxs/src/main/java/com/kayak/bean/ZuulBeans.java
+/Users/cuiyifeng/GitFork/springcloud/kayak-tools/zuul-boxs/src/main/java/com/kayak/fallback/KubernetesFallbackProvider.java
+/Users/cuiyifeng/GitFork/springcloud/kayak-tools/zuul-boxs/src/main/java/com/kayak/fallback/AliyunFallbackProvider.java
+/Users/cuiyifeng/GitFork/springcloud/kayak-tools/zuul-boxs/src/main/java/com/kayak/filter/KayakSessionFilter.java
+/Users/cuiyifeng/GitFork/springcloud/kayak-tools/zuul-boxs/src/main/java/com/kayak/ZuulApplication.java
+/Users/cuiyifeng/GitFork/springcloud/kayak-tools/zuul-boxs/src/main/java/com/kayak/filter/KayakTokenFilter.java

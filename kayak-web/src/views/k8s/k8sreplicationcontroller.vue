@@ -10417,14 +10417,13 @@
             deleterow: function () {
                 let _this = this;
                 let str = JSON.stringify(this.delinfo);
-                _this.detelmodal = false;
-
                 this.$http.post(this.httpurl.toString() + '/k8s/deleteReplicationController', this.$qs.stringify({
                      'str': str
                 })).then(function (response) {
                     if (response.data === true) {
                         _this.$Message.info("删除成功");
                         _this.delinfo = {};
+                        _this.detelmodal = false;
                         this.query();
                     }
                 }).catch(function (error) {

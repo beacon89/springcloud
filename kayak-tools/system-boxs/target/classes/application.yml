@@ -18,10 +18,13 @@ spring:
     serialization:
       #让控制器输出的json字符串格式更美观。
       indent-output: true
+  jpa:
+    show-sql: true
 logging:
   level:
     root: INFO
     org.springframework.web: debug
+    org.springframework.jdbc: debug
     com.kayak: trace
 eureka:
   client:

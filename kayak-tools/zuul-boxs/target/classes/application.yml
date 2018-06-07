@@ -8,6 +8,7 @@ zuul:
   host:
     connect-timeout-millis: 20000
     socket-timeout-millis: 20000
+    connection-request-timeout-millis: 20000
   routes:
     aliyun: #自定义名称
       path: /aliyun/**

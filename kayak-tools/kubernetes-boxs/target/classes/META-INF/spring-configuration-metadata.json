@@ -10,6 +10,7 @@
   "properties": [
     {
       "sourceType": "com.kayak.model.KubModel",
+      "defaultValue": 0,
       "name": "kubernetes.connectiontimeout",
       "type": "java.lang.Integer"
     },
@@ -30,6 +31,7 @@
     },
     {
       "sourceType": "com.kayak.model.KubModel",
+      "defaultValue": 0,
       "name": "kubernetes.requesttimeout",
       "type": "java.lang.Integer"
     },
