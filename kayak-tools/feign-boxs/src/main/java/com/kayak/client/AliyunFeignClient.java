@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kayak.remote.AliyunApiHystrix;
 
 
-@FeignClient(name = "aliyun-boxs")
+
+@FeignClient(name = "aliyun-boxs",fallback=AliyunApiHystrix.class)
 public interface AliyunFeignClient {
 
 	@RequestMapping(value = "describeDomainRecords", method = RequestMethod.POST)
@@ -33,9 +35,10 @@ public interface AliyunFeignClient {
 			@RequestParam("value") final String value, @RequestParam("ttl") final Long ttl,
 			@RequestParam("priority") final Long priority, @RequestParam("line") final String line);
 	
-	@RequestMapping(value = "setDomainRecordStatus")
-	public Map<String, Object> setDomainRecordStatus(String recordId,String status);
+	@RequestMapping(value = "setDomainRecordStatus", method = RequestMethod.POST)
+	public Map<String, Object> setDomainRecordStatus(@RequestParam("recordId") final String recordId,@RequestParam("status") final String status);
 	
 	
-	describeDomainRecordInfo
+	@RequestMapping(value="describeDomainRecordInfo", method = RequestMethod.POST)
+	public Map<String, Object> describeDomainRecordInfo(@RequestParam("recordId") final String recordId);
 }

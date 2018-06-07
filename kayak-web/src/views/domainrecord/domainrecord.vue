@@ -334,11 +334,15 @@
                     typeKeyWord:this.querydata.typeKeyWord,
                     valueKeyWord:this.querydata.valueKeyWord
                 })).then(function (response) {
-                    _this.pageNumber = response.data.pageNumber;
-                    _this.data = response.data.domainRecords;
-                    _this.totalCount = response.data.totalCount;
-                    _this.pageSize = response.data.pageSize;
-                    _this.loading = false;
+                    if(response.data.returnState == "0000") {
+                        _this.pageNumber = response.data.pageNumber;
+                        _this.data = response.data.domainRecords;
+                        _this.totalCount = response.data.totalCount;
+                        _this.pageSize = response.data.pageSize;
+                        _this.loading = false;
+                    }else{
+                        _this.$Message.error(response.data.returnMsg);
+                    }
                 }).catch(function (error) {
                     if(typeof(error.response) == "undefined"){
                         _this.$Message.error("错误信息：" + error);
@@ -370,8 +374,12 @@
                     ttl:this.adddata.ttl,
                     priority:this.adddata.priority
                 })).then(function (response) {
-                    _this.addmodel = false;
-                    _this.query();
+                    if(response.data.returnState == "0000") {
+                        _this.addmodel = false;
+                        _this.query();
+                    }else{
+                        _this.$Message.error(response.data.returnMsg);
+                    }
                 }).catch(function (error) {
                     if(typeof(error.response) == "undefined"){
                         _this.$Message.error("错误信息：" + error);
@@ -384,7 +392,12 @@
                 this.$http.post(this.httpurl.toString() + '/aliyun/deleteDomainRecord', this.$qs.stringify({
                     recordId:row.recordId
                 })).then(function (response) {
-                    _this.query();
+                    if(response.data.returnState == "0000"){
+                        _this.query();
+                        _this.$Message.success('删除成功!');
+                    }else{
+                        _this.$Message.error(response.data.returnMsg);
+                    }
                 }).catch(function (error) {
                     if(typeof(error.response) == "undefined"){
                         _this.$Message.error("错误信息：" + error);
@@ -412,8 +425,13 @@
                     ttl:this.moddata.ttl,
                     priority:this.moddata.priority
                 })).then(function (response) {
-                    _this.modmodel = false;
-                    _this.query();
+                    if(response.data.returnState == "0000"){
+                        _this.query();
+                        _this.modmodel = false;
+                        _this.$Message.success('更新状态成功!');
+                    }else{
+                        _this.$Message.error(response.data.returnMsg);
+                    }
                 }).catch(function (error) {
                     if(typeof(error.response) == "undefined"){
                         _this.$Message.error("错误信息：" + error);
@@ -432,7 +450,12 @@
                     recordId:row.recordId,
                     status:row.status
                 })).then(function (response) {
-                    _this.query();
+                    if(response.data.returnState == "0000"){
+                        _this.query();
+                        _this.$Message.success('状态设置成功!');
+                    }else{
+                        _this.$Message.error(response.data.returnMsg);
+                    }
                 }).catch(function (error) {
                     if(typeof(error.response) == "undefined"){
                         _this.$Message.error("错误信息：" + error);
@@ -445,22 +468,28 @@
                 this.$http.post(this.httpurl.toString() + '/aliyun/describeDomainRecordInfo', this.$qs.stringify({
                     recordId:row.recordId
                 })).then(function (response) {
-                    _this.infodata.requestId = response.data.requestId;
-                    _this.infodata.domainId= response.data.domainId;
-                    _this.infodata.domainName= response.data.domainName;
-                    _this.infodata.punyCode= response.data.punyCode;
-                    _this.infodata.groupId= response.data.groupId;
-                    _this.infodata.groupName= response.data.groupName;
-                    _this.infodata.recordId= response.data.recordId;
-                    _this.infodata.rr = response.data.rr;
-                    _this.infodata.type= response.data.type;
-                    _this.infodata.value= response.data.value;
-                    _this.infodata.ttl= response.data.ttl;
-                    _this.infodata.priority= response.data.priority;
-                    _this.infodata.line= response.data.line;
-                    _this.infodata.status= response.data.status;
-                    _this.infodata.locked= response.data.locked.toString();
-                    _this.infomodel = true;
+                    if(response.data.returnState == "0000"){
+                        _this.infodata.requestId = response.data.requestId;
+                        _this.infodata.domainId= response.data.domainId;
+                        _this.infodata.domainName= response.data.domainName;
+                        _this.infodata.punyCode= response.data.punyCode;
+                        _this.infodata.groupId= response.data.groupId;
+                        _this.infodata.groupName= response.data.groupName;
+                        _this.infodata.recordId= response.data.recordId;
+                        _this.infodata.rr = response.data.rr;
+                        _this.infodata.type= response.data.type;
+                        _this.infodata.value= response.data.value;
+                        _this.infodata.ttl= response.data.ttl;
+                        _this.infodata.priority= response.data.priority;
+                        _this.infodata.line= response.data.line;
+                        _this.infodata.status= response.data.status;
+                        _this.infodata.locked= response.data.locked.toString();
+                        _this.infomodel = true;
+                        _this.$Message.success('明细查询成功!');
+                    }else{
+                        _this.$Message.error(response.data.returnMsg);
+                    }
+
                 }).catch(function (error) {
                     if(typeof(error.response) == "undefined"){
                         _this.$Message.error("错误信息：" + error);

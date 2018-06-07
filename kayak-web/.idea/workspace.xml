@@ -2,69 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2495aecf-d3e1-4879-b308-60188cf2d6bc" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/views/system/userinfo.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/META-INF/maven/com.kayak/aliyun-boxs/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/META-INF/maven/com.kayak/aliyun-boxs/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/AliyunApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/AliyunApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/beans/AliyunClientBeans.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/beans/AliyunClientBeans.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/controller/AliyunBatchDNSController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/controller/AliyunBatchDNSController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/controller/AliyunDNSDomainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/controller/AliyunDNSDomainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/controller/AliyunDNSGroupController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/controller/AliyunDNSGroupController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/controller/AliyunDNSResolverController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/controller/AliyunDNSResolverController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/controller/AliyunDNSSLBStatusController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/controller/AliyunDNSSLBStatusController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/src/main/java/com/kayak/controller/AliyunDomainRecordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/src/main/java/com/kayak/controller/AliyunDomainRecordController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/controller/AliyunDomainRecordController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/controller/AliyunDomainRecordController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/controller/AliyunResolverDomainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/controller/AliyunResolverDomainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/properties/AliyunDnsPropertie.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/properties/AliyunDnsPropertie.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/utils/AliyunUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/aliyun-boxs/target/classes/com/kayak/utils/AliyunUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/config-boxs/target/classes/META-INF/maven/com.kayak/config-boxs/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/config-boxs/target/classes/META-INF/maven/com.kayak/config-boxs/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/eureka-boxs/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/eureka-boxs/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/eureka-boxs/target/classes/META-INF/maven/com.kayak/eureka-boxs/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/eureka-boxs/target/classes/META-INF/maven/com.kayak/eureka-boxs/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/eureka-boxs/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/eureka-boxs/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/eureka-boxs/target/classes/com/kayak/EurekaApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/eureka-boxs/target/classes/com/kayak/EurekaApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/feign-boxs/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/feign-boxs/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/feign-boxs/src/main/java/com/kayak/FeignApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/feign-boxs/src/main/java/com/kayak/FeignApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/feign-boxs/src/main/java/com/kayak/client/UserFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/feign-boxs/src/main/java/com/kayak/client/UserFeignClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/feign-boxs/src/main/java/com/kayak/customer/UserFeignApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/feign-boxs/src/main/java/com/kayak/customer/UserFeignApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/feign-boxs/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/feign-boxs/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/feign-boxs/target/classes/META-INF/maven/com.kayak/feign-boxs/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/feign-boxs/target/classes/META-INF/maven/com.kayak/feign-boxs/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/feign-boxs/target/classes/META-INF/maven/com.kayak/feign-boxs/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/feign-boxs/target/classes/META-INF/maven/com.kayak/feign-boxs/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/feign-boxs/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/feign-boxs/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/feign-boxs/target/classes/com/kayak/FeignApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/feign-boxs/target/classes/com/kayak/FeignApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/feign-boxs/target/classes/com/kayak/client/UserFeignClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/feign-boxs/target/classes/com/kayak/client/UserFeignClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/feign-boxs/target/classes/com/kayak/customer/UserFeignApi.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/feign-boxs/target/classes/com/kayak/customer/UserFeignApi.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/META-INF/maven/com.kayak/kubernetes-boxs/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/META-INF/maven/com.kayak/kubernetes-boxs/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/META-INF/spring-configuration-metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/META-INF/spring-configuration-metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/KubernetesApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/KubernetesApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/beans/KayakReplicationControllerList.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/beans/KayakReplicationControllerList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/beans/KubernetesKayakClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/beans/KubernetesKayakClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/controller/KubernetesController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/controller/KubernetesController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/model/KayakRcModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/model/KayakRcModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/model/KubModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/model/KubModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/model/KubRCMetadataModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/model/KubRCMetadataModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/model/KubRCSpecModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/model/KubRCSpecModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/model/KubRcShowModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/model/KubRcShowModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/model/KubRcStatusModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/model/KubRcStatusModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/model/KubRctTemplateModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/model/KubRctTemplateModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/model/KubTemplateMetadata.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/model/KubTemplateMetadata.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/model/TestModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/model/TestModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/utils/KubernetesUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/com/kayak/utils/KubernetesUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/system-boxs/src/main/java/com/kayak/controller/UserInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/system-boxs/src/main/java/com/kayak/controller/UserInfoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/system-boxs/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/system-boxs/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/system-boxs/target/classes/META-INF/maven/com.kayak/system-boxs/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/system-boxs/target/classes/META-INF/maven/com.kayak/system-boxs/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/system-boxs/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/system-boxs/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/system-boxs/target/classes/com/kayak/controller/UserInfoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/system-boxs/target/classes/com/kayak/controller/UserInfoController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/tools-boxs/.project" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/tools-boxs/.project" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/tools-boxs/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/tools-boxs/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/tools-boxs/target/classes/META-INF/maven/com.kayak/tools-boxs/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/tools-boxs/target/classes/META-INF/maven/com.kayak/tools-boxs/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/tools-boxs/target/classes/META-INF/maven/com.kayak/tools-boxs/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/tools-boxs/target/classes/META-INF/maven/com.kayak/tools-boxs/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/zuul-boxs/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/zuul-boxs/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/zuul-boxs/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/zuul-boxs/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/zuul-boxs/target/classes/META-INF/maven/com.kayak/zuul-boxs/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/zuul-boxs/target/classes/META-INF/maven/com.kayak/zuul-boxs/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/zuul-boxs/target/classes/META-INF/maven/com.kayak/zuul-boxs/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/zuul-boxs/target/classes/META-INF/maven/com.kayak/zuul-boxs/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/zuul-boxs/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/zuul-boxs/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/feign-boxs/src/main/java/com/kayak/client/AliyunFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/feign-boxs/src/main/java/com/kayak/client/AliyunFeignClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/feign-boxs/src/main/java/com/kayak/customer/AliyunFeignApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/feign-boxs/src/main/java/com/kayak/customer/AliyunFeignApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/feign-boxs/target/classes/com/kayak/client/AliyunFeignClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/feign-boxs/target/classes/com/kayak/client/AliyunFeignClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/feign-boxs/target/classes/com/kayak/customer/AliyunFeignApi.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/feign-boxs/target/classes/com/kayak/customer/AliyunFeignApi.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/k8s/k8sreplicationcontroller.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/k8s/k8sreplicationcontroller.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/domainrecord/domainrecord.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/domainrecord/domainrecord.vue" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -79,8 +24,8 @@
       <file leaf-file-name="domainrecord.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/views/domainrecord/domainrecord.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="575">
-              <caret line="430" column="88" selection-start-line="430" selection-start-column="67" selection-end-line="430" selection-end-column="88" />
+            <state relative-caret-position="120">
+              <caret line="343" column="70" selection-start-line="343" selection-start-column="70" selection-end-line="343" selection-end-column="70" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#Form#0;n#Row#0;n#Card#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#0;n#Row#1;n#Card#0;n#template#0;n#!!top" expanded="true" />
@@ -106,8 +51,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>delloading</find>
-      <find>detelmodal</find>
       <find>deldata</find>
       <find>deleterow</find>
       <find>showoutpage</find>
@@ -135,7 +78,9 @@
       <find>initColorList</find>
       <find>saveUserInfo</find>
       <find>k8s</find>
+      <find>info</find>
       <find>httpurl.toString()</find>
+      <find>query</find>
     </findStrings>
     <replaceStrings>
       <replace>this.showflag</replace>
@@ -167,10 +112,10 @@
         <option value="$PROJECT_DIR$/src/libs/Uuid.js" />
         <option value="$PROJECT_DIR$/src/kayakjs/hashmap.js" />
         <option value="$PROJECT_DIR$/src/router/router.js" />
-        <option value="$PROJECT_DIR$/src/views/domainrecord/domainrecord.vue" />
         <option value="$PROJECT_DIR$/src/views/k8s/k8sreplicationcontroller.vue" />
         <option value="$PROJECT_DIR$/src/main.js" />
         <option value="$PROJECT_DIR$/src/views/system/userinfo.vue" />
+        <option value="$PROJECT_DIR$/src/views/domainrecord/domainrecord.vue" />
       </list>
     </option>
   </component>
@@ -355,12 +300,12 @@
       <workItem from="1528009306204" duration="180000" />
       <workItem from="1528015439510" duration="4747000" />
       <workItem from="1528168696042" duration="24361000" />
-      <workItem from="1528288963181" duration="4461000" />
+      <workItem from="1528288963181" duration="5070000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="464288000" />
+    <option name="totallyTimeSpent" value="464897000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="822" extended-state="0" />
@@ -377,7 +322,7 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32905984" />
       <window_info id="npm" order="2" side_tool="true" weight="0.3297568" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49928468" weight="0.25925925" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49928468" visible="true" weight="0.25925925" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Designer" order="3" />
       <window_info content_ui="combo" id="Project" order="0" weight="0.22174536" />
@@ -727,10 +672,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/k8s/k8sreplicationcontroller.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="10580" column="99" selection-start-line="10580" selection-start-column="72" selection-end-line="10580" selection-end-column="99" />
+          <folding>
+            <element signature="n#div#0;n#Card#0;n#template#0;n#!!top" />
+            <element signature="n#div#1;n#Card#0;n#template#0;n#!!top" />
+            <element signature="e#4836#4842#0" expanded="true" />
+            <element signature="n#div#2;n#Card#0;n#template#0;n#!!top" />
+            <element signature="e#984613#986008#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/system/userinfo.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="607" column="52" lean-forward="true" selection-start-line="607" selection-start-column="52" selection-end-line="607" selection-end-column="52" />
+        <state relative-caret-position="458">
+          <caret line="998" column="64" lean-forward="true" selection-start-line="998" selection-start-column="32" selection-end-line="998" selection-end-column="64" />
           <folding>
             <element signature="n#style#0;n#Card#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#Row#0;n#Card#0;n#template#0;n#!!top" />
@@ -752,24 +711,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/k8s/k8sreplicationcontroller.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="10580" column="99" selection-start-line="10580" selection-start-column="72" selection-end-line="10580" selection-end-column="99" />
-          <folding>
-            <element signature="n#div#0;n#Card#0;n#template#0;n#!!top" />
-            <element signature="n#div#1;n#Card#0;n#template#0;n#!!top" />
-            <element signature="e#4836#4842#0" expanded="true" />
-            <element signature="n#div#2;n#Card#0;n#template#0;n#!!top" />
-            <element signature="e#984613#986008#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/domainrecord/domainrecord.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="430" column="88" selection-start-line="430" selection-start-column="67" selection-end-line="430" selection-end-column="88" />
+        <state relative-caret-position="120">
+          <caret line="343" column="70" selection-start-line="343" selection-start-column="70" selection-end-line="343" selection-end-column="70" />
           <folding>
             <element signature="n#style#0;n#div#0;n#Form#0;n#Row#0;n#Card#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#Row#1;n#Card#0;n#template#0;n#!!top" expanded="true" />

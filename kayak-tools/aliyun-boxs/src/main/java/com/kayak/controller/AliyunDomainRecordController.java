@@ -80,7 +80,7 @@ public class AliyunDomainRecordController extends BaseController{
 	 * @throws ClientException 
 	 * TODO 过
 	 */
-	@RequestMapping(value = "addDomainRecord")
+	@RequestMapping(value = "addDomainRecord",method = RequestMethod.POST)
 	public Map<String, Object> addDomainRecord(String domainName,String rr,String type,String value,Long ttl,Long priority,String line) throws ClientException {
 			if(AliyunUtils.canSet(domainName)) {
 				this.addDomainRecord.setDomainName(domainName);
@@ -118,7 +118,7 @@ public class AliyunDomainRecordController extends BaseController{
 	 * @throws ClientException 
 	 * TODO 过
 	 */
-	@RequestMapping(value = "deleteDomainRecord")
+	@RequestMapping(value = "deleteDomainRecord",method = RequestMethod.POST)
 	public Map<String, Object> deleteDomainRecord(String recordId) throws ClientException {
 		this.deleteDomainRecord.setRecordId(recordId);
 		DeleteDomainRecordResponse response = iacsClient.getAcsResponse(this.deleteDomainRecord);
@@ -174,7 +174,7 @@ public class AliyunDomainRecordController extends BaseController{
 	 * @throws ClientException 
 	 * TODO 过
 	 */
-	@RequestMapping(value = "setDomainRecordStatus")
+	@RequestMapping(value = "setDomainRecordStatus", method = RequestMethod.POST)
 	public Map<String, Object> setDomainRecordStatus(String recordId,String status) throws ClientException {
 			this.setDomainRecordStatus.setRecordId(recordId);
 			this.setDomainRecordStatus.setStatus(status);
@@ -251,42 +251,27 @@ public class AliyunDomainRecordController extends BaseController{
 	 * @throws ClientException 
 	 * TODO 过
 	 */
-	@RequestMapping(value="describeDomainRecordInfo")
-	public DescribeDomainRecordInfoResponse describeDomainRecordInfo(String recordId) throws ClientException {
+	@RequestMapping(value="describeDomainRecordInfo", method = RequestMethod.POST)
+	public Map<String, Object> describeDomainRecordInfo(String recordId) throws ClientException {
 			this.describeDomainRecordInfo.setRecordId(recordId);
 			DescribeDomainRecordInfoResponse response = iacsClient.getAcsResponse(this.describeDomainRecordInfo);
 			Map<String, Object> map = new HashMap<>();
 			map.put("requestId", response.getRequestId());
 			map.put("domainId", response.getDomainId());
-			private String ;
-
-			private String domainName;
-
-			private String punyCode;
-
-			private String groupId;
-
-			private String groupName;
-
-			private String recordId;
-
-			private String rR;
-
-			private String type;
-
-			private String value;
-
-			private Long tTL;
-
-			private Long priority;
-
-			private String line;
-
-			private String status;
-
-			private Boolean locked;
-			
-		return response;
+			map.put("domainName", response.getDomainName());
+			map.put("punyCode", response.getPunyCode());
+			map.put("punyCode", response.getGroupId());
+			map.put("groupName", response.getGroupName());
+			map.put("recordId", response.getRecordId());
+			map.put("rR", response.getRR());
+			map.put("type", response.getType());
+			map.put("value", response.getValue());
+			map.put("tTL", response.getTTL());
+			map.put("priority", response.getPriority());
+			map.put("line", response.getLine());
+			map.put("status", response.getStatus());
+			map.put("locked", response.getLocked());
+			return this.responseMessage(map);
 	}
 	
 	/**
