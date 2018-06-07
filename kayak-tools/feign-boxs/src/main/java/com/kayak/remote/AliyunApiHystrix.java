@@ -2,9 +2,12 @@ package com.kayak.remote;
 
 import java.util.Map;
 
+import org.springframework.context.annotation.Configuration;
+
 import com.kayak.client.AliyunFeignClient;
 import com.kayak.controller.BeseHystrix;
 
+@Configuration
 public class AliyunApiHystrix extends BeseHystrix implements AliyunFeignClient{
 
 	@Override

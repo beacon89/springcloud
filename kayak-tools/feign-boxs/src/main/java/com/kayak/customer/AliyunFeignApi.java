@@ -2,7 +2,8 @@ package com.kayak.customer;
 
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,7 +14,7 @@ import com.kayak.client.AliyunFeignClient;
 @RestController
 public class AliyunFeignApi {
 
-	@Autowired
+	@Resource
 	private AliyunFeignClient aliyunFeignClient;
 
 	@RequestMapping(value = "describeDomainRecords", method = RequestMethod.POST)

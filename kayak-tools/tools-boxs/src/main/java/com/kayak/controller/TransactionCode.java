@@ -7,7 +7,8 @@ package com.kayak.controller;
  */
 public enum TransactionCode {
 	
-	CODE0000("交易成功","0000"),CODE9999("服务器停机","9999");
+	CODE0000("交易成功","0000"),CODE9999("服务器停机","9999"),ALIYUN9999("通用异常","A999"),K8S9999("通用异常","B999"),K8S9998("RC文件格式不正确","B998"),K8S9997("RC文件删除失败","B9997");;
+	
 	
 	// 成员变量  
     private String message;  

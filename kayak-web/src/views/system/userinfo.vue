@@ -46,7 +46,7 @@
         <!--                     *****************************************************************************************************              -->
         <Row>
             <div>
-                <Modal :width="900" v-model="infomodel" >
+                <Modal :width="800" v-model="infomodel" >
                     <p slot="header" style="text-align:center">
                         <span>详细信息</span>
                     </p>

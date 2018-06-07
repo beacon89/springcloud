@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kayak.remote.AliyunApiHystrix;
 
-
-
-@FeignClient(name = "aliyun-boxs",fallback=AliyunApiHystrix.class)
+@FeignClient(name = "kayak-aliyun",fallback=AliyunApiHystrix.class)
 public interface AliyunFeignClient {
 
 	@RequestMapping(value = "describeDomainRecords", method = RequestMethod.POST)

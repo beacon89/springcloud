@@ -1,7 +1,9 @@
 package com.kayak.controller;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -15,10 +17,9 @@ import com.kayak.utils.KubernetesUtils;
 import io.fabric8.kubernetes.api.model.Pod;
 import io.fabric8.kubernetes.api.model.ReplicationController;
 import io.fabric8.kubernetes.client.KubernetesClient;
-import io.fabric8.kubernetes.client.KubernetesClientException;
 
 @RestController
-public class KubernetesController {
+public class KubernetesController extends BaseController{
 
 	@Resource
 	private KubernetesClient kubernetesClient;
@@ -38,31 +39,47 @@ public class KubernetesController {
 	}
 	
 	@RequestMapping(value="createReplicationController")
-	public ReplicationController createReplicationController(String str) {
+	public Map<String, Object> createReplicationController(String str) {
 		ReplicationController rc = KubernetesUtils.getReplicationControllerBySteam(this.kubernetesClient, str);
 		if(rc != null) {
-			return KubernetesUtils.createReplicationController(rc, this.kubernetesClient);
+			try {
+				Map<String, Object> map = new HashMap<>();
+				KubernetesUtils.createReplicationController(rc, this.kubernetesClient);
+				return this.responseMessage(map);
+			}catch (Exception e) {
+				return this.responseMessage(TransactionCode.K8S9999.getCode(),e.getMessage());
+			}
+		}else {
+			return this.responseMessage(TransactionCode.K8S9998.getCode(),TransactionCode.K8S9998.getMessage());
 		}
-		throw new KubernetesClientException("创建失败");
 	}
 	
 	@RequestMapping(value="deleteReplicationController")
-	public Boolean deleteReplicationController(String str) {
-		System.out.println(str);
+	public Map<String, Object> deleteReplicationController(String str) {
 		ReplicationController rc = KubernetesUtils.getReplicationControllerBySteam(this.kubernetesClient, str);
 		if(rc != null) {
-			return KubernetesUtils.deleteReplicationController(rc, this.kubernetesClient);
+			try {
+				if(KubernetesUtils.deleteReplicationController(rc, this.kubernetesClient)) {
+					Map<String, Object> map = new HashMap<>();
+					return this.responseMessage(map);
+				}else {
+					return this.responseMessage(TransactionCode.K8S9997.getCode(),TransactionCode.K8S9997.getMessage());
+				}
+			}catch (Exception e) {
+				return this.responseMessage(TransactionCode.K8S9999.getCode(),e.getMessage());
+			}
+		}else {
+			return this.responseMessage(TransactionCode.K8S9998.getCode(),TransactionCode.K8S9998.getMessage());
 		}
-		throw new KubernetesClientException("删除失败");
 	}
 	
 	@RequestMapping(value="getReplicationControllerLists")
-	public KayakReplicationControllerList getReplicationControllerLists(int pageNumber,int pageSize) {
+	public Map<String, Object> getReplicationControllerLists(int pageNumber,int pageSize) {
 		try {
-			return KubernetesUtils.getReplicationControllerLists(pageNumber,pageSize, this.kubernetesClient);
+			KayakReplicationControllerList rc =  KubernetesUtils.getReplicationControllerLists(pageNumber,pageSize, this.kubernetesClient);
+			return this.responseMessage(rc.getItems(),rc.getPageNumber(),rc.getPageSize(),rc.getTotalCount(),null);
 		}catch (Exception e) {
-			System.out.println(e.getMessage());
-			throw e;
+			return this.responseMessage(TransactionCode.K8S9999.getCode(),e.getMessage());
 		}
 	}
 	

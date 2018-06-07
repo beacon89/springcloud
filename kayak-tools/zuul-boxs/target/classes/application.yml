@@ -3,20 +3,17 @@ spring:
     name: kayak-zuul
 server:
   port: 8400
+  tomcat:
+    max-threads: 128
+    min-spare-threads: 64
 zuul: 
   ignoredServices: '*' #忽略所有未配置的service
   host:
-    connect-timeout-millis: 20000
-    socket-timeout-millis: 20000
-    connection-request-timeout-millis: 20000
+    connect-timeout-millis: 60000
+    socket-timeout-millis: 60000
+    connection-request-timeout-millis: 60000
   routes:
-    aliyun: #自定义名称
-      path: /aliyun/**
-      service-id: kayak-aliyun #/aliyun/开头的路径转发至kayak-aliyun微服务
-    k8s:
-      path: /k8s/**
-      service-id: kayak-kubernetes
-    system:
+    all:
       path: /feigen/**
       service-id: kayak-feigen
 eureka:

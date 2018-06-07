@@ -180,6 +180,13 @@ public class BaseController {
 		map.put("returnState", TransactionCode.CODE0000.getCode());
 		return map;
 	}
+	
+	public Map<String, Object> responseMessage(String code,String message) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("returnState", code);
+		map.put("returnMsg",message );
+		return map;
+	}
 
 	/**
 	 * 查询固定封装返回给前端用的

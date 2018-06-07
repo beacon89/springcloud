@@ -1,0 +1,8 @@
+package com.kayak.remote;
+
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class KubernetesHystrix {
+
+}
