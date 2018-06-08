@@ -116,6 +116,19 @@ export const appRouter = [
             },
 
         ]
+    },
+    {
+        path: '/monitor',
+        icon: 'egg',
+        name: 'monitor',
+        title: '测试页面',
+        component: Main,
+        children: [
+            { path: 'category', title: '线性图管理', name: 'category', component: () => import('@/views/monitor/monitor.vue') },
+            { path: 'gauge', title: 'CPU使用率', name: 'gauge', component: () => import('@/views/monitor/gauge.vue') },
+            { path: 'vertical', title: '内存使用率', name: 'vertical', component: () => import('@/views/monitor/vertical.vue') },
+
+        ]
     }
 ];
 
