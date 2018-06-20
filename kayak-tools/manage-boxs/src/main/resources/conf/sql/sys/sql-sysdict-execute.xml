@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sqlexecutes>
+	<sqlexecute exeid="find_sys_dicts" datasource="dsSys">
+		<exename>查询数字字典列表</exename>
+		<sqlids>find_sys_dicts</sqlids>
+	</sqlexecute>
+	
+	<sqlexecute exeid="add_sys_dict" datasource="dsSys">
+		<exename>添加数字字典</exename>
+		<sqlids>add_sys_dict</sqlids>
+	</sqlexecute>
+	
+	<sqlexecute exeid="update_sys_dict" datasource="dsSys">
+		<exename>修改数字字典</exename>
+		<sqlids>update_sys_dict</sqlids> 
+	</sqlexecute>
+	
+	<sqlexecute exeid="delete_sys_dict" datasource="dsSys">
+		<exename>删除数字字典</exename>
+		<sqlids>delete_sys_dict,delete_sys_dict_items</sqlids>
+	</sqlexecute>
+
+</sqlexecutes>

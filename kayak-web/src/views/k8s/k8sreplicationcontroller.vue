@@ -8958,14 +8958,14 @@
                                     <FormItem class="add_fourth" >
                                         <Row >
                                             <Col span="12">
-                                            <Input v-model="tempnewdata.spec_template_spec_hostname" ><span slot="prepend">hostname:</span></Input>
+                                            <Input v-model="tempnewdata.spec_template_spec_hostname" ><span slot="prepend" >hostname:</span></Input>
                                             </Col>
                                         </Row>
                                     </FormItem>
                                     <FormItem class="add_fourth" >
                                         <Row >
                                             <Col span="12">
-                                            <Input v-model="tempnewdata.spec_template_spec_subdomain" ><span slot="prepend">subdomain:</span></Input>
+                                            <Input v-model="tempnewdata.spec_template_spec_subdomain" ><span slot="prepend" >subdomain:</span></Input>
                                             </Col>
                                         </Row>
                                     </FormItem>
@@ -10075,12 +10075,12 @@
                 tempnewdata:{
                     apiVersion:'v1',
                     kind:'ReplicationController',
-                    metadata_name:'',
+                    metadata_name:uuid().replace(/-/g,''),
                     spec_replicas:'1',
-                    tempnodeSelector: [['', '']],
-                    templabels: [['', '']],
+                    tempnodeSelector: [['app', uuid().replace(/-/g,'')]],
+                    templabels: [['app', uuid().replace(/-/g,'')]],
                     tempports: [['', '']],
-                    tempselector: [['', '']],
+                    tempselector: [['app', uuid().replace(/-/g,'')]],
                     ports:[{
                         containerPort:''
                     }],
@@ -10088,14 +10088,14 @@
                     spec_template_spec_containers_image:'',
                     spec_template_spec_hostname:'',
                     spec_template_spec_subdomain:'',
-                    commands:[''],
-                    envs:[{name:'',value:''}],
+                    commands:['/dns-init'],
+                    envs:[{name:'MYSQL_ROOT_PASSWORD',value:'kayak'}],
                     volumeMounts:[{
-                        name:'',
+                        name:uuid().replace(/-/g,''),
                         mountPath:''
                     }],
                     volumes:[{
-                        name:'',
+                        name:uuid().replace(/-/g,''),
                         hostPath:{
                             path:''
                         }
@@ -10385,15 +10385,20 @@
         methods: {
             query: function () {
                 let _this = this;
-                this.$http.post(this.httpurl.toString() + '/k8s/getReplicationControllerLists', this.$qs.stringify({
+                this.$http.post(this.httpurl.toString() + '/feigen/getReplicationControllerLists', this.$qs.stringify({
                     pageNumber: this.pageNumber,
                     pageSize: this.pageSize
                 })).then(function (response) {
-                    _this.pageNumber = response.data.pageNumber;
-                    _this.data = response.data.items;
-                    _this.totalCount = response.data.totalCount;
-                    _this.pageSize = response.data.pageSize;
-                    _this.loading = false;
+                    if(response.data.returnState === "0000"){
+                        _this.pageNumber = response.data.pageNumber;
+                        _this.data = response.data.detail;
+                        _this.totalCount = response.data.totalCount;
+                        _this.pageSize = response.data.pageSize;
+                        _this.loading = false;
+                    }else{
+                        _this.$Message.error(response.data.returnMsg);
+                    }
+
                 }).catch(function (error) {
                     if (typeof(error.response) === "undefined") {
                         _this.$Message.error("错误信息：" + error);
@@ -10416,15 +10421,17 @@
             },
             deleterow: function () {
                 let _this = this;
-                let str = JSON.stringify(this.delinfo);
-                this.$http.post(this.httpurl.toString() + '/k8s/deleteReplicationController', this.$qs.stringify({
-                     'str': str
+                let json = JSON.stringify(this.delinfo);
+                this.$http.post(this.httpurl.toString() + '/feigen/deleteReplicationController', this.$qs.stringify({
+                    json: json
                 })).then(function (response) {
-                    if (response.data === true) {
+                    if(response.data.returnState === "0000"){
                         _this.$Message.info("删除成功");
                         _this.delinfo = {};
                         _this.detelmodal = false;
                         this.query();
+                    }else {
+                        _this.$Message.error(response.data.returnMsg);
                     }
                 }).catch(function (error) {
                     if (typeof(error.response) === "undefined") {
@@ -10577,13 +10584,17 @@
                             }
                         }
 
-                        let str = JSON.stringify(_this.newdata);
-                        this.$http.post(this.httpurl.toString() + '/k8s/createReplicationController', this.$qs.stringify({
-                            'str': str
+                        let json = JSON.stringify(_this.newdata);
+                        this.$http.post(this.httpurl.toString() + '/feigen/createReplicationController', this.$qs.stringify({
+                            json: json
                         })).then(function (response) {
-                            _this.$Message.info("添加成功!");
-                            _this.newmodel = false;
-                            _this.query();
+                            if(response.data.returnState === "0000"){
+                                _this.$Message.info("添加成功!");
+                                _this.newmodel = false;
+                                _this.query();
+                            }else {
+                                _this.$Message.error(response.data.returnMsg);
+                            }
                         }).catch(function (error) {
                             if (typeof(error.response) === "undefined") {
                                 _this.$Message.error("错误信息：" + error);
@@ -11944,7 +11955,7 @@
                 this.tempnewdata.tempnodeSelector.splice(index, 1);
             },
             addnewdataspectemplatespecvolumes: function () {
-                this.tempnewdata.volumes.push({'name': '', 'hostPath': {'path': ''}});
+                this.tempnewdata.volumes.push({'name': uuid().replace(/-/g,''), 'hostPath': {'path': ''}});
             },
             addnewdataspectemplatespeccontainersenv: function () {
                 this.tempnewdata.envs.push({name: '',value: ''});
@@ -11963,15 +11974,10 @@
                 this.tempnewdata.commands.splice(cindex, 1);
             },
             addnewdataspectemplatespeccontainersvolumeMounts: function () {
-                this.tempnewdata.volumeMounts.push({name:'',mountPath: ''});
+                this.tempnewdata.volumeMounts.push({name:uuid().replace(/-/g,''),mountPath: ''});
             },
             delnewdataspectemplatespeccontainersvolumeMounts: function (index) {
                 this.tempnewdata.volumeMounts.splice(index, 1);
-            },
-            changebase: function () {
-                this.newdata.metadata.name = this.newdata.spec.template.spec.hostname + '-' + this.newdata.spec.template.spec.subdomain;
-                //this.tempselector[0][0] = 'app';
-                //this.tempselector[0][1] = this.newdata.spec.template.spec.hostname + '-' +  this.newdata.spec.template.spec.subdomain;
             },
             addnewdataspectemplatespeccontainersports: function () {
                 this.tempnewdata.ports.push({'containerPort': ''});

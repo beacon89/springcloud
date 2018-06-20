@@ -5,7 +5,7 @@ export const loginRouter = {
     path: '/login',
     name: 'login',
     meta: {
-        title: 'Login - 登录'
+        title: '开科唯识.金融开放平台 - 登录'
     },
     component: () => import('@/views/login.vue')
 };
@@ -25,7 +25,7 @@ export const page403 = {
         title: '403-权限不足'
     },
     name: 'error-403',
-    component: () => import('@//views/error-page/403.vue')
+    component: () => import('@/views/error-page/403.vue')
 };
 
 export const page500 = {
@@ -35,12 +35,6 @@ export const page500 = {
     },
     name: 'error-500',
     component: () => import('@/views/error-page/500.vue')
-};
-
-export const preview = {
-    path: '/preview',
-    name: 'preview',
-    component: () => import('@/views/form/article-publish/preview.vue')
 };
 
 export const locking = {
@@ -58,8 +52,6 @@ export const otherRouter = {
     children: [
         { path: 'home', title: {i18n: 'home'}, name: 'home_index', component: () => import('@/views/home/home.vue') },
         { path: 'ownspace', title: '个人中心', name: 'ownspace_index', component: () => import('@/views/own-space/own-space.vue') },
-        { path: 'order/:order_id', title: '订单详情', name: 'order-info', component: () => import('@/views/advanced-router/component/order-info.vue') }, // 用于展示动态路由
-        { path: 'shopping', title: '购物详情', name: 'shopping', component: () => import('@/views/advanced-router/component/shopping-info.vue') }, // 用于展示带参路由
         { path: 'message', title: '消息中心', name: 'message_index', component: () => import('@/views/message/message.vue') }
     ]
 };
@@ -67,67 +59,27 @@ export const otherRouter = {
 // 作为Main组件的子页面展示并且在左侧菜单显示的路由写在appRouter里
 export const appRouter = [
     {
-        path: '/domainrecord',
-        icon: 'egg',
-        name: 'domainrecord',
-        title: '云解析产品管理',
+        path: '/sys-setting',
+        icon: 'ios-cog-outline',
+        title: '系统设置',
+        name: 'sys-setting',
         component: Main,
         children: [
-            {
-                path: 'domainrecord',
-                title: '域名解析列表',
-                icon: 'egg',
-                name: 'domainrecord_index',
-                component: () => import('@/views/domainrecord/domainrecord.vue')
-            },
-
+            { path: 'sys-params', title: '系统参数', name: 'sys-params', component: () => import('@/views/sys-setting/sys-params/sys-params.vue') },
+            { path: 'sys-dict', title: '数字字典', name: 'sys-dict', component: () => import('@/views/sys-setting/sys-dict/sys-dict.vue') },
+            { path: 'sys-role', title: '角色管理', name: 'sys-role', component: () => import('@/views/sys-setting/sys-role/sys-role.vue') },
+            { path: 'sys-user', title: '用户管理', name: 'sys-user', component: () => import('@/views/sys-setting/sys-user/sys-user.vue') },
         ]
     },
     {
-        path: '/k8sreplicationcontroller',
-        icon: 'egg',
-        name: 'k8sreplicationcontroller',
-        title: '复制控制器',
+        path: '/domain-setting',
+        icon: 'levels',
+        title: '域名管理',
+        name: 'domain-setting',
         component: Main,
         children: [
-            {
-                path: 'k8sreplicationcontroller',
-                title: '复制控制器',
-                icon: 'egg',
-                name: 'k8sreplicationcontroller_index',
-                component: () => import('@/views/k8s/k8sreplicationcontroller.vue')
-            },
-
-        ]
-    },
-    {
-        path: '/systemuserifo',
-        icon: 'egg',
-        name: 'systemuserifo',
-        title: '用户管理',
-        component: Main,
-        children: [
-            {
-                path: 'systemuserifo',
-                title: '用户管理',
-                icon: 'egg',
-                name: 'systemuserifo_index',
-                component: () => import('@/views/system/userinfo.vue')
-            },
-
-        ]
-    },
-    {
-        path: '/monitor',
-        icon: 'egg',
-        name: 'monitor',
-        title: '测试页面',
-        component: Main,
-        children: [
-            { path: 'category', title: '线性图管理', name: 'category', component: () => import('@/views/monitor/monitor.vue') },
-            { path: 'gauge', title: 'CPU使用率', name: 'gauge', component: () => import('@/views/monitor/gauge.vue') },
-            { path: 'vertical', title: '内存使用率', name: 'vertical', component: () => import('@/views/monitor/vertical.vue') },
-
+            { path: 'domain-record',icon:'levels',title: '域名管理', name: 'domain-record', component: () => import('@/views/domainrecord/domainrecord.vue') },
+            { path: 'k8s-record',icon:'social-dribbble-outline',title: '控制管理', name: 'k8s-record', component: () => import('@/views/k8s/k8sreplicationcontroller.vue') },
         ]
     }
 ];
@@ -136,10 +88,11 @@ export const appRouter = [
 export const routers = [
     loginRouter,
     otherRouter,
-    preview,
     locking,
     ...appRouter,
     page500,
     page403,
     page404
 ];
+
+

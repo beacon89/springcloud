@@ -39,8 +39,8 @@ public class KubernetesController extends BaseController{
 	}
 	
 	@RequestMapping(value="createReplicationController")
-	public Map<String, Object> createReplicationController(String str) {
-		ReplicationController rc = KubernetesUtils.getReplicationControllerBySteam(this.kubernetesClient, str);
+	public Map<String, Object> createReplicationController(String json) {
+		ReplicationController rc = KubernetesUtils.getReplicationControllerBySteam(this.kubernetesClient, json);
 		if(rc != null) {
 			try {
 				Map<String, Object> map = new HashMap<>();
@@ -55,8 +55,8 @@ public class KubernetesController extends BaseController{
 	}
 	
 	@RequestMapping(value="deleteReplicationController")
-	public Map<String, Object> deleteReplicationController(String str) {
-		ReplicationController rc = KubernetesUtils.getReplicationControllerBySteam(this.kubernetesClient, str);
+	public Map<String, Object> deleteReplicationController(String json) {
+		ReplicationController rc = KubernetesUtils.getReplicationControllerBySteam(this.kubernetesClient, json);
 		if(rc != null) {
 			try {
 				if(KubernetesUtils.deleteReplicationController(rc, this.kubernetesClient)) {

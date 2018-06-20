@@ -1,0 +1,51 @@
+server:
+  port: 8800
+spring:
+  application:
+    name: kayak-montior
+  profiles:
+    active:
+      - secure
+            
+info:
+  app:
+    name: "montior-boxs"
+    description: "Parent pom providing dependency and plugin management for applications
+		built with Maven"
+    version: "1.0"
+
+eureka: 
+  instance:
+    leaseRenewalIntervalInSeconds: 30
+    health-check-url-path: /actuator/health
+  client:
+    registryFetchIntervalSeconds: 15
+    serviceUrl:
+      defaultZone: http://localhost:8000/eureka
+
+management: 
+  endpoint: 
+    health: 
+      show-details: ALWAYS
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+
+---
+spring:
+  profiles: insecure
+
+---
+spring:
+  profiles: secure
+  security:
+    user:
+      name: sa
+      password: sa
+eureka:
+  instance:
+    metadata-map:
+      user.name: admin
+      user.password: admin

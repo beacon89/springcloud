@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sqlexecutes>
+	<sqlexecute exeid="find_sys_users" datasource="dsSys">
+		<exename>查询用户列表</exename>
+		<sqlids>find_sys_users</sqlids>
+	</sqlexecute>
+
+	<sqlexecute exeid="add_sys_user" datasource="dsSys">
+		<exename>添加用户</exename>
+		<sqlids>add_sys_user</sqlids>
+	</sqlexecute>
+
+	<sqlexecute exeid="update_sys_user" datasource="dsSys">
+		<exename>修改用户</exename>
+		<sqlids>update_sys_user</sqlids>
+	</sqlexecute>
+
+	<sqlexecute exeid="update_sys_user_password" datasource="dsSys">
+		<exename>重置用户密码</exename>
+		<sqlids>update_sys_user_password</sqlids>
+	</sqlexecute>
+
+	<sqlexecute exeid="delete_sys_user" datasource="dsSys">
+		<exename>删除用户</exename>
+		<sqlids>delete_sys_user</sqlids>
+	</sqlexecute>
+
+</sqlexecutes>

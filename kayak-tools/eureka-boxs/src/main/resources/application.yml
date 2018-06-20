@@ -2,6 +2,9 @@ server:
   port: 8000
 eureka:
   instance:
+    status-page-url-path: /actuator/info
+    health-check-url-path: /actuator/health
+    home-page-url-path: /
     hostname: beaconliupc
     metadata-map:
           user.name: admin
@@ -14,9 +17,30 @@ eureka:
     fetch-registry: false
     service-url:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    enable-self-preservation: false #设为false，关闭自我保护主要
+    registry-sync-retry-wait-ms: 500
+    a-s-g-cache-expiry-timeout-ms: 60000
+    eviction-interval-timer-in-ms: 5000  #踢除时间，默认60*1000
+    peer-eureka-nodes-update-interval-ms: 15000
+    renewal-threshold-update-interval-ms: 30000
 spring:
   application:
     name: kayak-eureka
   cloud:
     inetutils:
       default-ip-address: localhost
+#health endpoint是否必须显示全部细节。默认情况下, /actuator/health 是公开的，并且不显示细节。
+management:
+  endpoint:
+    health:
+      show-details: ALWAYS
+  endpoints:
+    web:
+      exposure:
+        include:
+        - "*"
+        exclude:
+        - env
+          
+    

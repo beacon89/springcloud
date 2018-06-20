@@ -4,20 +4,18 @@
 <template>
     <div class="main" :class="{'main-hide-text': shrink}">
         <div class="sidebar-menu-con" :style="{width: shrink?'60px':'200px', overflow: shrink ? 'visible' : 'auto'}">
-            <scroll-bar ref="scrollBar">
-                <shrinkable-menu 
+            <shrinkable-menu
                     :shrink="shrink"
                     @on-change="handleSubmenuChange"
-                    :theme="menuTheme" 
+                    :theme="menuTheme"
                     :before-push="beforePush"
                     :open-names="openedSubmenuArr"
-                    :menu-list="menuList">
-                    <div slot="top" class="logo-con">
-                        <img v-show="!shrink"  src="../images/logo.jpg" key="max-logo" />
-                        <img v-show="shrink" src="../images/logo-min.jpg" key="min-logo" />
-                    </div>
-                </shrinkable-menu>
-            </scroll-bar>
+                    :menu-list="menus">
+                <div slot="top" class="logo-con">
+                    <img v-show="!shrink"  src="../images/logo.jpg" key="max-logo" />
+                    <img v-show="shrink" src="../images/logo-min.jpg" key="min-logo" />
+                </div>
+            </shrinkable-menu>
         </div>
         <div class="main-header-con" :style="{paddingLeft: shrink?'60px':'200px'}">
             <div class="main-header">
@@ -36,7 +34,7 @@
                     <lock-screen></lock-screen>
                     <message-tip v-model="mesCount"></message-tip>
                     <theme-switch></theme-switch>
-                    
+
                     <div class="user-dropdown-menu-con">
                         <Row type="flex" justify="end" align="middle" class="user-dropdown-innercon">
                             <Dropdown transfer trigger="click" @on-click="handleClickUserDropdown">
@@ -77,8 +75,7 @@
     import themeSwitch from './main-components/theme-switch/theme-switch.vue';
     import Cookies from 'js-cookie';
     import util from '@/libs/util.js';
-    import scrollBar from '@/views/my-components/scroll-bar/vue-scroller-bars';
-    
+
     export default {
         components: {
             shrinkableMenu,
@@ -87,20 +84,22 @@
             fullScreen,
             lockScreen,
             messageTip,
-            themeSwitch,
-            scrollBar
+            themeSwitch
         },
         data () {
             return {
                 shrink: false,
                 userName: '',
                 isFullScreen: false,
-                openedSubmenuArr: this.$store.state.app.openedSubmenuArr
+                openedSubmenuArr: this.$store.state.app.openedSubmenuArr,
+                menus:[]
             };
         },
         computed: {
             menuList () {
-                return this.$store.state.app.menuList;
+                let menuList = localStorage.getItem("menus");
+                return JSON.parse(menuList);
+//                return this.$store.state.app.menuList;
             },
             pageTagsList () {
                 return this.$store.state.app.pageOpenedList; // 打开的页面的页面对象
@@ -126,6 +125,32 @@
         },
         methods: {
             init () {
+                this.kayak.httpUtil.comnQueryTree({exeid:"find_sys_user_menus",method:"post",params:{}}).then(data=>{
+                    let menuList = [];
+                    let menus = data.rows;
+                    menus.map(menu=>{
+                        let menu_item = {};
+                        menu_item.title = menu.rowData.menu_name;
+                        menu_item.name = menu.rowData.menu_path;
+                        menu_item.icon = menu.rowData.menu_icon;
+                        let menu_children = [];
+                        if(menu.children && menu.children.length>0){
+                            menu.children.map(children=>{
+                                let children_item = {};
+                                children_item.title = children.rowData.menu_name;
+                                children_item.name = children.rowData.menu_path;
+                                children_item.icon = children.rowData.menu_icon;
+                                menu_children.push(children_item);
+                            });
+                        }else{
+                            menu_children.push(menu_item);
+                        }
+                        menu_item.children = menu_children;
+                        menuList.push(menu_item);
+                    });
+                    this.menus = menuList;
+
+                });
                 let pathArr = util.setCurrentPath(this, this.$route.name);
                 this.$store.commit('updateMenulist');
                 if (pathArr.length >= 2) {
@@ -178,9 +203,6 @@
             },
             fullscreenChange (isFullScreen) {
                 // console.log(isFullScreen);
-            },
-            scrollBarResize () {
-                this.$refs.scrollBar.resize();
             }
         },
         watch: {
@@ -195,23 +217,14 @@
             },
             lang () {
                 util.setCurrentPath(this, this.$route.name); // 在切换语言时用于刷新面包屑
-            },
-            openedSubmenuArr () {
-                setTimeout(() => {
-                    this.scrollBarResize();
-                }, 300);
             }
         },
         mounted () {
             this.init();
-            window.addEventListener('resize', this.scrollBarResize);
         },
         created () {
             // 显示打开的页面的列表
             this.$store.commit('setOpenedList');
-        },
-        dispatch () {
-            window.removeEventListener('resize', this.scrollBarResize);
         }
     };
 </script>

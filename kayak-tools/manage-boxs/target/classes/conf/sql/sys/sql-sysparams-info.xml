@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlinfos>
+
+<sqlinfos>
+	<sqlinfo sqlid="find_sys_params">
+		<sqlname>查询系统参数列表</sqlname>
+		<sql><![CDATA[
+			SELECT param_key,param_name,param_value,param_remark 
+			FROM sys_params
+			WHERE ($ISNULL{param_key} OR param_key like '%$U{param_key}%')
+			AND ($ISNULL{param_name} OR param_name like '%$U{param_name}%') 
+		]]></sql>
+	</sqlinfo>
+	
+	<sqlinfo sqlid="find_sys_param">
+		<sqlname>查询系统参数</sqlname>
+		<sql><![CDATA[
+			SELECT param_key,param_name,param_value,param_remark 
+			FROM sys_params
+			WHERE param_key = $S{param_key}
+		]]></sql>
+	</sqlinfo>
+
+	<sqlinfo sqlid="add_sys_params">
+		<sqlname>添加系统参数</sqlname>
+		<sql><![CDATA[
+		INSERT INTO sys_params (param_key, param_name, param_value, param_remark) VALUES ($S{param_key}, $S{param_name}, $S{param_value}, $S{param_remark})
+		]]></sql>
+	</sqlinfo>
+
+	<sqlinfo sqlid="delete_sys_params">
+		<sqlname>删除系统参数</sqlname>
+		<sql><![CDATA[
+		    DELETE FROM sys_params WHERE param_key = $S{param_key}
+		]]></sql>
+	</sqlinfo>
+
+</sqlinfos>

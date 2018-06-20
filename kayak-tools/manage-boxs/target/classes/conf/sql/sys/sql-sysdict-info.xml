@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlinfos>
+
+<sqlinfos>
+	<sqlinfo sqlid="find_sys_dicts">
+		<sqlname>查询数字字典列表</sqlname>
+		<sql><![CDATA[
+			SELECT dict,dictname
+			FROM sys_dict
+			WHERE ($ISNULL{dict} OR dict like '%$U{dict}%')
+			AND ($ISNULL{dictname} OR dictname like '%$U{dictname}%') 
+		]]></sql>
+	</sqlinfo>
+
+	<sqlinfo sqlid="add_sys_dict">
+		<sqlname>添加数字字典</sqlname>
+		<sql><![CDATA[
+			INSERT INTO sys_dict (dict, dictname) VALUES ($S{dict}, $S{dictname})
+		]]></sql>
+	</sqlinfo>
+	
+	<sqlinfo sqlid="update_sys_dict">
+		<sqlname>修改数字字典</sqlname>
+		<sql><![CDATA[
+		UPDATE sys_dict SET dictname = $S{dictname}  WHERE dict = $S{dict}
+		]]></sql>
+	</sqlinfo>
+
+	<sqlinfo sqlid="delete_sys_dict">
+		<sqlname>删除数字字典</sqlname>
+		<sql><![CDATA[
+		    DELETE FROM sys_dict WHERE dict = $S{dict}
+		]]></sql>
+	</sqlinfo>
+
+</sqlinfos>

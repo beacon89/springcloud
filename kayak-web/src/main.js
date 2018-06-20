@@ -8,19 +8,14 @@ import '@/locale';
 import 'iview/dist/styles/iview.css';
 import VueI18n from 'vue-i18n';
 import util from './libs/util';
-import axios from 'axios'
-import qs from 'qs';
-import hashmap from './kayakjs/hashmap'
-
+import hashmap from './kayak/hashmap'
+import kayakInstall from './libs/kayak.js';
 
 
 Vue.use(VueI18n);
 Vue.use(iView);
 Vue.use(hashmap);
-Vue.prototype.$http = axios;
-Vue.prototype.$qs = qs;
-Vue.prototype.httpurl = "http://localhost:8400";
-
+kayakInstall.install(Vue);
 
 
 new Vue({
@@ -32,16 +27,6 @@ new Vue({
         currentPageName: ''
     },
     mounted () {
-        this.currentPageName = this.$route.name;
-        // 显示打开的页面的列表
-        this.$store.commit('setOpenedList');
-        this.$store.commit('initCachepage');
-        // 权限菜单过滤相关
-        this.$store.commit('updateMenulist');
-        // iview-admin检查更新
-        util.checkUpdate(this);
-    },
-    created () {
         let tagsList = [];
         appRouter.map((item) => {
             if (item.children.length <= 1) {
@@ -51,5 +36,13 @@ new Vue({
             }
         });
         this.$store.commit('setTagsList', tagsList);
+        this.currentPageName = this.$route.name;
+        // 显示打开的页面的列表
+        this.$store.commit('setOpenedList');
+        this.$store.commit('initCachepage');
+        // 权限菜单过滤相关
+        this.$store.commit('updateMenulist');
+    },
+    created () {
     }
 });

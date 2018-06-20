@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sqlexecutes>
+	<sqlexecute exeid="find_sys_roles" datasource="dsSys">
+		<exename>查询角色列表</exename>
+		<sqlids>find_sys_roles</sqlids>
+	</sqlexecute>
+	
+	<sqlexecute exeid="add_sys_role" datasource="dsSys">
+		<exename>添加角色</exename>
+		<sqlids>add_sys_role</sqlids>
+	</sqlexecute>
+	
+	<sqlexecute exeid="update_sys_role" datasource="dsSys">
+		<exename>修改角色</exename>
+		<sqlids>update_sys_role</sqlids> 
+	</sqlexecute>
+	
+	<sqlexecute exeid="delete_sys_role" datasource="dsSys">
+		<exename>删除角色</exename>
+		<sqlids>delete_sys_role,delete_sys_role_menu</sqlids>
+	</sqlexecute>
+
+</sqlexecutes>

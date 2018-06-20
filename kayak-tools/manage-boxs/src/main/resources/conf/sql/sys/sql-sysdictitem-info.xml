@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlinfos>
+
+<sqlinfos>
+	<sqlinfo sqlid="find_sys_dict_items">
+		<sqlname>查询数据字典子项列表</sqlname>
+		<sql><![CDATA[
+			SELECT dict,itemkey,itemval,itemorder,itemrender
+			FROM sys_dict_item
+			WHERE dict = $S{dict}
+			ORDER BY itemorder
+		]]></sql>
+	</sqlinfo>
+
+	<sqlinfo sqlid="add_sys_dict_item">
+		<sqlname>添加数据字典子项</sqlname>
+		<sql><![CDATA[
+		INSERT INTO sys_dict_item (dict, itemkey, itemval, itemorder, itemrender) VALUES ($S{dict}, $S{itemkey}, $S{itemval}, $S{itemorder}, $S{itemrender})
+		]]></sql>
+	</sqlinfo>
+	
+	<sqlinfo sqlid="update_sys_dict_item">
+		<sqlname>添加数据字典子项</sqlname>
+		<sql><![CDATA[
+		    UPDATE sys_dict_item SET itemval = $S{itemval}, itemorder = $S{itemorder}, itemrender = $S{itemrender}
+		    WHERE dict = $S{dict}
+		    AND itemkey = $S{itemkey}
+		]]></sql>
+	</sqlinfo>
+
+	<sqlinfo sqlid="delete_sys_dict_item">
+		<sqlname>删除数据字典子项</sqlname>
+		<sql><![CDATA[
+		    DELETE FROM sys_dict_item 
+		    WHERE dict = $S{dict}
+		    AND itemkey = $S{itemkey}
+		]]></sql>
+	</sqlinfo>
+	
+	<sqlinfo sqlid="delete_sys_dict_items">
+		<sqlname>删除数据字典子项</sqlname>
+		<sql><![CDATA[
+		    DELETE FROM sys_dict_item 
+		    WHERE dict = $S{dict}
+		]]></sql>
+	</sqlinfo>
+
+</sqlinfos>

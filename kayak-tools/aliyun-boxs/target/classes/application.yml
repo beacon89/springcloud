@@ -1,9 +1,0 @@
-spring:
-  application:
-    name: kayak-aliyun
-server:
-  port: 8100
-eureka:  
-  client:
-    serviceUrl:  
-      defaultZone: http://localhost:8000/eureka/

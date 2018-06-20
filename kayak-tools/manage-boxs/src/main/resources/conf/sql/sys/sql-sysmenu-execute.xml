@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sqlexecutes>
+	<sqlexecute exeid="find_sys_menus" datasource="dsSys">
+		<exename>查询菜单</exename>
+		<sqlids>find_sys_menus</sqlids>
+	</sqlexecute>
+	
+	<sqlexecute exeid="find_sys_user_menus" datasource="dsSys">
+		<exename>查询菜单</exename>
+		<sqlids>find_sys_user_menus</sqlids>
+	</sqlexecute>
+
+	<sqlexecute exeid="find_sys_role_menus" datasource="dsSys">
+		<exename>查询菜单</exename>
+		<sqlids>find_sys_role_menus</sqlids>
+	</sqlexecute>
+
+</sqlexecutes>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlinfos>
+
+<sqlinfos>
+	<sqlinfo sqlid="find_sys_users">
+		<sqlname>查询用户列表</sqlname>
+		<sql><![CDATA[
+			SELECT t.user_id,t.role_id,t.user_name,t.user_status,t.user_remark, t2.role_name
+			FROM sys_user t
+			LEFT JOIN sys_role t2 ON t.role_id = t2.role_id
+			WHERE ($ISNULL{user_name} OR t.user_name like '%$U{user_name}%')
+			AND ($ISNULL{user_remark} OR t.user_remark like '%$U{user_remark}%') 
+		]]></sql>
+	</sqlinfo>
+
+	<sqlinfo sqlid="find_sys_user_by_name">
+		<sqlname>根据用户名查询用户</sqlname>
+		<sql><![CDATA[
+			SELECT t.user_id,t.role_id,t.user_name,t.user_password,t.user_status,t.user_remark
+			FROM sys_user t
+			WHERE  user_name = $S{user_name}
+		]]></sql>
+	</sqlinfo>
+
+	<sqlinfo sqlid="add_sys_user">
+		<sqlname>添加用户</sqlname>
+		<sql><![CDATA[
+			INSERT INTO sys_user (user_id, role_id, user_name, user_password, user_status, user_remark) VALUES 
+				($AUTOID{user_id}, $N{role_id}, $S{user_name}, $S{user_password}, $N{user_status}, $S{user_remark})
+		]]></sql>
+		<checks>
+			<check comparesign="eql" exitall="true">
+				<checkname>数据校验</checkname>
+				<checksql>SELECT COUNT(1) FROM sys_user WHERE
+					user_name=$S{user_name}</checksql>
+				<compareval>1</compareval>
+				<errtext>该用户名已经存在</errtext>
+			</check>
+		</checks>
+	</sqlinfo>
+
+	<sqlinfo sqlid="update_sys_user">
+		<sqlname>修改用户</sqlname>
+		<sql><![CDATA[
+		    UPDATE sys_user SET role_id = $N{role_id}, user_name = $S{user_name}, user_status = $N{user_status}, user_remark = $S{user_remark}
+		    WHERE user_id = $N{user_id}
+		]]></sql>
+		<checks>
+			<check comparesign="eql" exitall="true">
+				<checkname>数据校验</checkname>
+				<checksql>SELECT COUNT(1) FROM sys_user WHERE
+					user_name=$S{user_name} AND user_id != $N{user_id}</checksql>
+				<compareval>1</compareval>
+				<errtext>该用户名已经存在</errtext>
+			</check>
+		</checks>
+	</sqlinfo>
+
+	<sqlinfo sqlid="update_sys_user_password">
+		<sqlname>重置用户密码</sqlname>
+		<sql><![CDATA[
+		    UPDATE sys_user SET user_password = $S{user_password}
+		    WHERE user_id = $N{user_id}
+		]]></sql>
+	</sqlinfo>
+
+	<sqlinfo sqlid="delete_sys_user">
+		<sqlname>删除用户</sqlname>
+		<sql><![CDATA[
+		    DELETE FROM sys_user WHERE user_id = $S{user_id}
+		]]></sql>
+	</sqlinfo>
+
+</sqlinfos>

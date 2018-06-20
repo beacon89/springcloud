@@ -5,7 +5,15 @@
                 <Icon type="search"></Icon>
                 监控页面
             </p>
-            <div :width="900" style="width:100%;height:500px;zoom: 1;" id="gauge_request_con"></div>
+            <Tabs :animated="false">
+                <TabPane label="CPU使用率">
+                    <div :width="900" style="width:100%;height:500px;zoom: 1;" id="gauge_cpu_con"></div>
+                </TabPane>
+                <TabPane label="各CPU使用情况">
+                    <div :width="900" style="width:100%;height:500px;zoom: 1;" id="gauge_allcpu_con"></div>
+                </TabPane>
+            </Tabs>
+
         </Card>
     </div>
 </template>
@@ -17,8 +25,9 @@
         data(){
             return {
                 timer:'',
-                serviceRequestCharts:{},
-                option :{
+                serviceRequestChartscpu:{},
+                serviceRequestChartsallcpu:{},
+                option_cpu :{
                     tooltip : {
                         formatter: "{a} <br/>{b} : {c}%"
                     },
@@ -37,12 +46,66 @@
                         }
                     ]
                 },
+                option_all :{
+                    tooltip : {
+                        trigger: 'axis',
+                        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                        }
+                    },
+                    legend: {
+                        data: []
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    xAxis:  {
+                        type: 'value'
+                    },
+                    yAxis: {
+                        type: 'category',
+                        data: []
+                    },
+                    series: [
+                        {
+                            name: '123',
+                            type: 'bar',
+                            stack: '总量',
+                            label: {
+                                normal: {
+                                    show: true,
+                                    position: 'insideRight'
+                                }
+                            },
+                            data: [50, 50, 50, 50, 50]
+                        },
+                        {
+                            name: '456',
+                            type: 'bar',
+                            stack: '总量',
+                            label: {
+                                normal: {
+                                    show: true,
+                                    position: 'insideRight'
+                                }
+                            },
+                            data:[50, 50, 50, 50, 50]
+                        },
+
+                    ]
+                },
             }
         },
         methods:{
             createChar:function(){
-                this.serviceRequestCharts = echarts.init(document.getElementById('gauge_request_con'));
-                this.serviceRequestCharts.setOption(this.option);
+                this.serviceRequestChartscpu = echarts.init(document.getElementById('gauge_cpu_con'));
+                this.serviceRequestChartscpu.setOption(this.option_cpu);
+                this.serviceRequestChartsallcpu = echarts.init(document.getElementById('gauge_allcpu_con'));
+                this.serviceRequestChartsallcpu.setOption(this.option_all);
+
                 //window.addEventListener('resize', function () {
                 //this.serviceRequestCharts.resize();
                 // });
@@ -50,28 +113,21 @@
             createInterval:function () {
                 let _this = this;
                 this.timer = setInterval(() => {
-                    _this.option.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
-                    _this.serviceRequestCharts.setOption(_this.option, true);
+                    _this.serviceRequestChartscpu.setOption(_this.option_cpu, true);
+                    _this.serviceRequestChartsallcpu.setOption(_this.option_all, true);
                 }, 10000)
 
             },
             getsynData :function(){
                 let _this = this;
-                this.$http.post('http://localhost:8089/querymonitor', this.$qs.stringify({
+                this.$http.post('http://localhost:8080/getCpuInfo', this.$qs.stringify({
                 })).then(function (response) {
                     if(response.data.returnState == "0000") {
-                        let xAxisobj = {
-                            type : 'category',
-                            boundaryGap:false,
-                            data:response.data.xAxisdata
-                        }
-                        let seriesobj = {
-                            name: '流量监控',
-                            type: 'line',
-                            stack: '总量',
-                            areaStyle: {normal: {color: '#2d8cf0'}},
-                            data: response.data.seriesdata
-                        }
+                        _this.option_cpu.series[0].data = [];
+                        _this.option_cpu.series[0].data[0].value = response.data.cpuRation;
+                        _this.option_all.legend = [];
+                        _this.option_all.yAxis.data
+                        _this.option_all.series[0].data
                         _this.option.xAxis = [];
                         _this.option.xAxis.push(xAxisobj);
                         _this.option.series = [];

@@ -21,7 +21,7 @@
                         </FormItem>
                         <FormItem prop="password">
                             <Input type="password" v-model="form.password" placeholder="请输入密码">
-                                <span slot="prepend">
+                            <span slot="prepend">
                                     <Icon :size="14" type="locked"></Icon>
                                 </span>
                             </Input>
@@ -38,44 +38,44 @@
 </template>
 
 <script>
-import Cookies from 'js-cookie';
-export default {
-    data () {
-        return {
-            form: {
-                userName: 'iview_admin',
-                password: ''
-            },
-            rules: {
-                userName: [
-                    { required: true, message: '账号不能为空', trigger: 'blur' }
-                ],
-                password: [
-                    { required: true, message: '密码不能为空', trigger: 'blur' }
-                ]
-            }
-        };
-    },
-    methods: {
-        handleSubmit () {
-            this.$refs.loginForm.validate((valid) => {
-                if (valid) {
-                    Cookies.set('user', this.form.userName);
-                    Cookies.set('password', this.form.password);
-                    this.$store.commit('setAvator', 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3448484253,3685836170&fm=27&gp=0.jpg');
-                    if (this.form.userName === 'iview_admin') {
-                        Cookies.set('access', 0);
-                    } else {
-                        Cookies.set('access', 1);
-                    }
-                    this.$router.push({
-                        name: 'home_index'
-                    });
+    import Cookies from 'js-cookie';
+    export default {
+        data () {
+            return {
+                form: {
+                    userName: '',
+                    password: ''
+                },
+                rules: {
+                    userName: [
+                        { required: true, message: '账号不能为空', trigger: 'blur' }
+                    ],
+                    password: [
+                        { required: true, message: '密码不能为空', trigger: 'blur' }
+                    ]
                 }
-            });
+            };
+        },
+        methods: {
+            handleSubmit () {
+                this.$refs.loginForm.validate((valid) => {
+                    if (valid) {
+                        var password = this.form.password;
+                        password = this.kayak.md5.hex_md5(password+"kayak2018");
+                        this.kayak.httpUtil.query({url:"login.json",method:"post",params:{"username":this.form.userName,"password":password}}).then(data=>{
+                            localStorage.setItem("authorization",data.token);
+                            localStorage.setItem("password",password);
+                            Cookies.set('user', this.form.userName);
+                            this.$store.commit('clearAllTags');
+                            this.$router.push({
+                                name: 'home_index'
+                            });
+                        });
+                    }
+                });
+            }
         }
-    }
-};
+    };
 </script>
 
 <style>

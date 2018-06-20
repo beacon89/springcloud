@@ -1,0 +1,17 @@
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8000/eureka/
+server:
+  port: 8080
+spring:
+  application:
+    name: manage
+  thymeleaf:
+    cache: false
+  servlet:
+    multipart:
+      max-file-size: 1M
+      max-request-size: 1M
+      
+   

@@ -1,11 +1,27 @@
 spring: 
   application:
     name: kayak-zuul
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
 server:
   port: 8400
   tomcat:
     max-threads: 128
     min-spare-threads: 64
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
 zuul: 
   ignoredServices: '*' #忽略所有未配置的service
   host:

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlinfos>
+
+<sqlinfos>
+	<sqlinfo sqlid="find_sys_menus">
+		<sqlname>查询菜单</sqlname>
+		<sql><![CDATA[
+			SELECT menu_id, menu_parent_id, menu_name, menu_status, menu_sort
+			FROM sys_menu
+			WHERE menu_status != 0 AND menu_parent_id != 0
+			ORDER BY menu_sort
+		]]>
+		</sql>
+		<querytree idcolumn="menu_id" textcolumn="menu_name"
+			diffcondition="menu_id,menu_parent_id" isasync="true" />
+	</sqlinfo>
+	
+	<sqlinfo sqlid="find_sys_user_menus">
+		<sqlname>查询菜单</sqlname>
+		<sql><![CDATA[
+			SELECT t.menu_id, t.menu_parent_id, t.menu_name, t.menu_icon, t.menu_path, t.menu_status, t.menu_sort
+			FROM sys_menu t, sys_role_menu t2, sys_user t3
+			WHERE t.menu_status = 1 AND t.menu_parent_id != 0
+			AND t.menu_id = t2.menu_id
+			AND t2.role_id = t3.role_id
+			AND t3.user_id = $N{sys_user_userid}
+			ORDER BY t.menu_sort
+		]]>
+		</sql>
+		<querytree idcolumn="menu_id" textcolumn="menu_name"
+			diffcondition="menu_id,menu_parent_id" isasync="true" />
+	</sqlinfo>
+
+	<sqlinfo sqlid="find_sys_role_menus">
+		<sqlname>查询角色菜单</sqlname>
+		<sql><![CDATA[
+			SELECT role_id,menu_id
+			FROM sys_role_menu
+			WHERE role_id = $N{role_id}
+		]]></sql>
+	</sqlinfo>
+	
+	<sqlinfo sqlid="add_sys_role_menu">
+		<sqlname>添加角色菜单</sqlname>
+		<sql><![CDATA[
+			INSERT INTO sys_role_menu (role_id, menu_id) VALUES ($N{role_id}, $N{menu_id})
+		]]></sql>
+	</sqlinfo>
+	
+	<sqlinfo sqlid="delete_sys_role_menu">
+		<sqlname>添加角色菜单</sqlname>
+		<sql><![CDATA[
+		    DELETE FROM sys_role_menu WHERE role_id = $N{role_id}
+		]]></sql>
+	</sqlinfo>
+
+</sqlinfos>

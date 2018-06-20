@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sqlexecutes>
+	<sqlexecute exeid="find_sys_params" datasource="dsSys">
+		<exename>查询系统参数列表</exename>
+		<sqlids>find_sys_params</sqlids>
+	</sqlexecute>
+	
+	<sqlexecute exeid="add_sys_params" datasource="dsSys">
+		<exename>添加系统参数</exename>
+		<sqlids>add_sys_params</sqlids>
+	</sqlexecute>
+	
+	<sqlexecute exeid="edit_sys_params" datasource="dsSys">
+		<exename>修改系统参数</exename>
+		<sqlids>delete_sys_params,add_sys_params</sqlids> 
+	</sqlexecute>
+	
+	<sqlexecute exeid="delete_sys_params" datasource="dsSys">
+		<exename>删除系统参数</exename>
+		<sqlids>delete_sys_params</sqlids>
+	</sqlexecute>
+
+</sqlexecutes>
