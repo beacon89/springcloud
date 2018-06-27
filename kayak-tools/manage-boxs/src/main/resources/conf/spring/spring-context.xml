@@ -26,8 +26,7 @@
 
 	<!-- 定义公共的数据源属性 -->
 	<!-- 使用c3p0的连接配置 -->
-	<bean id="parentDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
-		destroy-method="close">
+	<bean id="parentDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
 
 		<!--连接池中保留的最小连接数。 -->
 		<property name="minPoolSize" value="1" />

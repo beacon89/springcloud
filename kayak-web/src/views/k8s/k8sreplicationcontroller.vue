@@ -1,7 +1,4 @@
 <style lang="less">
-    @import '../../styles/common.less';
-    @import '../tables/components/table.less';
-
     .add_lable {
         margin-bottom : 18px;
     }

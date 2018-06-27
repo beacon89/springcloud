@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlinfos>
+
+<sqlinfos>
+	<sqlinfo sqlid="find_sys_dept">
+		<sqlname>查询部门列表</sqlname>
+		<sql><![CDATA[
+			select dept_id,dept_name,dept_remark
+			from sys_dept
+			WHERE ($ISNULL{dept_name} OR dept_name like '%$U{dept_name}%')
+			AND ($ISNULL{dept_remark} OR dept_remark like '%$U{dept_remark}%') 
+		]]></sql>
+	</sqlinfo>
+
+	<sqlinfo sqlid="add_sys_dept">
+		<sqlname>添加部门</sqlname>
+		<sql><![CDATA[
+		insert into sys_dept (dept_id, dept_name, dept_remark) VALUES ($AUTOID{dept_id}, $S{dept_name}, $S{dept_remark})
+		]]></sql>
+	</sqlinfo>
+	
+	<sqlinfo sqlid="update_sys_dept">
+		<sqlname>修改部门</sqlname>
+		<sql><![CDATA[
+		    update sys_dept set dept_name = $S{dept_name}, dept_remark = $S{dept_remark}
+		    where dept_id = $S{dept_id}
+		]]></sql>
+	</sqlinfo>
+
+	<sqlinfo sqlid="delete_sys_dept">
+		<sqlname>删除部门</sqlname>
+		<sql><![CDATA[
+		    delete from sys_dept where dept_id = $S{dept_id}
+		]]></sql>
+	</sqlinfo>
+
+</sqlinfos>

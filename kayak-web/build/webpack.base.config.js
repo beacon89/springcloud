@@ -8,10 +8,6 @@ function resolve (dir) {
     return path.join(__dirname, dir);
 }
 module.exports = {
-    devServer: {
-        inline:true,
-        port: 8081
-    },
     entry: {
         main: '@/main',
         'vender-base': '@/vendors/vendors.base.js',

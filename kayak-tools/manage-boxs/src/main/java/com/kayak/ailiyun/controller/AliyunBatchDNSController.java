@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.alibaba.fastjson.JSON;
 import com.aliyuncs.IAcsClient;
 import com.aliyuncs.alidns.model.v20150109.AddBatchDomainRecordsRequest;
 import com.aliyuncs.alidns.model.v20150109.AddBatchDomainRecordsResponse;
@@ -61,7 +60,7 @@ public class AliyunBatchDNSController {
 				map.put(i,domainarry[i]);
 				list.add(map);
 			}
-			this.deleteBatchDomains.setDomains(JSON.toJSONString(list));
+			this.deleteBatchDomains.setDomains(list.toString());
 			response = iacsClient.getAcsResponse(this.deleteBatchDomains);
 		} catch (ClientException e) {
 			log.error(e.getErrCode(),e.getErrMsg());
@@ -89,7 +88,7 @@ public class AliyunBatchDNSController {
 				map.put(i,domainarry[i]);
 				list.add(map);
 			}
-			this.addBatchDomainRecords.setRecords(JSON.toJSONString(list));
+			this.addBatchDomainRecords.setRecords(list.toString());
 			response = iacsClient.getAcsResponse(this.addBatchDomainRecords);
 		} catch (ClientException e) {
 			log.error(e.getErrCode(),e.getErrMsg());
@@ -117,7 +116,7 @@ public class AliyunBatchDNSController {
 				map.put(i,domainarry[i]);
 				list.add(map);
 			}
-			this.updateBatchDomainRecords.setRecords(JSON.toJSONString(list));
+			this.updateBatchDomainRecords.setRecords(list.toString());
 			response = iacsClient.getAcsResponse(this.updateBatchDomainRecords);
 		} catch (ClientException e) {
 			log.error(e.getErrCode(),e.getErrMsg());
@@ -145,7 +144,7 @@ public class AliyunBatchDNSController {
 				map.put(i,domainarry[i]);
 				list.add(map);
 			}
-			this.deleteBatchDomainRecords.setRecords(JSON.toJSONString(list));
+			this.deleteBatchDomainRecords.setRecords(list.toString());
 			response = iacsClient.getAcsResponse(this.deleteBatchDomainRecords);
 		} catch (ClientException e) {
 			log.error(e.getErrCode(),e.getErrMsg());

@@ -1,31 +1,24 @@
 package com.kayak.k8s.properties;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
-
+@Component
 @ConfigurationProperties(prefix = "kubernetes")
 public class KubModel {
 	
-	@Value("${kubernetes.namespace}")
 	private String namespace;
 	
-	@Value("${kubernetes.master}")
 	private String master;
 	
-	@Value("${kubernetes.connectiontimeout}")
 	private int connectiontimeout;
 	
-	@Value("${kubernetes.requesttimeout}")
 	private int requesttimeout;
 
-	@Value("${kubernetes.username}")
 	private String username;
 
-	@Value("${kubernetes.password}")
 	private String password;
 	
-	@Value("${kubernetes.token}")
 	private String token;
 	
 	public String getNamespace() {

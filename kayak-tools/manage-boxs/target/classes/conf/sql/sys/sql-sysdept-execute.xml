@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sqlexecutes>
+	<sqlexecute exeid="find_sys_dept" datasource="dsSys">
+		<exename>查询部门列表</exename>
+		<sqlids>find_sys_dept</sqlids>
+	</sqlexecute>
+	
+	<sqlexecute exeid="add_sys_dept" datasource="dsSys">
+		<exename>添加部门</exename>
+		<sqlids>add_sys_dept</sqlids>
+	</sqlexecute>
+	
+	<sqlexecute exeid="update_sys_dept" datasource="dsSys">
+		<exename>修改部门</exename>
+		<sqlids>update_sys_dept</sqlids> 
+	</sqlexecute>
+	
+	<sqlexecute exeid="delete_sys_dept" datasource="dsSys">
+		<exename>删除部门</exename>
+		<sqlids>delete_sys_dept,delete_sys_dept_role</sqlids>
+	</sqlexecute>
+
+</sqlexecutes>

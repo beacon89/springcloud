@@ -216,11 +216,7 @@ export default {
             });
         },
         init () {
-            this.userForm.name = 'Lison';
-            this.userForm.cellphone = '17712345678';
-            this.initPhone = '17712345678';
-            this.userForm.company = 'TalkingData';
-            this.userForm.department = '可视化部门';
+            this.userForm.name = sessionStorage.getItem("user");
         },
         cancelInputCodeBox () {
             this.inputCodeVisible = false;

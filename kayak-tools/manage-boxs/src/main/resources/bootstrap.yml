@@ -13,5 +13,6 @@ spring:
     multipart:
       max-file-size: 1M
       max-request-size: 1M
+debug: true
       
    

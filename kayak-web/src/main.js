@@ -8,15 +8,14 @@ import '@/locale';
 import 'iview/dist/styles/iview.css';
 import VueI18n from 'vue-i18n';
 import util from './libs/util';
-import hashmap from './kayak/hashmap'
-import kayakInstall from './libs/kayak.js';
 
+
+import kayakInstall from './libs/kayak.js';
 
 Vue.use(VueI18n);
 Vue.use(iView);
-Vue.use(hashmap);
-kayakInstall.install(Vue);
 
+kayakInstall.install(Vue);
 
 new Vue({
     el: '#app',
@@ -42,6 +41,8 @@ new Vue({
         this.$store.commit('initCachepage');
         // 权限菜单过滤相关
         this.$store.commit('updateMenulist');
+
+
     },
     created () {
     }

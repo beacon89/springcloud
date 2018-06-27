@@ -3,99 +3,83 @@
 </template>
 
 <script>
-import echarts from 'echarts';
-export default {
-    name: 'serviceRequests',
-    mounted () {
-        const option = {
-            tooltip: {
-                trigger: 'axis',
-                axisPointer: {
-                    type: 'cross',
-                    label: {
-                        backgroundColor: '#6a7985'
-                    }
-                }
-            },
-            grid: {
-                top: '3%',
-                left: '1.2%',
-                right: '1%',
-                bottom: '3%',
-                containLabel: true
-            },
-            xAxis: [
-                {
-                    type: 'category',
-                    boundaryGap: false,
-                    data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
-                }
-            ],
-            yAxis: [
-                {
-                    type: 'value'
-                }
-            ],
-            series: [
-                {
-                    name: '运营商/网络服务',
-                    type: 'line',
-                    stack: '总量',
-                    areaStyle: {normal: {
-                        color: '#2d8cf0'
-                    }},
-                    data: [120, 132, 101, 134, 90, 230, 210]
-                },
-                {
-                    name: '银行/证券',
-                    type: 'line',
-                    stack: '总量',
-                    areaStyle: {normal: {
-                        color: '#10A6FF'
-                    }},
-                    data: [257, 358, 278, 234, 290, 330, 310]
-                },
-                {
-                    name: '游戏/视频',
-                    type: 'line',
-                    stack: '总量',
-                    areaStyle: {normal: {
-                        color: '#0C17A6'
-                    }},
-                    data: [379, 268, 354, 269, 310, 478, 358]
-                },
-                {
-                    name: '餐饮/外卖',
-                    type: 'line',
-                    stack: '总量',
-                    areaStyle: {normal: {
-                        color: '#4608A6'
-                    }},
-                    data: [320, 332, 301, 334, 390, 330, 320]
-                },
-                {
-                    name: '快递/电商',
-                    type: 'line',
-                    stack: '总量',
-                    label: {
-                        normal: {
-                            show: true,
-                            position: 'top'
+    import echarts from 'echarts';
+    export default {
+        name: 'serviceRequests',
+        data(){
+            return {
+                timer:'',
+                serviceRequestCharts:{},
+                option :{
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data:[]
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    toolbox: {
+                        feature: {
+                            saveAsImage: {}
                         }
                     },
-                    areaStyle: {normal: {
-                        color: '#398DBF'
-                    }},
-                    data: [820, 645, 546, 745, 872, 624, 258]
-                }
-            ]
-        };
-        const serviceRequestCharts = echarts.init(document.getElementById('service_request_con'));
-        serviceRequestCharts.setOption(option);
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: []
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    series: [
 
-        window.addEventListener('resize', function () {
-            serviceRequestCharts.resize();
-        });
-    }
-};
+                    ]
+                },
+            }
+        },
+        methods:{
+            createChar:function(){
+                this.serviceRequestCharts = echarts.init(document.getElementById('service_request_con'));
+                this.serviceRequestCharts.setOption(this.option);
+            },
+            createInterval:function () {
+                this.timer = setInterval(() => {
+                    this.getsynData();
+                }, 10000)
+
+            },
+            getsynData :function(){
+                let _this = this;
+                this.kayak.httpUtil.query({url:"monitor/querymonitor.json",method:"post",successAlert:false}).then(data=>{
+                    if(data.success == true) {
+                        _this.option.legend.data = data.legendData;
+                        _this.option.xAxis.data = data.xAxisdata;
+                        _this.option.series = [];
+                        for(var i = 0;i<data.data.length;i++){
+                            let series = {
+                                name: data.data[i].name,
+                                type:'line',
+                                stack: '交易量',
+                                areaStyle: {normal: {}},
+                                data:data.data[i].seriesdata
+                            }
+                            _this.option.series.push(series);
+                        }
+                        _this.serviceRequestCharts.setOption(_this.option,true);
+                    }else{
+                        _this.$Message.error(data.error);
+                    }
+                });
+            }
+        },
+        mounted () {
+            this.createChar();
+            this.createInterval();
+        }
+    };
 </script>

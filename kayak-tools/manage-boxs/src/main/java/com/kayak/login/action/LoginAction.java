@@ -1,5 +1,6 @@
 package com.kayak.login.action;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.json.JSONObject;
@@ -14,6 +15,7 @@ import com.kayak.base.system.SysUtil;
 import com.kayak.base.util.Tools;
 import com.kayak.user.dao.UserDao;
 import com.kayak.util.JwtUtil;
+import com.kayak.util.StaticVariable;
 
 @RestController
 public class LoginAction extends BaseController {
@@ -23,7 +25,6 @@ public class LoginAction extends BaseController {
 
 	@RequestMapping(value = "/login.json")
 	public String login() {
-		JSONObject json = new JSONObject();
 		try {
 			Map<String, Object> parmas = RequestSupport.getBodyParameters();
 
@@ -39,17 +40,16 @@ public class LoginAction extends BaseController {
 			if (!user.getString("user_password").equals(password)) {
 				return super.updateFailure("账号或者密码错误");
 			}
-
+			if (!user.getString("user_status").equals(StaticVariable.SYS_USER_STATUS1)) {
+				return super.updateFailure("用户状态异常，请联系管理员!");
+			}
+			Map<String, Object> returnmap = new HashMap<>();
 			String token = JwtUtil.getToken(user.getString("user_id"));
-
-			json.put("token", token);
-
-			json.put("success", true);
+			returnmap.put("token", token);
+			return super.updateSuccess(returnmap);
 		} catch (Exception e) {
-			log.error(e.getMessage(), e);
 			return super.updateFailure("服务器异常，请稍后服务");
 		}
-		return json.toString();
 	}
 
 	@RequestMapping(value = "/freshToken.json")
@@ -58,9 +58,7 @@ public class LoginAction extends BaseController {
 		try {
 			String user_id = Tools.obj2Str(SysUtil.getSysUserParamValue("userid"));
 			String token = JwtUtil.getToken(user_id);
-
 			json.put("token", token);
-
 			json.put("success", true);
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);

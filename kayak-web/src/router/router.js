@@ -69,7 +69,8 @@ export const appRouter = [
             { path: 'sys-dict', title: '数字字典', name: 'sys-dict', component: () => import('@/views/sys-setting/sys-dict/sys-dict.vue') },
             { path: 'sys-role', title: '角色管理', name: 'sys-role', component: () => import('@/views/sys-setting/sys-role/sys-role.vue') },
             { path: 'sys-user', title: '用户管理', name: 'sys-user', component: () => import('@/views/sys-setting/sys-user/sys-user.vue') },
-        ]
+            { path: 'sys-department', title: '部门管理', name: 'sys-department', component: () => import('@/views/sys-setting/sys-dept/sys-department.vue') },
+            ]
     },
     {
         path: '/domain-setting',
@@ -80,8 +81,10 @@ export const appRouter = [
         children: [
             { path: 'domain-record',icon:'levels',title: '域名管理', name: 'domain-record', component: () => import('@/views/domainrecord/domainrecord.vue') },
             { path: 'k8s-record',icon:'social-dribbble-outline',title: '控制管理', name: 'k8s-record', component: () => import('@/views/k8s/k8sreplicationcontroller.vue') },
+            { path: 'index', title: '错误页面', name: 'errorpage_index', component: () => import('@/views/error-page/error-page.vue') }
         ]
     }
+
 ];
 
 // 所有上面定义的路由都要写在下面的routers里
@@ -95,4 +98,11 @@ export const routers = [
     page404
 ];
 
-
+export const baseRouters = [
+    loginRouter,
+    otherRouter,
+    locking,
+    page500,
+    page403,
+    page404
+];

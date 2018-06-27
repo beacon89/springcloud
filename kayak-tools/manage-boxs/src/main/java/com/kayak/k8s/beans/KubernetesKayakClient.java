@@ -2,14 +2,9 @@ package com.kayak.k8s.beans;
 
 import javax.annotation.Resource;
 
-import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.converter.HttpMessageConverter;
 
-import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.alibaba.fastjson.support.config.FastJsonConfig;
-import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.kayak.k8s.properties.KubModel;
 
 import io.fabric8.kubernetes.client.Config;
@@ -43,15 +38,4 @@ public class KubernetesKayakClient {
 		return new DefaultKubernetesClient(config);
 	}
 
-	@Bean
-	public HttpMessageConverters fastJsonConverters() {
-		FastJsonHttpMessageConverter fastJsonConverter = new FastJsonHttpMessageConverter();
-		FastJsonConfig fastConf = new FastJsonConfig();
-
-		fastConf.setSerializerFeatures(SerializerFeature.PrettyFormat);
-		fastJsonConverter.setFastJsonConfig(fastConf);
-
-		HttpMessageConverter<?> converter = fastJsonConverter;
-		return new HttpMessageConverters(converter);
-	}
 }

@@ -38,7 +38,7 @@ public class LoginFilter implements Filter {
 			return;
 
 		}
-
+		System.out.println(_request.getRequestURI());
 		if (_request.getRequestURI().contains("login.json") || _request.getRequestURI().contains("comn-upload.json")) {
 			chain.doFilter(request, response);
 			return;

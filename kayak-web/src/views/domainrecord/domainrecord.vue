@@ -1,7 +1,4 @@
-<style lang="less">
-    @import '../../styles/common.less';
-    @import '../tables/components/table.less';
-</style>
+
 <template>
     <Card style="margin-bottom: 8px;padding-bottom: 0">
         <p slot="title">
@@ -454,30 +451,14 @@
         methods: {
             query(name) {
                 let _this = this;
-                this.$http.post(this.httpurl.toString() + '/feigen/describeDomainRecords', this.$qs.stringify({
-                    pageNumber: this.pageNumber,
-                    pageSize: this.pageSize,
-                    domainName: this.querydata.domainName,
-                    rRKeyWord:this.querydata.rRKeyWord,
-                    typeKeyWord:this.querydata.typeKeyWord,
-                    valueKeyWord:this.querydata.valueKeyWord
-                })).then(function (response) {
-                    if(response.data.returnState == "0000") {
-                        _this.pageNumber = response.data.pageNumber;
-                        _this.data = response.data.detail;
-                        _this.totalCount = response.data.totalCount;
-                        _this.pageSize = response.data.pageSize;
-                        _this.loading = false;
+                this.kayak.httpUtil.query({url:"aliyun/describeDomainRecords.json",method:"post",params:{'pageNumber':this.pageNumber,'pageSize':this.pageSize,'domainName':this.querydata.domainName,'rRKeyWord':this.querydata.rRKeyWord, 'typeKeyWord':this.querydata.typeKeyWord,'valueKeyWord':this.querydata.valueKeyWord
+                    },successAlert:false}).then(data=>{
+                    if(data.success == true) {
+                        _this.total = data.totalCount;
+                        _this.tableData = data.rows;
                     }else{
-                        _this.$Message.error(response.data.returnMsg);
+                        _this.$Message.error(data.error);
                     }
-                }).catch(function (error) {
-                    if(typeof(error.response) == "undefined"){
-                        _this.$Message.error("错误信息：" + error);
-                    }else{
-                        _this.$Message.error("错误信息：" + error.response.data.message);
-                    }
-                    console.log(error);
                 });
             },
             changePage(pageNumber) {

@@ -1,7 +1,7 @@
 package com.kayak.aliyun.properties;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 import com.aliyuncs.alidns.model.v20150109.AddBatchDomainRecordsRequest;
 import com.aliyuncs.alidns.model.v20150109.AddDomainGroupRequest;
@@ -41,50 +41,36 @@ import com.aliyuncs.alidns.model.v20150109.UpdateDomainRecordRequest;
 import com.aliyuncs.http.FormatType;
 import com.aliyuncs.http.MethodType;
 
-
+@Component
 @ConfigurationProperties(prefix = "alidns")
 public class AliyunDnsPropertie {
 	
-	@Value("${alidns.regionid}")
 	private String regionid;
 	
-	@Value("${alidns.product}")
 	private String product;
 	
-	@Value("${alidns.domain}")
 	private String domain;
 	
-	@Value("${alidns.accesskeyid}")
 	private String accesskeyid;
 	
-	@Value("${alidns.accesskeysecret}")
 	private String accesskeysecret;
 	
-	@Value("${alidns.protocoltype}")
 	private String protocoltype;
 	
-	@Value("${alidns.formattype}")
 	private String formattype;
 	
-	@Value("${alidns.methodtype}")
 	private String methodtype;
 	
-	@Value("${alidns.connectTimeout}")
 	private Integer connectTimeout;
 	
-	@Value("${alidns.readTimeout}")
 	private Integer readTimeout;
 	
-	@Value("${alidns.encoding}")
 	private String encoding;
 	
-	@Value("${alidns.pageNumber}")
 	private Long pageNumber;
 	
-	@Value("${alidns.pageSize}")
 	private Long pageSize;
 	
-	@Value("${alidns.defaultdomain}")
 	private String defaultdomain;
 	
 	private MethodType methodTypeFormat(String methodtype) {

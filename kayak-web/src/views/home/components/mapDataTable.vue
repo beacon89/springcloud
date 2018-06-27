@@ -1,4 +1,4 @@
-<template>
+<template >
     <div :style="styleObj">
         <Table :height="height" :columns="columns" :data="cityData"></Table>
     </div>

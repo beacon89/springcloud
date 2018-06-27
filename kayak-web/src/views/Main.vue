@@ -4,13 +4,13 @@
 <template>
     <div class="main" :class="{'main-hide-text': shrink}">
         <div class="sidebar-menu-con" :style="{width: shrink?'60px':'200px', overflow: shrink ? 'visible' : 'auto'}">
-            <shrinkable-menu
-                    :shrink="shrink"
-                    @on-change="handleSubmenuChange"
-                    :theme="menuTheme"
-                    :before-push="beforePush"
-                    :open-names="openedSubmenuArr"
-                    :menu-list="menus">
+            <shrinkable-menu 
+                :shrink="shrink"
+                @on-change="handleSubmenuChange"
+                :theme="menuTheme" 
+                :before-push="beforePush"
+                :open-names="openedSubmenuArr"
+                :menu-list="menus">
                 <div slot="top" class="logo-con">
                     <img v-show="!shrink"  src="../images/logo.jpg" key="max-logo" />
                     <img v-show="shrink" src="../images/logo-min.jpg" key="min-logo" />
@@ -34,7 +34,7 @@
                     <lock-screen></lock-screen>
                     <message-tip v-model="mesCount"></message-tip>
                     <theme-switch></theme-switch>
-
+                    
                     <div class="user-dropdown-menu-con">
                         <Row type="flex" justify="end" align="middle" class="user-dropdown-innercon">
                             <Dropdown transfer trigger="click" @on-click="handleClickUserDropdown">
@@ -75,7 +75,7 @@
     import themeSwitch from './main-components/theme-switch/theme-switch.vue';
     import Cookies from 'js-cookie';
     import util from '@/libs/util.js';
-
+    
     export default {
         components: {
             shrinkableMenu,
@@ -125,6 +125,7 @@
         },
         methods: {
             init () {
+
                 this.kayak.httpUtil.comnQueryTree({exeid:"find_sys_user_menus",method:"post",params:{}}).then(data=>{
                     let menuList = [];
                     let menus = data.rows;
@@ -148,9 +149,10 @@
                         menu_item.children = menu_children;
                         menuList.push(menu_item);
                     });
-                    this.menus = menuList;
 
+                    this.menus = menuList;
                 });
+
                 let pathArr = util.setCurrentPath(this, this.$route.name);
                 this.$store.commit('updateMenulist');
                 if (pathArr.length >= 2) {

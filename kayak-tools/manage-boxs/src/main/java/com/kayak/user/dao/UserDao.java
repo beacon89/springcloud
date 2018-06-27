@@ -25,11 +25,9 @@ public class UserDao extends ComnDao {
 		params.put("user_name", user_name);
 		SqlResult sr = super.doQueryBySqlid("find_sys_user_by_name", params);
 		List<SqlRow> sqlRows = sr.getRows();
-
 		if (sqlRows != null && sqlRows.size() > 0) {
 			return sqlRows.get(0);
 		}
-
 		return null;
 	}
 
