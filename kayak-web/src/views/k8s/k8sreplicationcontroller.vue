@@ -1,4 +1,7 @@
 <style lang="less">
+    @import '../../styles/common.less';
+    @import '../tables/components/table.less';
+
     .add_lable {
         margin-bottom : 18px;
     }
@@ -137,134 +140,147 @@
                 </p>
                 <Row class="first" v-if="typeof(infodata.apiVersion) !== 'undefined' ">
                     <Col span="12">
-                    <Input typeof="text" v-model="infodata.apiVersion" disabled><span
-                        slot="prepend">apiVersion:</span></Input></Col>
+                        <Input typeof="text" v-model="infodata.apiVersion" disabled>
+                            <span slot="prepend">apiVersion:</span>
+                        </Input>
+                    </Col>
                 </Row>
                 <Row class="first" v-if="typeof(infodata.kind) !== 'undefined'">
                     <Col span="12">
-                    <Input v-model="infodata.kind" disabled><span slot="prepend">kind:</span></Input></Col>
+                        <Input v-model="infodata.kind" disabled>
+                            <span slot="prepend">kind:</span>
+                        </Input>
+                    </Col>
                 </Row>
                 <Row v-if="typeof(infodata.metadata) !== 'undefined'">
-                    <div class="first" @click="showmodel_metadata">
+                    <div class="first" >
                         <span style="font-size:small">&nbsp;metadata:</span>
                         <Icon type="plus-circled"></Icon>
                     </div>
-                    <div v-show="showmodel.metadata.on">
+                    <div>
                         <Row v-if="typeof(infodata.metadata.annotations) !== 'undefined' ">
-                            <div class="second" @click="showmodel_metadata_annotations">
+                            <div class="second">
                                 <span style="font-size:small">&nbsp;&nbsp;&malt;&nbsp;annotations:</span>
                                 <Icon type="plus-circled"/>
                             </div>
-                            <div class="third" v-show="showmodel.metadata.annotations"
-                                 v-for="(val,key) in infodata.metadata.annotations" :key="key"
-                                 v-model="infodata.metadata.annotations[key]">
+                            <div class="third"  v-for="(val,key) in infodata.metadata.annotations" :key="key"  v-model="infodata.metadata.annotations[key]">
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nearhk;&nbsp;{{key}} -- {{val}}
                             </div>
                         </Row>
                         <Row class="second" v-if="typeof(infodata.metadata.clusterName) !== 'undefined'">
                             <Col span="12">
-                            <Input v-model="infodata.metadata.clusterName" disabled><span slot="prepend">&malt;&nbsp;clusterName:</span></Input></Col>
+                                <Input v-model="infodata.metadata.clusterName" disabled>
+                                    <span slot="prepend">&malt;&nbsp;clusterName:</span>
+                                </Input>
+                            </Col>
                         </Row>
                         <Row class="second" v-if="typeof(infodata.metadata.creationTimestamp) !== 'undefined'">
                             <Col span="12">
-                            <Input v-model="infodata.metadata.creationTimestamp" disabled><span slot="prepend">&malt;&nbsp;creationTimestamp:</span></Input></Col>
+                                <Input v-model="infodata.metadata.creationTimestamp" disabled>
+                                    <span slot="prepend">&malt;&nbsp;creationTimestamp:</span>
+                                </Input>
+                            </Col>
                         </Row>
                         <Row class="second"
                              v-if="typeof(infodata.metadata.deletionGracePeriodSeconds) !== 'undefined' && infodata.metadata.deletionGracePeriodSeconds !== 0 ">
                             <Col span="12">
-                            <Input v-model="infodata.metadata.deletionGracePeriodSeconds" disabled><span
-                                slot="prepend">&malt;&nbsp;deletionGracePeriodSeconds:</span></Input></Col>
+                                <Input v-model="infodata.metadata.deletionGracePeriodSeconds" disabled>
+                                    <span slot="prepend">&malt;&nbsp;deletionGracePeriodSeconds:</span>
+                                </Input>
+                            </Col>
                         </Row>
                         <Row class="second" v-if="typeof(infodata.metadata.deletionTimestamp) !== 'undefined' ">
                             <Col span="12">
-                            <Input v-model="infodata.metadata.deletionTimestamp" disabled><span slot="prepend">&malt;&nbsp;deletionTimestamp:</span></Input></Col>
+                                <Input v-model="infodata.metadata.deletionTimestamp" disabled>
+                                    <span slot="prepend">&malt;&nbsp;deletionTimestamp:</span>
+                                </Input>
+                            </Col>
                         </Row>
                         <Row class="second" v-if="typeof(infodata.metadata.generateName) !== 'undefined' ">
                             <Col span="12">
-                            <Input v-model="infodata.metadata.generateName" disabled><span slot="prepend">&malt;&nbsp;generateName:</span></Input></Col>
+                                <Input v-model="infodata.metadata.generateName" disabled>
+                                    <span slot="prepend">&malt;&nbsp;generateName:</span>
+                                </Input>
+                            </Col>
                         </Row>
                         <Row v-if="typeof(infodata.metadata.initializers) !== 'undefined'">
-                            <div class="second" @click="showmodel_metadata_initializers">
+                            <div class="second" >
                                 <span style="font-size:small"> &nbsp;&nbsp;&malt;&nbsp;initializers:</span>
                                 <Icon type="plus-circled"/>
                             </div>
-                            <div v-show="showmodel.metadata.initializers.on">
+                            <div >
                                 <Row v-if="typeof(infodata.metadata.initializers.pending) !== 'undefined' && infodata.metadata.initializers.pending.length > 0">
-                                    <div class="third" @click="showmodel_metadata_initializers_pending">
+                                    <div class="third" >
                                         <span style="font-size:small">&nesear;&nbsp;pending:</span>
                                         <Icon type="plus-circled"/>
                                     </div>
-                                    <div v-show="showmodel.metadata.initializers.pending"
-                                         v-for="(item,index) in infodata.metadata.initializers.pending" :key="index"
-                                         v-model="infodata.metadata.initializers.pending[index]">
+                                    <div v-for="(item,index) in infodata.metadata.initializers.pending" :key="index" v-model="infodata.metadata.initializers.pending[index]">
                                         <div class="fourth">
                                             <span style="font-size:small">&midast;&nbsp;列表数:{{index}}:</span>
                                         </div>
                                         <Row class="fifth" v-if="typeof(item.name) !== 'undefined' ">
                                             <Col span="12">
-                                            <Input v-model="item.name" disabled><span slot="prepend">&triminus;&nbsp;name:</span></Input></Col>
+                                                <Input v-model="item.name" disabled>
+                                                    <span slot="prepend">&triminus;&nbsp;name:</span>
+                                                </Input>
+                                            </Col>
                                         </Row>
                                         <Row v-if="typeof(item.additionalProperties) !== 'undefined' ">
                                             <div class="fifth">
                                                 <span style="font-size:small">&nbsp;&nbsp;&triminus;&nbsp;additionalProperties:</span>
                                             </div>
-                                            <div class="sixth" v-for="(val,key) in item.additionalProperties"
-                                                 :key="key" v-model="item.additionalProperties[key]">
+                                            <div class="sixth" v-for="(val,key) in item.additionalProperties":key="key" v-model="item.additionalProperties[key]">
                                                 &mapsto;&nbsp;{{key}} -- {{val}}
                                             </div>
                                         </Row>
                                     </div>
                                 </Row>
                                 <Row v-if="typeof(infodata.metadata.initializers.result) !== 'undefined' ">
-                                    <div @click="showmodel_metadata_initializers_result" class="third">
+                                    <div class="third">
                                         <span style="font-size:small">&nesear;&nbsp;result:</span>
                                         <Icon type="plus-circled"/>
                                     </div>
-                                    <div v-show="showmodel.metadata.initializers.result.on">
-                                        <Row class="fourth"
-                                             v-if="typeof(infodata.metadata.initializers.result.apiVersion) !== 'undefined'">
+                                    <div>
+                                        <Row class="fourth" v-if="typeof(infodata.metadata.initializers.result.apiVersion) !== 'undefined'">
                                             <Col span="12">
-                                            <Input v-model="infodata.metadata.initializers.result.apiVersion"
-                                                   disabled>
-                                            <span slot="prepend">&sc;&nbsp;apiVersion:</span></Input>
+                                                <Input v-model="infodata.metadata.initializers.result.apiVersion"  disabled>
+                                                    <span slot="prepend">&sc;&nbsp;apiVersion:</span>
+                                                </Input>
                                             </Col>
                                         </Row>
-                                        <Row class="fourth"
-                                             v-if="typeof(infodata.metadata.initializers.result.code) !== 'undefined'">
+                                        <Row class="fourth">
                                             <Col span="12">
-                                            <Input v-model="infodata.metadata.initializers.result.code" disabled>
-                                            <span slot="prepend">&sc;&nbsp;code:</span></Input>
+                                                <Input v-model="infodata.metadata.initializers.result.code" disabled>
+                                                    <span slot="prepend">&sc;&nbsp;code:</span>
+                                                </Input>
                                             </Col>
                                         </Row>
                                         <Row v-if="typeof(infodata.metadata.initializers.result.details) !== 'undefined'">
-                                            <div class="fourth"
-                                                 @click="showmodel_metadata_initializers_result_details">
+                                            <div class="fourth">
                                                 <span style="font-size:small">&nbsp;&nbsp;&sc;&nbsp;details:</span>
                                                 <Icon type="plus-circled"/>
                                             </div>
-                                            <div v-show="showmodel.metadata.initializers.result.details.on">
+                                            <div>
                                                 <Row v-if="typeof(infodata.metadata.initializers.result.details.group) !== 'undefined'">
                                                     <Col span="12">
-                                                    <Input class="fifth"
-                                                           v-model="infodata.metadata.initializers.result.details.group"
-                                                           disabled>
-                                                    <span slot="prepend">&dagger;&nbsp;group:</span></Input>
+                                                        <Input class="fifth" v-model="infodata.metadata.initializers.result.details.group" disabled>
+                                                            <span slot="prepend">&dagger;&nbsp;group:</span>
+                                                        </Input>
                                                     </Col>
                                                 </Row>
-                                                <Row class="fifth"
-                                                     v-if="typeof(infodata.metadata.initializers.result.details.kind) !== 'undefined'">
+                                                <Row class="fifth" v-if="typeof(infodata.metadata.initializers.result.details.kind) !== 'undefined'">
                                                     <Col span="12">
-                                                    <Input v-model="infodata.metadata.initializers.result.details.kind"
-                                                           disabled>
-                                                    <span slot="prepend">&dagger;&nbsp;kind:</span></Input>
+                                                        <Input v-model="infodata.metadata.initializers.result.details.kind"  disabled>
+                                                            <span slot="prepend">&dagger;&nbsp;kind:</span>
+                                                        </Input>
                                                     </Col>
                                                 </Row>
                                                 <Row v-if="typeof(infodata.metadata.initializers.result.details.name) !== 'undefined'">
                                                     <Col span="12">
-                                                    <Input class="fifth"
-                                                           v-model="infodata.metadata.initializers.result.details.name"
-                                                           disabled>
-                                                    <span slot="prepend">&dagger;&nbsp;name:</span></Input>
+                                                        <Input class="fifth"
+                                                               v-model="infodata.metadata.initializers.result.details.name"
+                                                               disabled>
+                                                        <span slot="prepend">&dagger;&nbsp;name:</span></Input>
                                                     </Col>
                                                 </Row>
                                                 <Row v-if="typeof(infodata.metadata.initializers.result.details.causes) !== 'undefined' && infodata.metadata.initializers.result.details.causes.length > 0">
@@ -282,23 +298,23 @@
                                                         </div>
                                                         <Row v-if="typeof(causesobj.field) !== 'undefined'">
                                                             <Col span="12">
-                                                            <Input class="seventh" v-model="causesobj.field"
-                                                                   disabled>
-                                                            <span slot="prepend">&ultri;&nbsp;field:</span></Input>
+                                                                <Input class="seventh" v-model="causesobj.field"
+                                                                       disabled>
+                                                                <span slot="prepend">&ultri;&nbsp;field:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(causesobj.message) !== 'undefined'">
                                                             <Col span="12">
-                                                            <Input class="seventh" v-model="causesobj.message"
-                                                                   disabled>
-                                                            <span slot="prepend">&ultri;&nbsp;message:</span></Input>
+                                                                <Input class="seventh" v-model="causesobj.message"
+                                                                       disabled>
+                                                                <span slot="prepend">&ultri;&nbsp;message:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(causesobj.reason) !== 'undefined'">
                                                             <Col span="12">
-                                                            <Input class="seventh" v-model="causesobj.reason"
-                                                                   disabled>
-                                                            <span slot="prepend">&ultri;&nbsp;reason:</span></Input>
+                                                                <Input class="seventh" v-model="causesobj.reason"
+                                                                       disabled>
+                                                                <span slot="prepend">&ultri;&nbsp;reason:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(causesobj.additionalProperties) !== 'undefined' ">
@@ -316,18 +332,18 @@
                                                 </Row>
                                                 <Row v-if="typeof(infodata.metadata.initializers.result.details.retryAfterSeconds) !== 'undefined' && infodata.metadata.initializers.result.details.retryAfterSeconds !== 0 ">
                                                     <Col span="12">
-                                                    <Input class="fifth"
-                                                           v-model="infodata.metadata.initializers.result.details.retryAfterSeconds"
-                                                           disabled>
-                                                    <span slot="prepend">&dagger;&nbsp;name:</span></Input>
+                                                        <Input class="fifth"
+                                                               v-model="infodata.metadata.initializers.result.details.retryAfterSeconds"
+                                                               disabled>
+                                                        <span slot="prepend">&dagger;&nbsp;name:</span></Input>
                                                     </Col>
                                                 </Row>
                                                 <Row v-if="typeof(infodata.metadata.initializers.result.details.uid) !== 'undefined'">
                                                     <Col span="12">
-                                                    <Input class="fifth"
-                                                           v-model="infodata.metadata.initializers.result.details.uid"
-                                                           disabled>
-                                                    <span slot="prepend">&dagger;&nbsp;uid:</span></Input>
+                                                        <Input class="fifth"
+                                                               v-model="infodata.metadata.initializers.result.details.uid"
+                                                               disabled>
+                                                        <span slot="prepend">&dagger;&nbsp;uid:</span></Input>
                                                     </Col>
                                                 </Row>
                                                 <Row v-if="typeof(infodata.metadata.initializers.result.details.additionalProperties) !== 'undefined' ">
@@ -349,15 +365,15 @@
                                         <Row class="fourth"
                                              v-if="typeof(infodata.metadata.initializers.result.kind) !== 'undefined'">
                                             <Col span="12">
-                                            <Input v-model="infodata.metadata.initializers.result.kind" disabled>
-                                            <span slot="prepend">&sc;&nbsp;kind:</span></Input>
+                                                <Input v-model="infodata.metadata.initializers.result.kind" disabled>
+                                                <span slot="prepend">&sc;&nbsp;kind:</span></Input>
                                             </Col>
                                         </Row>
                                         <Row class="fourth"
                                              v-if="typeof(infodata.metadata.initializers.result.message) !== 'undefined'">
                                             <Col span="12">
-                                            <Input v-model="infodata.metadata.initializers.result.message" disabled>
-                                            <span slot="prepend">&sc;&nbsp;message:</span></Input>
+                                                <Input v-model="infodata.metadata.initializers.result.message" disabled>
+                                                <span slot="prepend">&sc;&nbsp;message:</span></Input>
                                             </Col>
                                         </Row>
                                         <Row v-if="typeof(infodata.metadata.initializers.result.metadata) !== 'undefined'">
@@ -369,18 +385,18 @@
                                             <div v-show="showmodel.metadata.initializers.result.metadata.on">
                                                 <Row v-if="typeof(infodata.metadata.initializers.result.metadata.resourceVersion) !== 'undefined'">
                                                     <Col span="12">
-                                                    <Input class="fifth"
-                                                           v-model="infodata.metadata.initializers.result.metadata.resourceVersion"
-                                                           disabled>
-                                                    <span slot="prepend">&jukcy;&nbsp;resourceVersion:</span></Input>
+                                                        <Input class="fifth"
+                                                               v-model="infodata.metadata.initializers.result.metadata.resourceVersion"
+                                                               disabled>
+                                                        <span slot="prepend">&jukcy;&nbsp;resourceVersion:</span></Input>
                                                     </Col>
                                                 </Row>
                                                 <Row v-if="typeof(infodata.metadata.initializers.result.metadata.selfLink) !== 'undefined'">
                                                     <Col span="12">
-                                                    <Input class="fifth"
-                                                           v-model="infodata.metadata.initializers.result.metadata.selfLink"
-                                                           disabled>
-                                                    <span slot="prepend">&jukcy;&nbsp;selfLink:</span></Input>
+                                                        <Input class="fifth"
+                                                               v-model="infodata.metadata.initializers.result.metadata.selfLink"
+                                                               disabled>
+                                                        <span slot="prepend">&jukcy;&nbsp;selfLink:</span></Input>
                                                     </Col>
                                                 </Row>
                                                 <Row v-if="typeof(infodata.metadata.initializers.result.metadata.additionalProperties) !== 'undefined'">
@@ -402,16 +418,16 @@
                                         <Row class="fourth"
                                              v-if="typeof(infodata.metadata.initializers.result.reason) !== 'undefined'">
                                             <Col span="12">
-                                            <Input v-model="infodata.metadata.initializers.result.reason"
-                                                   disabled><span
-                                                slot="prepend">&sc;&nbsp;reason:</span></Input></Col>
+                                                <Input v-model="infodata.metadata.initializers.result.reason"
+                                                       disabled><span
+                                                    slot="prepend">&sc;&nbsp;reason:</span></Input></Col>
                                         </Row>
                                         <Row class="fourth"
                                              v-if="typeof(infodata.metadata.initializers.result.status) !== 'undefined'">
                                             <Col span="12">
-                                            <Input v-model="infodata.metadata.initializers.result.status"
-                                                   disabled><span
-                                                slot="prepend">&sc;&nbsp;status:</span></Input></Col>
+                                                <Input v-model="infodata.metadata.initializers.result.status"
+                                                       disabled><span
+                                                    slot="prepend">&sc;&nbsp;status:</span></Input></Col>
                                         </Row>
                                         <Row v-if="typeof(infodata.metadata.initializers.result.additionalProperties) !== 'undefined' ">
                                             <div class="fourth"
@@ -446,16 +462,16 @@
                         <Row class="second"
                              v-if="typeof(infodata.metadata.generation) !== 'undefined' && infodata.metadata.generation !== 0  ">
                             <Col span="12">
-                            <Input v-model="infodata.metadata.generation" disabled><span slot="prepend">&malt;&nbsp;generation:</span></Input></Col>
+                                <Input v-model="infodata.metadata.generation" disabled><span slot="prepend">&malt;&nbsp;generation:</span></Input></Col>
                         </Row>
                         <Row class="second" v-if="typeof(infodata.metadata.name) !== 'undefined' ">
                             <Col span="12">
-                            <Input v-model="infodata.metadata.name" disabled><span
-                                slot="prepend">&malt;&nbsp;name:</span></Input></Col>
+                                <Input v-model="infodata.metadata.name" disabled><span
+                                    slot="prepend">&malt;&nbsp;name:</span></Input></Col>
                         </Row>
                         <Row class="second" v-if="typeof(infodata.metadata.namespace) !== 'undefined'">
                             <Col span="12">
-                            <Input v-model="infodata.metadata.namespace" disabled><span slot="prepend">&malt;&nbsp;namespace:</span></Input></Col>
+                                <Input v-model="infodata.metadata.namespace" disabled><span slot="prepend">&malt;&nbsp;namespace:</span></Input></Col>
                         </Row>
                         <Row v-if="typeof(infodata.metadata.ownerReferences) !== 'undefined' && infodata.metadata.ownerReferences.length > 0">
                             <div class="second" @click="showmodel_metadata_ownerReferences">
@@ -471,31 +487,31 @@
                                 <div>
                                     <Row class="fourth" v-if="typeof(owner.apiVersion) !== 'undefined' ">
                                         <Col span="12">
-                                        <Input v-model="owner.apiVersion" disabled><span slot="prepend">&oast;&nbsp;apiVersion:</span></Input></Col>
+                                            <Input v-model="owner.apiVersion" disabled><span slot="prepend">&oast;&nbsp;apiVersion:</span></Input></Col>
                                     </Row>
                                     <Row class="fourth" v-if="typeof(owner.blockOwnerDeletion) !== 'undefined' ">
                                         <Col span="12">
-                                        <Input v-model="owner.blockOwnerDeletion.toString()" disabled><span
-                                            slot="prepend">&oast;&nbsp;blockOwnerDeletion:</span></Input></Col>
+                                            <Input v-model="owner.blockOwnerDeletion.toString()" disabled><span
+                                                slot="prepend">&oast;&nbsp;blockOwnerDeletion:</span></Input></Col>
                                     </Row>
                                     <Row class="fourth" v-if="typeof(owner.controller) !== 'undefined' ">
                                         <Col span="12">
-                                        <Input v-model="owner.controller.toString()" disabled><span slot="prepend">&oast;&nbsp;controller:</span></Input></Col>
+                                            <Input v-model="owner.controller.toString()" disabled><span slot="prepend">&oast;&nbsp;controller:</span></Input></Col>
                                     </Row>
                                     <Row class="fourth" v-if="typeof(owner.kind) !== 'undefined' ">
                                         <Col span="12">
-                                        <Input v-model="owner.kind" disabled><span
-                                            slot="prepend">&oast;&nbsp;kind:</span></Input></Col>
+                                            <Input v-model="owner.kind" disabled><span
+                                                slot="prepend">&oast;&nbsp;kind:</span></Input></Col>
                                     </Row>
                                     <Row class="fourth" v-if="typeof(owner.name) !== 'undefined' ">
                                         <Col span="12">
-                                        <Input v-model="owner.name" disabled><span
-                                            slot="prepend">&oast;&nbsp;name:</span></Input></Col>
+                                            <Input v-model="owner.name" disabled><span
+                                                slot="prepend">&oast;&nbsp;name:</span></Input></Col>
                                     </Row>
                                     <Row class="fourth" v-if="typeof(owner.uid) !== 'undefined' ">
                                         <Col span="12">
-                                        <Input v-model="owner.uid" disabled><span
-                                            slot="prepend">&oast;&nbsp;uid:</span></Input></Col>
+                                            <Input v-model="owner.uid" disabled><span
+                                                slot="prepend">&oast;&nbsp;uid:</span></Input></Col>
                                     </Row>
                                     <Row v-if="typeof(owner.additionalProperties) !== 'undefined' ">
                                         <div class="fourth">
@@ -511,11 +527,11 @@
                         </Row>
                         <Row class="second" v-if="typeof(infodata.metadata.resourceVersion) !== 'undefined'">
                             <Col span="12">
-                            <Input v-model="infodata.metadata.resourceVersion" disabled><span slot="prepend">&malt;&nbsp;resourceVersion:</span></Input></Col>
+                                <Input v-model="infodata.metadata.resourceVersion" disabled><span slot="prepend">&malt;&nbsp;resourceVersion:</span></Input></Col>
                         </Row>
                         <Row class="second" v-if="typeof(infodata.metadata.selfLink) !== 'undefined'">
                             <Col span="12">
-                            <Input v-model="infodata.metadata.selfLink" disabled><span slot="prepend">&malt;&nbsp;selfLink:</span></Input></Col>
+                                <Input v-model="infodata.metadata.selfLink" disabled><span slot="prepend">&malt;&nbsp;selfLink:</span></Input></Col>
                         </Row>
                         <Row v-if="typeof(infodata.metadata.labels) !== 'undefined' ">
                             <div class="second" @click="showmodel_metadata_labels">
@@ -541,8 +557,8 @@
                         </Row>
                         <Row class="second" v-if="typeof(infodata.metadata.uid) !== 'undefined'">
                             <Col span="12">
-                            <Input v-model="infodata.metadata.uid" disabled>
-                            <span slot="prepend">&nbsp;&malt;&nbsp;uid:</span></Input>
+                                <Input v-model="infodata.metadata.uid" disabled>
+                                <span slot="prepend">&nbsp;&malt;&nbsp;uid:</span></Input>
                             </Col>
                         </Row>
                         <Row v-if="typeof(infodata.metadata.additionalProperties) !== 'undefined' &&  modelflag.metadata.properties === true">
@@ -566,8 +582,8 @@
                     <div v-show="showmodel.spec.on">
                         <Row class="second" v-if="typeof(infodata.spec.minReadySeconds) !== 'undefined'">
                             <Col span="12">
-                            <Input v-model="infodata.spec.minReadySeconds" disabled>
-                            <span slot="prepend">&hookrightarrow;&nbsp;minReadySeconds:</span></Input>
+                                <Input v-model="infodata.spec.minReadySeconds" disabled>
+                                <span slot="prepend">&hookrightarrow;&nbsp;minReadySeconds:</span></Input>
                             </Col>
                         </Row>
                         <Row v-if="typeof(infodata.spec.selector) !== 'undefined' ">
@@ -620,32 +636,32 @@
                                         <Row class="fourth"
                                              v-if="typeof(infodata.spec.template.metadata.clusterName) !== 'undefined'">
                                             <Col span="12">
-                                            <Input v-model="infodata.spec.template.metadata.clusterName" disabled>
-                                            <span slot="prepend">&laemptyv;&nbsp;clusterName:</span></Input>
+                                                <Input v-model="infodata.spec.template.metadata.clusterName" disabled>
+                                                <span slot="prepend">&laemptyv;&nbsp;clusterName:</span></Input>
                                             </Col>
                                         </Row>
                                         <Row class="fourth"
                                              v-if="typeof(infodata.spec.template.metadata.creationTimestamp) !== 'undefined'">
                                             <Col span="12">
-                                            <Input v-model="infodata.spec.template.metadata.creationTimestamp"
-                                                   disabled>
-                                            <span slot="prepend">&laemptyv;&nbsp;creationTimestamp:</span></Input>
+                                                <Input v-model="infodata.spec.template.metadata.creationTimestamp"
+                                                       disabled>
+                                                <span slot="prepend">&laemptyv;&nbsp;creationTimestamp:</span></Input>
                                             </Col>
                                         </Row>
                                         <Row class="fourth"
                                              v-if="typeof(infodata.spec.template.metadata.deletionGracePeriodSeconds) !== 'undefined'">
                                             <Col span="12">
-                                            <Input v-model="infodata.spec.template.metadata.deletionGracePeriodSeconds"
-                                                   disabled>
-                                            <span slot="prepend">&laemptyv;&nbsp;deletionGracePeriodSeconds:</span></Input>
+                                                <Input v-model="infodata.spec.template.metadata.deletionGracePeriodSeconds"
+                                                       disabled>
+                                                <span slot="prepend">&laemptyv;&nbsp;deletionGracePeriodSeconds:</span></Input>
                                             </Col>
                                         </Row>
                                         <Row class="fourth"
                                              v-if="typeof(infodata.spec.template.metadata.deletionTimestamp) !== 'undefined'">
                                             <Col span="12">
-                                            <Input v-model="infodata.spec.template.metadata.deletionTimestamp"
-                                                   disabled>
-                                            <span slot="prepend">&laemptyv;&nbsp;deletionTimestamp:</span></Input>
+                                                <Input v-model="infodata.spec.template.metadata.deletionTimestamp"
+                                                       disabled>
+                                                <span slot="prepend">&laemptyv;&nbsp;deletionTimestamp:</span></Input>
                                             </Col>
                                         </Row>
                                         <Row v-if="typeof(infodata.spec.template.metadata.finalizers) !== 'undefined' && infodata.spec.template.metadata.finalizers.length > 0">
@@ -664,15 +680,15 @@
                                         <Row class="fourth"
                                              v-if="typeof(infodata.spec.template.metadata.generateName) !== 'undefined'">
                                             <Col span="12">
-                                            <Input v-model="infodata.spec.template.metadata.generateName" disabled>
-                                            <span slot="prepend">&laemptyv;&nbsp;generateName:</span></Input>
+                                                <Input v-model="infodata.spec.template.metadata.generateName" disabled>
+                                                <span slot="prepend">&laemptyv;&nbsp;generateName:</span></Input>
                                             </Col>
                                         </Row>
                                         <Row class="fourth"
                                              v-if="typeof(infodata.spec.template.metadata.generation) !== 'undefined'">
                                             <Col span="12">
-                                            <Input v-model="infodata.spec.template.metadata.generation" disabled>
-                                            <span slot="prepend">&laemptyv;&nbsp;generation:</span></Input>
+                                                <Input v-model="infodata.spec.template.metadata.generation" disabled>
+                                                <span slot="prepend">&laemptyv;&nbsp;generation:</span></Input>
                                             </Col>
                                         </Row>
                                         <Row v-if="typeof(infodata.spec.template.metadata.initializers) !== 'undefined'">
@@ -698,8 +714,8 @@
                                                         <Row class="seventh"
                                                              v-if="typeof(item.name) !== 'undefined' ">
                                                             <Col span="12">
-                                                            <Input v-model="item.name" disabled>
-                                                            <span slot="prepend">&triminus;&nbsp;name:</span></Input>
+                                                                <Input v-model="item.name" disabled>
+                                                                <span slot="prepend">&triminus;&nbsp;name:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(item.additionalProperties) !== 'undefined' ">
@@ -725,17 +741,17 @@
                                                         <Row class="sixth"
                                                              v-if="typeof(infodata.spec.template.metadata.initializers.result.apiVersion) !== 'undefined'">
                                                             <Col span="12">
-                                                            <Input v-model="infodata.spec.template.metadata.initializers.result.apiVersion"
-                                                                   disabled>
-                                                            <span slot="prepend">&sc;&nbsp;apiVersion:</span></Input>
+                                                                <Input v-model="infodata.spec.template.metadata.initializers.result.apiVersion"
+                                                                       disabled>
+                                                                <span slot="prepend">&sc;&nbsp;apiVersion:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row class="sixth"
                                                              v-if="typeof(infodata.spec.template.metadata.initializers.result.code) !== 'undefined'">
                                                             <Col span="12">
-                                                            <Input v-model="infodata.spec.template.metadata.initializers.result.code"
-                                                                   disabled>
-                                                            <span slot="prepend">&sc;&nbsp;code:</span></Input>
+                                                                <Input v-model="infodata.spec.template.metadata.initializers.result.code"
+                                                                       disabled>
+                                                                <span slot="prepend">&sc;&nbsp;code:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(infodata.spec.template.metadata.initializers.result.details) !== 'undefined'">
@@ -762,23 +778,23 @@
                                                                         </div>
                                                                         <Row v-if="typeof(obj.field) !== 'undefined'">
                                                                             <Col span="12">
-                                                                            <Input class="eighth"
-                                                                                   v-model="obj.field" disabled>
-                                                                            <span slot="prepend">&ultri;&nbsp;field:</span></Input>
+                                                                                <Input class="eighth"
+                                                                                       v-model="obj.field" disabled>
+                                                                                <span slot="prepend">&ultri;&nbsp;field:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(obj.field) !== 'undefined'">
                                                                             <Col span="12">
-                                                                            <Input class="eighth"
-                                                                                   v-model="obj.message" disabled>
-                                                                            <span slot="prepend">&ultri;&nbsp;message:</span></Input>
+                                                                                <Input class="eighth"
+                                                                                       v-model="obj.message" disabled>
+                                                                                <span slot="prepend">&ultri;&nbsp;message:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(obj.reason) !== 'undefined'">
                                                                             <Col span="12">
-                                                                            <Input class="eighth"
-                                                                                   v-model="obj.reason" disabled>
-                                                                            <span slot="prepend">&ultri;&nbsp;reason:</span></Input>
+                                                                                <Input class="eighth"
+                                                                                       v-model="obj.reason" disabled>
+                                                                                <span slot="prepend">&ultri;&nbsp;reason:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(obj.additionalProperties) !== 'undefined' ">
@@ -798,42 +814,42 @@
                                                                 </Row>
                                                                 <Row v-if="typeof(infodata.spec.template.metadata.initializers.result.details.group) !== 'undefined'">
                                                                     <Col span="12">
-                                                                    <Input class="seventh"
-                                                                           v-model="infodata.spec.template.metadata.initializers.result.details.group"
-                                                                           disabled>
-                                                                    <span slot="prepend">&dagger;&nbsp;group:</span></Input>
+                                                                        <Input class="seventh"
+                                                                               v-model="infodata.spec.template.metadata.initializers.result.details.group"
+                                                                               disabled>
+                                                                        <span slot="prepend">&dagger;&nbsp;group:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row class="seventh"
                                                                      v-if="typeof(infodata.spec.template.metadata.initializers.result.details.kind) !== 'undefined'">
                                                                     <Col span="12">
-                                                                    <Input v-model="infodata.spec.template.metadata.initializers.result.details.kind"
-                                                                           disabled>
-                                                                    <span slot="prepend">&dagger;&nbsp;kind:</span></Input>
+                                                                        <Input v-model="infodata.spec.template.metadata.initializers.result.details.kind"
+                                                                               disabled>
+                                                                        <span slot="prepend">&dagger;&nbsp;kind:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(infodata.spec.template.metadata.initializers.result.details.name) !== 'undefined'">
                                                                     <Col span="12">
-                                                                    <Input class="seventh"
-                                                                           v-model="infodata.spec.template.metadata.initializers.result.details.name"
-                                                                           disabled>
-                                                                    <span slot="prepend">&dagger;&nbsp;name:</span></Input>
+                                                                        <Input class="seventh"
+                                                                               v-model="infodata.spec.template.metadata.initializers.result.details.name"
+                                                                               disabled>
+                                                                        <span slot="prepend">&dagger;&nbsp;name:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(infodata.spec.template.metadata.initializers.result.details.retryAfterSeconds) !== 'undefined' && infodata.spec.template.metadata.initializers.result.details.retryAfterSeconds !== 0 ">
                                                                     <Col span="12">
-                                                                    <Input class="seventh"
-                                                                           v-model="infodata.spec.template.metadata.initializers.result.details.retryAfterSeconds"
-                                                                           disabled>
-                                                                    <span slot="prepend">&dagger;&nbsp;name:</span></Input>
+                                                                        <Input class="seventh"
+                                                                               v-model="infodata.spec.template.metadata.initializers.result.details.retryAfterSeconds"
+                                                                               disabled>
+                                                                        <span slot="prepend">&dagger;&nbsp;name:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(infodata.spec.template.metadata.initializers.result.details.uid) !== 'undefined'">
                                                                     <Col span="12">
-                                                                    <Input class="seventh"
-                                                                           v-model="infodata.spec.template.metadata.initializers.result.details.uid"
-                                                                           disabled>
-                                                                    <span slot="prepend">&dagger;&nbsp;uid:</span></Input>
+                                                                        <Input class="seventh"
+                                                                               v-model="infodata.spec.template.metadata.initializers.result.details.uid"
+                                                                               disabled>
+                                                                        <span slot="prepend">&dagger;&nbsp;uid:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(infodata.spec.template.metadata.initializers.result.details.additionalProperties) !== 'undefined' ">
@@ -855,17 +871,17 @@
                                                         <Row class="sixth"
                                                              v-if="typeof(infodata.spec.template.metadata.initializers.result.kind) !== 'undefined'">
                                                             <Col span="12">
-                                                            <Input v-model="infodata.spec.template.metadata.initializers.result.kind"
-                                                                   disabled>
-                                                            <span slot="prepend">&sc;&nbsp;kind:</span></Input>
+                                                                <Input v-model="infodata.spec.template.metadata.initializers.result.kind"
+                                                                       disabled>
+                                                                <span slot="prepend">&sc;&nbsp;kind:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row class="sixth"
                                                              v-if="typeof(infodata.spec.template.metadata.initializers.result.message) !== 'undefined'">
                                                             <Col span="12">
-                                                            <Input v-model="infodata.spec.template.metadata.initializers.result.message"
-                                                                   disabled>
-                                                            <span slot="prepend">&sc;&nbsp;message:</span></Input>
+                                                                <Input v-model="infodata.spec.template.metadata.initializers.result.message"
+                                                                       disabled>
+                                                                <span slot="prepend">&sc;&nbsp;message:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(infodata.spec.template.metadata.initializers.result.metadata) !== 'undefined'">
@@ -877,18 +893,18 @@
                                                             <div v-show="showmodel.spec.template.metadata.initializers.result.metadata.on">
                                                                 <Row v-if="typeof(infodata.spec.template.metadata.initializers.result.metadata.resourceVersion) !== 'undefined'">
                                                                     <Col span="12">
-                                                                    <Input class="seventh"
-                                                                           v-model="infodata.spec.template.metadata.initializers.result.metadata.resourceVersion"
-                                                                           disabled>
-                                                                    <span slot="prepend">&jukcy;&nbsp;resourceVersion:</span></Input>
+                                                                        <Input class="seventh"
+                                                                               v-model="infodata.spec.template.metadata.initializers.result.metadata.resourceVersion"
+                                                                               disabled>
+                                                                        <span slot="prepend">&jukcy;&nbsp;resourceVersion:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(infodata.spec.template.metadata.initializers.result.metadata.selfLink) !== 'undefined'">
                                                                     <Col span="12">
-                                                                    <Input class="seventh"
-                                                                           v-model="infodata.spec.template.metadata.initializers.result.metadata.selfLink"
-                                                                           disabled>
-                                                                    <span slot="prepend">&jukcy;&nbsp;selfLink:</span></Input>
+                                                                        <Input class="seventh"
+                                                                               v-model="infodata.spec.template.metadata.initializers.result.metadata.selfLink"
+                                                                               disabled>
+                                                                        <span slot="prepend">&jukcy;&nbsp;selfLink:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(infodata.spec.template.metadata.initializers.result.metadata.additionalProperties) !== 'undefined' ">
@@ -910,17 +926,17 @@
                                                         <Row class="sixth"
                                                              v-if="typeof(infodata.spec.template.metadata.initializers.result.reason) !== 'undefined'">
                                                             <Col span="12">
-                                                            <Input v-model="infodata.spec.template.metadata.initializers.result.reason"
-                                                                   disabled>
-                                                            <span slot="prepend">&sc;&nbsp;reason:</span></Input>
+                                                                <Input v-model="infodata.spec.template.metadata.initializers.result.reason"
+                                                                       disabled>
+                                                                <span slot="prepend">&sc;&nbsp;reason:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row class="sixth"
                                                              v-if="typeof(infodata.spec.template.metadata.initializers.result.status) !== 'undefined'">
                                                             <Col span="12">
-                                                            <Input v-model="infodata.spec.template.metadata.initializers.result.status"
-                                                                   disabled>
-                                                            <span slot="prepend">&sc;&nbsp;status:</span></Input>
+                                                                <Input v-model="infodata.spec.template.metadata.initializers.result.status"
+                                                                       disabled>
+                                                                <span slot="prepend">&sc;&nbsp;status:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(infodata.spec.template.metadata.initializers.result.additionalProperties) !== 'undefined' ">
@@ -969,15 +985,15 @@
                                         <Row class="fourth"
                                              v-if="typeof(infodata.spec.template.metadata.name) !== 'undefined'">
                                             <Col span="12">
-                                            <Input v-model="infodata.spec.template.metadata.name" disabled>
-                                            <span slot="prepend">&laemptyv;&nbsp;name:</span></Input>
+                                                <Input v-model="infodata.spec.template.metadata.name" disabled>
+                                                <span slot="prepend">&laemptyv;&nbsp;name:</span></Input>
                                             </Col>
                                         </Row>
                                         <Row class="fourth"
                                              v-if="typeof(infodata.spec.template.metadata.namespace) !== 'undefined'">
                                             <Col span="12">
-                                            <Input v-model="infodata.spec.template.metadata.namespace" disabled>
-                                            <span slot="prepend">&laemptyv;&nbsp;namespace:</span></Input>
+                                                <Input v-model="infodata.spec.template.metadata.namespace" disabled>
+                                                <span slot="prepend">&laemptyv;&nbsp;namespace:</span></Input>
                                             </Col>
                                         </Row>
                                         <Row v-if="typeof(infodata.spec.template.metadata.ownerReferences) !== 'undefined' && infodata.spec.template.metadata.ownerReferences.length > 0">
@@ -995,39 +1011,39 @@
                                                 </div>
                                                 <Row class="sixth" v-if="typeof(owner.apiVersion) !== 'undefined' ">
                                                     <Col span="12">
-                                                    <Input v-model="owner.apiVersion" disabled>
-                                                    <span slot="prepend">&oast;&nbsp;apiVersion:</span></Input>
+                                                        <Input v-model="owner.apiVersion" disabled>
+                                                        <span slot="prepend">&oast;&nbsp;apiVersion:</span></Input>
                                                     </Col>
                                                 </Row>
                                                 <Row class="sixth"
                                                      v-if="typeof(owner.blockOwnerDeletion) !== 'undefined' ">
                                                     <Col span="12">
-                                                    <Input v-model="owner.blockOwnerDeletion.toString()" disabled>
-                                                    <span slot="prepend">&oast;&nbsp;blockOwnerDeletion:</span></Input>
+                                                        <Input v-model="owner.blockOwnerDeletion.toString()" disabled>
+                                                        <span slot="prepend">&oast;&nbsp;blockOwnerDeletion:</span></Input>
                                                     </Col>
                                                 </Row>
                                                 <Row class="sixth" v-if="typeof(owner.controller) !== 'undefined' ">
                                                     <Col span="12">
-                                                    <Input v-model="owner.controller.toString()" disabled>
-                                                    <span slot="prepend">&oast;&nbsp;controller:</span></Input>
+                                                        <Input v-model="owner.controller.toString()" disabled>
+                                                        <span slot="prepend">&oast;&nbsp;controller:</span></Input>
                                                     </Col>
                                                 </Row>
                                                 <Row class="sixth" v-if="typeof(owner.kind) !== 'undefined' ">
                                                     <Col span="28">
-                                                    <Input v-model="owner.kind" disabled>
-                                                    <span slot="prepend">&oast;&nbsp;kind:</span></Input>
+                                                        <Input v-model="owner.kind" disabled>
+                                                        <span slot="prepend">&oast;&nbsp;kind:</span></Input>
                                                     </Col>
                                                 </Row>
                                                 <Row class="sixth" v-if="typeof(owner.name) !== 'undefined' ">
                                                     <Col span="12">
-                                                    <Input v-model="owner.name" disabled>
-                                                    <span slot="prepend">&oast;&nbsp;name:</span></Input>
+                                                        <Input v-model="owner.name" disabled>
+                                                        <span slot="prepend">&oast;&nbsp;name:</span></Input>
                                                     </Col>
                                                 </Row>
                                                 <Row class="sixth" v-if="typeof(owner.uid) !== 'undefined' ">
                                                     <Col span="12">
-                                                    <Input v-model="owner.uid" disabled>
-                                                    <span slot="prepend">&oast;&nbsp;uid:</span></Input>
+                                                        <Input v-model="owner.uid" disabled>
+                                                        <span slot="prepend">&oast;&nbsp;uid:</span></Input>
                                                     </Col>
                                                 </Row>
                                                 <Row v-if="typeof(owner.additionalProperties) !== 'undefined' ">
@@ -1048,23 +1064,23 @@
                                         <Row class="fourth"
                                              v-if="typeof(infodata.spec.template.metadata.resourceVersion) !== 'undefined'">
                                             <Col span="12">
-                                            <Input v-model="infodata.spec.template.metadata.resourceVersion"
-                                                   disabled>
-                                            <span slot="prepend">&laemptyv;&nbsp;resourceVersion:</span></Input>
+                                                <Input v-model="infodata.spec.template.metadata.resourceVersion"
+                                                       disabled>
+                                                <span slot="prepend">&laemptyv;&nbsp;resourceVersion:</span></Input>
                                             </Col>
                                         </Row>
                                         <Row class="fourth"
                                              v-if="typeof(infodata.spec.template.metadata.selfLink) !== 'undefined'">
                                             <Col span="12">
-                                            <Input v-model="infodata.spec.template.metadata.selfLink" disabled>
-                                            <span slot="prepend">&laemptyv;&nbsp;selfLink:</span></Input>
+                                                <Input v-model="infodata.spec.template.metadata.selfLink" disabled>
+                                                <span slot="prepend">&laemptyv;&nbsp;selfLink:</span></Input>
                                             </Col>
                                         </Row>
                                         <Row class="fourth"
                                              v-if="typeof(infodata.spec.template.metadata.uid) !== 'undefined'">
                                             <Col span="12">
-                                            <Input v-model="infodata.spec.template.metadata.uid" disabled>
-                                            <span slot="prepend">&laemptyv;&nbsp;uid:</span></Input>
+                                                <Input v-model="infodata.spec.template.metadata.uid" disabled>
+                                                <span slot="prepend">&laemptyv;&nbsp;uid:</span></Input>
                                             </Col>
                                         </Row>
                                         <Row v-if="typeof(infodata.spec.template.metadata.additionalProperties) !== 'undefined' &&  modelflag.spec.template.metadata.properties === true">
@@ -1131,8 +1147,8 @@
                                                                 </div>
                                                                 <Row v-if="typeof(execution.weight) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="execution.weight" disabled>
-                                                                    <span slot="prepend">&rAarr;&nbsp;weight:</span></Input>
+                                                                        <Input v-model="execution.weight" disabled>
+                                                                        <span slot="prepend">&rAarr;&nbsp;weight:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(execution.additionalProperties) !== 'undefined' ">
@@ -1185,16 +1201,16 @@
                                                                                 </div>
                                                                                 <Row v-if="typeof(item.key) !== 'undefined'">
                                                                                     <Col class="eleventh" span="12">
-                                                                                    <Input v-model="item.key"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&rAarr;&nbsp;key:</span></Input>
+                                                                                        <Input v-model="item.key"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&rAarr;&nbsp;key:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(item.operator) !== 'undefined'">
                                                                                     <Col class="eleventh" span="12">
-                                                                                    <Input v-model="item.operator"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&rAarr;&nbsp;operator:</span></Input>
+                                                                                        <Input v-model="item.operator"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&rAarr;&nbsp;operator:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(item.additionalProperties) !== 'undefined' ">
@@ -1300,17 +1316,17 @@
                                                                                     <Row v-if="typeof(expression.key) !== 'undefined'">
                                                                                         <Col class="eleventh"
                                                                                              span="12">
-                                                                                        <Input v-model="expression.key"
-                                                                                               disabled>
-                                                                                        <span slot="prepend">&laemptyv;&nbsp;key:</span></Input>
+                                                                                            <Input v-model="expression.key"
+                                                                                                   disabled>
+                                                                                            <span slot="prepend">&laemptyv;&nbsp;key:</span></Input>
                                                                                         </Col>
                                                                                     </Row>
                                                                                     <Row v-if="typeof(expression.operator) !== 'undefined'">
                                                                                         <Col class="eleventh"
                                                                                              span="12">
-                                                                                        <Input v-model="expression.operator"
-                                                                                               disabled>
-                                                                                        <span slot="prepend">&laemptyv;&nbsp;operator:</span></Input>
+                                                                                            <Input v-model="expression.operator"
+                                                                                                   disabled>
+                                                                                            <span slot="prepend">&laemptyv;&nbsp;operator:</span></Input>
                                                                                         </Col>
                                                                                     </Row>
                                                                                     <Row v-if="typeof(expression.additionalProperties) !== 'undefined' ">
@@ -1441,9 +1457,9 @@
                                                                         </Row>
                                                                         <Row v-if="typeof(execution.podAffinityTerm.topologyKey) != 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="execution.podAffinityTerm.topologyKey"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&aelig;&nbsp;topologyKey:</span></Input>
+                                                                                <Input v-model="execution.podAffinityTerm.topologyKey"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&aelig;&nbsp;topologyKey:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(execution.podAffinityTerm.additionalProperties) !== 'undefined' ">
@@ -1498,17 +1514,17 @@
                                                                                         <Row v-if="typeof(matchexpreesion.key) !== 'undefined'">
                                                                                             <Col class="eleventh"
                                                                                                  span="12">
-                                                                                            <Input v-model="matchexpreesion.key"
-                                                                                                   disabled>
-                                                                                            <span slot="prepend">&rAarr;&nbsp;key:</span></Input>
+                                                                                                <Input v-model="matchexpreesion.key"
+                                                                                                       disabled>
+                                                                                                <span slot="prepend">&rAarr;&nbsp;key:</span></Input>
                                                                                             </Col>
                                                                                         </Row>
                                                                                         <Row v-if="typeof(matchexpreesion.operator) !== 'undefined'">
                                                                                             <Col class="eleventh"
                                                                                                  span="12">
-                                                                                            <Input v-model="matchexpreesion.operator"
-                                                                                                   disabled>
-                                                                                            <span slot="prepend">&rAarr;&nbsp;operator:</span></Input>
+                                                                                                <Input v-model="matchexpreesion.operator"
+                                                                                                       disabled>
+                                                                                                <span slot="prepend">&rAarr;&nbsp;operator:</span></Input>
                                                                                             </Col>
                                                                                         </Row>
                                                                                         <Row v-if="typeof(matchexpreesion.additionalProperties) !== 'undefined' ">
@@ -1563,8 +1579,8 @@
                                                                 </Row>
                                                                 <Row v-if="typeof(execution.weight) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="execution.weight" disabled>
-                                                                    <span slot="prepend">&tritime;&nbsp;weight:</span></Input>
+                                                                        <Input v-model="execution.weight" disabled>
+                                                                        <span slot="prepend">&tritime;&nbsp;weight:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                             </div>
@@ -1597,8 +1613,8 @@
                                                                 </Row>
                                                                 <Row v-if="typeof(execution.topologyKey) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="execution.topologyKey" disabled>
-                                                                    <span slot="prepend">&tritime;&nbsp;topologyKey:</span></Input>
+                                                                        <Input v-model="execution.topologyKey" disabled>
+                                                                        <span slot="prepend">&tritime;&nbsp;topologyKey:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(execution.namespaces) !== 'undefined' && execution.namespaces.length > 0">
@@ -1680,16 +1696,16 @@
                                                                                 </Row>
                                                                                 <Row v-if="typeof(match.key) !== 'undefined'">
                                                                                     <Col class="eleventh" span="12">
-                                                                                    <Input v-model="match.key"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&rAarr;&nbsp;key:</span></Input>
+                                                                                        <Input v-model="match.key"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&rAarr;&nbsp;key:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(match.operator) !== 'undefined'">
                                                                                     <Col class="eleventh" span="12">
-                                                                                    <Input v-model="match.key"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&rAarr;&nbsp;operator:</span></Input>
+                                                                                        <Input v-model="match.key"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&rAarr;&nbsp;operator:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(match.values) !== 'undefined' && match.values.length > 0">
@@ -1771,9 +1787,9 @@
                                                                     <div v-show="showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.on">
                                                                         <Row v-if="typeof(execution.podAffinityTerm.topologyKey) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="execution.podAffinityTerm.topologyKey"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&lagran;&nbsp;topologyKey:</span></Input>
+                                                                                <Input v-model="execution.podAffinityTerm.topologyKey"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&lagran;&nbsp;topologyKey:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(execution.podAffinityTerm.additionalProperties) !== 'undefined' ">
@@ -1873,17 +1889,17 @@
                                                                                         <Row v-if="typeof(expressions.key) !== 'undefined'">
                                                                                             <Col class="twelfth"
                                                                                                  span="12">
-                                                                                            <Input v-model="expressions.key"
-                                                                                                   disabled>
-                                                                                            <span slot="prepend">&scy;&nbsp;key:</span></Input>
+                                                                                                <Input v-model="expressions.key"
+                                                                                                       disabled>
+                                                                                                <span slot="prepend">&scy;&nbsp;key:</span></Input>
                                                                                             </Col>
                                                                                         </Row>
                                                                                         <Row v-if="typeof(expressions.operator) != 'undefined'">
                                                                                             <Col class="twelfth"
                                                                                                  span="12">
-                                                                                            <Input v-model="expressions.operator"
-                                                                                                   disabled>
-                                                                                            <span slot="prepend">&scy;&nbsp;operator:</span></Input>
+                                                                                                <Input v-model="expressions.operator"
+                                                                                                       disabled>
+                                                                                                <span slot="prepend">&scy;&nbsp;operator:</span></Input>
                                                                                             </Col>
                                                                                         </Row>
                                                                                         <Row v-if="typeof(expressions.values) !== 'undefined'">
@@ -1909,8 +1925,8 @@
                                                                 </Row>
                                                                 <Row v-if="typeof(execution.weight) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="execution.weight" disabled>
-                                                                    <span slot="prepend">&tritime;&nbsp;weight:</span></Input>
+                                                                        <Input v-model="execution.weight" disabled>
+                                                                        <span slot="prepend">&tritime;&nbsp;weight:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                             </div>
@@ -1944,8 +1960,8 @@
                                                                 </Row>
                                                                 <Row v-if="typeof(execution.topologyKey) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="execution.topologyKey" disabled>
-                                                                    <span slot="prepend">&rAarr;&nbsp;topologyKey:</span></Input>
+                                                                        <Input v-model="execution.topologyKey" disabled>
+                                                                        <span slot="prepend">&rAarr;&nbsp;topologyKey:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(execution.namespaces) !== 'undefined' && execution.namespaces.length > 0">
@@ -1998,16 +2014,16 @@
                                                                                 </div>
                                                                                 <Row v-if="typeof(matchexpreesion.key) !== 'undefined'">
                                                                                     <Col class="eleventh" span="12">
-                                                                                    <Input v-model="matchexpreesion.key"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&rAarr;&nbsp;key:</span></Input>
+                                                                                        <Input v-model="matchexpreesion.key"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&rAarr;&nbsp;key:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(matchexpreesion.operator) !== 'undefined'">
                                                                                     <Col class="eleventh" span="12">
-                                                                                    <Input v-model="matchexpreesion.operator"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&rAarr;&nbsp;operator:</span></Input>
+                                                                                        <Input v-model="matchexpreesion.operator"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&rAarr;&nbsp;operator:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(matchexpreesion.additionalProperties) !== 'undefined' ">
@@ -2079,16 +2095,16 @@
                                         </div>
                                         <Row v-if="typeof(infodata.spec.template.spec.activeDeadlineSeconds) !== 'undefined'">
                                             <Col class="fourth" span="12">
-                                            <Input v-model="infodata.spec.template.spec.activeDeadlineSeconds"
-                                                   disabled>
-                                            <span slot="prepend">&rAarr;&nbsp;activeDeadlineSeconds:</span></Input>
+                                                <Input v-model="infodata.spec.template.spec.activeDeadlineSeconds"
+                                                       disabled>
+                                                <span slot="prepend">&rAarr;&nbsp;activeDeadlineSeconds:</span></Input>
                                             </Col>
                                         </Row>
                                         <Row v-if="typeof(infodata.spec.template.spec.automountServiceAccountToken) !== 'undefined'">
                                             <Col class="fourth" span="12">
-                                            <Input v-model="infodata.spec.template.spec.automountServiceAccountToken.toString()"
-                                                   disabled>
-                                            <span slot="prepend">&rAarr;&nbsp;automountServiceAccountToken:</span></Input>
+                                                <Input v-model="infodata.spec.template.spec.automountServiceAccountToken.toString()"
+                                                       disabled>
+                                                <span slot="prepend">&rAarr;&nbsp;automountServiceAccountToken:</span></Input>
                                             </Col>
                                         </Row>
                                         <Row v-if="typeof(infodata.spec.template.spec.containers) !== 'undefined' && infodata.spec.template.spec.containers.length > 0">
@@ -2156,14 +2172,14 @@
                                                         </div>
                                                         <Row v-if="typeof(env.name) !== 'undefined'">
                                                             <Col class="eighth" span="12">
-                                                            <Input v-model="env.name" disabled>
-                                                            <span slot="prepend">&rAarr;&nbsp;name:</span></Input>
+                                                                <Input v-model="env.name" disabled>
+                                                                <span slot="prepend">&rAarr;&nbsp;name:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(env.value) !== 'undefined'">
                                                             <Col class="eighth" span="12">
-                                                            <Input v-model="env.value" disabled>
-                                                            <span slot="prepend">&rAarr;&nbsp;value:</span></Input>
+                                                                <Input v-model="env.value" disabled>
+                                                                <span slot="prepend">&rAarr;&nbsp;value:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(env.valueFrom) !== 'undefined'">
@@ -2182,23 +2198,23 @@
                                                                     <div v-show="showmodel.spec.template.spec.containers.env.valueFrom.configMapKeyRef.on">
                                                                         <Row v-if="typeof(env.valueFrom.configMapKeyRef.name) !== 'undefined'">
                                                                             <Col class="eleventh" span="12">
-                                                                            <Input v-model="env.valueFrom.configMapKeyRef.name"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&sdotb;&nbsp;name:</span></Input>
+                                                                                <Input v-model="env.valueFrom.configMapKeyRef.name"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&sdotb;&nbsp;name:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(env.valueFrom.configMapKeyRef.key) !== 'undefined'">
                                                                             <Col class="eleventh" span="12">
-                                                                            <Input v-model="env.valueFrom.configMapKeyRef.key"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&sdotb;&nbsp;key:</span></Input>
+                                                                                <Input v-model="env.valueFrom.configMapKeyRef.key"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&sdotb;&nbsp;key:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(env.valueFrom.configMapKeyRef.optional) !== 'undefined'">
                                                                             <Col class="eleventh" span="12">
-                                                                            <Input v-model="env.valueFrom.configMapKeyRef.optional.toString()"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&sdotb;&nbsp;optional:</span></Input>
+                                                                                <Input v-model="env.valueFrom.configMapKeyRef.optional.toString()"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&sdotb;&nbsp;optional:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(env.valueFrom.configMapKeyRef.additionalProperties) !== 'undefined'">
@@ -2226,16 +2242,16 @@
                                                                     <div v-show="showmodel.spec.template.spec.containers.env.valueFrom.fieldRef.on">
                                                                         <Row v-if="typeof(env.valueFrom.fieldRef.apiVersion) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="env.valueFrom.fieldRef.apiVersion"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&sdotb;&nbsp;apiVersion:</span></Input>
+                                                                                <Input v-model="env.valueFrom.fieldRef.apiVersion"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&sdotb;&nbsp;apiVersion:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(env.valueFrom.fieldRef.fieldPath) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="env.valueFrom.fieldRef.fieldPath"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&sdotb;&nbsp;fieldPath:</span></Input>
+                                                                                <Input v-model="env.valueFrom.fieldRef.fieldPath"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&sdotb;&nbsp;fieldPath:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(env.valueFrom.fieldRef.additionalProperties) !== 'undefined' ">
@@ -2263,9 +2279,9 @@
                                                                     <div v-show="showmodel.spec.template.spec.containers.env.valueFrom.resourceFieldRef.on">
                                                                         <Row v-if="typeof(env.valueFrom.resourceFieldRef.containerName) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="env.valueFrom.resourceFieldRef.containerName"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&lArr;&nbsp;containerName:</span></Input>
+                                                                                <Input v-model="env.valueFrom.resourceFieldRef.containerName"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&lArr;&nbsp;containerName:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(env.valueFrom.resourceFieldRef.divisor) !== 'undefined'">
@@ -2277,16 +2293,16 @@
                                                                             <div v-show="showmodel.spec.template.spec.containers.env.valueFrom.resourceFieldRef.divisor.on">
                                                                                 <Row v-if="typeof(env.valueFrom.resourceFieldRef.divisor.amount) !== 'undefined'">
                                                                                     <Col class="eleventh" span="12">
-                                                                                    <Input v-model="env.valueFrom.resourceFieldRef.divisor.amount"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&jukcy;&nbsp;amount:</span></Input>
+                                                                                        <Input v-model="env.valueFrom.resourceFieldRef.divisor.amount"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&jukcy;&nbsp;amount:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(env.valueFrom.resourceFieldRef.divisor.format) !== 'undefined'">
                                                                                     <Col class="eleventh" span="12">
-                                                                                    <Input v-model="env.valueFrom.resourceFieldRef.divisor.format"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&jukcy;&nbsp;format:</span></Input>
+                                                                                        <Input v-model="env.valueFrom.resourceFieldRef.divisor.format"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&jukcy;&nbsp;format:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(env.valueFrom.resourceFieldRef.divisor.additionalProperties) !== 'undefined' ">
@@ -2308,9 +2324,9 @@
                                                                         </Row>
                                                                         <Row v-if="typeof(env.valueFrom.resourceFieldRef.resource) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="env.valueFrom.resourceFieldRef.resource"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&lArr;&nbsp;resource:</span></Input>
+                                                                                <Input v-model="env.valueFrom.resourceFieldRef.resource"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&lArr;&nbsp;resource:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(env.valueFrom.resourceFieldRef.additionalProperties) !== 'undefined' ">
@@ -2338,23 +2354,23 @@
                                                                     <div v-show="showmodel.spec.template.spec.containers.env.valueFrom.secretKeyRef.on">
                                                                         <Row v-if="typeof(env.valueFrom.secretKeyRef.key) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="env.valueFrom.secretKeyRef.key"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&glj;&nbsp;key:</span></Input>
+                                                                                <Input v-model="env.valueFrom.secretKeyRef.key"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&glj;&nbsp;key:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(env.valueFrom.secretKeyRef.name) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="env.valueFrom.secretKeyRef.name"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&glj;&nbsp;name:</span></Input>
+                                                                                <Input v-model="env.valueFrom.secretKeyRef.name"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&glj;&nbsp;name:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(env.valueFrom.secretKeyRef.optional) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="env.valueFrom.secretKeyRef.optional.toString()"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&glj;&nbsp;optional:</span></Input>
+                                                                                <Input v-model="env.valueFrom.secretKeyRef.optional.toString()"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&glj;&nbsp;optional:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(env.valueFrom.secretKeyRef.additionalProperties) !== 'undefined' ">
@@ -2425,16 +2441,16 @@
                                                             <div v-show="showmodel.spec.template.spec.containers.envFrom.configMapRef.on">
                                                                 <Row v-if="typeof(from.configMapRef.name) !== 'undefined'">
                                                                     <Col class="ninth" span="12">
-                                                                    <Input v-model="from.configMapRef.name"
-                                                                           disabled>
-                                                                    <span slot="prepend">&lagran;&nbsp;name:</span></Input>
+                                                                        <Input v-model="from.configMapRef.name"
+                                                                               disabled>
+                                                                        <span slot="prepend">&lagran;&nbsp;name:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(from.configMapRef.optional) !== 'undefined'">
                                                                     <Col class="ninth" span="12">
-                                                                    <Input v-model="from.configMapRef.optional.toString()"
-                                                                           disabled>
-                                                                    <span slot="prepend">&lagran;&nbsp;optional:</span></Input>
+                                                                        <Input v-model="from.configMapRef.optional.toString()"
+                                                                               disabled>
+                                                                        <span slot="prepend">&lagran;&nbsp;optional:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(from.configMapRef.additionalProperties) !== 'undefined' ">
@@ -2455,8 +2471,8 @@
                                                         </Row>
                                                         <Row v-if="typeof(from.prefix) !== 'undefined'">
                                                             <Col class="eighth" span="12">
-                                                            <Input v-model="from.prefix" disabled>
-                                                            <span slot="prepend">&asympeq;&nbsp;prefix:</span></Input>
+                                                                <Input v-model="from.prefix" disabled>
+                                                                <span slot="prepend">&asympeq;&nbsp;prefix:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(from.secretRef) !== 'undefined'">
@@ -2468,16 +2484,16 @@
                                                             <div v-show="showmodel.spec.template.spec.containers.envFrom.secretRef.on">
                                                                 <Row v-if="typeof(from.secretRef.name) !== 'undefined'">
                                                                     <Col class="ninth" span="12">
-                                                                    <Input v-model="from.configMapRef.name"
-                                                                           disabled>
-                                                                    <span slot="prepend">&sccue;&nbsp;name:</span></Input>
+                                                                        <Input v-model="from.configMapRef.name"
+                                                                               disabled>
+                                                                        <span slot="prepend">&sccue;&nbsp;name:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(from.secretRef.optional) !== 'undefined'">
                                                                     <Col class="ninth" span="12">
-                                                                    <Input v-model="from.secretRef.optional.toString()"
-                                                                           disabled>
-                                                                    <span slot="prepend">&sccue;&nbsp;optional:</span></Input>
+                                                                        <Input v-model="from.secretRef.optional.toString()"
+                                                                               disabled>
+                                                                        <span slot="prepend">&sccue;&nbsp;optional:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(from.secretRef.additionalProperties) !== 'undefined' ">
@@ -2514,14 +2530,14 @@
                                                 </Row>
                                                 <Row v-if="typeof(container.image) !== 'undefined'">
                                                     <Col class="sixth" span="12">
-                                                    <Input v-model="container.image" disabled>
-                                                    <span slot="prepend">&rAarr;&nbsp;image:</span></Input>
+                                                        <Input v-model="container.image" disabled>
+                                                        <span slot="prepend">&rAarr;&nbsp;image:</span></Input>
                                                     </Col>
                                                 </Row>
                                                 <Row v-if="typeof(container.imagePullPolicy) !== 'undefined'">
                                                     <Col class="sixth" span="12">
-                                                    <Input v-model="container.imagePullPolicy" disabled>
-                                                    <span slot="prepend">&rAarr;&nbsp;imagePullPolicy:</span></Input>
+                                                        <Input v-model="container.imagePullPolicy" disabled>
+                                                        <span slot="prepend">&rAarr;&nbsp;imagePullPolicy:</span></Input>
                                                     </Col>
                                                 </Row>
                                                 <Row v-if="typeof(container.lifecycle) !== 'undefined'">
@@ -2613,9 +2629,9 @@
                                                                         </Row>
                                                                         <Row v-if="typeof(container.lifecycle.postStart.httpGet.host) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="container.lifecycle.postStart.httpGet.host"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&asympeq;&nbsp;host:</span></Input>
+                                                                                <Input v-model="container.lifecycle.postStart.httpGet.host"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&asympeq;&nbsp;host:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(container.lifecycle.postStart.httpGet.httpHeaders) !== 'undefined' && container.lifecycle.postStart.httpGet.httpHeaders.length > 0">
@@ -2648,25 +2664,25 @@
                                                                                 </Row>
                                                                                 <Row v-if="typeof(httpHeader.name) !== 'undefined'">
                                                                                     <Col class="eleventh" span="12">
-                                                                                    <Input v-model="httpHeader.name"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&asympeq;&nbsp;name:</span></Input>
+                                                                                        <Input v-model="httpHeader.name"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&asympeq;&nbsp;name:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(httpHeader.value) !== 'undefined'">
                                                                                     <Col class="eleventh" span="12">
-                                                                                    <Input v-model="httpHeader.value"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&asympeq;&nbsp;value:</span></Input>
+                                                                                        <Input v-model="httpHeader.value"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&asympeq;&nbsp;value:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                             </div>
                                                                         </Row>
                                                                         <Row v-if="typeof(container.lifecycle.postStart.httpGet.path) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="container.lifecycle.postStart.httpGet.path"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&scsim;&nbsp;path:</span></Input>
+                                                                                <Input v-model="container.lifecycle.postStart.httpGet.path"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&scsim;&nbsp;path:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(container.lifecycle.postStart.httpGet.port) !== 'undefined'">
@@ -2693,23 +2709,23 @@
                                                                                 </Row>
                                                                                 <Row v-if="typeof(container.lifecycle.postStart.httpGet.port.intVal) !== 'undefined'">
                                                                                     <Col class="tenth" span="12">
-                                                                                    <Input v-model="container.lifecycle.postStart.httpGet.port.intVal"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&scsim;&nbsp;intVal:</span></Input>
+                                                                                        <Input v-model="container.lifecycle.postStart.httpGet.port.intVal"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&scsim;&nbsp;intVal:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(container.lifecycle.postStart.httpGet.port.kind) !== 'undefined'">
                                                                                     <Col class="tenth" span="12">
-                                                                                    <Input v-model="container.lifecycle.postStart.httpGet.port.kind"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&scsim;&nbsp;kind:</span></Input>
+                                                                                        <Input v-model="container.lifecycle.postStart.httpGet.port.kind"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&scsim;&nbsp;kind:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(container.lifecycle.postStart.httpGet.port.strVal) !== 'undefined'">
                                                                                     <Col class="tenth" span="12">
-                                                                                    <Input v-model="container.lifecycle.postStart.httpGet.port.strVal"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&scsim;&nbsp;strVal:</span></Input>
+                                                                                        <Input v-model="container.lifecycle.postStart.httpGet.port.strVal"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&scsim;&nbsp;strVal:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                             </div>
@@ -2717,9 +2733,9 @@
 
                                                                         <Row v-if="typeof(container.lifecycle.postStart.httpGet.scheme) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="container.lifecycle.postStart.httpGet.scheme"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&asympeq;&nbsp;scheme:</span></Input>
+                                                                                <Input v-model="container.lifecycle.postStart.httpGet.scheme"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&asympeq;&nbsp;scheme:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                     </div>
@@ -2747,9 +2763,9 @@
                                                                         </Row>
                                                                         <Row v-if="typeof(container.lifecycle.postStart.tcpSocket.host) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="container.lifecycle.postStart.tcpSocket.host"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&larrbfs;&nbsp;host:</span></Input>
+                                                                                <Input v-model="container.lifecycle.postStart.tcpSocket.host"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&larrbfs;&nbsp;host:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(container.lifecycle.postStart.tcpSocket.port) !== 'undefined'">
@@ -2761,23 +2777,23 @@
                                                                             <div v-show="showmodel.spec.template.spec.containers.lifecycle.postStart.tcpSocket.port.on">
                                                                                 <Row v-if="typeof(container.lifecycle.postStart.tcpSocket.port.intVal) !== 'undefined'">
                                                                                     <Col class="tenth" span="12">
-                                                                                    <Input v-model="container.lifecycle.postStart.tcpSocket.port.intVal"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&rAarr;&nbsp;intVal:</span></Input>
+                                                                                        <Input v-model="container.lifecycle.postStart.tcpSocket.port.intVal"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&rAarr;&nbsp;intVal:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(container.lifecycle.postStart.tcpSocket.port.kind) !== 'undefined'">
                                                                                     <Col class="tenth" span="12">
-                                                                                    <Input v-model="container.lifecycle.postStart.tcpSocket.port.kind"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&rAarr;&nbsp;kind:</span></Input>
+                                                                                        <Input v-model="container.lifecycle.postStart.tcpSocket.port.kind"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&rAarr;&nbsp;kind:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(container.lifecycle.postStart.tcpSocket.port.strVal) !== 'undefined'">
                                                                                     <Col class="tenth" span="12">
-                                                                                    <Input v-model="container.lifecycle.postStart.tcpSocket.port.strVal"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&rAarr;&nbsp;strVal:</span></Input>
+                                                                                        <Input v-model="container.lifecycle.postStart.tcpSocket.port.strVal"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&rAarr;&nbsp;strVal:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(container.lifecycle.postStart.tcpSocket.port.additionalProperties) !== 'undefined' ">
@@ -2883,9 +2899,9 @@
                                                                         </Row>
                                                                         <Row v-if="typeof(container.lifecycle.preStop.httpGet.host) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="container.lifecycle.preStop.httpGet.host"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&asympeq;&nbsp;host:</span></Input>
+                                                                                <Input v-model="container.lifecycle.preStop.httpGet.host"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&asympeq;&nbsp;host:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(container.lifecycle.preStop.httpGet.httpHeaders) !== 'undefined' && container.lifecycle.preStop.httpGet.httpHeaders.length > 0">
@@ -2918,25 +2934,25 @@
                                                                                 </Row>
                                                                                 <Row v-if="typeof(httpHeader.name) !== 'undefined'">
                                                                                     <Col class="eleventh" span="12">
-                                                                                    <Input v-model="httpHeader.name"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&dcy;&nbsp;name:</span></Input>
+                                                                                        <Input v-model="httpHeader.name"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&dcy;&nbsp;name:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(httpHeader.value) !== 'undefined'">
                                                                                     <Col class="eleventh" span="12">
-                                                                                    <Input v-model="httpHeader.value"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&dcy;&nbsp;value:</span></Input>
+                                                                                        <Input v-model="httpHeader.value"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&dcy;&nbsp;value:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                             </div>
                                                                         </Row>
                                                                         <Row v-if="typeof(container.lifecycle.preStop.httpGet.path) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="container.lifecycle.preStop.httpGet.path"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&scsim;&nbsp;path:</span></Input>
+                                                                                <Input v-model="container.lifecycle.preStop.httpGet.path"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&scsim;&nbsp;path:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(container.lifecycle.preStop.httpGet.port) !== 'undefined'">
@@ -2963,32 +2979,32 @@
                                                                                 </Row>
                                                                                 <Row v-if="typeof(container.lifecycle.preStop.httpGet.port.intVal) !== 'undefined'">
                                                                                     <Col class="tenth" span="12">
-                                                                                    <Input v-model="container.lifecycle.preStop.httpGet.port.intVal"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&scsim;&nbsp;intVal:</span></Input>
+                                                                                        <Input v-model="container.lifecycle.preStop.httpGet.port.intVal"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&scsim;&nbsp;intVal:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(container.lifecycle.preStop.httpGet.port.kind) !== 'undefined'">
                                                                                     <Col class="tenth" span="12">
-                                                                                    <Input v-model="container.lifecycle.preStop.httpGet.port.kind"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&scsim;&nbsp;kind:</span></Input>
+                                                                                        <Input v-model="container.lifecycle.preStop.httpGet.port.kind"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&scsim;&nbsp;kind:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(container.lifecycle.preStop.httpGet.port.strVal) !== 'undefined'">
                                                                                     <Col class="tenth" span="12">
-                                                                                    <Input v-model="container.lifecycle.preStop.httpGet.port.strVal"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&scsim;&nbsp;strVal:</span></Input>
+                                                                                        <Input v-model="container.lifecycle.preStop.httpGet.port.strVal"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&scsim;&nbsp;strVal:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                             </div>
                                                                         </Row>
                                                                         <Row v-if="typeof(container.lifecycle.preStop.httpGet.scheme) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="container.lifecycle.preStop.httpGet.scheme"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&asympeq;&nbsp;scheme:</span></Input>
+                                                                                <Input v-model="container.lifecycle.preStop.httpGet.scheme"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&asympeq;&nbsp;scheme:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                     </div>
@@ -3016,9 +3032,9 @@
                                                                         </Row>
                                                                         <Row v-if="typeof(container.lifecycle.preStop.tcpSocket.host) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="container.lifecycle.preStop.tcpSocket.host"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&larrbfs;&nbsp;host:</span></Input>
+                                                                                <Input v-model="container.lifecycle.preStop.tcpSocket.host"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&larrbfs;&nbsp;host:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(container.lifecycle.preStop.tcpSocket.port) !== 'undefined'">
@@ -3030,23 +3046,23 @@
                                                                             <div v-show="showmodel.spec.template.spec.containers.lifecycle.preStop.tcpSocket.port.on">
                                                                                 <Row v-if="typeof(container.lifecycle.preStop.tcpSocket.port.intVal) !== 'undefined'">
                                                                                     <Col class="tenth" span="12">
-                                                                                    <Input v-model="container.lifecycle.preStop.tcpSocket.port.intVal"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&rAarr;&nbsp;intVal:</span></Input>
+                                                                                        <Input v-model="container.lifecycle.preStop.tcpSocket.port.intVal"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&rAarr;&nbsp;intVal:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(container.lifecycle.preStop.tcpSocket.port.kind) !== 'undefined'">
                                                                                     <Col class="tenth" span="12">
-                                                                                    <Input v-model="container.lifecycle.preStop.tcpSocket.port.kind"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&rAarr;&nbsp;kind:</span></Input>
+                                                                                        <Input v-model="container.lifecycle.preStop.tcpSocket.port.kind"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&rAarr;&nbsp;kind:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(container.lifecycle.preStop.tcpSocket.port.strVal) !== 'undefined'">
                                                                                     <Col class="tenth" span="12">
-                                                                                    <Input v-model="container.lifecycle.preStop.tcpSocket.port.strVal"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&rAarr;&nbsp;strVal:</span></Input>
+                                                                                        <Input v-model="container.lifecycle.preStop.tcpSocket.port.strVal"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&rAarr;&nbsp;strVal:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(container.lifecycle.preStop.tcpSocket.port.additionalProperties) !== 'undefined' ">
@@ -3149,9 +3165,9 @@
                                                         </Row>
                                                         <Row v-if="typeof(container.livenessProbe.failureThreshold) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="container.livenessProbe.failureThreshold"
-                                                                   disabled>
-                                                            <span slot="prepend">&wcirc;&nbsp;failureThreshold:</span></Input>
+                                                                <Input v-model="container.livenessProbe.failureThreshold"
+                                                                       disabled>
+                                                                <span slot="prepend">&wcirc;&nbsp;failureThreshold:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(container.livenessProbe.httpGet) !== 'undefined'">
@@ -3177,9 +3193,9 @@
                                                                 </Row>
                                                                 <Row v-if="typeof(container.livenessProbe.httpGet.host) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="container.livenessProbe.httpGet.host"
-                                                                           disabled>
-                                                                    <span slot="prepend">&icirc;&nbsp;host:</span></Input>
+                                                                        <Input v-model="container.livenessProbe.httpGet.host"
+                                                                               disabled>
+                                                                        <span slot="prepend">&icirc;&nbsp;host:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(container.livenessProbe.httpGet.httpHeaders) !== 'undefined' && container.livenessProbe.httpGet.httpHeaders.length > 0">
@@ -3212,25 +3228,25 @@
                                                                         </Row>
                                                                         <Row v-if="typeof(httpHeader.name) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="httpHeader.name"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&bernou;&nbsp;name:</span></Input>
+                                                                                <Input v-model="httpHeader.name"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&bernou;&nbsp;name:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(httpHeader.value) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="httpHeader.value"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&bernou;&nbsp;value:</span></Input>
+                                                                                <Input v-model="httpHeader.value"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&bernou;&nbsp;value:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                     </div>
                                                                 </Row>
                                                                 <Row v-if="typeof(container.livenessProbe.httpGet.path) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="container.livenessProbe.httpGet.path"
-                                                                           disabled>
-                                                                    <span slot="prepend">&icirc;&nbsp;path:</span></Input>
+                                                                        <Input v-model="container.livenessProbe.httpGet.path"
+                                                                               disabled>
+                                                                        <span slot="prepend">&icirc;&nbsp;path:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(container.livenessProbe.httpGet.port) !== 'undefined'">
@@ -3257,55 +3273,55 @@
                                                                         </Row>
                                                                         <Row v-if="typeof(container.livenessProbe.httpGet.port.intVal) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="container.livenessProbe.httpGet.port.intVal"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&drbkarow;&nbsp;intVal:</span></Input>
+                                                                                <Input v-model="container.livenessProbe.httpGet.port.intVal"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&drbkarow;&nbsp;intVal:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(container.livenessProbe.httpGet.port.kind) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="container.livenessProbe.httpGet.port.kind"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&drbkarow;&nbsp;kind:</span></Input>
+                                                                                <Input v-model="container.livenessProbe.httpGet.port.kind"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&drbkarow;&nbsp;kind:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(container.livenessProbe.httpGet.port.strVal) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="container.livenessProbe.httpGet.port.strVal"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&drbkarow;&nbsp;strVal:</span></Input>
+                                                                                <Input v-model="container.livenessProbe.httpGet.port.strVal"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&drbkarow;&nbsp;strVal:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                     </div>
                                                                 </Row>
                                                                 <Row v-if="typeof(container.livenessProbe.httpGet.scheme) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="container.livenessProbe.httpGet.scheme"
-                                                                           disabled>
-                                                                    <span slot="prepend">&icirc;&nbsp;scheme:</span></Input>
+                                                                        <Input v-model="container.livenessProbe.httpGet.scheme"
+                                                                               disabled>
+                                                                        <span slot="prepend">&icirc;&nbsp;scheme:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                             </div>
                                                         </Row>
                                                         <Row v-if="typeof(container.livenessProbe.initialDelaySeconds) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="container.livenessProbe.initialDelaySeconds"
-                                                                   disabled>
-                                                            <span slot="prepend">&wcirc;&nbsp;initialDelaySeconds:</span></Input>
+                                                                <Input v-model="container.livenessProbe.initialDelaySeconds"
+                                                                       disabled>
+                                                                <span slot="prepend">&wcirc;&nbsp;initialDelaySeconds:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(container.livenessProbe.periodSeconds) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="container.livenessProbe.periodSeconds"
-                                                                   disabled>
-                                                            <span slot="prepend">&wcirc;&nbsp;periodSeconds:</span></Input>
+                                                                <Input v-model="container.livenessProbe.periodSeconds"
+                                                                       disabled>
+                                                                <span slot="prepend">&wcirc;&nbsp;periodSeconds:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(container.livenessProbe.successThreshold) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="container.livenessProbe.successThreshold"
-                                                                   disabled>
-                                                            <span slot="prepend">&wcirc;&nbsp;successThreshold:</span></Input>
+                                                                <Input v-model="container.livenessProbe.successThreshold"
+                                                                       disabled>
+                                                                <span slot="prepend">&wcirc;&nbsp;successThreshold:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(container.livenessProbe.tcpSocket) !== 'undefined'">
@@ -3331,9 +3347,9 @@
                                                                 </Row>
                                                                 <Row v-if="typeof(container.livenessProbe.tcpSocket.host) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="container.livenessProbe.tcpSocket.host"
-                                                                           disabled>
-                                                                    <span slot="prepend">&circeq;&nbsp;host:</span></Input>
+                                                                        <Input v-model="container.livenessProbe.tcpSocket.host"
+                                                                               disabled>
+                                                                        <span slot="prepend">&circeq;&nbsp;host:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(container.livenessProbe.tcpSocket.port) !== 'undefined'">
@@ -3360,23 +3376,23 @@
                                                                         </Row>
                                                                         <Row v-if="typeof(container.livenessProbe.tcpSocket.port.intVal) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="container.livenessProbe.tcpSocket.port.intVal"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&pcy;&nbsp;intVal:</span></Input>
+                                                                                <Input v-model="container.livenessProbe.tcpSocket.port.intVal"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&pcy;&nbsp;intVal:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(container.livenessProbe.tcpSocket.port.kind) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="container.livenessProbe.tcpSocket.port.kind"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&pcy;&nbsp;kind:</span></Input>
+                                                                                <Input v-model="container.livenessProbe.tcpSocket.port.kind"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&pcy;&nbsp;kind:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(container.livenessProbe.tcpSocket.port.strVal) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="container.livenessProbe.tcpSocket.port.strVal"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&pcy;&nbsp;strVal:</span></Input>
+                                                                                <Input v-model="container.livenessProbe.tcpSocket.port.strVal"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&pcy;&nbsp;strVal:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                     </div>
@@ -3385,17 +3401,17 @@
                                                         </Row>
                                                         <Row v-if="typeof(container.livenessProbe.timeoutSeconds) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="container.livenessProbe.timeoutSeconds"
-                                                                   disabled>
-                                                            <span slot="prepend">&wcirc;&nbsp;timeoutSeconds:</span></Input>
+                                                                <Input v-model="container.livenessProbe.timeoutSeconds"
+                                                                       disabled>
+                                                                <span slot="prepend">&wcirc;&nbsp;timeoutSeconds:</span></Input>
                                                             </Col>
                                                         </Row>
                                                     </div>
                                                 </Row>
                                                 <Row v-if="typeof(container.name) !== 'undefined'">
                                                     <Col class="sixth" span="12">
-                                                    <Input v-model="container.name" disabled>
-                                                    <span slot="prepend">&rAarr;&nbsp;name:</span></Input>
+                                                        <Input v-model="container.name" disabled>
+                                                        <span slot="prepend">&rAarr;&nbsp;name:</span></Input>
                                                     </Col>
                                                 </Row>
                                                 <Row v-if="typeof(container.ports) !== 'undefined' && container.ports.length > 0">
@@ -3426,32 +3442,32 @@
                                                         </Row>
                                                         <Row v-if="typeof(prot.containerPort) !== 'undefined'">
                                                             <Col class="eighth" span="12">
-                                                            <Input v-model="prot.containerPort" disabled>
-                                                            <span slot="prepend">&wedbar;&nbsp;containerPort:</span></Input>
+                                                                <Input v-model="prot.containerPort" disabled>
+                                                                <span slot="prepend">&wedbar;&nbsp;containerPort:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(prot.hostIP) !== 'undefined'">
                                                             <Col class="eighth" span="12">
-                                                            <Input v-model="prot.hostIP" disabled>
-                                                            <span slot="prepend">&wedbar;&nbsp;hostIP:</span></Input>
+                                                                <Input v-model="prot.hostIP" disabled>
+                                                                <span slot="prepend">&wedbar;&nbsp;hostIP:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(prot.hostPort) !== 'undefined'">
                                                             <Col class="eighth" span="12">
-                                                            <Input v-model="prot.hostPort" disabled>
-                                                            <span slot="prepend">&wedbar;&nbsp;hostPort:</span></Input>
+                                                                <Input v-model="prot.hostPort" disabled>
+                                                                <span slot="prepend">&wedbar;&nbsp;hostPort:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(prot.name) !== 'undefined'">
                                                             <Col class="eighth" span="12">
-                                                            <Input v-model="prot.name" disabled>
-                                                            <span slot="prepend">&wedbar;&nbsp;name:</span></Input>
+                                                                <Input v-model="prot.name" disabled>
+                                                                <span slot="prepend">&wedbar;&nbsp;name:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(prot.protocol) !== 'undefined'">
                                                             <Col class="eighth" span="12">
-                                                            <Input v-model="prot.protocol" disabled>
-                                                            <span slot="prepend">&wedbar;&nbsp;protocol:</span></Input>
+                                                                <Input v-model="prot.protocol" disabled>
+                                                                <span slot="prepend">&wedbar;&nbsp;protocol:</span></Input>
                                                             </Col>
                                                         </Row>
                                                     </div>
@@ -3519,9 +3535,9 @@
                                                         </Row>
                                                         <Row v-if="typeof(container.readinessProbe.failureThreshold) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="container.readinessProbe.failureThreshold"
-                                                                   disabled>
-                                                            <span slot="prepend">&wcirc;&nbsp;failureThreshold:</span></Input>
+                                                                <Input v-model="container.readinessProbe.failureThreshold"
+                                                                       disabled>
+                                                                <span slot="prepend">&wcirc;&nbsp;failureThreshold:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(container.readinessProbe.httpGet) !== 'undefined'">
@@ -3547,9 +3563,9 @@
                                                                 </Row>
                                                                 <Row v-if="typeof(container.readinessProbe.httpGet.host) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="container.readinessProbe.httpGet.host"
-                                                                           disabled>
-                                                                    <span slot="prepend">&icirc;&nbsp;host:</span></Input>
+                                                                        <Input v-model="container.readinessProbe.httpGet.host"
+                                                                               disabled>
+                                                                        <span slot="prepend">&icirc;&nbsp;host:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(container.readinessProbe.httpGet.httpHeaders) !== 'undefined' && container.readinessProbe.httpGet.httpHeaders.length > 0">
@@ -3582,25 +3598,25 @@
                                                                         </Row>
                                                                         <Row v-if="typeof(httpHeader.name) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="httpHeader.name"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&bernou;&nbsp;name:</span></Input>
+                                                                                <Input v-model="httpHeader.name"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&bernou;&nbsp;name:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(httpHeader.value) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="httpHeader.value"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&bernou;&nbsp;value:</span></Input>
+                                                                                <Input v-model="httpHeader.value"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&bernou;&nbsp;value:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                     </div>
                                                                 </Row>
                                                                 <Row v-if="typeof(container.readinessProbe.httpGet.path) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="container.readinessProbe.httpGet.path"
-                                                                           disabled>
-                                                                    <span slot="prepend">&icirc;&nbsp;path:</span></Input>
+                                                                        <Input v-model="container.readinessProbe.httpGet.path"
+                                                                               disabled>
+                                                                        <span slot="prepend">&icirc;&nbsp;path:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(container.readinessProbe.httpGet.port) !== 'undefined'">
@@ -3627,55 +3643,55 @@
                                                                         </Row>
                                                                         <Row v-if="typeof(container.readinessProbe.httpGet.port.intVal) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="container.readinessProbe.httpGet.port.intVal"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&drbkarow;&nbsp;intVal:</span></Input>
+                                                                                <Input v-model="container.readinessProbe.httpGet.port.intVal"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&drbkarow;&nbsp;intVal:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(container.readinessProbe.httpGet.port.kind) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="container.readinessProbe.httpGet.port.kind"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&drbkarow;&nbsp;kind:</span></Input>
+                                                                                <Input v-model="container.readinessProbe.httpGet.port.kind"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&drbkarow;&nbsp;kind:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(container.readinessProbe.httpGet.port.strVal) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="container.readinessProbe.httpGet.port.strVal"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&drbkarow;&nbsp;strVal:</span></Input>
+                                                                                <Input v-model="container.readinessProbe.httpGet.port.strVal"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&drbkarow;&nbsp;strVal:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                     </div>
                                                                 </Row>
                                                                 <Row v-if="typeof(container.readinessProbe.httpGet.scheme) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="container.livenessProbe.httpGet.scheme"
-                                                                           disabled>
-                                                                    <span slot="prepend">&icirc;&nbsp;scheme:</span></Input>
+                                                                        <Input v-model="container.livenessProbe.httpGet.scheme"
+                                                                               disabled>
+                                                                        <span slot="prepend">&icirc;&nbsp;scheme:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                             </div>
                                                         </Row>
                                                         <Row v-if="typeof(container.readinessProbe.initialDelaySeconds) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="container.readinessProbe.initialDelaySeconds"
-                                                                   disabled>
-                                                            <span slot="prepend">&wcirc;&nbsp;initialDelaySeconds:</span></Input>
+                                                                <Input v-model="container.readinessProbe.initialDelaySeconds"
+                                                                       disabled>
+                                                                <span slot="prepend">&wcirc;&nbsp;initialDelaySeconds:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(container.readinessProbe.periodSeconds) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="container.readinessProbe.periodSeconds"
-                                                                   disabled>
-                                                            <span slot="prepend">&wcirc;&nbsp;periodSeconds:</span></Input>
+                                                                <Input v-model="container.readinessProbe.periodSeconds"
+                                                                       disabled>
+                                                                <span slot="prepend">&wcirc;&nbsp;periodSeconds:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(container.readinessProbe.successThreshold) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="container.readinessProbe.successThreshold"
-                                                                   disabled>
-                                                            <span slot="prepend">&wcirc;&nbsp;successThreshold:</span></Input>
+                                                                <Input v-model="container.readinessProbe.successThreshold"
+                                                                       disabled>
+                                                                <span slot="prepend">&wcirc;&nbsp;successThreshold:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(container.readinessProbe.tcpSocket) !== 'undefined'">
@@ -3701,9 +3717,9 @@
                                                                 </Row>
                                                                 <Row v-if="typeof(container.readinessProbe.tcpSocket.host) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="container.readinessProbe.tcpSocket.host"
-                                                                           disabled>
-                                                                    <span slot="prepend">&circeq;&nbsp;host:</span></Input>
+                                                                        <Input v-model="container.readinessProbe.tcpSocket.host"
+                                                                               disabled>
+                                                                        <span slot="prepend">&circeq;&nbsp;host:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(container.readinessProbe.tcpSocket.port) !== 'undefined'">
@@ -3730,23 +3746,23 @@
                                                                         </Row>
                                                                         <Row v-if="typeof(container.readinessProbe.tcpSocket.port.intVal) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="container.readinessProbe.tcpSocket.port.intVal"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&pcy;&nbsp;intVal:</span></Input>
+                                                                                <Input v-model="container.readinessProbe.tcpSocket.port.intVal"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&pcy;&nbsp;intVal:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(container.readinessProbe.tcpSocket.port.kind) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="container.readinessProbe.tcpSocket.port.kind"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&pcy;&nbsp;kind:</span></Input>
+                                                                                <Input v-model="container.readinessProbe.tcpSocket.port.kind"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&pcy;&nbsp;kind:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(container.readinessProbe.tcpSocket.port.strVal) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="container.readinessProbe.tcpSocket.port.strVal"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&pcy;&nbsp;strVal:</span></Input>
+                                                                                <Input v-model="container.readinessProbe.tcpSocket.port.strVal"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&pcy;&nbsp;strVal:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                     </div>
@@ -3755,9 +3771,9 @@
                                                         </Row>
                                                         <Row v-if="typeof(container.readinessProbe.timeoutSeconds) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="container.readinessProbe.timeoutSeconds"
-                                                                   disabled>
-                                                            <span slot="prepend">&wcirc;&nbsp;timeoutSeconds:</span></Input>
+                                                                <Input v-model="container.readinessProbe.timeoutSeconds"
+                                                                       disabled>
+                                                                <span slot="prepend">&wcirc;&nbsp;timeoutSeconds:</span></Input>
                                                             </Col>
                                                         </Row>
                                                     </div>
@@ -3820,14 +3836,14 @@
                                                                         </Row>
                                                                         <Row v-if="typeof(limit.amount) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="limit.amount" disabled>
-                                                                            <span slot="prepend">&zeetrf;&nbsp;amount:</span></Input>
+                                                                                <Input v-model="limit.amount" disabled>
+                                                                                <span slot="prepend">&zeetrf;&nbsp;amount:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(limit.format) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="limit.format" disabled>
-                                                                            <span slot="prepend">&zeetrf;&nbsp;format:</span></Input>
+                                                                                <Input v-model="limit.format" disabled>
+                                                                                <span slot="prepend">&zeetrf;&nbsp;format:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                     </div>
@@ -3871,16 +3887,16 @@
                                                                         </Row>
                                                                         <Row v-if="typeof(request.amount) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="request.amount"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&zeetrf;&nbsp;amount:</span></Input>
+                                                                                <Input v-model="request.amount"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&zeetrf;&nbsp;amount:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(request.format) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="request.format"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&zeetrf;&nbsp;format:</span></Input>
+                                                                                <Input v-model="request.format"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&zeetrf;&nbsp;format:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                     </div>
@@ -3964,30 +3980,30 @@
                                                         </Row>
                                                         <Row v-if="typeof(container.securityContext.privileged) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="container.securityContext.privileged.toString()"
-                                                                   disabled>
-                                                            <span slot="prepend">&wcirc;&nbsp;privileged:</span></Input>
+                                                                <Input v-model="container.securityContext.privileged.toString()"
+                                                                       disabled>
+                                                                <span slot="prepend">&wcirc;&nbsp;privileged:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(container.securityContext.readOnlyRootFilesystem) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="container.securityContext.readOnlyRootFilesystem.toString()"
-                                                                   disabled>
-                                                            <span slot="prepend">&wcirc;&nbsp;readOnlyRootFilesystem:</span></Input>
+                                                                <Input v-model="container.securityContext.readOnlyRootFilesystem.toString()"
+                                                                       disabled>
+                                                                <span slot="prepend">&wcirc;&nbsp;readOnlyRootFilesystem:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(container.securityContext.runAsNonRoot) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="container.securityContext.runAsNonRoot.toString()"
-                                                                   disabled>
-                                                            <span slot="prepend">&wcirc;&nbsp;readOnlyRootFilesystem:</span></Input>
+                                                                <Input v-model="container.securityContext.runAsNonRoot.toString()"
+                                                                       disabled>
+                                                                <span slot="prepend">&wcirc;&nbsp;readOnlyRootFilesystem:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(container.securityContext.runAsUser) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="container.securityContext.runAsUser"
-                                                                   disabled>
-                                                            <span slot="prepend">&wcirc;&nbsp;runAsUser:</span></Input>
+                                                                <Input v-model="container.securityContext.runAsUser"
+                                                                       disabled>
+                                                                <span slot="prepend">&wcirc;&nbsp;runAsUser:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(container.securityContext.seLinuxOptions) !== 'undefined'">
@@ -4013,30 +4029,30 @@
                                                                 </Row>
                                                                 <Row v-if="typeof(container.securityContext.seLinuxOptions.level) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="container.securityContext.seLinuxOptions.level"
-                                                                           disabled>
-                                                                    <span slot="prepend">&ycirc;&nbsp;level:</span></Input>
+                                                                        <Input v-model="container.securityContext.seLinuxOptions.level"
+                                                                               disabled>
+                                                                        <span slot="prepend">&ycirc;&nbsp;level:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(container.securityContext.seLinuxOptions.role) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="container.securityContext.seLinuxOptions.role"
-                                                                           disabled>
-                                                                    <span slot="prepend">&ycirc;&nbsp;role:</span></Input>
+                                                                        <Input v-model="container.securityContext.seLinuxOptions.role"
+                                                                               disabled>
+                                                                        <span slot="prepend">&ycirc;&nbsp;role:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(container.securityContext.seLinuxOptions.type) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="container.securityContext.seLinuxOptions.type"
-                                                                           disabled>
-                                                                    <span slot="prepend">&ycirc;&nbsp;type:</span></Input>
+                                                                        <Input v-model="container.securityContext.seLinuxOptions.type"
+                                                                               disabled>
+                                                                        <span slot="prepend">&ycirc;&nbsp;type:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(container.securityContext.seLinuxOptions.user) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="container.securityContext.seLinuxOptions.user"
-                                                                           disabled>
-                                                                    <span slot="prepend">&ycirc;&nbsp;user:</span></Input>
+                                                                        <Input v-model="container.securityContext.seLinuxOptions.user"
+                                                                               disabled>
+                                                                        <span slot="prepend">&ycirc;&nbsp;user:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                             </div>
@@ -4045,32 +4061,32 @@
                                                 </Row>
                                                 <Row v-if="typeof(container.stdin) !== 'undefined'">
                                                     <Col class="sixth" span="12">
-                                                    <Input v-model="container.stdin.toString()" disabled>
-                                                    <span slot="prepend">&rAarr;&nbsp;stdin:</span></Input>
+                                                        <Input v-model="container.stdin.toString()" disabled>
+                                                        <span slot="prepend">&rAarr;&nbsp;stdin:</span></Input>
                                                     </Col>
                                                 </Row>
                                                 <Row v-if="typeof(container.stdinOnce) !== 'undefined'">
                                                     <Col class="sixth" span="12">
-                                                    <Input v-model="container.stdinOnce.toString()" disabled>
-                                                    <span slot="prepend">&rAarr;&nbsp;stdinOnce:</span></Input>
+                                                        <Input v-model="container.stdinOnce.toString()" disabled>
+                                                        <span slot="prepend">&rAarr;&nbsp;stdinOnce:</span></Input>
                                                     </Col>
                                                 </Row>
                                                 <Row v-if="typeof(container.terminationMessagePath) !== 'undefined'">
                                                     <Col class="sixth" span="12">
-                                                    <Input v-model="container.terminationMessagePath" disabled>
-                                                    <span slot="prepend">&rAarr;&nbsp;terminationMessagePath:</span></Input>
+                                                        <Input v-model="container.terminationMessagePath" disabled>
+                                                        <span slot="prepend">&rAarr;&nbsp;terminationMessagePath:</span></Input>
                                                     </Col>
                                                 </Row>
                                                 <Row v-if="typeof(container.terminationMessagePolicy) !== 'undefined'">
                                                     <Col class="sixth" span="12">
-                                                    <Input v-model="container.terminationMessagePolicy" disabled>
-                                                    <span slot="prepend">&rAarr;&nbsp;terminationMessagePolicy:</span></Input>
+                                                        <Input v-model="container.terminationMessagePolicy" disabled>
+                                                        <span slot="prepend">&rAarr;&nbsp;terminationMessagePolicy:</span></Input>
                                                     </Col>
                                                 </Row>
                                                 <Row v-if="typeof(container.tty) !== 'undefined'">
                                                     <Col class="sixth" span="12">
-                                                    <Input v-model="container.tty.toString()" disabled>
-                                                    <span slot="prepend">&rAarr;&nbsp;tty:</span></Input>
+                                                        <Input v-model="container.tty.toString()" disabled>
+                                                        <span slot="prepend">&rAarr;&nbsp;tty:</span></Input>
                                                     </Col>
                                                 </Row>
                                                 <Row v-if="typeof(container.volumeMounts) !== 'undefined' && container.volumeMounts.lengthm  > 0">
@@ -4087,27 +4103,27 @@
                                                         </div>
                                                         <Row v-if="typeof(volumemount.mountPath) !== 'undefined'">
                                                             <Col class="eighth" span="12">
-                                                            <Input v-model="volumemount.mountPath" disabled>
-                                                            <span slot="prepend">&laemptyv;&nbsp;mountPath:</span></Input>
+                                                                <Input v-model="volumemount.mountPath" disabled>
+                                                                <span slot="prepend">&laemptyv;&nbsp;mountPath:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volumemount.name) !== 'undefined'">
                                                             <Col class="eighth" span="12">
-                                                            <Input v-model="volumemount.name" disabled>
-                                                            <span slot="prepend">&laemptyv;&nbsp;name:</span></Input>
+                                                                <Input v-model="volumemount.name" disabled>
+                                                                <span slot="prepend">&laemptyv;&nbsp;name:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volumemount.readOnly) !== 'undefined'">
                                                             <Col class="eighth" span="12">
-                                                            <Input v-model="volumemount.readOnly.toString()"
-                                                                   disabled>
-                                                            <span slot="prepend">&laemptyv;&nbsp;readOnly:</span></Input>
+                                                                <Input v-model="volumemount.readOnly.toString()"
+                                                                       disabled>
+                                                                <span slot="prepend">&laemptyv;&nbsp;readOnly:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volumemount.subPath) !== 'undefined'">
                                                             <Col class="eighth" span="12">
-                                                            <Input v-model="volumemount.subPath" disabled>
-                                                            <span slot="prepend">&laemptyv;&nbsp;subPath:</span></Input>
+                                                                <Input v-model="volumemount.subPath" disabled>
+                                                                <span slot="prepend">&laemptyv;&nbsp;subPath:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volumemount.additionalProperties) !== 'undefined' ">
@@ -4128,16 +4144,16 @@
                                                 </Row>
                                                 <Row v-if="typeof(container.workingDir) !== 'undefined'">
                                                     <Col class="sixth" span="12">
-                                                    <Input v-model="container.workingDir" disabled>
-                                                    <span slot="prepend">&rAarr;&nbsp;workingDir:</span></Input>
+                                                        <Input v-model="container.workingDir" disabled>
+                                                        <span slot="prepend">&rAarr;&nbsp;workingDir:</span></Input>
                                                     </Col>
                                                 </Row>
                                             </div>
                                         </Row>
                                         <Row v-if="typeof(infodata.spec.template.spec.dnsPolicy) !== 'undefined'">
                                             <Col class="fourth" span="12">
-                                            <Input v-model="infodata.spec.template.spec.dnsPolicy" disabled>
-                                            <span slot="prepend">&rAarr;&nbsp;dnsPolicy:</span></Input>
+                                                <Input v-model="infodata.spec.template.spec.dnsPolicy" disabled>
+                                                <span slot="prepend">&rAarr;&nbsp;dnsPolicy:</span></Input>
                                             </Col>
                                         </Row>
                                         <Row v-if="typeof(infodata.spec.template.spec.hostAliases) !== 'undefined' && infodata.spec.template.spec.hostAliases.length > 0">
@@ -4180,37 +4196,37 @@
                                                 </Row>
                                                 <Row v-if="typeof(host.ip) !== 'undefined'">
                                                     <Col class="sixth" span="12">
-                                                    <Input v-model="host.ip" disabled>
-                                                    <span slot="prepend">&sccue;&nbsp;ip:</span></Input>
+                                                        <Input v-model="host.ip" disabled>
+                                                        <span slot="prepend">&sccue;&nbsp;ip:</span></Input>
                                                     </Col>
                                                 </Row>
                                             </div>
                                         </Row>
                                         <Row v-if="typeof(infodata.spec.template.spec.hostIPC) !== 'undefined'">
                                             <Col class="fourth" span="12">
-                                            <Input v-model="infodata.spec.template.spec.hostIPC.toString()"
-                                                   disabled>
-                                            <span slot="prepend">&rAarr;&nbsp;hostIPC:</span></Input>
+                                                <Input v-model="infodata.spec.template.spec.hostIPC.toString()"
+                                                       disabled>
+                                                <span slot="prepend">&rAarr;&nbsp;hostIPC:</span></Input>
                                             </Col>
                                         </Row>
                                         <Row v-if="typeof(infodata.spec.template.spec.hostname) !== 'undefined'">
                                             <Col class="fourth" span="12">
-                                            <Input v-model="infodata.spec.template.spec.hostname" disabled>
-                                            <span slot="prepend">&rAarr;&nbsp;hostname:</span></Input>
+                                                <Input v-model="infodata.spec.template.spec.hostname" disabled>
+                                                <span slot="prepend">&rAarr;&nbsp;hostname:</span></Input>
                                             </Col>
                                         </Row>
                                         <Row v-if="typeof(infodata.spec.template.spec.hostNetwork) !== 'undefined'">
                                             <Col class="fourth" span="12">
-                                            <Input v-model="infodata.spec.template.spec.hostNetwork.toString()"
-                                                   disabled>
-                                            <span slot="prepend">&rAarr;&nbsp;hostNetwork:</span></Input>
+                                                <Input v-model="infodata.spec.template.spec.hostNetwork.toString()"
+                                                       disabled>
+                                                <span slot="prepend">&rAarr;&nbsp;hostNetwork:</span></Input>
                                             </Col>
                                         </Row>
                                         <Row v-if="typeof(infodata.spec.template.spec.hostPID) !== 'undefined'">
                                             <Col class="fourth" span="12">
-                                            <Input v-model="infodata.spec.template.spec.hostPID.toString()"
-                                                   disabled>
-                                            <span slot="prepend">&rAarr;&nbsp;hostPID:</span></Input>
+                                                <Input v-model="infodata.spec.template.spec.hostPID.toString()"
+                                                       disabled>
+                                                <span slot="prepend">&rAarr;&nbsp;hostPID:</span></Input>
                                             </Col>
                                         </Row>
                                         <Row v-if="typeof(infodata.spec.template.spec.imagePullSecrets) !== 'undefined' && infodata.spec.template.spec.imagePullSecrets.length > 0">
@@ -4241,8 +4257,8 @@
                                                 </Row>
                                                 <Row v-if="typeof(image.name) !== 'undefined'">
                                                     <Col class="sixth" span="12">
-                                                    <Input v-model="image.name" disabled>
-                                                    <span slot="prepend">&sccue;&nbsp;name:</span></Input>
+                                                        <Input v-model="image.name" disabled>
+                                                        <span slot="prepend">&sccue;&nbsp;name:</span></Input>
                                                     </Col>
                                                 </Row>
                                             </div>
@@ -4314,14 +4330,14 @@
                                                         </div>
                                                         <Row v-if="typeof(env.name) !== 'undefined'">
                                                             <Col class="eighth" span="12">
-                                                            <Input v-model="env.name" disabled>
-                                                            <span slot="prepend">&rAarr;&nbsp;name:</span></Input>
+                                                                <Input v-model="env.name" disabled>
+                                                                <span slot="prepend">&rAarr;&nbsp;name:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(env.value) !== 'undefined'">
                                                             <Col class="eighth" span="12">
-                                                            <Input v-model="env.value" disabled>
-                                                            <span slot="prepend">&rAarr;&nbsp;value:</span></Input>
+                                                                <Input v-model="env.value" disabled>
+                                                                <span slot="prepend">&rAarr;&nbsp;value:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(env.valueFrom) !== 'undefined'">
@@ -4340,23 +4356,23 @@
                                                                     <div v-show="showmodel.spec.template.spec.initContainers.env.valueFrom.configMapKeyRef.on">
                                                                         <Row v-if="typeof(env.valueFrom.configMapKeyRef.name) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="env.valueFrom.configMapKeyRef.name"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&sdotb;&nbsp;name:</span></Input>
+                                                                                <Input v-model="env.valueFrom.configMapKeyRef.name"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&sdotb;&nbsp;name:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(env.valueFrom.configMapKeyRef.key) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="env.valueFrom.configMapKeyRef.key"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&sdotb;&nbsp;key:</span></Input>
+                                                                                <Input v-model="env.valueFrom.configMapKeyRef.key"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&sdotb;&nbsp;key:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(env.valueFrom.configMapKeyRef.optional) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="env.valueFrom.configMapKeyRef.optional.toString()"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&sdotb;&nbsp;optional:</span></Input>
+                                                                                <Input v-model="env.valueFrom.configMapKeyRef.optional.toString()"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&sdotb;&nbsp;optional:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(env.valueFrom.configMapKeyRef.additionalProperties) !== 'undefined' ">
@@ -4384,16 +4400,16 @@
                                                                     <div v-show="showmodel.spec.template.spec.initContainers.env.valueFrom.fieldRef.on">
                                                                         <Row v-if="typeof(env.valueFrom.fieldRef.apiVersion) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="env.valueFrom.fieldRef.apiVersion"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&sdotb;&nbsp;apiVersion:</span></Input>
+                                                                                <Input v-model="env.valueFrom.fieldRef.apiVersion"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&sdotb;&nbsp;apiVersion:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(env.valueFrom.fieldRef.fieldPath) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="env.valueFrom.fieldRef.fieldPath"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&sdotb;&nbsp;fieldPath:</span></Input>
+                                                                                <Input v-model="env.valueFrom.fieldRef.fieldPath"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&sdotb;&nbsp;fieldPath:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(env.valueFrom.fieldRef.additionalProperties) !== 'undefined' ">
@@ -4421,9 +4437,9 @@
                                                                     <div v-show="showmodel.spec.template.spec.initContainers.env.valueFrom.resourceFieldRef.on">
                                                                         <Row v-if="typeof(env.valueFrom.resourceFieldRef.containerName) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="env.valueFrom.resourceFieldRef.containerName"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&lArr;&nbsp;containerName:</span></Input>
+                                                                                <Input v-model="env.valueFrom.resourceFieldRef.containerName"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&lArr;&nbsp;containerName:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(env.valueFrom.resourceFieldRef.divisor) !== 'undefined'">
@@ -4435,16 +4451,16 @@
                                                                             <div v-show="showmodel.spec.template.spec.initContainers.env.valueFrom.resourceFieldRef.divisor.on">
                                                                                 <Row v-if="typeof(env.valueFrom.resourceFieldRef.divisor.amount) !== 'undefined'">
                                                                                     <Col class="eleventh" span="12">
-                                                                                    <Input v-model="env.valueFrom.resourceFieldRef.divisor.amount"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&jukcy;&nbsp;amount:</span></Input>
+                                                                                        <Input v-model="env.valueFrom.resourceFieldRef.divisor.amount"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&jukcy;&nbsp;amount:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(env.valueFrom.resourceFieldRef.divisor.format) !== 'undefined'">
                                                                                     <Col class="eleventh" span="12">
-                                                                                    <Input v-model="env.valueFrom.resourceFieldRef.divisor.format"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&jukcy;&nbsp;format:</span></Input>
+                                                                                        <Input v-model="env.valueFrom.resourceFieldRef.divisor.format"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&jukcy;&nbsp;format:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(env.valueFrom.resourceFieldRef.divisor.additionalProperties) !== 'undefined' ">
@@ -4466,9 +4482,9 @@
                                                                         </Row>
                                                                         <Row v-if="typeof(env.valueFrom.resourceFieldRef.resource) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="env.valueFrom.resourceFieldRef.resource"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&lArr;&nbsp;resource:</span></Input>
+                                                                                <Input v-model="env.valueFrom.resourceFieldRef.resource"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&lArr;&nbsp;resource:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(env.valueFrom.resourceFieldRef.additionalProperties) !== 'undefined' ">
@@ -4496,23 +4512,23 @@
                                                                     <div v-show="showmodel.spec.template.spec.initContainers.env.valueFrom.secretKeyRef.on">
                                                                         <Row v-if="typeof(env.valueFrom.secretKeyRef.key) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="env.valueFrom.secretKeyRef.key"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&glj;&nbsp;key:</span></Input>
+                                                                                <Input v-model="env.valueFrom.secretKeyRef.key"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&glj;&nbsp;key:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(env.valueFrom.secretKeyRef.name) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="env.valueFrom.secretKeyRef.name"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&glj;&nbsp;name:</span></Input>
+                                                                                <Input v-model="env.valueFrom.secretKeyRef.name"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&glj;&nbsp;name:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(env.valueFrom.secretKeyRef.optional) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="env.valueFrom.secretKeyRef.optional.toString()"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&glj;&nbsp;optional:</span></Input>
+                                                                                <Input v-model="env.valueFrom.secretKeyRef.optional.toString()"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&glj;&nbsp;optional:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(env.valueFrom.secretKeyRef.additionalProperties) !== 'undefined' ">
@@ -4583,16 +4599,16 @@
                                                             <div v-show="showmodel.spec.template.spec.initContainers.envFrom.configMapRef.on">
                                                                 <Row v-if="typeof(from.configMapRef.name) !== 'undefined'">
                                                                     <Col class="ninth" span="12">
-                                                                    <Input v-model="from.configMapRef.name"
-                                                                           disabled>
-                                                                    <span slot="prepend">&lagran;&nbsp;name:</span></Input>
+                                                                        <Input v-model="from.configMapRef.name"
+                                                                               disabled>
+                                                                        <span slot="prepend">&lagran;&nbsp;name:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(from.configMapRef.optional) !== 'undefined'">
                                                                     <Col class="ninth" span="12">
-                                                                    <Input v-model="from.configMapRef.optional.toString()"
-                                                                           disabled>
-                                                                    <span slot="prepend">&lagran;&nbsp;optional:</span></Input>
+                                                                        <Input v-model="from.configMapRef.optional.toString()"
+                                                                               disabled>
+                                                                        <span slot="prepend">&lagran;&nbsp;optional:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(from.configMapRef.additionalProperties) !== 'undefined' ">
@@ -4613,8 +4629,8 @@
                                                         </Row>
                                                         <Row v-if="typeof(from.prefix) !== 'undefined'">
                                                             <Col class="eighth" span="12">
-                                                            <Input v-model="from.prefix" disabled>
-                                                            <span slot="prepend">&asympeq;&nbsp;prefix:</span></Input>
+                                                                <Input v-model="from.prefix" disabled>
+                                                                <span slot="prepend">&asympeq;&nbsp;prefix:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(from.secretRef) !== 'undefined'">
@@ -4626,16 +4642,16 @@
                                                             <div v-show="showmodel.spec.template.spec.initContainers.envFrom.secretRef.on">
                                                                 <Row v-if="typeof(from.secretRef.name) !== 'undefined'">
                                                                     <Col class="ninth" span="12">
-                                                                    <Input v-model="from.configMapRef.name"
-                                                                           disabled>
-                                                                    <span slot="prepend">&sccue;&nbsp;name:</span></Input>
+                                                                        <Input v-model="from.configMapRef.name"
+                                                                               disabled>
+                                                                        <span slot="prepend">&sccue;&nbsp;name:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(from.secretRef.optional) !== 'undefined'">
                                                                     <Col class="ninth" span="12">
-                                                                    <Input v-model="from.secretRef.optional.toString()"
-                                                                           disabled>
-                                                                    <span slot="prepend">&sccue;&nbsp;optional:</span></Input>
+                                                                        <Input v-model="from.secretRef.optional.toString()"
+                                                                               disabled>
+                                                                        <span slot="prepend">&sccue;&nbsp;optional:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(from.secretRef.additionalProperties) !== 'undefined' ">
@@ -4672,14 +4688,14 @@
                                                 </Row>
                                                 <Row v-if="typeof(initcontainer.image) !== 'undefined'">
                                                     <Col class="sixth" span="12">
-                                                    <Input v-model="initcontainer.image" disabled>
-                                                    <span slot="prepend">&rAarr;&nbsp;image:</span></Input>
+                                                        <Input v-model="initcontainer.image" disabled>
+                                                        <span slot="prepend">&rAarr;&nbsp;image:</span></Input>
                                                     </Col>
                                                 </Row>
                                                 <Row v-if="typeof(initcontainer.imagePullPolicy) !== 'undefined'">
                                                     <Col class="sixth" span="12">
-                                                    <Input v-model="initcontainer.imagePullPolicy" disabled>
-                                                    <span slot="prepend">&rAarr;&nbsp;imagePullPolicy:</span></Input>
+                                                        <Input v-model="initcontainer.imagePullPolicy" disabled>
+                                                        <span slot="prepend">&rAarr;&nbsp;imagePullPolicy:</span></Input>
                                                     </Col>
                                                 </Row>
                                                 <Row v-if="typeof(initcontainer.lifecycle) !== 'undefined'">
@@ -4771,9 +4787,9 @@
                                                                         </Row>
                                                                         <Row v-if="typeof(initcontainer.lifecycle.postStart.httpGet.host) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="initcontainer.lifecycle.postStart.httpGet.host"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&asympeq;&nbsp;host:</span></Input>
+                                                                                <Input v-model="initcontainer.lifecycle.postStart.httpGet.host"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&asympeq;&nbsp;host:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(initcontainer.lifecycle.postStart.httpGet.httpHeaders) !== 'undefined'">
@@ -4806,25 +4822,25 @@
                                                                                 </Row>
                                                                                 <Row v-if="typeof(httpHeader.name) !== 'undefined'">
                                                                                     <Col class="eleventh" span="12">
-                                                                                    <Input v-model="httpHeader.name"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&asympeq;&nbsp;name:</span></Input>
+                                                                                        <Input v-model="httpHeader.name"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&asympeq;&nbsp;name:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(httpHeader.value) !== 'undefined'">
                                                                                     <Col class="eleventh" span="12">
-                                                                                    <Input v-model="httpHeader.value"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&asympeq;&nbsp;value:</span></Input>
+                                                                                        <Input v-model="httpHeader.value"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&asympeq;&nbsp;value:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                             </div>
                                                                         </Row>
                                                                         <Row v-if="typeof(initcontainer.lifecycle.postStart.httpGet.path) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="initcontainer.lifecycle.postStart.httpGet.path"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&scsim;&nbsp;path:</span></Input>
+                                                                                <Input v-model="initcontainer.lifecycle.postStart.httpGet.path"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&scsim;&nbsp;path:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(initcontainer.lifecycle.postStart.httpGet.port) !== 'undefined'">
@@ -4851,23 +4867,23 @@
                                                                                 </Row>
                                                                                 <Row v-if="typeof(initcontainer.lifecycle.postStart.httpGet.port.intVal) !== 'undefined'">
                                                                                     <Col class="tenth" span="12">
-                                                                                    <Input v-model="initcontainer.lifecycle.postStart.httpGet.port.intVal"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&scsim;&nbsp;intVal:</span></Input>
+                                                                                        <Input v-model="initcontainer.lifecycle.postStart.httpGet.port.intVal"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&scsim;&nbsp;intVal:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(initcontainer.lifecycle.postStart.httpGet.port.kind) !== 'undefined'">
                                                                                     <Col class="tenth" span="12">
-                                                                                    <Input v-model="initcontainer.lifecycle.postStart.httpGet.port.kind"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&scsim;&nbsp;kind:</span></Input>
+                                                                                        <Input v-model="initcontainer.lifecycle.postStart.httpGet.port.kind"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&scsim;&nbsp;kind:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(initcontainer.lifecycle.postStart.httpGet.port.strVal) !== 'undefined'">
                                                                                     <Col class="tenth" span="12">
-                                                                                    <Input v-model="initcontainer.lifecycle.postStart.httpGet.port.strVal"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&scsim;&nbsp;strVal:</span></Input>
+                                                                                        <Input v-model="initcontainer.lifecycle.postStart.httpGet.port.strVal"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&scsim;&nbsp;strVal:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                             </div>
@@ -4875,9 +4891,9 @@
 
                                                                         <Row v-if="typeof(initcontainer.lifecycle.postStart.httpGet.scheme) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="initcontainer.lifecycle.postStart.httpGet.scheme"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&asympeq;&nbsp;scheme:</span></Input>
+                                                                                <Input v-model="initcontainer.lifecycle.postStart.httpGet.scheme"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&asympeq;&nbsp;scheme:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                     </div>
@@ -4905,9 +4921,9 @@
                                                                         </Row>
                                                                         <Row v-if="typeof(initcontainer.lifecycle.postStart.tcpSocket.host) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="initcontainer.lifecycle.postStart.tcpSocket.host"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&larrbfs;&nbsp;host:</span></Input>
+                                                                                <Input v-model="initcontainer.lifecycle.postStart.tcpSocket.host"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&larrbfs;&nbsp;host:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(initcontainer.lifecycle.postStart.tcpSocket.port) !== 'undefined'">
@@ -4919,23 +4935,23 @@
                                                                             <div v-show="showmodel.spec.template.spec.initContainers.lifecycle.postStart.tcpSocket.port.on">
                                                                                 <Row v-if="typeof(initcontainer.lifecycle.postStart.tcpSocket.port.intVal) !== 'undefined'">
                                                                                     <Col class="tenth" span="12">
-                                                                                    <Input v-model="initcontainer.lifecycle.postStart.tcpSocket.port.intVal"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&rAarr;&nbsp;intVal:</span></Input>
+                                                                                        <Input v-model="initcontainer.lifecycle.postStart.tcpSocket.port.intVal"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&rAarr;&nbsp;intVal:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(initcontainer.lifecycle.postStart.tcpSocket.port.kind) !== 'undefined'">
                                                                                     <Col class="tenth" span="12">
-                                                                                    <Input v-model="initcontainer.lifecycle.postStart.tcpSocket.port.kind"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&rAarr;&nbsp;kind:</span></Input>
+                                                                                        <Input v-model="initcontainer.lifecycle.postStart.tcpSocket.port.kind"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&rAarr;&nbsp;kind:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(initcontainer.lifecycle.postStart.tcpSocket.port.strVal) !== 'undefined'">
                                                                                     <Col class="tenth" span="12">
-                                                                                    <Input v-model="initcontainer.lifecycle.postStart.tcpSocket.port.strVal"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&rAarr;&nbsp;strVal:</span></Input>
+                                                                                        <Input v-model="initcontainer.lifecycle.postStart.tcpSocket.port.strVal"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&rAarr;&nbsp;strVal:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(initcontainer.lifecycle.postStart.tcpSocket.port.additionalProperties) !== 'undefined' ">
@@ -5041,9 +5057,9 @@
                                                                         </Row>
                                                                         <Row v-if="typeof(initcontainer.lifecycle.preStop.httpGet.host) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="initcontainer.lifecycle.preStop.httpGet.host"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&asympeq;&nbsp;host:</span></Input>
+                                                                                <Input v-model="initcontainer.lifecycle.preStop.httpGet.host"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&asympeq;&nbsp;host:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(initcontainer.lifecycle.preStop.httpGet.httpHeaders) !== 'undefined'">
@@ -5076,25 +5092,25 @@
                                                                                 </Row>
                                                                                 <Row v-if="typeof(httpHeader.name) !== 'undefined'">
                                                                                     <Col class="eleventh" span="12">
-                                                                                    <Input v-model="httpHeader.name"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&dcy;&nbsp;name:</span></Input>
+                                                                                        <Input v-model="httpHeader.name"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&dcy;&nbsp;name:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(httpHeader.value) !== 'undefined'">
                                                                                     <Col class="eleventh" span="12">
-                                                                                    <Input v-model="httpHeader.value"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&dcy;&nbsp;value:</span></Input>
+                                                                                        <Input v-model="httpHeader.value"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&dcy;&nbsp;value:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                             </div>
                                                                         </Row>
                                                                         <Row v-if="typeof(initcontainer.lifecycle.preStop.httpGet.path) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="initcontainer.lifecycle.preStop.httpGet.path"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&scsim;&nbsp;path:</span></Input>
+                                                                                <Input v-model="initcontainer.lifecycle.preStop.httpGet.path"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&scsim;&nbsp;path:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(initcontainer.lifecycle.preStop.httpGet.port) !== 'undefined'">
@@ -5121,32 +5137,32 @@
                                                                                 </Row>
                                                                                 <Row v-if="typeof(initcontainer.lifecycle.preStop.httpGet.port.intVal) !== 'undefined'">
                                                                                     <Col class="tenth" span="12">
-                                                                                    <Input v-model="initcontainer.lifecycle.preStop.httpGet.port.intVal"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&scsim;&nbsp;intVal:</span></Input>
+                                                                                        <Input v-model="initcontainer.lifecycle.preStop.httpGet.port.intVal"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&scsim;&nbsp;intVal:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(initcontainer.lifecycle.preStop.httpGet.port.kind) !== 'undefined'">
                                                                                     <Col class="tenth" span="12">
-                                                                                    <Input v-model="initcontainer.lifecycle.preStop.httpGet.port.kind"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&scsim;&nbsp;kind:</span></Input>
+                                                                                        <Input v-model="initcontainer.lifecycle.preStop.httpGet.port.kind"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&scsim;&nbsp;kind:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(initcontainer.lifecycle.preStop.httpGet.port.strVal) !== 'undefined'">
                                                                                     <Col class="tenth" span="12">
-                                                                                    <Input v-model="initcontainer.lifecycle.preStop.httpGet.port.strVal"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&scsim;&nbsp;strVal:</span></Input>
+                                                                                        <Input v-model="initcontainer.lifecycle.preStop.httpGet.port.strVal"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&scsim;&nbsp;strVal:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                             </div>
                                                                         </Row>
                                                                         <Row v-if="typeof(initcontainer.lifecycle.preStop.httpGet.scheme) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="initcontainer.lifecycle.preStop.httpGet.scheme"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&asympeq;&nbsp;scheme:</span></Input>
+                                                                                <Input v-model="initcontainer.lifecycle.preStop.httpGet.scheme"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&asympeq;&nbsp;scheme:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                     </div>
@@ -5174,9 +5190,9 @@
                                                                         </Row>
                                                                         <Row v-if="typeof(initcontainer.lifecycle.preStop.tcpSocket.host) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="initcontainer.lifecycle.preStop.tcpSocket.host"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&larrbfs;&nbsp;host:</span></Input>
+                                                                                <Input v-model="initcontainer.lifecycle.preStop.tcpSocket.host"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&larrbfs;&nbsp;host:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(initcontainer.lifecycle.preStop.tcpSocket.port) !== 'undefined'">
@@ -5188,23 +5204,23 @@
                                                                             <div v-show="showmodel.spec.template.spec.initContainers.lifecycle.preStop.tcpSocket.port.on">
                                                                                 <Row v-if="typeof(initcontainer.lifecycle.preStop.tcpSocket.port.intVal) !== 'undefined'">
                                                                                     <Col class="tenth" span="12">
-                                                                                    <Input v-model="initcontainer.lifecycle.preStop.tcpSocket.port.intVal"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&rAarr;&nbsp;intVal:</span></Input>
+                                                                                        <Input v-model="initcontainer.lifecycle.preStop.tcpSocket.port.intVal"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&rAarr;&nbsp;intVal:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(initcontainer.lifecycle.preStop.tcpSocket.port.kind) !== 'undefined'">
                                                                                     <Col class="tenth" span="12">
-                                                                                    <Input v-model="initcontainer.lifecycle.preStop.tcpSocket.port.kind"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&rAarr;&nbsp;kind:</span></Input>
+                                                                                        <Input v-model="initcontainer.lifecycle.preStop.tcpSocket.port.kind"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&rAarr;&nbsp;kind:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(initcontainer.lifecycle.preStop.tcpSocket.port.strVal) !== 'undefined'">
                                                                                     <Col class="tenth" span="12">
-                                                                                    <Input v-model="initcontainer.lifecycle.preStop.tcpSocket.port.strVal"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&rAarr;&nbsp;strVal:</span></Input>
+                                                                                        <Input v-model="initcontainer.lifecycle.preStop.tcpSocket.port.strVal"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&rAarr;&nbsp;strVal:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(initcontainer.lifecycle.preStop.tcpSocket.port.additionalProperties) !== 'undefined' ">
@@ -5307,9 +5323,9 @@
                                                         </Row>
                                                         <Row v-if="typeof(initcontainer.livenessProbe.failureThreshold) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="initcontainer.livenessProbe.failureThreshold"
-                                                                   disabled>
-                                                            <span slot="prepend">&wcirc;&nbsp;failureThreshold:</span></Input>
+                                                                <Input v-model="initcontainer.livenessProbe.failureThreshold"
+                                                                       disabled>
+                                                                <span slot="prepend">&wcirc;&nbsp;failureThreshold:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(initcontainer.livenessProbe.httpGet) !== 'undefined'">
@@ -5335,9 +5351,9 @@
                                                                 </Row>
                                                                 <Row v-if="typeof(initcontainer.livenessProbe.httpGet.host) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="initcontainer.livenessProbe.httpGet.host"
-                                                                           disabled>
-                                                                    <span slot="prepend">&icirc;&nbsp;host:</span></Input>
+                                                                        <Input v-model="initcontainer.livenessProbe.httpGet.host"
+                                                                               disabled>
+                                                                        <span slot="prepend">&icirc;&nbsp;host:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(initcontainer.livenessProbe.httpGet.httpHeaders) !== 'undefined' && initcontainer.livenessProbe.httpGet.httpHeaders.length > 0">
@@ -5370,25 +5386,25 @@
                                                                         </Row>
                                                                         <Row v-if="typeof(httpHeader.name) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="httpHeader.name"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&bernou;&nbsp;name:</span></Input>
+                                                                                <Input v-model="httpHeader.name"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&bernou;&nbsp;name:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(httpHeader.value) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="httpHeader.value"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&bernou;&nbsp;value:</span></Input>
+                                                                                <Input v-model="httpHeader.value"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&bernou;&nbsp;value:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                     </div>
                                                                 </Row>
                                                                 <Row v-if="typeof(initcontainer.livenessProbe.httpGet.path) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="initcontainer.livenessProbe.httpGet.path"
-                                                                           disabled>
-                                                                    <span slot="prepend">&icirc;&nbsp;path:</span></Input>
+                                                                        <Input v-model="initcontainer.livenessProbe.httpGet.path"
+                                                                               disabled>
+                                                                        <span slot="prepend">&icirc;&nbsp;path:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(initcontainer.livenessProbe.httpGet.port) !== 'undefined'">
@@ -5415,55 +5431,55 @@
                                                                         </Row>
                                                                         <Row v-if="typeof(initcontainer.livenessProbe.httpGet.port.intVal) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="initcontainer.livenessProbe.httpGet.port.intVal"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&drbkarow;&nbsp;intVal:</span></Input>
+                                                                                <Input v-model="initcontainer.livenessProbe.httpGet.port.intVal"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&drbkarow;&nbsp;intVal:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(initcontainer.livenessProbe.httpGet.port.kind) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="initcontainer.livenessProbe.httpGet.port.kind"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&drbkarow;&nbsp;kind:</span></Input>
+                                                                                <Input v-model="initcontainer.livenessProbe.httpGet.port.kind"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&drbkarow;&nbsp;kind:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(initcontainer.livenessProbe.httpGet.port.strVal) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="initcontainer.livenessProbe.httpGet.port.strVal"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&drbkarow;&nbsp;strVal:</span></Input>
+                                                                                <Input v-model="initcontainer.livenessProbe.httpGet.port.strVal"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&drbkarow;&nbsp;strVal:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                     </div>
                                                                 </Row>
                                                                 <Row v-if="typeof(initcontainer.livenessProbe.httpGet.scheme) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="initcontainer.livenessProbe.httpGet.scheme"
-                                                                           disabled>
-                                                                    <span slot="prepend">&icirc;&nbsp;scheme:</span></Input>
+                                                                        <Input v-model="initcontainer.livenessProbe.httpGet.scheme"
+                                                                               disabled>
+                                                                        <span slot="prepend">&icirc;&nbsp;scheme:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                             </div>
                                                         </Row>
                                                         <Row v-if="typeof(initcontainer.livenessProbe.initialDelaySeconds) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="initcontainer.livenessProbe.initialDelaySeconds"
-                                                                   disabled>
-                                                            <span slot="prepend">&wcirc;&nbsp;initialDelaySeconds:</span></Input>
+                                                                <Input v-model="initcontainer.livenessProbe.initialDelaySeconds"
+                                                                       disabled>
+                                                                <span slot="prepend">&wcirc;&nbsp;initialDelaySeconds:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(initcontainer.livenessProbe.periodSeconds) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="initcontainer.livenessProbe.periodSeconds"
-                                                                   disabled>
-                                                            <span slot="prepend">&wcirc;&nbsp;periodSeconds:</span></Input>
+                                                                <Input v-model="initcontainer.livenessProbe.periodSeconds"
+                                                                       disabled>
+                                                                <span slot="prepend">&wcirc;&nbsp;periodSeconds:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(initcontainer.livenessProbe.successThreshold) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="initcontainer.livenessProbe.successThreshold"
-                                                                   disabled>
-                                                            <span slot="prepend">&wcirc;&nbsp;successThreshold:</span></Input>
+                                                                <Input v-model="initcontainer.livenessProbe.successThreshold"
+                                                                       disabled>
+                                                                <span slot="prepend">&wcirc;&nbsp;successThreshold:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(initcontainer.livenessProbe.tcpSocket) !== 'undefined'">
@@ -5489,9 +5505,9 @@
                                                                 </Row>
                                                                 <Row v-if="typeof(initcontainer.livenessProbe.tcpSocket.host) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="initcontainer.livenessProbe.tcpSocket.host"
-                                                                           disabled>
-                                                                    <span slot="prepend">&circeq;&nbsp;host:</span></Input>
+                                                                        <Input v-model="initcontainer.livenessProbe.tcpSocket.host"
+                                                                               disabled>
+                                                                        <span slot="prepend">&circeq;&nbsp;host:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(initcontainer.livenessProbe.tcpSocket.port) !== 'undefined'">
@@ -5518,23 +5534,23 @@
                                                                         </Row>
                                                                         <Row v-if="typeof(initcontainer.livenessProbe.tcpSocket.port.intVal) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="initcontainer.livenessProbe.tcpSocket.port.intVal"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&pcy;&nbsp;intVal:</span></Input>
+                                                                                <Input v-model="initcontainer.livenessProbe.tcpSocket.port.intVal"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&pcy;&nbsp;intVal:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(initcontainer.livenessProbe.tcpSocket.port.kind) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="initcontainer.livenessProbe.tcpSocket.port.kind"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&pcy;&nbsp;kind:</span></Input>
+                                                                                <Input v-model="initcontainer.livenessProbe.tcpSocket.port.kind"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&pcy;&nbsp;kind:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(initcontainer.livenessProbe.tcpSocket.port.strVal) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="initcontainer.livenessProbe.tcpSocket.port.strVal"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&pcy;&nbsp;strVal:</span></Input>
+                                                                                <Input v-model="initcontainer.livenessProbe.tcpSocket.port.strVal"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&pcy;&nbsp;strVal:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                     </div>
@@ -5543,17 +5559,17 @@
                                                         </Row>
                                                         <Row v-if="typeof(initcontainer.livenessProbe.timeoutSeconds) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="initcontainer.livenessProbe.timeoutSeconds"
-                                                                   disabled>
-                                                            <span slot="prepend">&wcirc;&nbsp;timeoutSeconds:</span></Input>
+                                                                <Input v-model="initcontainer.livenessProbe.timeoutSeconds"
+                                                                       disabled>
+                                                                <span slot="prepend">&wcirc;&nbsp;timeoutSeconds:</span></Input>
                                                             </Col>
                                                         </Row>
                                                     </div>
                                                 </Row>
                                                 <Row v-if="typeof(initcontainer.name) !== 'undefined'">
                                                     <Col class="sixth" span="12">
-                                                    <Input v-model="initcontainer.name" disabled>
-                                                    <span slot="prepend">&rAarr;&nbsp;name:</span></Input>
+                                                        <Input v-model="initcontainer.name" disabled>
+                                                        <span slot="prepend">&rAarr;&nbsp;name:</span></Input>
                                                     </Col>
                                                 </Row>
                                                 <Row v-if="typeof(initcontainer.ports) !== 'undefined'">
@@ -5584,32 +5600,32 @@
                                                         </Row>
                                                         <Row v-if="typeof(prot.containerPort) !== 'undefined'">
                                                             <Col class="eighth" span="12">
-                                                            <Input v-model="prot.containerPort" disabled>
-                                                            <span slot="prepend">&wedbar;&nbsp;containerPort:</span></Input>
+                                                                <Input v-model="prot.containerPort" disabled>
+                                                                <span slot="prepend">&wedbar;&nbsp;containerPort:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(prot.hostIP) !== 'undefined'">
                                                             <Col class="eighth" span="12">
-                                                            <Input v-model="prot.hostIP" disabled>
-                                                            <span slot="prepend">&wedbar;&nbsp;hostIP:</span></Input>
+                                                                <Input v-model="prot.hostIP" disabled>
+                                                                <span slot="prepend">&wedbar;&nbsp;hostIP:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(prot.hostPort) !== 'undefined'">
                                                             <Col class="eighth" span="12">
-                                                            <Input v-model="prot.hostPort" disabled>
-                                                            <span slot="prepend">&wedbar;&nbsp;hostPort:</span></Input>
+                                                                <Input v-model="prot.hostPort" disabled>
+                                                                <span slot="prepend">&wedbar;&nbsp;hostPort:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(prot.name) !== 'undefined'">
                                                             <Col class="eighth" span="12">
-                                                            <Input v-model="prot.name" disabled>
-                                                            <span slot="prepend">&wedbar;&nbsp;name:</span></Input>
+                                                                <Input v-model="prot.name" disabled>
+                                                                <span slot="prepend">&wedbar;&nbsp;name:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(prot.protocol) !== 'undefined'">
                                                             <Col class="eighth" span="12">
-                                                            <Input v-model="prot.protocol" disabled>
-                                                            <span slot="prepend">&wedbar;&nbsp;protocol:</span></Input>
+                                                                <Input v-model="prot.protocol" disabled>
+                                                                <span slot="prepend">&wedbar;&nbsp;protocol:</span></Input>
                                                             </Col>
                                                         </Row>
                                                     </div>
@@ -5677,9 +5693,9 @@
                                                         </Row>
                                                         <Row v-if="typeof(initcontainer.readinessProbe.failureThreshold) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="initcontainer.readinessProbe.failureThreshold"
-                                                                   disabled>
-                                                            <span slot="prepend">&wcirc;&nbsp;failureThreshold:</span></Input>
+                                                                <Input v-model="initcontainer.readinessProbe.failureThreshold"
+                                                                       disabled>
+                                                                <span slot="prepend">&wcirc;&nbsp;failureThreshold:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(initcontainer.readinessProbe.httpGet) !== 'undefined'">
@@ -5705,9 +5721,9 @@
                                                                 </Row>
                                                                 <Row v-if="typeof(initcontainer.readinessProbe.httpGet.host) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="initcontainer.readinessProbe.httpGet.host"
-                                                                           disabled>
-                                                                    <span slot="prepend">&icirc;&nbsp;host:</span></Input>
+                                                                        <Input v-model="initcontainer.readinessProbe.httpGet.host"
+                                                                               disabled>
+                                                                        <span slot="prepend">&icirc;&nbsp;host:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(initcontainer.readinessProbe.httpGet.httpHeaders) !== 'undefined' && initcontainer.readinessProbe.httpGet.httpHeaders.length > 0">
@@ -5740,25 +5756,25 @@
                                                                         </Row>
                                                                         <Row v-if="typeof(httpHeader.name) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="httpHeader.name"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&bernou;&nbsp;name:</span></Input>
+                                                                                <Input v-model="httpHeader.name"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&bernou;&nbsp;name:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(httpHeader.value) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="httpHeader.value"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&bernou;&nbsp;value:</span></Input>
+                                                                                <Input v-model="httpHeader.value"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&bernou;&nbsp;value:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                     </div>
                                                                 </Row>
                                                                 <Row v-if="typeof(initcontainer.readinessProbe.httpGet.path) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="initcontainer.readinessProbe.httpGet.path"
-                                                                           disabled>
-                                                                    <span slot="prepend">&icirc;&nbsp;path:</span></Input>
+                                                                        <Input v-model="initcontainer.readinessProbe.httpGet.path"
+                                                                               disabled>
+                                                                        <span slot="prepend">&icirc;&nbsp;path:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(initcontainer.readinessProbe.httpGet.port) !== 'undefined'">
@@ -5785,55 +5801,55 @@
                                                                         </Row>
                                                                         <Row v-if="typeof(initcontainer.readinessProbe.httpGet.port.intVal) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="initcontainer.readinessProbe.httpGet.port.intVal"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&drbkarow;&nbsp;intVal:</span></Input>
+                                                                                <Input v-model="initcontainer.readinessProbe.httpGet.port.intVal"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&drbkarow;&nbsp;intVal:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(initcontainer.readinessProbe.httpGet.port.kind) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="initcontainer.readinessProbe.httpGet.port.kind"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&drbkarow;&nbsp;kind:</span></Input>
+                                                                                <Input v-model="initcontainer.readinessProbe.httpGet.port.kind"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&drbkarow;&nbsp;kind:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(initcontainer.readinessProbe.httpGet.port.strVal) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="initcontainer.readinessProbe.httpGet.port.strVal"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&drbkarow;&nbsp;strVal:</span></Input>
+                                                                                <Input v-model="initcontainer.readinessProbe.httpGet.port.strVal"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&drbkarow;&nbsp;strVal:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                     </div>
                                                                 </Row>
                                                                 <Row v-if="typeof(initcontainer.readinessProbe.httpGet.scheme) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="initcontainer.livenessProbe.httpGet.scheme"
-                                                                           disabled>
-                                                                    <span slot="prepend">&icirc;&nbsp;scheme:</span></Input>
+                                                                        <Input v-model="initcontainer.livenessProbe.httpGet.scheme"
+                                                                               disabled>
+                                                                        <span slot="prepend">&icirc;&nbsp;scheme:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                             </div>
                                                         </Row>
                                                         <Row v-if="typeof(initcontainer.readinessProbe.initialDelaySeconds) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="initcontainer.readinessProbe.initialDelaySeconds"
-                                                                   disabled>
-                                                            <span slot="prepend">&wcirc;&nbsp;initialDelaySeconds:</span></Input>
+                                                                <Input v-model="initcontainer.readinessProbe.initialDelaySeconds"
+                                                                       disabled>
+                                                                <span slot="prepend">&wcirc;&nbsp;initialDelaySeconds:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(initcontainer.readinessProbe.periodSeconds) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="initcontainer.readinessProbe.periodSeconds"
-                                                                   disabled>
-                                                            <span slot="prepend">&wcirc;&nbsp;periodSeconds:</span></Input>
+                                                                <Input v-model="initcontainer.readinessProbe.periodSeconds"
+                                                                       disabled>
+                                                                <span slot="prepend">&wcirc;&nbsp;periodSeconds:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(initcontainer.readinessProbe.successThreshold) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="initcontainer.readinessProbe.successThreshold"
-                                                                   disabled>
-                                                            <span slot="prepend">&wcirc;&nbsp;successThreshold:</span></Input>
+                                                                <Input v-model="initcontainer.readinessProbe.successThreshold"
+                                                                       disabled>
+                                                                <span slot="prepend">&wcirc;&nbsp;successThreshold:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(initcontainer.readinessProbe.tcpSocket) !== 'undefined'">
@@ -5859,9 +5875,9 @@
                                                                 </Row>
                                                                 <Row v-if="typeof(initcontainer.readinessProbe.tcpSocket.host) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="initcontainer.readinessProbe.tcpSocket.host"
-                                                                           disabled>
-                                                                    <span slot="prepend">&circeq;&nbsp;host:</span></Input>
+                                                                        <Input v-model="initcontainer.readinessProbe.tcpSocket.host"
+                                                                               disabled>
+                                                                        <span slot="prepend">&circeq;&nbsp;host:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(initcontainer.readinessProbe.tcpSocket.port) !== 'undefined'">
@@ -5888,23 +5904,23 @@
                                                                         </Row>
                                                                         <Row v-if="typeof(initcontainer.readinessProbe.tcpSocket.port.intVal) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="initcontainer.readinessProbe.tcpSocket.port.intVal"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&pcy;&nbsp;intVal:</span></Input>
+                                                                                <Input v-model="initcontainer.readinessProbe.tcpSocket.port.intVal"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&pcy;&nbsp;intVal:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(initcontainer.readinessProbe.tcpSocket.port.kind) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="initcontainer.readinessProbe.tcpSocket.port.kind"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&pcy;&nbsp;kind:</span></Input>
+                                                                                <Input v-model="initcontainer.readinessProbe.tcpSocket.port.kind"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&pcy;&nbsp;kind:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(initcontainer.readinessProbe.tcpSocket.port.strVal) !== 'undefined'">
                                                                             <Col class="ninth" span="12">
-                                                                            <Input v-model="initcontainer.readinessProbe.tcpSocket.port.strVal"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&pcy;&nbsp;strVal:</span></Input>
+                                                                                <Input v-model="initcontainer.readinessProbe.tcpSocket.port.strVal"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&pcy;&nbsp;strVal:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                     </div>
@@ -5913,9 +5929,9 @@
                                                         </Row>
                                                         <Row v-if="typeof(initcontainer.readinessProbe.timeoutSeconds) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="initcontainer.readinessProbe.timeoutSeconds"
-                                                                   disabled>
-                                                            <span slot="prepend">&wcirc;&nbsp;timeoutSeconds:</span></Input>
+                                                                <Input v-model="initcontainer.readinessProbe.timeoutSeconds"
+                                                                       disabled>
+                                                                <span slot="prepend">&wcirc;&nbsp;timeoutSeconds:</span></Input>
                                                             </Col>
                                                         </Row>
                                                     </div>
@@ -5978,14 +5994,14 @@
                                                                         </Row>
                                                                         <Row v-if="typeof(limit.amount) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="limit.amount" disabled>
-                                                                            <span slot="prepend">&zeetrf;&nbsp;amount:</span></Input>
+                                                                                <Input v-model="limit.amount" disabled>
+                                                                                <span slot="prepend">&zeetrf;&nbsp;amount:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(limit.format) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="limit.format" disabled>
-                                                                            <span slot="prepend">&zeetrf;&nbsp;format:</span></Input>
+                                                                                <Input v-model="limit.format" disabled>
+                                                                                <span slot="prepend">&zeetrf;&nbsp;format:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                     </div>
@@ -6029,16 +6045,16 @@
                                                                         </Row>
                                                                         <Row v-if="typeof(request.amount) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="request.amount"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&zeetrf;&nbsp;amount:</span></Input>
+                                                                                <Input v-model="request.amount"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&zeetrf;&nbsp;amount:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(request.format) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="request.format"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&zeetrf;&nbsp;format:</span></Input>
+                                                                                <Input v-model="request.format"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&zeetrf;&nbsp;format:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                     </div>
@@ -6122,30 +6138,30 @@
                                                         </Row>
                                                         <Row v-if="typeof(initcontainer.securityContext.privileged) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="initcontainer.securityContext.privileged.toString()"
-                                                                   disabled>
-                                                            <span slot="prepend">&wcirc;&nbsp;privileged:</span></Input>
+                                                                <Input v-model="initcontainer.securityContext.privileged.toString()"
+                                                                       disabled>
+                                                                <span slot="prepend">&wcirc;&nbsp;privileged:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(initcontainer.securityContext.readOnlyRootFilesystem) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="initcontainer.securityContext.readOnlyRootFilesystem.toString()"
-                                                                   disabled>
-                                                            <span slot="prepend">&wcirc;&nbsp;readOnlyRootFilesystem:</span></Input>
+                                                                <Input v-model="initcontainer.securityContext.readOnlyRootFilesystem.toString()"
+                                                                       disabled>
+                                                                <span slot="prepend">&wcirc;&nbsp;readOnlyRootFilesystem:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(initcontainer.securityContext.runAsNonRoot) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="initcontainer.securityContext.runAsNonRoot.toString()"
-                                                                   disabled>
-                                                            <span slot="prepend">&wcirc;&nbsp;readOnlyRootFilesystem:</span></Input>
+                                                                <Input v-model="initcontainer.securityContext.runAsNonRoot.toString()"
+                                                                       disabled>
+                                                                <span slot="prepend">&wcirc;&nbsp;readOnlyRootFilesystem:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(initcontainer.securityContext.runAsUser) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="initcontainer.securityContext.runAsUser"
-                                                                   disabled>
-                                                            <span slot="prepend">&wcirc;&nbsp;runAsUser:</span></Input>
+                                                                <Input v-model="initcontainer.securityContext.runAsUser"
+                                                                       disabled>
+                                                                <span slot="prepend">&wcirc;&nbsp;runAsUser:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(initcontainer.securityContext.seLinuxOptions) !== 'undefined'">
@@ -6171,30 +6187,30 @@
                                                                 </Row>
                                                                 <Row v-if="typeof(initcontainer.securityContext.seLinuxOptions.level) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="initcontainer.securityContext.seLinuxOptions.level"
-                                                                           disabled>
-                                                                    <span slot="prepend">&ycirc;&nbsp;level:</span></Input>
+                                                                        <Input v-model="initcontainer.securityContext.seLinuxOptions.level"
+                                                                               disabled>
+                                                                        <span slot="prepend">&ycirc;&nbsp;level:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(initcontainer.securityContext.seLinuxOptions.role) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="initcontainer.securityContext.seLinuxOptions.role"
-                                                                           disabled>
-                                                                    <span slot="prepend">&ycirc;&nbsp;role:</span></Input>
+                                                                        <Input v-model="initcontainer.securityContext.seLinuxOptions.role"
+                                                                               disabled>
+                                                                        <span slot="prepend">&ycirc;&nbsp;role:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(initcontainer.securityContext.seLinuxOptions.type) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="initcontainer.securityContext.seLinuxOptions.type"
-                                                                           disabled>
-                                                                    <span slot="prepend">&ycirc;&nbsp;type:</span></Input>
+                                                                        <Input v-model="initcontainer.securityContext.seLinuxOptions.type"
+                                                                               disabled>
+                                                                        <span slot="prepend">&ycirc;&nbsp;type:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(initcontainer.securityContext.seLinuxOptions.user) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="initcontainer.securityContext.seLinuxOptions.user"
-                                                                           disabled>
-                                                                    <span slot="prepend">&ycirc;&nbsp;user:</span></Input>
+                                                                        <Input v-model="initcontainer.securityContext.seLinuxOptions.user"
+                                                                               disabled>
+                                                                        <span slot="prepend">&ycirc;&nbsp;user:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                             </div>
@@ -6203,33 +6219,33 @@
                                                 </Row>
                                                 <Row v-if="typeof(initcontainer.stdin) !== 'undefined'">
                                                     <Col class="sixth" span="12">
-                                                    <Input v-model="initcontainer.stdin.toString()" disabled>
-                                                    <span slot="prepend">&rAarr;&nbsp;stdin:</span></Input>
+                                                        <Input v-model="initcontainer.stdin.toString()" disabled>
+                                                        <span slot="prepend">&rAarr;&nbsp;stdin:</span></Input>
                                                     </Col>
                                                 </Row>
                                                 <Row v-if="typeof(initcontainer.stdinOnce) !== 'undefined'">
                                                     <Col class="sixth" span="12">
-                                                    <Input v-model="initcontainer.stdinOnce.toString()" disabled>
-                                                    <span slot="prepend">&rAarr;&nbsp;stdinOnce:</span></Input>
+                                                        <Input v-model="initcontainer.stdinOnce.toString()" disabled>
+                                                        <span slot="prepend">&rAarr;&nbsp;stdinOnce:</span></Input>
                                                     </Col>
                                                 </Row>
                                                 <Row v-if="typeof(initcontainer.terminationMessagePath) !== 'undefined'">
                                                     <Col class="sixth" span="12">
-                                                    <Input v-model="initcontainer.terminationMessagePath" disabled>
-                                                    <span slot="prepend">&rAarr;&nbsp;terminationMessagePath:</span></Input>
+                                                        <Input v-model="initcontainer.terminationMessagePath" disabled>
+                                                        <span slot="prepend">&rAarr;&nbsp;terminationMessagePath:</span></Input>
                                                     </Col>
                                                 </Row>
                                                 <Row v-if="typeof(initcontainer.terminationMessagePolicy) !== 'undefined'">
                                                     <Col class="sixth" span="12">
-                                                    <Input v-model="initcontainer.terminationMessagePolicy"
-                                                           disabled>
-                                                    <span slot="prepend">&rAarr;&nbsp;terminationMessagePolicy:</span></Input>
+                                                        <Input v-model="initcontainer.terminationMessagePolicy"
+                                                               disabled>
+                                                        <span slot="prepend">&rAarr;&nbsp;terminationMessagePolicy:</span></Input>
                                                     </Col>
                                                 </Row>
                                                 <Row v-if="typeof(initcontainer.tty) !== 'undefined'">
                                                     <Col class="sixth" span="12">
-                                                    <Input v-model="initcontainer.tty.toString()" disabled>
-                                                    <span slot="prepend">&rAarr;&nbsp;tty:</span></Input>
+                                                        <Input v-model="initcontainer.tty.toString()" disabled>
+                                                        <span slot="prepend">&rAarr;&nbsp;tty:</span></Input>
                                                     </Col>
                                                 </Row>
                                                 <Row v-if="typeof(initcontainer.volumeMounts) !== 'undefined' && initcontainer.volumeMounts.length > 0">
@@ -6246,27 +6262,27 @@
                                                         </div>
                                                         <Row v-if="typeof(volumemount.mountPath) !== 'undefined'">
                                                             <Col class="eighth" span="12">
-                                                            <Input v-model="volumemount.mountPath" disabled>
-                                                            <span slot="prepend">&laemptyv;&nbsp;mountPath:</span></Input>
+                                                                <Input v-model="volumemount.mountPath" disabled>
+                                                                <span slot="prepend">&laemptyv;&nbsp;mountPath:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volumemount.name) !== 'undefined'">
                                                             <Col class="eighth" span="12">
-                                                            <Input v-model="volumemount.name" disabled>
-                                                            <span slot="prepend">&laemptyv;&nbsp;name:</span></Input>
+                                                                <Input v-model="volumemount.name" disabled>
+                                                                <span slot="prepend">&laemptyv;&nbsp;name:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volumemount.readOnly) !== 'undefined'">
                                                             <Col class="eighth" span="12">
-                                                            <Input v-model="volumemount.readOnly.toString()"
-                                                                   disabled>
-                                                            <span slot="prepend">&laemptyv;&nbsp;readOnly:</span></Input>
+                                                                <Input v-model="volumemount.readOnly.toString()"
+                                                                       disabled>
+                                                                <span slot="prepend">&laemptyv;&nbsp;readOnly:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volumemount.subPath) !== 'undefined'">
                                                             <Col class="eighth" span="12">
-                                                            <Input v-model="volumemount.subPath" disabled>
-                                                            <span slot="prepend">&laemptyv;&nbsp;subPath:</span></Input>
+                                                                <Input v-model="volumemount.subPath" disabled>
+                                                                <span slot="prepend">&laemptyv;&nbsp;subPath:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volumemount.additionalProperties) !== 'undefined' ">
@@ -6287,16 +6303,16 @@
                                                 </Row>
                                                 <Row v-if="typeof(initcontainer.workingDir) !== 'undefined'">
                                                     <Col class="sixth" span="12">
-                                                    <Input v-model="initcontainer.workingDir" disabled>
-                                                    <span slot="prepend">&rAarr;&nbsp;workingDir:</span></Input>
+                                                        <Input v-model="initcontainer.workingDir" disabled>
+                                                        <span slot="prepend">&rAarr;&nbsp;workingDir:</span></Input>
                                                     </Col>
                                                 </Row>
                                             </div>
                                         </Row>
                                         <Row v-if="typeof(infodata.spec.template.spec.nodeName) !== 'undefined'">
                                             <Col class="fourth" span="12">
-                                            <Input v-model="infodata.spec.template.spec.nodeName" disabled>
-                                            <span slot="prepend">&rAarr;&nbsp;nodeName:</span></Input>
+                                                <Input v-model="infodata.spec.template.spec.nodeName" disabled>
+                                                <span slot="prepend">&rAarr;&nbsp;nodeName:</span></Input>
                                             </Col>
                                         </Row>
                                         <Row v-if="typeof(infodata.spec.template.spec.nodeSelector) !== 'undefined' ">
@@ -6312,14 +6328,14 @@
                                         </Row>
                                         <Row v-if="typeof(infodata.spec.template.spec.restartPolicy) !== 'undefined'">
                                             <Col class="fourth" span="12">
-                                            <Input v-model="infodata.spec.template.spec.restartPolicy" disabled>
-                                            <span slot="prepend">&rAarr;&nbsp;restartPolicy:</span></Input>
+                                                <Input v-model="infodata.spec.template.spec.restartPolicy" disabled>
+                                                <span slot="prepend">&rAarr;&nbsp;restartPolicy:</span></Input>
                                             </Col>
                                         </Row>
                                         <Row v-if="typeof(infodata.spec.template.spec.schedulerName) !== 'undefined'">
                                             <Col class="fourth" span="12">
-                                            <Input v-model="infodata.spec.template.spec.schedulerName" disabled>
-                                            <span slot="prepend">&rAarr;&nbsp;schedulerName:</span></Input>
+                                                <Input v-model="infodata.spec.template.spec.schedulerName" disabled>
+                                                <span slot="prepend">&rAarr;&nbsp;schedulerName:</span></Input>
                                             </Col>
                                         </Row>
                                         <Row v-if="typeof(infodata.spec.template.spec.securityContext) !== 'undefined'">
@@ -6331,9 +6347,9 @@
                                             <div v-show="showmodel.spec.template.spec.securityContext.on">
                                                 <Row v-if="typeof(infodata.spec.template.spec.securityContext.fsGroup) !== 'undefined'">
                                                     <Col class="fifth" span="12">
-                                                    <Input v-model="infodata.spec.template.spec.securityContext.fsGroup"
-                                                           disabled>
-                                                    <span slot="prepend">&aelig;&nbsp;fsGroup:</span></Input>
+                                                        <Input v-model="infodata.spec.template.spec.securityContext.fsGroup"
+                                                               disabled>
+                                                        <span slot="prepend">&aelig;&nbsp;fsGroup:</span></Input>
                                                     </Col>
                                                 </Row>
                                                 <Row v-if="typeof(infodata.spec.template.spec.securityContext.seLinuxOptions) !== 'undefined'">
@@ -6345,30 +6361,30 @@
                                                     <div v-show="showmodel.spec.template.spec.securityContext.selinuxoptions.on">
                                                         <Row v-if="typeof(infodata.spec.template.spec.securityContext.seLinuxOptions.level) != 'undefined'">
                                                             <Col class="sixth" span="12">
-                                                            <Input v-model="infodata.spec.template.spec.securityContext.seLinuxOptions.level"
-                                                                   disabled>
-                                                            <span slot="prepend">&ocir;&nbsp;level:</span></Input>
+                                                                <Input v-model="infodata.spec.template.spec.securityContext.seLinuxOptions.level"
+                                                                       disabled>
+                                                                <span slot="prepend">&ocir;&nbsp;level:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(infodata.spec.template.spec.securityContext.seLinuxOptions.role) != 'undefined'">
                                                             <Col class="sixth" span="12">
-                                                            <Input v-model="infodata.spec.template.spec.securityContext.seLinuxOptions.role"
-                                                                   disabled>
-                                                            <span slot="prepend">&ocir;&nbsp;role:</span></Input>
+                                                                <Input v-model="infodata.spec.template.spec.securityContext.seLinuxOptions.role"
+                                                                       disabled>
+                                                                <span slot="prepend">&ocir;&nbsp;role:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(infodata.spec.template.spec.securityContext.seLinuxOptions.type) != 'undefined'">
                                                             <Col class="sixth" span="12">
-                                                            <Input v-model="infodata.spec.template.spec.securityContext.seLinuxOptions.type"
-                                                                   disabled>
-                                                            <span slot="prepend">&ocir;&nbsp;type:</span></Input>
+                                                                <Input v-model="infodata.spec.template.spec.securityContext.seLinuxOptions.type"
+                                                                       disabled>
+                                                                <span slot="prepend">&ocir;&nbsp;type:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(infodata.spec.template.spec.securityContext.seLinuxOptions.user) != 'undefined'">
                                                             <Col class="sixth" span="12">
-                                                            <Input v-model="infodata.spec.template.spec.securityContext.seLinuxOptions.user"
-                                                                   disabled>
-                                                            <span slot="prepend">&ocir;&nbsp;user:</span></Input>
+                                                                <Input v-model="infodata.spec.template.spec.securityContext.seLinuxOptions.user"
+                                                                       disabled>
+                                                                <span slot="prepend">&ocir;&nbsp;user:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(infodata.spec.template.spec.securityContext.seLinuxOptions.additionalProperties) !== 'undefined' ">
@@ -6403,16 +6419,16 @@
                                                 </Row>
                                                 <Row v-if="typeof(infodata.spec.template.spec.securityContext.runAsNonRoot) !== 'undefined'">
                                                     <Col class="fifth" span="12">
-                                                    <Input v-model="infodata.spec.template.spec.securityContext.runAsNonRoot.toString()"
-                                                           disabled>
-                                                    <span slot="prepend">&aelig;&nbsp;runAsNonRoot:</span></Input>
+                                                        <Input v-model="infodata.spec.template.spec.securityContext.runAsNonRoot.toString()"
+                                                               disabled>
+                                                        <span slot="prepend">&aelig;&nbsp;runAsNonRoot:</span></Input>
                                                     </Col>
                                                 </Row>
                                                 <Row v-if="typeof(infodata.spec.template.spec.securityContext.runAsUser) !== 'undefined'">
                                                     <Col class="fifth" span="12">
-                                                    <Input v-model="infodata.spec.template.spec.securityContext.runAsUser"
-                                                           disabled>
-                                                    <span slot="prepend">&aelig;&nbsp;runAsUser:</span></Input>
+                                                        <Input v-model="infodata.spec.template.spec.securityContext.runAsUser"
+                                                               disabled>
+                                                        <span slot="prepend">&aelig;&nbsp;runAsUser:</span></Input>
                                                     </Col>
                                                 </Row>
                                                 <Row v-if="typeof(infodata.spec.template.spec.securityContext.additionalProperties) !== 'undefined' ">
@@ -6433,28 +6449,28 @@
                                         </Row>
                                         <Row v-if="typeof(infodata.spec.template.spec.serviceAccount) !== 'undefined'">
                                             <Col class="fourth" span="12">
-                                            <Input v-model="infodata.spec.template.spec.serviceAccount" disabled>
-                                            <span slot="prepend">&rAarr;&nbsp;serviceAccount:</span></Input>
+                                                <Input v-model="infodata.spec.template.spec.serviceAccount" disabled>
+                                                <span slot="prepend">&rAarr;&nbsp;serviceAccount:</span></Input>
                                             </Col>
                                         </Row>
                                         <Row v-if="typeof(infodata.spec.template.spec.serviceAccountName) !== 'undefined'">
                                             <Col class="fourth" span="12">
-                                            <Input v-model="infodata.spec.template.spec.serviceAccountName"
-                                                   disabled>
-                                            <span slot="prepend">&rAarr;&nbsp;serviceAccountName:</span></Input>
+                                                <Input v-model="infodata.spec.template.spec.serviceAccountName"
+                                                       disabled>
+                                                <span slot="prepend">&rAarr;&nbsp;serviceAccountName:</span></Input>
                                             </Col>
                                         </Row>
                                         <Row v-if="typeof(infodata.spec.template.spec.subdomain) !== 'undefined'">
                                             <Col class="fourth" span="12">
-                                            <Input v-model="infodata.spec.template.spec.subdomain" disabled>
-                                            <span slot="prepend">&rAarr;&nbsp;subdomain:</span></Input>
+                                                <Input v-model="infodata.spec.template.spec.subdomain" disabled>
+                                                <span slot="prepend">&rAarr;&nbsp;subdomain:</span></Input>
                                             </Col>
                                         </Row>
                                         <Row v-if="typeof(infodata.spec.template.spec.terminationGracePeriodSeconds) !== 'undefined'">
                                             <Col class="fourth" span="12">
-                                            <Input v-model="infodata.spec.template.spec.terminationGracePeriodSeconds.toString()"
-                                                   disabled>
-                                            <span slot="prepend">&rAarr;&nbsp;terminationGracePeriodSeconds:</span></Input>
+                                                <Input v-model="infodata.spec.template.spec.terminationGracePeriodSeconds.toString()"
+                                                       disabled>
+                                                <span slot="prepend">&rAarr;&nbsp;terminationGracePeriodSeconds:</span></Input>
                                             </Col>
                                         </Row>
                                         <Row v-if="typeof(infodata.spec.template.spec.tolerations) !== 'undefined' && infodata.spec.template.spec.tolerations.length > 0">
@@ -6484,32 +6500,32 @@
                                                 </Row>
                                                 <Row v-if="typeof(toleration.effect) !== 'undefined'">
                                                     <Col class="seventh" span="12">
-                                                    <Input v-model="toleration.effect" disabled>
-                                                    <span slot="prepend">&sdotb;&nbsp;effect:</span></Input>
+                                                        <Input v-model="toleration.effect" disabled>
+                                                        <span slot="prepend">&sdotb;&nbsp;effect:</span></Input>
                                                     </Col>
                                                 </Row>
                                                 <Row v-if="typeof(toleration.key) !== 'undefined'">
                                                     <Col class="seventh" span="12">
-                                                    <Input v-model="toleration.key" disabled>
-                                                    <span slot="prepend">&sdotb;&nbsp;key:</span></Input>
+                                                        <Input v-model="toleration.key" disabled>
+                                                        <span slot="prepend">&sdotb;&nbsp;key:</span></Input>
                                                     </Col>
                                                 </Row>
                                                 <Row v-if="typeof(toleration.operator) !== 'undefined'">
                                                     <Col class="seventh" span="12">
-                                                    <Input v-model="toleration.operator" disabled>
-                                                    <span slot="prepend">&sdotb;&nbsp;operator:</span></Input>
+                                                        <Input v-model="toleration.operator" disabled>
+                                                        <span slot="prepend">&sdotb;&nbsp;operator:</span></Input>
                                                     </Col>
                                                 </Row>
                                                 <Row v-if="typeof(toleration.tolerationSeconds) !== 'undefined'">
                                                     <Col class="seventh" span="12">
-                                                    <Input v-model="toleration.tolerationSeconds" disabled>
-                                                    <span slot="prepend">&sdotb;&nbsp;tolerationSeconds:</span></Input>
+                                                        <Input v-model="toleration.tolerationSeconds" disabled>
+                                                        <span slot="prepend">&sdotb;&nbsp;tolerationSeconds:</span></Input>
                                                     </Col>
                                                 </Row>
                                                 <Row v-if="typeof(toleration.value) !== 'undefined'">
                                                     <Col class="seventh" span="12">
-                                                    <Input v-model="toleration.value" disabled>
-                                                    <span slot="prepend">&sdotb;&nbsp;value:</span></Input>
+                                                        <Input v-model="toleration.value" disabled>
+                                                        <span slot="prepend">&sdotb;&nbsp;value:</span></Input>
                                                     </Col>
                                                 </Row>
                                             </div>
@@ -6561,30 +6577,30 @@
                                                         </Row>
                                                         <Row v-if="typeof(volume.awsElasticBlockStore.fsType) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.awsElasticBlockStore.fsType"
-                                                                   disabled>
-                                                            <span slot="prepend">&aelig;&nbsp;fsType:</span></Input>
+                                                                <Input v-model="volume.awsElasticBlockStore.fsType"
+                                                                       disabled>
+                                                                <span slot="prepend">&aelig;&nbsp;fsType:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.awsElasticBlockStore.partition) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.awsElasticBlockStore.partition"
-                                                                   disabled>
-                                                            <span slot="prepend">&aelig;&nbsp;partition:</span></Input>
+                                                                <Input v-model="volume.awsElasticBlockStore.partition"
+                                                                       disabled>
+                                                                <span slot="prepend">&aelig;&nbsp;partition:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.awsElasticBlockStore.readOnly) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.awsElasticBlockStore.readOnly.toString()"
-                                                                   disabled>
-                                                            <span slot="prepend">&aelig;&nbsp;readOnly:</span></Input>
+                                                                <Input v-model="volume.awsElasticBlockStore.readOnly.toString()"
+                                                                       disabled>
+                                                                <span slot="prepend">&aelig;&nbsp;readOnly:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.awsElasticBlockStore.volumeID) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.awsElasticBlockStore.volumeID"
-                                                                   disabled>
-                                                            <span slot="prepend">&aelig;&nbsp;volumeID:</span></Input>
+                                                                <Input v-model="volume.awsElasticBlockStore.volumeID"
+                                                                       disabled>
+                                                                <span slot="prepend">&aelig;&nbsp;volumeID:</span></Input>
                                                             </Col>
                                                         </Row>
                                                     </div>
@@ -6612,39 +6628,39 @@
                                                         </Row>
                                                         <Row v-if="typeof(volume.azureDisk.cachingMode) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.azureDisk.cachingMode" disabled>
-                                                            <span slot="prepend">&aelig;&nbsp;cachingMode:</span></Input>
+                                                                <Input v-model="volume.azureDisk.cachingMode" disabled>
+                                                                <span slot="prepend">&aelig;&nbsp;cachingMode:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.azureDisk.diskName) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.azureDisk.diskName" disabled>
-                                                            <span slot="prepend">&aelig;&nbsp;diskName:</span></Input>
+                                                                <Input v-model="volume.azureDisk.diskName" disabled>
+                                                                <span slot="prepend">&aelig;&nbsp;diskName:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.azureDisk.diskURI) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.azureDisk.diskURI" disabled>
-                                                            <span slot="prepend">&aelig;&nbsp;diskURI:</span></Input>
+                                                                <Input v-model="volume.azureDisk.diskURI" disabled>
+                                                                <span slot="prepend">&aelig;&nbsp;diskURI:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.azureDisk.fsType) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.azureDisk.fsType" disabled>
-                                                            <span slot="prepend">&aelig;&nbsp;fsType:</span></Input>
+                                                                <Input v-model="volume.azureDisk.fsType" disabled>
+                                                                <span slot="prepend">&aelig;&nbsp;fsType:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.azureDisk.kind) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.azureDisk.kind" disabled>
-                                                            <span slot="prepend">&aelig;&nbsp;kind:</span></Input>
+                                                                <Input v-model="volume.azureDisk.kind" disabled>
+                                                                <span slot="prepend">&aelig;&nbsp;kind:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.azureDisk.readOnly) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.azureDisk.readOnly.toString()"
-                                                                   disabled>
-                                                            <span slot="prepend">&aelig;&nbsp;readOnly:</span></Input>
+                                                                <Input v-model="volume.azureDisk.readOnly.toString()"
+                                                                       disabled>
+                                                                <span slot="prepend">&aelig;&nbsp;readOnly:</span></Input>
                                                             </Col>
                                                         </Row>
                                                     </div>
@@ -6672,21 +6688,21 @@
                                                         </Row>
                                                         <Row v-if="typeof(volume.azureFile.readOnly) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.azureFile.readOnly.toString()"
-                                                                   disabled>
-                                                            <span slot="prepend">&aelig;&nbsp;readOnly:</span></Input>
+                                                                <Input v-model="volume.azureFile.readOnly.toString()"
+                                                                       disabled>
+                                                                <span slot="prepend">&aelig;&nbsp;readOnly:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.azureFile.secretName) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.azureFile.secretName" disabled>
-                                                            <span slot="prepend">&aelig;&nbsp;secretName:</span></Input>
+                                                                <Input v-model="volume.azureFile.secretName" disabled>
+                                                                <span slot="prepend">&aelig;&nbsp;secretName:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.azureFile.shareName) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.azureFile.shareName" disabled>
-                                                            <span slot="prepend">&aelig;&nbsp;shareName:</span></Input>
+                                                                <Input v-model="volume.azureFile.shareName" disabled>
+                                                                <span slot="prepend">&aelig;&nbsp;shareName:</span></Input>
                                                             </Col>
                                                         </Row>
                                                     </div>
@@ -6728,21 +6744,21 @@
                                                         </Row>
                                                         <Row v-if="typeof(volume.cephfs.path) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.cephfs.path" disabled>
-                                                            <span slot="prepend">&aelig;&nbsp;path:</span></Input>
+                                                                <Input v-model="volume.cephfs.path" disabled>
+                                                                <span slot="prepend">&aelig;&nbsp;path:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.cephfs.readOnly) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.cephfs.readOnly.toString()"
-                                                                   disabled>
-                                                            <span slot="prepend">&aelig;&nbsp;readOnly:</span></Input>
+                                                                <Input v-model="volume.cephfs.readOnly.toString()"
+                                                                       disabled>
+                                                                <span slot="prepend">&aelig;&nbsp;readOnly:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.cephfs.secretFile) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.cephfs.secretFile" disabled>
-                                                            <span slot="prepend">&aelig;&nbsp;secretFile:</span></Input>
+                                                                <Input v-model="volume.cephfs.secretFile" disabled>
+                                                                <span slot="prepend">&aelig;&nbsp;secretFile:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.cephfs.secretRef) !== 'undefined'">
@@ -6768,17 +6784,17 @@
                                                                 </Row>
                                                                 <Row v-if="typeof(volume.cephfs.secretRef.name) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="volume.cephfs.secretRef.name"
-                                                                           disabled>
-                                                                    <span slot="prepend">&tritime;&nbsp;name:</span></Input>
+                                                                        <Input v-model="volume.cephfs.secretRef.name"
+                                                                               disabled>
+                                                                        <span slot="prepend">&tritime;&nbsp;name:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                             </div>
                                                         </Row>
                                                         <Row v-if="typeof(volume.cephfs.user) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.cephfs.user" disabled>
-                                                            <span slot="prepend">&aelig;&nbsp;user:</span></Input>
+                                                                <Input v-model="volume.cephfs.user" disabled>
+                                                                <span slot="prepend">&aelig;&nbsp;user:</span></Input>
                                                             </Col>
                                                         </Row>
                                                     </div>
@@ -6806,21 +6822,21 @@
                                                         </Row>
                                                         <Row v-if="typeof(volume.cinder.fsType) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.cinder.fsType" disabled>
-                                                            <span slot="prepend">&oast;&nbsp;fsType:</span></Input>
+                                                                <Input v-model="volume.cinder.fsType" disabled>
+                                                                <span slot="prepend">&oast;&nbsp;fsType:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.cinder.readOnly) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.cinder.readOnly.toString()"
-                                                                   disabled>
-                                                            <span slot="prepend">&oast;&nbsp;readOnly:</span></Input>
+                                                                <Input v-model="volume.cinder.readOnly.toString()"
+                                                                       disabled>
+                                                                <span slot="prepend">&oast;&nbsp;readOnly:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.cinder.volumeID) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.cinder.volumeID" disabled>
-                                                            <span slot="prepend">&oast;&nbsp;volumeID:</span></Input>
+                                                                <Input v-model="volume.cinder.volumeID" disabled>
+                                                                <span slot="prepend">&oast;&nbsp;volumeID:</span></Input>
                                                             </Col>
                                                         </Row>
                                                     </div>
@@ -6848,14 +6864,14 @@
                                                         </Row>
                                                         <Row v-if="typeof(volume.configMap.defaultMode) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.configMap.defaultMode" disabled>
-                                                            <span slot="prepend">&odash;&nbsp;defaultMode:</span></Input>
+                                                                <Input v-model="volume.configMap.defaultMode" disabled>
+                                                                <span slot="prepend">&odash;&nbsp;defaultMode:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.configMap.name) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.configMap.name" disabled>
-                                                            <span slot="prepend">&odash;&nbsp;name:</span></Input>
+                                                                <Input v-model="volume.configMap.name" disabled>
+                                                                <span slot="prepend">&odash;&nbsp;name:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.configMap.items) !== 'undefined' && volume.configMap.items.length > 0">
@@ -6873,20 +6889,20 @@
                                                                 </div>
                                                                 <Row v-if="typeof(item.key) !== 'undefined'">
                                                                     <Col class="ninth" span="12">
-                                                                    <Input v-model="item.key" disabled>
-                                                                    <span slot="prepend">&searhk;&nbsp;key:</span></Input>
+                                                                        <Input v-model="item.key" disabled>
+                                                                        <span slot="prepend">&searhk;&nbsp;key:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(item.mode) !== 'undefined'">
                                                                     <Col class="ninth" span="12">
-                                                                    <Input v-model="item.mode" disabled>
-                                                                    <span slot="prepend">&searhk;&nbsp;mode:</span></Input>
+                                                                        <Input v-model="item.mode" disabled>
+                                                                        <span slot="prepend">&searhk;&nbsp;mode:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(item.path) !== 'undefined'">
                                                                     <Col class="ninth" span="12">
-                                                                    <Input v-model="item.path" disabled>
-                                                                    <span slot="prepend">&searhk;&nbsp;path:</span></Input>
+                                                                        <Input v-model="item.path" disabled>
+                                                                        <span slot="prepend">&searhk;&nbsp;path:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(item.additionalProperties) !== 'undefined' ">
@@ -6907,9 +6923,9 @@
                                                         </Row>
                                                         <Row v-if="typeof(volume.configMap.optional) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.configMap.optional.toString()"
-                                                                   disabled>
-                                                            <span slot="prepend">&odash;&nbsp;optional:</span></Input>
+                                                                <Input v-model="volume.configMap.optional.toString()"
+                                                                       disabled>
+                                                                <span slot="prepend">&odash;&nbsp;optional:</span></Input>
                                                             </Col>
                                                         </Row>
                                                     </div>
@@ -6937,9 +6953,9 @@
                                                         </Row>
                                                         <Row v-if="typeof(volume.downwardAPI.defaultMode) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.downwardAPI.defaultMode"
-                                                                   disabled>
-                                                            <span slot="prepend">&odash;&nbsp;defaultMode:</span></Input>
+                                                                <Input v-model="volume.downwardAPI.defaultMode"
+                                                                       disabled>
+                                                                <span slot="prepend">&odash;&nbsp;defaultMode:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.downwardAPI.items) !== 'undefined' && volume.downwardAPI.items.length > 0">
@@ -6971,14 +6987,14 @@
                                                                 </Row>
                                                                 <Row v-if="typeof(item.mode) !== 'undefined'">
                                                                     <Col class="ninth" span="12">
-                                                                    <Input v-model="item.mode" disabled>
-                                                                    <span slot="prepend">&searhk;&nbsp;mode:</span></Input>
+                                                                        <Input v-model="item.mode" disabled>
+                                                                        <span slot="prepend">&searhk;&nbsp;mode:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(item.path) !== 'undefined'">
                                                                     <Col class="ninth" span="12">
-                                                                    <Input v-model="item.path" disabled>
-                                                                    <span slot="prepend">&searhk;&nbsp;path:</span></Input>
+                                                                        <Input v-model="item.path" disabled>
+                                                                        <span slot="prepend">&searhk;&nbsp;path:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(item.fieldRef) !== 'undefined'">
@@ -7004,16 +7020,16 @@
                                                                         </Row>
                                                                         <Row v-if="typeof(item.fieldRef.apiVersion) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="item.fieldRef.apiVersion"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&LeftArrowRightArrow;&nbsp;apiVersion:</span></Input>
+                                                                                <Input v-model="item.fieldRef.apiVersion"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&LeftArrowRightArrow;&nbsp;apiVersion:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(item.fieldRef.fieldPath) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="item.fieldRef.fieldPath"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&LeftArrowRightArrow;&nbsp;fieldPath:</span></Input>
+                                                                                <Input v-model="item.fieldRef.fieldPath"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&LeftArrowRightArrow;&nbsp;fieldPath:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                     </div>
@@ -7041,9 +7057,9 @@
                                                                         </Row>
                                                                         <Row v-if="typeof(item.resourceFieldRef.containerName) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="item.resourceFieldRef.containerName"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&jukcy;&nbsp;containerName:</span></Input>
+                                                                                <Input v-model="item.resourceFieldRef.containerName"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&jukcy;&nbsp;containerName:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(item.resourceFieldRef.divisor) !== 'undefined'">
@@ -7070,25 +7086,25 @@
                                                                                 </Row>
                                                                                 <Row v-if="typeof(item.resourceFieldRef.divisor.amount) !== 'undefined'">
                                                                                     <Col class="eleventh" span="12">
-                                                                                    <Input v-model="item.resourceFieldRef.divisor.amount"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&kappav;&nbsp;amount:</span></Input>
+                                                                                        <Input v-model="item.resourceFieldRef.divisor.amount"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&kappav;&nbsp;amount:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(item.resourceFieldRef.divisor.format) !== 'undefined'">
                                                                                     <Col class="eleventh" span="12">
-                                                                                    <Input v-model="item.resourceFieldRef.divisor.format"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&kappav;&nbsp;format:</span></Input>
+                                                                                        <Input v-model="item.resourceFieldRef.divisor.format"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&kappav;&nbsp;format:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                             </div>
                                                                         </Row>
                                                                         <Row v-if="typeof(item.resourceFieldRef.resource) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="item.resourceFieldRef.resource"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&jukcy;&nbsp;resource:</span></Input>
+                                                                                <Input v-model="item.resourceFieldRef.resource"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&jukcy;&nbsp;resource:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                     </div>
@@ -7121,8 +7137,8 @@
                                                         </Row>
                                                         <Row v-if="typeof(volume.emptyDir.medium) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.emptyDir.medium" disabled>
-                                                            <span slot="prepend">&odash;&nbsp;medium:</span></Input>
+                                                                <Input v-model="volume.emptyDir.medium" disabled>
+                                                                <span slot="prepend">&odash;&nbsp;medium:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.emptyDir.sizeLimit) !== 'undefined'">
@@ -7148,16 +7164,16 @@
                                                                 </Row>
                                                                 <Row v-if="typeof(volume.emptyDir.sizeLimit.amount) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="volume.emptyDir.sizeLimit.amount"
-                                                                           disabled>
-                                                                    <span slot="prepend">&map;&nbsp;amount:</span></Input>
+                                                                        <Input v-model="volume.emptyDir.sizeLimit.amount"
+                                                                               disabled>
+                                                                        <span slot="prepend">&map;&nbsp;amount:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(volume.emptyDir.sizeLimit.format) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="volume.emptyDir.sizeLimit.format"
-                                                                           disabled>
-                                                                    <span slot="prepend">&map;&nbsp;format:</span></Input>
+                                                                        <Input v-model="volume.emptyDir.sizeLimit.format"
+                                                                               disabled>
+                                                                        <span slot="prepend">&map;&nbsp;format:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                             </div>
@@ -7187,20 +7203,20 @@
                                                         </Row>
                                                         <Row v-if="typeof(volume.fc.fsType) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.fc.fsType" disabled>
-                                                            <span slot="prepend">&odash;&nbsp;fsType:</span></Input>
+                                                                <Input v-model="volume.fc.fsType" disabled>
+                                                                <span slot="prepend">&odash;&nbsp;fsType:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.fc.lun) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.fc.lun" disabled>
-                                                            <span slot="prepend">&odash;&nbsp;lun:</span></Input>
+                                                                <Input v-model="volume.fc.lun" disabled>
+                                                                <span slot="prepend">&odash;&nbsp;lun:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.fc.readOnly) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.fc.readOnly.toString()" disabled>
-                                                            <span slot="prepend">&odash;&nbsp;readOnly:</span></Input>
+                                                                <Input v-model="volume.fc.readOnly.toString()" disabled>
+                                                                <span slot="prepend">&odash;&nbsp;readOnly:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.fc.targetWWNs) !== 'undefined' && volume.fc.targetWWNs.length > 0">
@@ -7241,14 +7257,14 @@
                                                         </Row>
                                                         <Row v-if="typeof(volume.flexVolume.driver) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.flexVolume.driver" disabled>
-                                                            <span slot="prepend">&odash;&nbsp;driver:</span></Input>
+                                                                <Input v-model="volume.flexVolume.driver" disabled>
+                                                                <span slot="prepend">&odash;&nbsp;driver:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.flexVolume.fsType) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.flexVolume.fsType" disabled>
-                                                            <span slot="prepend">&odash;&nbsp;fsType:</span></Input>
+                                                                <Input v-model="volume.flexVolume.fsType" disabled>
+                                                                <span slot="prepend">&odash;&nbsp;fsType:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.flexVolume.options) !== 'undefined' ">
@@ -7267,9 +7283,9 @@
                                                         </Row>
                                                         <Row v-if="typeof(volume.flexVolume.readOnly) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.flexVolume.readOnly.toString()"
-                                                                   disabled>
-                                                            <span slot="prepend">&odash;&nbsp;readOnly:</span></Input>
+                                                                <Input v-model="volume.flexVolume.readOnly.toString()"
+                                                                       disabled>
+                                                                <span slot="prepend">&odash;&nbsp;readOnly:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.flexVolume.secretRef) !== 'undefined'">
@@ -7295,9 +7311,9 @@
                                                                 </Row>
                                                                 <Row v-if="typeof(volume.flexVolume.secretRef.name) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="volume.flexVolume.secretRef.name"
-                                                                           disabled>
-                                                                    <span slot="prepend">&sext;&nbsp;name:</span></Input>
+                                                                        <Input v-model="volume.flexVolume.secretRef.name"
+                                                                               disabled>
+                                                                        <span slot="prepend">&sext;&nbsp;name:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                             </div>
@@ -7327,14 +7343,14 @@
                                                         </Row>
                                                         <Row v-if="typeof(volume.flocker.datasetName) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.flocker.datasetName" disabled>
-                                                            <span slot="prepend">&odash;&nbsp;datasetName:</span></Input>
+                                                                <Input v-model="volume.flocker.datasetName" disabled>
+                                                                <span slot="prepend">&odash;&nbsp;datasetName:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.flocker.datasetUUID) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.flocker.datasetUUID" disabled>
-                                                            <span slot="prepend">&odash;&nbsp;datasetUUID:</span></Input>
+                                                                <Input v-model="volume.flocker.datasetUUID" disabled>
+                                                                <span slot="prepend">&odash;&nbsp;datasetUUID:</span></Input>
                                                             </Col>
                                                         </Row>
                                                     </div>
@@ -7362,30 +7378,30 @@
                                                         </Row>
                                                         <Row v-if="typeof(volume.gcePersistentDisk.fsType) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.gcePersistentDisk.fsType"
-                                                                   disabled>
-                                                            <span slot="prepend">&odash;&nbsp;fsType:</span></Input>
+                                                                <Input v-model="volume.gcePersistentDisk.fsType"
+                                                                       disabled>
+                                                                <span slot="prepend">&odash;&nbsp;fsType:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.gcePersistentDisk.partition) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.gcePersistentDisk.partition"
-                                                                   disabled>
-                                                            <span slot="prepend">&odash;&nbsp;partition:</span></Input>
+                                                                <Input v-model="volume.gcePersistentDisk.partition"
+                                                                       disabled>
+                                                                <span slot="prepend">&odash;&nbsp;partition:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.gcePersistentDisk.pdName) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.gcePersistentDisk.pdName"
-                                                                   disabled>
-                                                            <span slot="prepend">&odash;&nbsp;pdName:</span></Input>
+                                                                <Input v-model="volume.gcePersistentDisk.pdName"
+                                                                       disabled>
+                                                                <span slot="prepend">&odash;&nbsp;pdName:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.gcePersistentDisk.readOnly) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.gcePersistentDisk.readOnly.toString()"
-                                                                   disabled>
-                                                            <span slot="prepend">&odash;&nbsp;readOnly:</span></Input>
+                                                                <Input v-model="volume.gcePersistentDisk.readOnly.toString()"
+                                                                       disabled>
+                                                                <span slot="prepend">&odash;&nbsp;readOnly:</span></Input>
                                                             </Col>
                                                         </Row>
                                                     </div>
@@ -7413,20 +7429,20 @@
                                                         </Row>
                                                         <Row v-if="typeof(volume.gitRepo.directory) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.gitRepo.directory" disabled>
-                                                            <span slot="prepend">&odash;&nbsp;directory:</span></Input>
+                                                                <Input v-model="volume.gitRepo.directory" disabled>
+                                                                <span slot="prepend">&odash;&nbsp;directory:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.gitRepo.repository) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.gitRepo.repository" disabled>
-                                                            <span slot="prepend">&odash;&nbsp;repository:</span></Input>
+                                                                <Input v-model="volume.gitRepo.repository" disabled>
+                                                                <span slot="prepend">&odash;&nbsp;repository:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.gitRepo.revision) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.gitRepo.revision" disabled>
-                                                            <span slot="prepend">&odash;&nbsp;revision:</span></Input>
+                                                                <Input v-model="volume.gitRepo.revision" disabled>
+                                                                <span slot="prepend">&odash;&nbsp;revision:</span></Input>
                                                             </Col>
                                                         </Row>
                                                     </div>
@@ -7454,21 +7470,21 @@
                                                         </Row>
                                                         <Row v-if="typeof(volume.glusterfs.endpoints) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.glusterfs.endpoints" disabled>
-                                                            <span slot="prepend">&odash;&nbsp;endpoints:</span></Input>
+                                                                <Input v-model="volume.glusterfs.endpoints" disabled>
+                                                                <span slot="prepend">&odash;&nbsp;endpoints:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.glusterfs.path) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.glusterfs.path" disabled>
-                                                            <span slot="prepend">&odash;&nbsp;path:</span></Input>
+                                                                <Input v-model="volume.glusterfs.path" disabled>
+                                                                <span slot="prepend">&odash;&nbsp;path:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.glusterfs.readOnly) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.glusterfs.readOnly.toString()"
-                                                                   disabled>
-                                                            <span slot="prepend">&odash;&nbsp;path:</span></Input>
+                                                                <Input v-model="volume.glusterfs.readOnly.toString()"
+                                                                       disabled>
+                                                                <span slot="prepend">&odash;&nbsp;path:</span></Input>
                                                             </Col>
                                                         </Row>
                                                     </div>
@@ -7496,8 +7512,8 @@
                                                         </Row>
                                                         <Row v-if="typeof(volume.hostPath.path) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.hostPath.path" disabled>
-                                                            <span slot="prepend">&odash;&nbsp;path:</span></Input>
+                                                                <Input v-model="volume.hostPath.path" disabled>
+                                                                <span slot="prepend">&odash;&nbsp;path:</span></Input>
                                                             </Col>
                                                         </Row>
                                                     </div>
@@ -7525,47 +7541,47 @@
                                                         </Row>
                                                         <Row v-if="typeof(volume.iscsi.chapAuthDiscovery) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.iscsi.chapAuthDiscovery.toString()"
-                                                                   disabled>
-                                                            <span slot="prepend">&odash;&nbsp;chapAuthDiscovery:</span></Input>
+                                                                <Input v-model="volume.iscsi.chapAuthDiscovery.toString()"
+                                                                       disabled>
+                                                                <span slot="prepend">&odash;&nbsp;chapAuthDiscovery:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.iscsi.chapAuthSession) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.iscsi.chapAuthSession.toString()"
-                                                                   disabled>
-                                                            <span slot="prepend">&odash;&nbsp;chapAuthSession:</span></Input>
+                                                                <Input v-model="volume.iscsi.chapAuthSession.toString()"
+                                                                       disabled>
+                                                                <span slot="prepend">&odash;&nbsp;chapAuthSession:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.iscsi.fsType) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.iscsi.fsType" disabled>
-                                                            <span slot="prepend">&odash;&nbsp;fsType:</span></Input>
+                                                                <Input v-model="volume.iscsi.fsType" disabled>
+                                                                <span slot="prepend">&odash;&nbsp;fsType:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.iscsi.iqn) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.iscsi.iqn" disabled>
-                                                            <span slot="prepend">&odash;&nbsp;iqn:</span></Input>
+                                                                <Input v-model="volume.iscsi.iqn" disabled>
+                                                                <span slot="prepend">&odash;&nbsp;iqn:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.iscsi.iscsiInterface) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.iscsi.iscsiInterface" disabled>
-                                                            <span slot="prepend">&odash;&nbsp;iscsiInterface:</span></Input>
+                                                                <Input v-model="volume.iscsi.iscsiInterface" disabled>
+                                                                <span slot="prepend">&odash;&nbsp;iscsiInterface:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.iscsi.lun) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.iscsi.lun" disabled>
-                                                            <span slot="prepend">&odash;&nbsp;lun:</span></Input>
+                                                                <Input v-model="volume.iscsi.lun" disabled>
+                                                                <span slot="prepend">&odash;&nbsp;lun:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.iscsi.readOnly) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.iscsi.readOnly.toString()"
-                                                                   disabled>
-                                                            <span slot="prepend">&odash;&nbsp;readOnly:</span></Input>
+                                                                <Input v-model="volume.iscsi.readOnly.toString()"
+                                                                       disabled>
+                                                                <span slot="prepend">&odash;&nbsp;readOnly:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.iscsi.portals) !== 'undefined' && volume.iscsi.portals.length > 0">
@@ -7605,25 +7621,25 @@
                                                                 </Row>
                                                                 <Row v-if="typeof(volume.iscsi.secretRef.name) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="volume.iscsi.secretRef.name"
-                                                                           disabled>
-                                                                    <span slot="prepend">&scnsim;&nbsp;name:</span></Input>
+                                                                        <Input v-model="volume.iscsi.secretRef.name"
+                                                                               disabled>
+                                                                        <span slot="prepend">&scnsim;&nbsp;name:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                             </div>
                                                         </Row>
                                                         <Row v-if="typeof(volume.iscsi.targetPortal) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.iscsi.targetPortal" disabled>
-                                                            <span slot="prepend">&odash;&nbsp;targetPortal:</span></Input>
+                                                                <Input v-model="volume.iscsi.targetPortal" disabled>
+                                                                <span slot="prepend">&odash;&nbsp;targetPortal:</span></Input>
                                                             </Col>
                                                         </Row>
                                                     </div>
                                                 </Row>
                                                 <Row v-if="typeof(volume.name) !== 'undefined'">
                                                     <Col class="sixth" span="12">
-                                                    <Input v-model="volume.name" disabled>
-                                                    <span slot="prepend">&plusb;&nbsp;name:</span></Input>
+                                                        <Input v-model="volume.name" disabled>
+                                                        <span slot="prepend">&plusb;&nbsp;name:</span></Input>
                                                     </Col>
                                                 </Row>
                                                 <Row v-if="typeof(volume.nfs) !== 'undefined'">
@@ -7649,21 +7665,21 @@
                                                         </Row>
                                                         <Row v-if="typeof(volume.nfs.path) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.nfs.path" disabled>
-                                                            <span slot="prepend">&odash;&nbsp;path:</span></Input>
+                                                                <Input v-model="volume.nfs.path" disabled>
+                                                                <span slot="prepend">&odash;&nbsp;path:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.nfs.readOnly) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.nfs.readOnly.toString()"
-                                                                   disabled>
-                                                            <span slot="prepend">&odash;&nbsp;readOnly:</span></Input>
+                                                                <Input v-model="volume.nfs.readOnly.toString()"
+                                                                       disabled>
+                                                                <span slot="prepend">&odash;&nbsp;readOnly:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.nfs.server) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.nfs.server" disabled>
-                                                            <span slot="prepend">&odash;&nbsp;server:</span></Input>
+                                                                <Input v-model="volume.nfs.server" disabled>
+                                                                <span slot="prepend">&odash;&nbsp;server:</span></Input>
                                                             </Col>
                                                         </Row>
                                                     </div>
@@ -7691,16 +7707,16 @@
                                                         </Row>
                                                         <Row v-if="typeof(volume.persistentVolumeClaim.claimName) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.persistentVolumeClaim.claimName"
-                                                                   disabled>
-                                                            <span slot="prepend">&odash;&nbsp;claimName:</span></Input>
+                                                                <Input v-model="volume.persistentVolumeClaim.claimName"
+                                                                       disabled>
+                                                                <span slot="prepend">&odash;&nbsp;claimName:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.persistentVolumeClaim.readOnly) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.persistentVolumeClaim.readOnly.toString()"
-                                                                   disabled>
-                                                            <span slot="prepend">&odash;&nbsp;readOnly:</span></Input>
+                                                                <Input v-model="volume.persistentVolumeClaim.readOnly.toString()"
+                                                                       disabled>
+                                                                <span slot="prepend">&odash;&nbsp;readOnly:</span></Input>
                                                             </Col>
                                                         </Row>
                                                     </div>
@@ -7728,16 +7744,16 @@
                                                         </Row>
                                                         <Row v-if="typeof(volume.photonPersistentDisk.fsType) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.photonPersistentDisk.fsType"
-                                                                   disabled>
-                                                            <span slot="prepend">&odash;&nbsp;fsType:</span></Input>
+                                                                <Input v-model="volume.photonPersistentDisk.fsType"
+                                                                       disabled>
+                                                                <span slot="prepend">&odash;&nbsp;fsType:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.photonPersistentDisk.pdID) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.photonPersistentDisk.pdID"
-                                                                   disabled>
-                                                            <span slot="prepend">&odash;&nbsp;pdID:</span></Input>
+                                                                <Input v-model="volume.photonPersistentDisk.pdID"
+                                                                       disabled>
+                                                                <span slot="prepend">&odash;&nbsp;pdID:</span></Input>
                                                             </Col>
                                                         </Row>
                                                     </div>
@@ -7765,22 +7781,22 @@
                                                         </Row>
                                                         <Row v-if="typeof(volume.portworxVolume.fsType) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.portworxVolume.fsType" disabled>
-                                                            <span slot="prepend">&odash;&nbsp;fsType:</span></Input>
+                                                                <Input v-model="volume.portworxVolume.fsType" disabled>
+                                                                <span slot="prepend">&odash;&nbsp;fsType:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.portworxVolume.readOnly) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.portworxVolume.readOnly.toString()"
-                                                                   disabled>
-                                                            <span slot="prepend">&odash;&nbsp;readOnly:</span></Input>
+                                                                <Input v-model="volume.portworxVolume.readOnly.toString()"
+                                                                       disabled>
+                                                                <span slot="prepend">&odash;&nbsp;readOnly:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.portworxVolume.volumeID) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.portworxVolume.volumeID"
-                                                                   disabled>
-                                                            <span slot="prepend">&odash;&nbsp;volumeID:</span></Input>
+                                                                <Input v-model="volume.portworxVolume.volumeID"
+                                                                       disabled>
+                                                                <span slot="prepend">&odash;&nbsp;volumeID:</span></Input>
                                                             </Col>
                                                         </Row>
                                                     </div>
@@ -7808,8 +7824,8 @@
                                                         </Row>
                                                         <Row v-if="typeof(volume.projected.defaultMode) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.projected.defaultMode" disabled>
-                                                            <span slot="prepend">&odash;&nbsp;defaultMode:</span></Input>
+                                                                <Input v-model="volume.projected.defaultMode" disabled>
+                                                                <span slot="prepend">&odash;&nbsp;defaultMode:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.projected.sources) !== 'undefined' && volume.projected.sources.length > 0">
@@ -7864,16 +7880,16 @@
                                                                         </Row>
                                                                         <Row v-if="typeof(source.configMap.name) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="source.configMap.name"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&scap;&nbsp;name:</span></Input>
+                                                                                <Input v-model="source.configMap.name"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&scap;&nbsp;name:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(source.configMap.optional) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="source.configMap.optional.toString()"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&scap;&nbsp;optional:</span></Input>
+                                                                                <Input v-model="source.configMap.optional.toString()"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&scap;&nbsp;optional:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(source.configMap.items) !== 'undefined' && source.configMap.items.length > 0">
@@ -7907,25 +7923,25 @@
                                                                                 <Row v-if="typeof(item.key) !== 'undefined'">
                                                                                     <Col class="thirteenth"
                                                                                          span="12">
-                                                                                    <Input v-model="item.key"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&odash;&nbsp;key:</span></Input>
+                                                                                        <Input v-model="item.key"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&odash;&nbsp;key:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(item.mode) !== 'undefined'">
                                                                                     <Col class="thirteenth"
                                                                                          span="12">
-                                                                                    <Input v-model="item.mode"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&odash;&nbsp;mode:</span></Input>
+                                                                                        <Input v-model="item.mode"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&odash;&nbsp;mode:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(item.path) !== 'undefined'">
                                                                                     <Col class="thirteenth"
                                                                                          span="12">
-                                                                                    <Input v-model="item.path"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&odash;&nbsp;path:</span></Input>
+                                                                                        <Input v-model="item.path"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&odash;&nbsp;path:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                             </div>
@@ -8007,33 +8023,33 @@
                                                                                         <Row v-if="typeof(item.fieldRef.apiVersion) !== 'undefined'">
                                                                                             <Col class="thirteenth"
                                                                                                  span="12">
-                                                                                            <Input v-model="item.fieldRef.apiVersion"
-                                                                                                   disabled>
-                                                                                            <span slot="prepend">&dagger;&nbsp;apiVersion:</span></Input>
+                                                                                                <Input v-model="item.fieldRef.apiVersion"
+                                                                                                       disabled>
+                                                                                                <span slot="prepend">&dagger;&nbsp;apiVersion:</span></Input>
                                                                                             </Col>
                                                                                         </Row>
                                                                                         <Row v-if="typeof(item.fieldRef.fieldPath) !== 'undefined'">
                                                                                             <Col class="thirteenth"
                                                                                                  span="12">
-                                                                                            <Input v-model="item.fieldRef.fieldPath"
-                                                                                                   disabled>
-                                                                                            <span slot="prepend">&dagger;&nbsp;fieldPath:</span></Input>
+                                                                                                <Input v-model="item.fieldRef.fieldPath"
+                                                                                                       disabled>
+                                                                                                <span slot="prepend">&dagger;&nbsp;fieldPath:</span></Input>
                                                                                             </Col>
                                                                                         </Row>
                                                                                     </div>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(item.mode) !== 'undefined'">
                                                                                     <Col class="twelfth" span="12">
-                                                                                    <Input v-model="item.mode"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&odash;&nbsp;mode:</span></Input>
+                                                                                        <Input v-model="item.mode"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&odash;&nbsp;mode:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(item.path) !== 'undefined'">
                                                                                     <Col class="twelfth" span="12">
-                                                                                    <Input v-model="item.path"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&odash;&nbsp;path:</span></Input>
+                                                                                        <Input v-model="item.path"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&odash;&nbsp;path:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(item.resourceFieldRef) !== 'undefined'">
@@ -8061,17 +8077,17 @@
                                                                                         <Row v-if="typeof(item.resourceFieldRef.containerName) !== 'undefined'">
                                                                                             <Col class="thirteenth"
                                                                                                  span="12">
-                                                                                            <Input v-model="item.resourceFieldRef.containerName"
-                                                                                                   disabled>
-                                                                                            <span slot="prepend">&odash;&nbsp;containerName:</span></Input>
+                                                                                                <Input v-model="item.resourceFieldRef.containerName"
+                                                                                                       disabled>
+                                                                                                <span slot="prepend">&odash;&nbsp;containerName:</span></Input>
                                                                                             </Col>
                                                                                         </Row>
                                                                                         <Row v-if="typeof(item.resourceFieldRef.resource) !== 'undefined'">
                                                                                             <Col class="thirteenth"
                                                                                                  span="12">
-                                                                                            <Input v-model="item.resourceFieldRef.resource"
-                                                                                                   disabled>
-                                                                                            <span slot="prepend">&odash;&nbsp;resource:</span></Input>
+                                                                                                <Input v-model="item.resourceFieldRef.resource"
+                                                                                                       disabled>
+                                                                                                <span slot="prepend">&odash;&nbsp;resource:</span></Input>
                                                                                             </Col>
                                                                                         </Row>
                                                                                         <Row v-if="typeof(item.resourceFieldRef.divisor) !== 'undefined'">
@@ -8099,17 +8115,17 @@
                                                                                                 <Row v-if="typeof(item.resourceFieldRef.divisor.amount) !== 'undefined'">
                                                                                                     <Col class="fourteenth"
                                                                                                          span="12">
-                                                                                                    <Input v-model="item.resourceFieldRef.divisor.amount"
-                                                                                                           disabled>
-                                                                                                    <span slot="prepend">&odiv;&nbsp;amount:</span></Input>
+                                                                                                        <Input v-model="item.resourceFieldRef.divisor.amount"
+                                                                                                               disabled>
+                                                                                                        <span slot="prepend">&odiv;&nbsp;amount:</span></Input>
                                                                                                     </Col>
                                                                                                 </Row>
                                                                                                 <Row v-if="typeof(item.resourceFieldRef.divisor.format) !== 'undefined'">
                                                                                                     <Col class="fourteenth"
                                                                                                          span="12">
-                                                                                                    <Input v-model="item.resourceFieldRef.divisor.format"
-                                                                                                           disabled>
-                                                                                                    <span slot="prepend">&odiv;&nbsp;format:</span></Input>
+                                                                                                        <Input v-model="item.resourceFieldRef.divisor.format"
+                                                                                                               disabled>
+                                                                                                        <span slot="prepend">&odiv;&nbsp;format:</span></Input>
                                                                                                     </Col>
                                                                                                 </Row>
                                                                                             </div>
@@ -8157,39 +8173,39 @@
                                                                                 </Row>
                                                                                 <Row v-if="typeof(item.key) !== 'undefined'">
                                                                                     <Col class="twelfth" span="12">
-                                                                                    <Input v-model="item.key"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&odash;&nbsp;key:</span></Input>
+                                                                                        <Input v-model="item.key"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&odash;&nbsp;key:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(item.mode) !== 'undefined'">
                                                                                     <Col class="twelfth" span="12">
-                                                                                    <Input v-model="item.mode"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&odash;&nbsp;mode:</span></Input>
+                                                                                        <Input v-model="item.mode"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&odash;&nbsp;mode:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                                 <Row v-if="typeof(item.path) !== 'undefined'">
                                                                                     <Col class="twelfth" span="12">
-                                                                                    <Input v-model="item.path"
-                                                                                           disabled>
-                                                                                    <span slot="prepend">&odash;&nbsp;path:</span></Input>
+                                                                                        <Input v-model="item.path"
+                                                                                               disabled>
+                                                                                        <span slot="prepend">&odash;&nbsp;path:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
                                                                             </div>
                                                                         </Row>
                                                                         <Row v-if="typeof(source.secret.name) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="source.secret.name"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&odash;&nbsp;name:</span></Input>
+                                                                                <Input v-model="source.secret.name"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&odash;&nbsp;name:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(source.secret.optional) !== 'undefined'">
                                                                             <Col class="tenth" span="12">
-                                                                            <Input v-model="source.secret.optional.toString()"
-                                                                                   disabled>
-                                                                            <span slot="prepend">&odash;&nbsp;optional:</span></Input>
+                                                                                <Input v-model="source.secret.optional.toString()"
+                                                                                       disabled>
+                                                                                <span slot="prepend">&odash;&nbsp;optional:</span></Input>
                                                                             </Col>
                                                                         </Row>
                                                                         <Row v-if="typeof(source.secret.additionalProperties) !== 'undefined' ">
@@ -8237,33 +8253,33 @@
                                                         </Row>
                                                         <Row v-if="typeof(volume.quobyte.group) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.quobyte.group" disabled>
-                                                            <span slot="prepend">&ocirc;&nbsp;group:</span></Input>
+                                                                <Input v-model="volume.quobyte.group" disabled>
+                                                                <span slot="prepend">&ocirc;&nbsp;group:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.quobyte.readOnly) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.quobyte.readOnly.toString()"
-                                                                   disabled>
-                                                            <span slot="prepend">&ocirc;&nbsp;readOnly:</span></Input>
+                                                                <Input v-model="volume.quobyte.readOnly.toString()"
+                                                                       disabled>
+                                                                <span slot="prepend">&ocirc;&nbsp;readOnly:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.quobyte.registry) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.quobyte.registry" disabled>
-                                                            <span slot="prepend">&ocirc;&nbsp;registry:</span></Input>
+                                                                <Input v-model="volume.quobyte.registry" disabled>
+                                                                <span slot="prepend">&ocirc;&nbsp;registry:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.quobyte.user) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.quobyte.user" disabled>
-                                                            <span slot="prepend">&ocirc;&nbsp;user:</span></Input>
+                                                                <Input v-model="volume.quobyte.user" disabled>
+                                                                <span slot="prepend">&ocirc;&nbsp;user:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.quobyte.volume) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.quobyte.volume" disabled>
-                                                            <span slot="prepend">&ocirc;&nbsp;volume:</span></Input>
+                                                                <Input v-model="volume.quobyte.volume" disabled>
+                                                                <span slot="prepend">&ocirc;&nbsp;volume:</span></Input>
                                                             </Col>
                                                         </Row>
                                                     </div>
@@ -8291,20 +8307,20 @@
                                                         </Row>
                                                         <Row v-if="typeof(volume.rbd.fsType) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.rbd.fsType" disabled>
-                                                            <span slot="prepend">&ocirc;&nbsp;fsType:</span></Input>
+                                                                <Input v-model="volume.rbd.fsType" disabled>
+                                                                <span slot="prepend">&ocirc;&nbsp;fsType:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.rbd.image) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.rbd.image" disabled>
-                                                            <span slot="prepend">&ocirc;&nbsp;image:</span></Input>
+                                                                <Input v-model="volume.rbd.image" disabled>
+                                                                <span slot="prepend">&ocirc;&nbsp;image:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.rbd.keyring) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.rbd.keyring" disabled>
-                                                            <span slot="prepend">&ocirc;&nbsp;keyring:</span></Input>
+                                                                <Input v-model="volume.rbd.keyring" disabled>
+                                                                <span slot="prepend">&ocirc;&nbsp;keyring:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.rbd.monitors) !== 'undefined' && volume.rbd.monitors.length > 0">
@@ -8322,15 +8338,15 @@
                                                         </Row>
                                                         <Row v-if="typeof(volume.rbd.pool) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.rbd.pool" disabled>
-                                                            <span slot="prepend">&ocirc;&nbsp;pool:</span></Input>
+                                                                <Input v-model="volume.rbd.pool" disabled>
+                                                                <span slot="prepend">&ocirc;&nbsp;pool:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.rbd.readOnly) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.rbd.readOnly.toString()"
-                                                                   disabled>
-                                                            <span slot="prepend">&ocirc;&nbsp;readOnly:</span></Input>
+                                                                <Input v-model="volume.rbd.readOnly.toString()"
+                                                                       disabled>
+                                                                <span slot="prepend">&ocirc;&nbsp;readOnly:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.rbd.secretRef) !== 'undefined'">
@@ -8356,17 +8372,17 @@
                                                                 </Row>
                                                                 <Row v-if="typeof(volume.rbd.secretRef.name) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="volume.rbd.secretRef.name"
-                                                                           disabled>
-                                                                    <span slot="prepend">&lat;&nbsp;name:</span></Input>
+                                                                        <Input v-model="volume.rbd.secretRef.name"
+                                                                               disabled>
+                                                                        <span slot="prepend">&lat;&nbsp;name:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                             </div>
                                                         </Row>
                                                         <Row v-if="typeof(volume.rbd.user) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.rbd.user" disabled>
-                                                            <span slot="prepend">&ocirc;&nbsp;user:</span></Input>
+                                                                <Input v-model="volume.rbd.user" disabled>
+                                                                <span slot="prepend">&ocirc;&nbsp;user:</span></Input>
                                                             </Col>
                                                         </Row>
                                                     </div>
@@ -8394,28 +8410,28 @@
                                                         </Row>
                                                         <Row v-if="typeof(volume.scaleIO.fsType) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.scaleIO.fsType" disabled>
-                                                            <span slot="prepend">&ocirc;&nbsp;fsType:</span></Input>
+                                                                <Input v-model="volume.scaleIO.fsType" disabled>
+                                                                <span slot="prepend">&ocirc;&nbsp;fsType:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.scaleIO.gateway) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.scaleIO.gateway" disabled>
-                                                            <span slot="prepend">&ocirc;&nbsp;gateway:</span></Input>
+                                                                <Input v-model="volume.scaleIO.gateway" disabled>
+                                                                <span slot="prepend">&ocirc;&nbsp;gateway:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.scaleIO.protectionDomain) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.scaleIO.protectionDomain"
-                                                                   disabled>
-                                                            <span slot="prepend">&ocirc;&nbsp;protectionDomain:</span></Input>
+                                                                <Input v-model="volume.scaleIO.protectionDomain"
+                                                                       disabled>
+                                                                <span slot="prepend">&ocirc;&nbsp;protectionDomain:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.scaleIO.readOnly) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.scaleIO.readOnly.toString()"
-                                                                   disabled>
-                                                            <span slot="prepend">&ocirc;&nbsp;readOnly:</span></Input>
+                                                                <Input v-model="volume.scaleIO.readOnly.toString()"
+                                                                       disabled>
+                                                                <span slot="prepend">&ocirc;&nbsp;readOnly:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.scaleIO.secretRef) !== 'undefined'">
@@ -8442,42 +8458,42 @@
                                                                 </Row>
                                                                 <Row v-if="typeof(volume.scaleIO.secretRef.name) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="volume.scaleIO.secretRef.name"
-                                                                           disabled>
-                                                                    <span slot="prepend">&xhArr;&nbsp;name:</span></Input>
+                                                                        <Input v-model="volume.scaleIO.secretRef.name"
+                                                                               disabled>
+                                                                        <span slot="prepend">&xhArr;&nbsp;name:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                             </div>
                                                         </Row>
                                                         <Row v-if="typeof(volume.scaleIO.sslEnabled) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.scaleIO.sslEnabled.toString()"
-                                                                   disabled>
-                                                            <span slot="prepend">&ocirc;&nbsp;readOnly:</span></Input>
+                                                                <Input v-model="volume.scaleIO.sslEnabled.toString()"
+                                                                       disabled>
+                                                                <span slot="prepend">&ocirc;&nbsp;readOnly:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.scaleIO.storageMode) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.scaleIO.storageMode" disabled>
-                                                            <span slot="prepend">&ocirc;&nbsp;storageMode:</span></Input>
+                                                                <Input v-model="volume.scaleIO.storageMode" disabled>
+                                                                <span slot="prepend">&ocirc;&nbsp;storageMode:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.scaleIO.storagePool) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.scaleIO.storagePool" disabled>
-                                                            <span slot="prepend">&ocirc;&nbsp;storagePool:</span></Input>
+                                                                <Input v-model="volume.scaleIO.storagePool" disabled>
+                                                                <span slot="prepend">&ocirc;&nbsp;storagePool:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.scaleIO.system) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.scaleIO.system" disabled>
-                                                            <span slot="prepend">&ocirc;&nbsp;system:</span></Input>
+                                                                <Input v-model="volume.scaleIO.system" disabled>
+                                                                <span slot="prepend">&ocirc;&nbsp;system:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.scaleIO.volumeName) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.scaleIO.volumeName" disabled>
-                                                            <span slot="prepend">&ocirc;&nbsp;volumeName:</span></Input>
+                                                                <Input v-model="volume.scaleIO.volumeName" disabled>
+                                                                <span slot="prepend">&ocirc;&nbsp;volumeName:</span></Input>
                                                             </Col>
                                                         </Row>
                                                     </div>
@@ -8505,8 +8521,8 @@
                                                         </Row>
                                                         <Row v-if="typeof(volume.secret.defaultMode) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.secret.defaultMode" disabled>
-                                                            <span slot="prepend">&ocirc;&nbsp;defaultMode:</span></Input>
+                                                                <Input v-model="volume.secret.defaultMode" disabled>
+                                                                <span slot="prepend">&ocirc;&nbsp;defaultMode:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.secret.items) !== 'undefined' && volume.secret.items.length > 0">
@@ -8538,35 +8554,35 @@
                                                                 </Row>
                                                                 <Row v-if="typeof(item.key) !== 'undefined'">
                                                                     <Col class="ninth" span="12">
-                                                                    <Input v-model="item.key" disabled>
-                                                                    <span slot="prepend">&ocirc;&nbsp;key:</span></Input>
+                                                                        <Input v-model="item.key" disabled>
+                                                                        <span slot="prepend">&ocirc;&nbsp;key:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(item.mode) !== 'undefined'">
                                                                     <Col class="ninth" span="12">
-                                                                    <Input v-model="item.mode" disabled>
-                                                                    <span slot="prepend">&ocirc;&nbsp;mode:</span></Input>
+                                                                        <Input v-model="item.mode" disabled>
+                                                                        <span slot="prepend">&ocirc;&nbsp;mode:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                                 <Row v-if="typeof(item.path) !== 'undefined'">
                                                                     <Col class="ninth" span="12">
-                                                                    <Input v-model="item.path" disabled>
-                                                                    <span slot="prepend">&ocirc;&nbsp;path:</span></Input>
+                                                                        <Input v-model="item.path" disabled>
+                                                                        <span slot="prepend">&ocirc;&nbsp;path:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                             </div>
                                                         </Row>
                                                         <Row v-if="typeof(volume.secret.optional) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.secret.optional.toString()"
-                                                                   disabled>
-                                                            <span slot="prepend">&ocirc;&nbsp;optional:</span></Input>
+                                                                <Input v-model="volume.secret.optional.toString()"
+                                                                       disabled>
+                                                                <span slot="prepend">&ocirc;&nbsp;optional:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.secret.secretName) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.secret.secretName" disabled>
-                                                            <span slot="prepend">&ocirc;&nbsp;secretName:</span></Input>
+                                                                <Input v-model="volume.secret.secretName" disabled>
+                                                                <span slot="prepend">&ocirc;&nbsp;secretName:</span></Input>
                                                             </Col>
                                                         </Row>
                                                     </div>
@@ -8594,8 +8610,8 @@
                                                         </Row>
                                                         <Row v-if="typeof(volume.storageos.fsType) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.storageos.fsType" disabled>
-                                                            <span slot="prepend">&ocirc;&nbsp;fsType:</span></Input>
+                                                                <Input v-model="volume.storageos.fsType" disabled>
+                                                                <span slot="prepend">&ocirc;&nbsp;fsType:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.storageos.secretRef) !== 'undefined'">
@@ -8622,31 +8638,31 @@
                                                                 </Row>
                                                                 <Row v-if="typeof(volume.storageos.secretRef.name) !== 'undefined'">
                                                                     <Col class="eighth" span="12">
-                                                                    <Input v-model="volume.storageos.secretRef.name"
-                                                                           disabled>
-                                                                    <span slot="prepend">&searhk;&nbsp;name:</span></Input>
+                                                                        <Input v-model="volume.storageos.secretRef.name"
+                                                                               disabled>
+                                                                        <span slot="prepend">&searhk;&nbsp;name:</span></Input>
                                                                     </Col>
                                                                 </Row>
                                                             </div>
                                                         </Row>
                                                         <Row v-if="typeof(volume.storageos.readOnly) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.storageos.readOnly.toString()"
-                                                                   disabled>
-                                                            <span slot="prepend">&ocirc;&nbsp;readOnly:</span></Input>
+                                                                <Input v-model="volume.storageos.readOnly.toString()"
+                                                                       disabled>
+                                                                <span slot="prepend">&ocirc;&nbsp;readOnly:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.storageos.volumeNamespace) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.storageos.volumeNamespace"
-                                                                   disabled>
-                                                            <span slot="prepend">&ocirc;&nbsp;volumeNamespace:</span></Input>
+                                                                <Input v-model="volume.storageos.volumeNamespace"
+                                                                       disabled>
+                                                                <span slot="prepend">&ocirc;&nbsp;volumeNamespace:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.storageos.volumeName) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.storageos.volumeName" disabled>
-                                                            <span slot="prepend">&ocirc;&nbsp;volumeName:</span></Input>
+                                                                <Input v-model="volume.storageos.volumeName" disabled>
+                                                                <span slot="prepend">&ocirc;&nbsp;volumeName:</span></Input>
                                                             </Col>
                                                         </Row>
                                                     </div>
@@ -8674,29 +8690,29 @@
                                                         </Row>
                                                         <Row v-if="typeof(volume.vsphereVolume.fsType) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.vsphereVolume.fsType" disabled>
-                                                            <span slot="prepend">&ocirc;&nbsp;fsType:</span></Input>
+                                                                <Input v-model="volume.vsphereVolume.fsType" disabled>
+                                                                <span slot="prepend">&ocirc;&nbsp;fsType:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.vsphereVolume.storagePolicyID) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.vsphereVolume.storagePolicyID"
-                                                                   disabled>
-                                                            <span slot="prepend">&ocirc;&nbsp;storagePolicyID:</span></Input>
+                                                                <Input v-model="volume.vsphereVolume.storagePolicyID"
+                                                                       disabled>
+                                                                <span slot="prepend">&ocirc;&nbsp;storagePolicyID:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.vsphereVolume.storagePolicyName) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.vsphereVolume.storagePolicyName"
-                                                                   disabled>
-                                                            <span slot="prepend">&ocirc;&nbsp;storagePolicyName:</span></Input>
+                                                                <Input v-model="volume.vsphereVolume.storagePolicyName"
+                                                                       disabled>
+                                                                <span slot="prepend">&ocirc;&nbsp;storagePolicyName:</span></Input>
                                                             </Col>
                                                         </Row>
                                                         <Row v-if="typeof(volume.vsphereVolume.volumePath) !== 'undefined'">
                                                             <Col class="seventh" span="12">
-                                                            <Input v-model="volume.vsphereVolume.volumePath"
-                                                                   disabled>
-                                                            <span slot="prepend">&ocirc;&nbsp;volumePath:</span></Input>
+                                                                <Input v-model="volume.vsphereVolume.volumePath"
+                                                                       disabled>
+                                                                <span slot="prepend">&ocirc;&nbsp;volumePath:</span></Input>
                                                             </Col>
                                                         </Row>
                                                     </div>
@@ -8721,8 +8737,8 @@
                         </Row>
                         <Row class="second" v-if="typeof(infodata.spec.replicas) !== 'undefined'">
                             <Col span="12">
-                            <Input v-model="infodata.spec.replicas" disabled>
-                            <span slot="prepend">&hookrightarrow;&nbsp;replicas:</span></Input>
+                                <Input v-model="infodata.spec.replicas" disabled>
+                                <span slot="prepend">&hookrightarrow;&nbsp;replicas:</span></Input>
                             </Col>
                         </Row>
                         <Row v-if="typeof(infodata.spec.additionalProperties) !== 'undefined' && modelflag.spec.properties === true ">
@@ -8746,14 +8762,14 @@
                     <div v-show="showmodel.status.on">
                         <Row class="second" v-if="typeof(infodata.status.availableReplicas) !== 'undefined'">
                             <Col span="12">
-                            <Input v-model="infodata.status.availableReplicas" disabled>
-                            <span slot="prepend">&wedbar;&nbsp;availableReplicas:</span></Input>
+                                <Input v-model="infodata.status.availableReplicas" disabled>
+                                <span slot="prepend">&wedbar;&nbsp;availableReplicas:</span></Input>
                             </Col>
                         </Row>
                         <Row class="second" v-if="typeof(infodata.status.fullyLabeledReplicas) !== 'undefined'">
                             <Col span="12">
-                            <Input v-model="infodata.status.fullyLabeledReplicas" disabled>
-                            <span slot="prepend">&wedbar;&nbsp;fullyLabeledReplicas:</span></Input>
+                                <Input v-model="infodata.status.fullyLabeledReplicas" disabled>
+                                <span slot="prepend">&wedbar;&nbsp;fullyLabeledReplicas:</span></Input>
                             </Col>
                         </Row>
                         <Row v-if="typeof(infodata.status.conditions) !== 'undefined' && infodata.status.conditions.length > 0">
@@ -8769,32 +8785,32 @@
                                 </div>
                                 <Row class="fourth" v-if="typeof(item.lastTransitionTime) !== 'undefined' ">
                                     <Col span="12">
-                                    <Input v-model="item.lastTransitionTime" disabled>
-                                    <span slot="prepend">&triminus;&nbsp;lastTransitionTime:</span></Input>
+                                        <Input v-model="item.lastTransitionTime" disabled>
+                                        <span slot="prepend">&triminus;&nbsp;lastTransitionTime:</span></Input>
                                     </Col>
                                 </Row>
                                 <Row class="fourth" v-if="typeof(item.message) !== 'undefined' ">
                                     <Col span="12">
-                                    <Input v-model="item.message" disabled>
-                                    <span slot="prepend">&triminus;&nbsp;message:</span></Input>
+                                        <Input v-model="item.message" disabled>
+                                        <span slot="prepend">&triminus;&nbsp;message:</span></Input>
                                     </Col>
                                 </Row>
                                 <Row class="fourth" v-if="typeof(item.reason) !== 'undefined' ">
                                     <Col span="12">
-                                    <Input v-model="item.reason" disabled>
-                                    <span slot="prepend">&triminus;&nbsp;reason:</span></Input>
+                                        <Input v-model="item.reason" disabled>
+                                        <span slot="prepend">&triminus;&nbsp;reason:</span></Input>
                                     </Col>
                                 </Row>
                                 <Row class="fourth" v-if="typeof(item.status) !== 'undefined' ">
                                     <Col span="12">
-                                    <Input v-model="item.status" disabled>
-                                    <span slot="prepend">&triminus;&nbsp;status:</span></Input>
+                                        <Input v-model="item.status" disabled>
+                                        <span slot="prepend">&triminus;&nbsp;status:</span></Input>
                                     </Col>
                                 </Row>
                                 <Row class="fourth" v-if="typeof(item.type) !== 'undefined' ">
                                     <Col span="12">
-                                    <Input v-model="item.type" disabled>
-                                    <span slot="prepend">&triminus;&nbsp;type:</span></Input>
+                                        <Input v-model="item.type" disabled>
+                                        <span slot="prepend">&triminus;&nbsp;type:</span></Input>
                                     </Col>
                                 </Row>
                                 <Row v-if="typeof(item.additionalProperties) !== 'undefined' && modelflag.status.conditions[index] === true">
@@ -8810,20 +8826,20 @@
                         </Row>
                         <Row class="second" v-if="typeof(infodata.status.observedGeneration) !== 'undefined'">
                             <Col span="12">
-                            <Input v-model="infodata.status.observedGeneration" disabled>
-                            <span slot="prepend">&wedbar;&nbsp;observedGeneration:</span></Input>
+                                <Input v-model="infodata.status.observedGeneration" disabled>
+                                <span slot="prepend">&wedbar;&nbsp;observedGeneration:</span></Input>
                             </Col>
                         </Row>
                         <Row class="second" v-if="typeof(infodata.status.readyReplicas) !== 'undefined'">
                             <Col span="12">
-                            <Input v-model="infodata.status.readyReplicas" disabled>
-                            <span slot="prepend">&wedbar;&nbsp;readyReplicas:</span></Input>
+                                <Input v-model="infodata.status.readyReplicas" disabled>
+                                <span slot="prepend">&wedbar;&nbsp;readyReplicas:</span></Input>
                             </Col>
                         </Row>
                         <Row class="second" v-if="typeof(infodata.status.replicas) !== 'undefined'">
                             <Col span="12">
-                            <Input v-model="infodata.status.replicas" disabled>
-                            <span slot="prepend">&wedbar;&nbsp;replicas:</span></Input>
+                                <Input v-model="infodata.status.replicas" disabled>
+                                <span slot="prepend">&wedbar;&nbsp;replicas:</span></Input>
                             </Col>
                         </Row>
                         <Row v-if="typeof(infodata.status.additionalProperties) !== 'undefined' &&  modelflag.status.properties === true ">
@@ -8865,13 +8881,13 @@
                     <FormItem class="add_first" >
                         <Row >
                             <Col span="12">
-                            <Input typeof="text" v-model="tempnewdata.apiVersion" disabled><span slot="prepend">apiVersion:</span></Input></Col>
+                                <Input typeof="text" v-model="tempnewdata.apiVersion" disabled><span slot="prepend">apiVersion:</span></Input></Col>
                         </Row>
                     </FormItem>
                     <FormItem class="add_first" >
                         <Row >
                             <Col span="12">
-                            <Input typeof="text" v-model="tempnewdata.kind" disabled ><span slot="prepend">kind:</span></Input></Col>
+                                <Input typeof="text" v-model="tempnewdata.kind" disabled ><span slot="prepend">kind:</span></Input></Col>
                         </Row>
                     </FormItem>
                     <div class="add_lable" @click="showmodel_metadata">
@@ -8882,7 +8898,7 @@
                         <FormItem class="add_first" >
                             <Row class="add_second">
                                 <Col span="12">
-                                <Input typeof="text" v-model="tempnewdata.metadata_name" ><span slot="prepend">name:</span></Input></Col>
+                                    <Input typeof="text" v-model="tempnewdata.metadata_name" ><span slot="prepend">name:</span></Input></Col>
                             </Row>
                         </FormItem>
                     </div>
@@ -8894,7 +8910,7 @@
                         <FormItem class="add_second" prop="spec_replicas">
                             <Row>
                                 <Col span="12">
-                                <Input type="text" v-model="tempnewdata.spec_replicas" placeholder="实例个数"><span slot="prepend">replicas:</span></Input></Col>
+                                    <Input type="text" v-model="tempnewdata.spec_replicas" placeholder="实例个数"><span slot="prepend">replicas:</span></Input></Col>
                             </Row>
                         </FormItem>
                         <Row>
@@ -8936,12 +8952,12 @@
                                         <FormItem>
                                             <Row class="add_fifth" v-for="(label,index) in tempnewdata.templabels" :key="index">
                                                 <Col span="3" v-for="(arr,arrindex) in label" :key="arrindex">
-                                                <Input typeof="text" v-model="tempnewdata.templabels[index][arrindex]">
-                                                </Input>
+                                                    <Input typeof="text" v-model="tempnewdata.templabels[index][arrindex]">
+                                                    </Input>
                                                 </Col>
                                                 <Col span="6" >
-                                                <Button type="primary" icon="plus" @click="addnewdataspectemplatemetadatalabels" ></Button>
-                                                <Button type="primary" icon="minus" @click="delnewdataspectemplatemetadatalabels(index)" v-if="tempnewdata.templabels.length > 1"></Button>
+                                                    <Button type="primary" icon="plus" @click="addnewdataspectemplatemetadatalabels" ></Button>
+                                                    <Button type="primary" icon="minus" @click="delnewdataspectemplatemetadatalabels(index)" v-if="tempnewdata.templabels.length > 1"></Button>
                                                 </Col>
                                             </Row>
                                         </FormItem>
@@ -8955,14 +8971,14 @@
                                     <FormItem class="add_fourth" >
                                         <Row >
                                             <Col span="12">
-                                            <Input v-model="tempnewdata.spec_template_spec_hostname" ><span slot="prepend" >hostname:</span></Input>
+                                                <Input v-model="tempnewdata.spec_template_spec_hostname" ><span slot="prepend">hostname:</span></Input>
                                             </Col>
                                         </Row>
                                     </FormItem>
                                     <FormItem class="add_fourth" >
                                         <Row >
                                             <Col span="12">
-                                            <Input v-model="tempnewdata.spec_template_spec_subdomain" ><span slot="prepend" >subdomain:</span></Input>
+                                                <Input v-model="tempnewdata.spec_template_spec_subdomain" ><span slot="prepend">subdomain:</span></Input>
                                             </Col>
                                         </Row>
                                     </FormItem>
@@ -8981,7 +8997,7 @@
                                         <FormItem class="add_fifth" prop="spec_template_spec_containers_image">
                                             <Row >
                                                 <Col span="12">
-                                                <Input v-model="tempnewdata.spec_template_spec_containers_image" ><span slot="prepend">image:</span></Input>
+                                                    <Input v-model="tempnewdata.spec_template_spec_containers_image" ><span slot="prepend">image:</span></Input>
                                                 </Col>
                                             </Row>
                                         </FormItem>
@@ -9011,8 +9027,8 @@
                                                                     <Input v-model="tempnewdata.commands[index]" ><span slot="prepend">——:</span></Input>
                                                                 </Col>
                                                                 <Col span="6" >
-                                                                <Button type="primary" icon="plus" @click="addnewdataspectemplatespeccontainerslifecyclepostStartexeccommand" ></Button>
-                                                                <Button type="primary" icon="minus" @click="delnewdataspectemplatespeccontainerslifecyclepostStartexeccommand(index)" v-if="tempnewdata.commands.length > 1"></Button>
+                                                                    <Button type="primary" icon="plus" @click="addnewdataspectemplatespeccontainerslifecyclepostStartexeccommand" ></Button>
+                                                                    <Button type="primary" icon="minus" @click="delnewdataspectemplatespeccontainerslifecyclepostStartexeccommand(index)" v-if="tempnewdata.commands.length > 1"></Button>
                                                                 </Col>
                                                             </Row>
                                                         </div>
@@ -9029,7 +9045,7 @@
                                                 <div class="add_lable add_sixth" >
                                                     <span style="font-size:small">列表数:{{index}}:</span>
                                                 </div>
-                                               <!--  <FormItem  :prop="'envs.' + index + '.name'">-->
+                                                <!--  <FormItem  :prop="'envs.' + index + '.name'">-->
                                                 <FormItem>
                                                     <Row class="add_seventh">
                                                         <Col span="12">
@@ -9043,8 +9059,8 @@
                                                             <Input v-model="env.value" ><span slot="prepend">value:</span></Input>
                                                         </Col>
                                                         <Col span="6" >
-                                                        <Button type="primary" icon="plus"  @click="addnewdataspectemplatespeccontainersenv" ></Button>
-                                                        <Button type="primary" icon="minus" @click="delnewdataspectemplatespeccontainersenv(index)" v-if="tempnewdata.envs.length > 1"></Button>
+                                                            <Button type="primary" icon="plus"  @click="addnewdataspectemplatespeccontainersenv" ></Button>
+                                                            <Button type="primary" icon="minus" @click="delnewdataspectemplatespeccontainersenv(index)" v-if="tempnewdata.envs.length > 1"></Button>
                                                         </Col>
                                                     </Row>
                                                 </FormItem>
@@ -9062,11 +9078,11 @@
                                                 <FormItem>
                                                     <Row class="add_seventh">
                                                         <Col span="12">
-                                                        <Input v-model="port.containerPort"><span slot="prepend">containerPort:</span></Input>
+                                                            <Input v-model="port.containerPort"><span slot="prepend">containerPort:</span></Input>
                                                         </Col>
                                                         <Col span="6" >
-                                                        <Button type="primary" icon="plus"  @click="addnewdataspectemplatespeccontainersports" ></Button>
-                                                        <Button type="primary" icon="minus" @click="delnewdataspectemplatespeccontainersports(index)" v-if="tempnewdata.ports.length > 1"></Button>
+                                                            <Button type="primary" icon="plus"  @click="addnewdataspectemplatespeccontainersports" ></Button>
+                                                            <Button type="primary" icon="minus" @click="delnewdataspectemplatespeccontainersports(index)" v-if="tempnewdata.ports.length > 1"></Button>
                                                         </Col>
                                                     </Row>
                                                 </FormItem>
@@ -9084,18 +9100,18 @@
                                                 <FormItem>
                                                     <Row class="add_seventh">
                                                         <Col span="12">
-                                                        <Input v-model="volume.name"><span slot="prepend">name:</span></Input>
+                                                            <Input v-model="volume.name"><span slot="prepend">name:</span></Input>
                                                         </Col>
                                                     </Row>
                                                 </FormItem>
                                                 <FormItem>
                                                     <Row class="add_seventh">
                                                         <Col span="12">
-                                                        <Input v-model="volume.mountPath" ><span slot="prepend">mountPath:</span></Input>
+                                                            <Input v-model="volume.mountPath" ><span slot="prepend">mountPath:</span></Input>
                                                         </Col>
                                                         <Col span="6" >
-                                                        <Button type="primary" icon="plus"  @click="addnewdataspectemplatespeccontainersvolumeMounts" ></Button>
-                                                        <Button type="primary" icon="minus" @click="delnewdataspectemplatespeccontainersvolumeMounts(index)" v-if="tempnewdata.volumeMounts.length > 1"></Button>
+                                                            <Button type="primary" icon="plus"  @click="addnewdataspectemplatespeccontainersvolumeMounts" ></Button>
+                                                            <Button type="primary" icon="minus" @click="delnewdataspectemplatespeccontainersvolumeMounts(index)" v-if="tempnewdata.volumeMounts.length > 1"></Button>
                                                         </Col>
                                                     </Row>
                                                 </FormItem>
@@ -9110,12 +9126,12 @@
                                         <FormItem>
                                             <Row class="add_fifth" v-for="(selector,index) in tempnewdata.tempnodeSelector" :key="index">
                                                 <Col span="3" v-for="(arr,selindex) in selector" :key="selindex">
-                                                <Input typeof="text" v-model="tempnewdata.tempnodeSelector[index][selindex]">
-                                                </Input>
+                                                    <Input typeof="text" v-model="tempnewdata.tempnodeSelector[index][selindex]">
+                                                    </Input>
                                                 </Col>
                                                 <Col span="6" >
-                                                <Button type="primary" icon="plus" @click="addtempnodeSelector" ></Button>
-                                                <Button type="primary" icon="minus" @click="deltempnodeSelector(index)" v-if="tempnewdata.tempnodeSelector.length > 1"></Button>
+                                                    <Button type="primary" icon="plus" @click="addtempnodeSelector" ></Button>
+                                                    <Button type="primary" icon="minus" @click="deltempnodeSelector(index)" v-if="tempnewdata.tempnodeSelector.length > 1"></Button>
                                                 </Col>
                                             </Row>
                                         </FormItem>
@@ -9131,7 +9147,7 @@
                                         <FormItem>
                                             <Row class="add_sixth">
                                                 <Col span="12">
-                                                <Input v-model="volume.name"><span slot="prepend">name:</span></Input>
+                                                    <Input v-model="volume.name"><span slot="prepend">name:</span></Input>
                                                 </Col>
                                             </Row>
                                         </FormItem>
@@ -9143,11 +9159,11 @@
                                             <FormItem>
                                                 <Row class="add_seventh">
                                                     <Col span="12">
-                                                    <Input v-model="volume.hostPath.path" ><span slot="prepend">path:</span></Input>
+                                                        <Input v-model="volume.hostPath.path" ><span slot="prepend">path:</span></Input>
                                                     </Col>
                                                     <Col span="6" >
-                                                    <Button type="primary" icon="plus"  @click="addnewdataspectemplatespecvolumes" ></Button>
-                                                    <Button type="primary" icon="minus" @click="delnewdataspectemplatespecvolumes(index)" v-if="tempnewdata.volumes.length > 1"></Button>
+                                                        <Button type="primary" icon="plus"  @click="addnewdataspectemplatespecvolumes" ></Button>
+                                                        <Button type="primary" icon="minus" @click="delnewdataspectemplatespecvolumes(index)" v-if="tempnewdata.volumes.length > 1"></Button>
                                                     </Col>
                                                 </Row>
                                             </FormItem>
@@ -9218,853 +9234,6 @@
                 detelmodal:false,
                 delloading:true,
                 delinfo:{},
-                showmodel: {
-                    properties: true,
-                    status: {
-                        on: true,
-                        properties: true,
-                        conditions: true,
-                    },
-                    metadata: {
-                        on: true,
-                        initializers: {
-                            on: true,
-                            pending: true,
-                            result: {
-                                on: true,
-                                properties: true,
-                                metadata: {
-                                    on: true,
-                                    properties: true,
-                                },
-                                details: {
-                                    on: true,
-                                    causes: {
-                                        on: true,
-                                        properties: true,
-                                    },
-                                    properties: true
-                                },
-                            },
-                            properties: true
-                        },
-                        annotations: true,
-                        ownerReferences: {
-                            on: true,
-                            properties: true,
-                        },
-                        labels: true,
-                        finalizers: true,
-                        properties: true
-                    },
-                    spec: {
-                        on: true,
-                        selector: true,
-                        properties: true,
-                        template: {
-                            on: true,
-                            properties: true,
-                            metadata: {
-                                on: true,
-                                annotations: true,
-                                finalizers: true,
-                                initializers: {
-                                    on: true,
-                                    pending: true,
-                                    properties: true,
-                                    result: {
-                                        on: true,
-                                        properties: true,
-                                        details: {
-                                            on: true,
-                                            properties: true,
-                                            causes: true
-                                        },
-                                        metadata: {
-                                            on: true,
-                                            properties: true,
-                                        }
-                                    }
-                                },
-                                labels: true,
-                                ownerReferences: {
-                                    on: true,
-                                    properties: true,
-                                },
-                                properties: true,
-                            },
-                            spec: {
-                                on: true,
-                                affinity: {
-                                    on: true,
-                                    nodeAffinity: {
-                                        on: true,
-                                        properties: true,
-                                        preferredexecution: {
-                                            on: true,
-                                            properties: true,
-                                            preference: {
-                                                on: true,
-                                                matchexpion: {
-                                                    on: true,
-                                                    properties: true,
-                                                    values: true
-                                                },
-                                                properties: true
-                                            },
-                                        },
-                                        requiredexecution: {
-                                            on: true,
-                                            properties: true,
-                                            nodeSelector: {
-                                                on: true,
-                                                properties: true,
-                                                matchexpreesion: {
-                                                    on: true,
-                                                    properties: true,
-                                                    values: true
-                                                }
-                                            }
-                                        }
-                                    },
-                                    podAffinity: {
-                                        on: true,
-                                        properties: true,
-                                        preferredexecution: {
-                                            on: true,
-                                            properties: true,
-                                            podaffinityterm: {
-                                                on: true,
-                                                namespaces: true,
-                                                properties: true,
-                                                labels: {
-                                                    on: true,
-                                                    properties: true,
-                                                    matchexpion: {
-                                                        on: true,
-                                                        properties: true,
-                                                        values: true
-                                                    },
-                                                    matchlabels: true
-                                                }
-                                            },
-                                        },
-                                        requiredexecution: {
-                                            on: true,
-                                            properties: true,
-                                            namespaces: true,
-                                            labels: {
-                                                on: true,
-                                                properties: true,
-                                                matchlabels: true,
-                                                matchexpressions: {
-                                                    on: true,
-                                                    properties: true,
-                                                    values: true
-                                                }
-                                            }
-                                        }
-                                    },
-                                    podAntiAffinity: {
-                                        on: true,
-                                        properties: true,
-                                        preferredexecution: {
-                                            on: true,
-                                            properties: true,
-                                            podaffinityterm: {
-                                                on: true,
-                                                properties: true,
-                                                namespaces: true,
-                                                labels: {
-                                                    on: true,
-                                                    properties: true,
-                                                    matchlabels: true,
-                                                    matchexpressions: {
-                                                        on: true,
-                                                        properties: true,
-                                                        values: true
-                                                    },
-                                                },
-                                            }
-                                        },
-                                        requiredexecution: {
-                                            on: true,
-                                            properties: true,
-                                            namespaces: true,
-                                            labels: {
-                                                on: true,
-                                                properties: true,
-                                                matchexpressions: {
-                                                    on: true,
-                                                    properties: true,
-                                                    values: true
-                                                },
-                                                matchlabels: true
-                                            }
-                                        }
-                                    },
-                                    properties: true
-                                },
-                                containers: {
-                                    on: true,
-                                    properties: true,
-                                    envFrom: {
-                                        on: true,
-                                        properties: true,
-                                        configMapRef: {
-                                            on: true,
-                                            properties: true,
-                                        },
-                                        secretRef: {
-                                            on: true,
-                                            properties: true,
-                                        }
-                                    },
-                                    env: {
-                                        on: true,
-                                        properties: true,
-                                        valueFrom: {
-                                            on: true,
-                                            properties: true,
-                                            resourceFieldRef: {
-                                                on: true,
-                                                properties: true,
-                                                divisor: {
-                                                    on: true,
-                                                    properties: true,
-                                                }
-                                            },
-                                            secretKeyRef: {
-                                                on: true,
-                                                properties: true,
-                                            },
-                                            configMapKeyRef: {
-                                                on: true,
-                                                properties: true,
-                                            },
-                                            fieldRef: {
-                                                on: true,
-                                                properties: true,
-                                            },
-                                        }
-                                    },
-                                    lifecycle: {
-                                        on: true,
-                                        properties: true,
-                                        preStop: {
-                                            on: true,
-                                            properties: true,
-                                            exec: {
-                                                on: true,
-                                                properties: true,
-                                                command: true
-                                            },
-                                            httpGet: {
-                                                on: true,
-                                                properties: true,
-                                                httpHeaders: {
-                                                    on: true,
-                                                    properties: true,
-                                                },
-                                                port: {
-                                                    on: true,
-                                                    properties: true,
-                                                }
-                                            },
-                                            tcpSocket: {
-                                                on: true,
-                                                properties: true,
-                                                port: {
-                                                    on: true,
-                                                    properties: true,
-                                                }
-                                            }
-                                        },
-                                        postStart: {
-                                            on: true,
-                                            properties: true,
-                                            exec: {
-                                                on: true,
-                                                properties: true,
-                                                command: true
-                                            },
-                                            httpGet: {
-                                                on: true,
-                                                properties: true,
-                                                httpHeaders: {
-                                                    on: true,
-                                                    properties: true,
-                                                },
-                                                port: {
-                                                    on: true,
-                                                    properties: true,
-                                                }
-                                            },
-                                            tcpSocket: {
-                                                on: true,
-                                                properties: true,
-                                                port: {
-                                                    on: true,
-                                                    properties: true,
-                                                }
-                                            }
-                                        }
-                                    },
-                                    livenessProbe: {
-                                        on: true,
-                                        properties: true,
-                                        httpGet: {
-                                            on: true,
-                                            properties: true,
-                                            httpHeaders: {
-                                                on: true,
-                                                properties: true,
-                                            },
-                                            port: {
-                                                on: true,
-                                                properties: true,
-                                            }
-                                        },
-                                        exec: {
-                                            on: true,
-                                            properties: true,
-                                            command: true
-                                        },
-                                        tcpSocket: {
-                                            on: true,
-                                            properties: true,
-                                            port: {
-                                                on: true,
-                                                properties: true,
-                                            }
-                                        }
-                                    },
-                                    readinessProbe: {
-                                        on: true,
-                                        properties: true,
-                                        exec: {
-                                            on: true,
-                                            properties: true,
-                                        },
-                                        httpGet: {
-                                            on: true,
-                                            properties: true,
-                                            httpHeaders: {
-                                                on: true,
-                                                properties: true,
-                                            },
-                                            port: {
-                                                on: true,
-                                                properties: true,
-                                            }
-                                        },
-                                        tcpSocket: {
-                                            on: true,
-                                            properties: true,
-                                            port: {
-                                                on: true,
-                                                properties: true,
-                                            }
-                                        }
-                                    },
-                                    resources: {
-                                        on: true,
-                                        properties: true,
-                                        limits: {
-                                            on: true,
-                                            properties: true,
-                                            key: {
-                                                on: true,
-                                                properties: true,
-                                            }
-                                        },
-                                        requests: {
-                                            on: true,
-                                            properties: true,
-                                            key: {
-                                                on: true,
-                                                properties: true,
-                                            }
-                                        },
-                                        key: {
-                                            on: true,
-                                            properties: true,
-                                        }
-                                    },
-                                    securityContext: {
-                                        on: true,
-                                        properties: true,
-                                        capabilities: {
-                                            on: true,
-                                            properties: true,
-                                            add: true,
-                                            drop: true
-                                        },
-                                        seLinuxOptions: {
-                                            on: true,
-                                            properties: true,
-                                        }
-                                    },
-                                    ports: {
-                                        on: true,
-                                        properties: true,
-                                    },
-                                    volumeMounts: {
-                                        on: true,
-                                        properties: true,
-                                    },
-                                    command: true,
-                                    arg: true,
-
-                                },
-                                hostAliases: {
-                                    on: true,
-                                    properties: true,
-                                    hostname: true
-                                },
-                                imagePullSecrets: {
-                                    on: true,
-                                    properties: true
-                                },
-                                initContainers: {
-                                    on: true,
-                                    properties: true,
-                                    command: true,
-                                    args: true,
-                                    env: {
-                                        on: true,
-                                        properties: true,
-                                        valueFrom: {
-                                            on: true,
-                                            properties: true,
-                                            configMapKeyRef: {
-                                                on: true,
-                                                properties: true,
-                                            },
-                                            fieldRef: {
-                                                on: true,
-                                                properties: true,
-                                            },
-                                            resourceFieldRef: {
-                                                on: true,
-                                                properties: true,
-                                                divisor: {
-                                                    on: true,
-                                                    properties: true,
-                                                }
-                                            },
-                                            secretKeyRef: {
-                                                on: true,
-                                                properties: true,
-                                            }
-                                        }
-                                    },
-                                    envFrom: {
-                                        on: true,
-                                        properties: true,
-                                        configMapRef: {
-                                            on: true,
-                                            properties: true,
-                                        },
-                                        secretRef: {
-                                            on: true,
-                                            properties: true,
-                                        }
-                                    },
-                                    lifecycle: {
-                                        on: true,
-                                        properties: true,
-                                        postStart: {
-                                            on: true,
-                                            properties: true,
-                                            exec: {
-                                                on: true,
-                                                properties: true,
-                                                command: true
-                                            },
-                                            httpGet: {
-                                                on: true,
-                                                properties: true,
-                                                httpHeaders: {
-                                                    on: true,
-                                                    properties: true,
-                                                },
-                                                port: {
-                                                    on: true,
-                                                    properties: true,
-                                                }
-                                            },
-                                            tcpSocket: {
-                                                on: true,
-                                                properties: true,
-                                                port: {
-                                                    on: true,
-                                                    properties: true,
-                                                }
-                                            }
-                                        },
-                                        preStop: {
-                                            on: true,
-                                            properties: true,
-                                            exec: {
-                                                on: true,
-                                                properties: true,
-                                                command: true
-                                            },
-                                            httpGet: {
-                                                on: true,
-                                                properties: true,
-                                                httpHeaders: {
-                                                    on: true,
-                                                    properties: true,
-                                                },
-                                                port: {
-                                                    on: true,
-                                                    properties: true,
-                                                }
-                                            },
-                                            tcpSocket: {
-                                                on: true,
-                                                properties: true,
-                                                port: {
-                                                    on: true,
-                                                    properties: true,
-                                                }
-                                            }
-                                        }
-                                    },
-                                    livenessProbe: {
-                                        on: true,
-                                        properties: true,
-                                        exec: {
-                                            on: true,
-                                            properties: true,
-                                            command: true
-                                        },
-                                        httpGet: {
-                                            on: true,
-                                            properties: true,
-                                            httpHeaders: {
-                                                on: true,
-                                                properties: true,
-                                            },
-                                            port: {
-                                                on: true,
-                                                properties: true,
-                                            }
-                                        },
-                                        tcpSocket: {
-                                            on: true,
-                                            properties: true,
-                                            port: {
-                                                on: true,
-                                                properties: true,
-                                            }
-                                        }
-                                    },
-                                    ports: {
-                                        on: true,
-                                        properties: true,
-                                    },
-                                    readinessProbe: {
-                                        on: true,
-                                        properties: true,
-                                        exec: {
-                                            on: true,
-                                            properties: true,
-                                            command: true
-                                        },
-                                        httpGet: {
-                                            on: true,
-                                            properties: true,
-                                            httpHeaders: {
-                                                on: true,
-                                                properties: true,
-                                            },
-                                            port: {
-                                                on: true,
-                                                properties: true,
-                                            }
-                                        },
-                                        tcpSocket: {
-                                            on: true,
-                                            properties: true,
-                                            port: {
-                                                on: true,
-                                                properties: true,
-                                            }
-                                        }
-                                    },
-                                    resources: {
-                                        on: true,
-                                        properties: true,
-                                        limits: {
-                                            on: true,
-                                            properties: true,
-                                            key: {
-                                                on: true,
-                                                properties: true,
-                                            }
-                                        },
-                                        requests: {
-                                            on: true,
-                                            properties: true,
-                                            key: {
-                                                on: true,
-                                                properties: true,
-                                            }
-                                        }
-                                    },
-                                    securityContext: {
-                                        on: true,
-                                        properties: true,
-                                        capabilities: {
-                                            on: true,
-                                            properties: true,
-                                            add: true,
-                                            drop: true
-                                        },
-                                        seLinuxOptions: {
-                                            on: true,
-                                            properties: true,
-                                        }
-                                    },
-                                    volumeMounts: {
-                                        on: true,
-                                        properties: true,
-                                    }
-                                },
-                                nodeSelector: {
-                                    on: true,
-                                    properties: true,
-                                },
-                                securityContext: {
-                                    on: true,
-                                    properties: true,
-                                    selinuxoptions: {
-                                        on: true,
-                                        properties: true,
-                                        suppgroups: true
-                                    }
-                                },
-                                tolerations: {
-                                    on: true,
-                                    properties: true,
-                                },
-                                volumes: {
-                                    on: true,
-                                    properties: true,
-                                    awsstore: {
-                                        on: true,
-                                        properties: true
-                                    },
-                                    azuredisk: {
-                                        on: true,
-                                        properties: true
-                                    },
-                                    azurefile: {
-                                        on: true,
-                                        properties: true
-                                    },
-                                    cephfs: {
-                                        on: true,
-                                        properties: true,
-                                        secretRef: {
-                                            on: true,
-                                            properties: true,
-                                        },
-                                        monitors: true
-                                    },
-                                    cinder: {
-                                        on: true,
-                                        properties: true,
-                                    },
-                                    configMap: {
-                                        on: true,
-                                        properties: true,
-                                        items: {
-                                            on: true,
-                                            properties: true,
-                                        }
-                                    },
-                                    downwardAPI: {
-                                        on: true,
-                                        properties: true,
-                                        items: {
-                                            on: true,
-                                            properties: true,
-                                            field: {
-                                                on: true,
-                                                properties: true,
-                                            },
-                                            resource: {
-                                                on: true,
-                                                properties: true,
-                                                divisor: {
-                                                    on: true,
-                                                    properties: true,
-                                                }
-                                            }
-                                        }
-                                    },
-                                    emptyDir: {
-                                        on: true,
-                                        properties: true,
-                                        sizeLimit: {
-                                            on: true,
-                                            properties: true,
-                                        }
-                                    },
-                                    fc: {
-                                        on: true,
-                                        properties: true,
-                                        targetWWNs: true
-                                    },
-                                    flexVolume: {
-                                        on: true,
-                                        properties: true,
-                                        options: true,
-                                        ref: {
-                                            on: true,
-                                            properties: true
-                                        }
-                                    },
-                                    flocker: {
-                                        on: true,
-                                        properties: true,
-                                    },
-                                    gcePersistentDisk: {
-                                        on: true,
-                                        properties: true,
-                                    },
-                                    gitRepo: {
-                                        on: true,
-                                        properties: true,
-                                    },
-                                    glusterfs: {
-                                        on: true,
-                                        properties: true,
-                                    },
-                                    hostPath: {
-                                        on: true,
-                                        properties: true,
-                                    },
-                                    iscsi: {
-                                        on: true,
-                                        properties: true,
-                                        portals: true,
-                                        ref: {
-                                            on: true,
-                                            properties: true,
-                                        }
-                                    },
-                                    nfs: {
-                                        on: true,
-                                        properties: true,
-                                    },
-                                    persistentVolumeClaim: {
-                                        on: true,
-                                        properties: true,
-                                    },
-                                    photonPersistentDisk: {
-                                        on: true,
-                                        properties: true,
-                                    },
-                                    portworxVolume: {
-                                        on: true,
-                                        properties: true,
-                                    },
-                                    projected: {
-                                        on: true,
-                                        properties: true,
-                                        sources: {
-                                            on: true,
-                                            properties: true,
-                                            configMap: {
-                                                on: true,
-                                                properties: true,
-                                                items: {
-                                                    on: true,
-                                                    properties: true,
-                                                }
-                                            },
-                                            downwardAPI: {
-                                                on: true,
-                                                properties: true,
-                                                items: {
-                                                    on: true,
-                                                    properties: true,
-                                                    fieldref: {
-                                                        on: true,
-                                                        properties: true,
-                                                    },
-                                                    resourceFieldRef: {
-                                                        on: true,
-                                                        properties: true,
-                                                        divisor: {
-                                                            on: true,
-                                                            properties: true,
-                                                        }
-                                                    }
-                                                }
-                                            },
-                                            secret: {
-                                                on: true,
-                                                properties: true,
-                                                items: {
-                                                    on: true,
-                                                    properties: true,
-                                                }
-                                            }
-                                        }
-                                    },
-                                    quobyte: {
-                                        on: true,
-                                        properties: true,
-                                    },
-                                    rbd: {
-                                        on: true,
-                                        properties: true,
-                                        monitors: true,
-                                        secretRef: {
-                                            on: true,
-                                            properties: true,
-                                        }
-                                    },
-                                    scaleIO: {
-                                        on: true,
-                                        properties: true,
-                                        secretRef: {
-                                            on: true,
-                                            properties: true,
-                                        }
-                                    },
-                                    secret: {
-                                        on: true,
-                                        properties: true,
-                                        items: {
-                                            on: true,
-                                            properties: true,
-                                        }
-                                    },
-                                    storageos: {
-                                        on: true,
-                                        properties: true,
-                                        secretRef: {
-                                            on: true,
-                                            properties: true,
-                                        }
-                                    },
-                                    vsphereVolume: {
-                                        on: true,
-                                        properties: true,
-                                    }
-                                },
-                                properties: true,
-                            },
-                        },
-                    }
-                },
                 data: [],
                 newdata:{},
                 infomodel: false,
@@ -10072,12 +9241,12 @@
                 tempnewdata:{
                     apiVersion:'v1',
                     kind:'ReplicationController',
-                    metadata_name:uuid().replace(/-/g,''),
+                    metadata_name:'',
                     spec_replicas:'1',
-                    tempnodeSelector: [['app', uuid().replace(/-/g,'')]],
-                    templabels: [['app', uuid().replace(/-/g,'')]],
+                    tempnodeSelector: [['', '']],
+                    templabels: [['', '']],
                     tempports: [['', '']],
-                    tempselector: [['app', uuid().replace(/-/g,'')]],
+                    tempselector: [['', '']],
                     ports:[{
                         containerPort:''
                     }],
@@ -10085,14 +9254,14 @@
                     spec_template_spec_containers_image:'',
                     spec_template_spec_hostname:'',
                     spec_template_spec_subdomain:'',
-                    commands:['/dns-init'],
-                    envs:[{name:'MYSQL_ROOT_PASSWORD',value:'kayak'}],
+                    commands:[''],
+                    envs:[{name:'',value:''}],
                     volumeMounts:[{
-                        name:uuid().replace(/-/g,''),
+                        name:'',
                         mountPath:''
                     }],
                     volumes:[{
-                        name:uuid().replace(/-/g,''),
+                        name:'',
                         hostPath:{
                             path:''
                         }
@@ -10382,20 +9551,15 @@
         methods: {
             query: function () {
                 let _this = this;
-                this.$http.post(this.httpurl.toString() + '/feigen/getReplicationControllerLists', this.$qs.stringify({
+                this.$http.post(this.httpurl.toString() + '/k8s/getReplicationControllerLists', this.$qs.stringify({
                     pageNumber: this.pageNumber,
                     pageSize: this.pageSize
                 })).then(function (response) {
-                    if(response.data.returnState === "0000"){
-                        _this.pageNumber = response.data.pageNumber;
-                        _this.data = response.data.detail;
-                        _this.totalCount = response.data.totalCount;
-                        _this.pageSize = response.data.pageSize;
-                        _this.loading = false;
-                    }else{
-                        _this.$Message.error(response.data.returnMsg);
-                    }
-
+                    _this.pageNumber = response.data.pageNumber;
+                    _this.data = response.data.items;
+                    _this.totalCount = response.data.totalCount;
+                    _this.pageSize = response.data.pageSize;
+                    _this.loading = false;
                 }).catch(function (error) {
                     if (typeof(error.response) === "undefined") {
                         _this.$Message.error("错误信息：" + error);
@@ -10418,17 +9582,15 @@
             },
             deleterow: function () {
                 let _this = this;
-                let json = JSON.stringify(this.delinfo);
-                this.$http.post(this.httpurl.toString() + '/feigen/deleteReplicationController', this.$qs.stringify({
-                    json: json
+                let str = JSON.stringify(this.delinfo);
+                this.$http.post(this.httpurl.toString() + '/k8s/deleteReplicationController', this.$qs.stringify({
+                    'str': str
                 })).then(function (response) {
-                    if(response.data.returnState === "0000"){
+                    if (response.data === true) {
                         _this.$Message.info("删除成功");
                         _this.delinfo = {};
                         _this.detelmodal = false;
                         this.query();
-                    }else {
-                        _this.$Message.error(response.data.returnMsg);
                     }
                 }).catch(function (error) {
                     if (typeof(error.response) === "undefined") {
@@ -10581,17 +9743,13 @@
                             }
                         }
 
-                        let json = JSON.stringify(_this.newdata);
-                        this.$http.post(this.httpurl.toString() + '/feigen/createReplicationController', this.$qs.stringify({
-                            json: json
+                        let str = JSON.stringify(_this.newdata);
+                        this.$http.post(this.httpurl.toString() + '/k8s/createReplicationController', this.$qs.stringify({
+                            'str': str
                         })).then(function (response) {
-                            if(response.data.returnState === "0000"){
-                                _this.$Message.info("添加成功!");
-                                _this.newmodel = false;
-                                _this.query();
-                            }else {
-                                _this.$Message.error(response.data.returnMsg);
-                            }
+                            _this.$Message.info("添加成功!");
+                            _this.newmodel = false;
+                            _this.query();
                         }).catch(function (error) {
                             if (typeof(error.response) === "undefined") {
                                 _this.$Message.error("错误信息：" + error);
@@ -10601,11 +9759,6 @@
                         });
                     }
                 });
-
-
-
-
-
             },
             inforow: function (row) {
                 this.infomodel = true;
@@ -10617,1321 +9770,6 @@
             },
             newinfo: function () {
                 this.newmodel = true;
-            },
-            showmodel_properties: function () {
-                this.showmodel.properties = this.showmodel.properties !== true;
-            },
-            showmodel_status: function () {
-                this.showmodel.status.on = this.showmodel.status.on !== true;
-            },
-            showmodel_status_properties: function () {
-                this.showmodel.status.properties = this.showmodel.status.properties !== true;
-            },
-            showmodel_status_conditions: function () {
-                this.showmodel.status.conditions = this.showmodel.status.conditions !== true;
-            },
-            showmodel_metadata: function () {
-                this.showmodel.metadata.on = this.showmodel.metadata.on !== true;
-            },
-            showmodel_metadata_initializers: function () {
-                this.showmodel.metadata.initializers.on = this.showmodel.metadata.initializers.on !== true;
-            },
-            showmodel_metadata_annotations: function () {
-                this.showmodel.metadata.annotations = this.showmodel.metadata.annotations !== true;
-            },
-            showmodel_metadata_initializers_pending: function () {
-                this.showmodel.metadata.initializers.pending = this.showmodel.metadata.initializers.pending !== true;
-            },
-            showmodel_metadata_ownerReferences: function () {
-                this.showmodel.metadata.ownerReferences = this.showmodel.metadata.ownerReferences !== true;
-            },
-            showmodel_metadata_labels: function () {
-                this.showmodel.metadata.labels = this.showmodel.metadata.labels !== true;
-            },
-            showmodel_metadata_finalizers: function () {
-                this.showmodel.metadata.finalizers = this.showmodel.metadata.finalizers !== true;
-            },
-            showmodel_metadata_properties: function () {
-                this.showmodel.metadata.properties = this.showmodel.metadata.properties !== true;
-            },
-            showmodel_metadata_initializers_result: function () {
-                this.showmodel.metadata.initializers.result.on = this.showmodel.metadata.initializers.result.on !== true;
-            },
-            showmodel_metadata_initializers_result_properties: function () {
-                this.showmodel.metadata.initializers.result.properties = this.showmodel.metadata.initializers.result.properties !== true;
-            },
-            showmodel_metadata_initializers_result_metadata_properties: function () {
-                this.showmodel.metadata.initializers.result.metadata.properties = this.showmodel.metadata.initializers.result.metadata.properties !== true;
-            },
-            showmodel_metadata_initializers_result_metadata: function () {
-                this.showmodel.metadata.initializers.result.metadata.on = this.showmodel.metadata.initializers.result.metadata.on !== true;
-            },
-            showmodel_metadata_initializers_result_details: function () {
-                this.showmodel.metadata.initializers.result.details.on = this.showmodel.metadata.initializers.result.details.on !== true;
-            },
-            showmodel_metadata_initializers_result_details_causes: function () {
-                this.showmodel.metadata.initializers.result.details.causes.on = this.showmodel.metadata.initializers.result.details.causes.on !== true;
-            },
-            showmodel_metadata_initializers_properties: function () {
-                this.showmodel.metadata.initializers.properties = this.showmodel.metadata.initializers.properties !== true;
-            },
-            showmodel_metadata_initializers_result_details_properties: function () {
-                this.showmodel.metadata.initializers.result.details.properties = this.showmodel.metadata.initializers.result.details.properties !== true;
-            },
-            showmodel_spec: function () {
-                this.showmodel.spec.on = this.showmodel.spec.on !== true;
-            },
-            showmodel_spec_selector: function () {
-                this.showmodel.spec.selector = this.showmodel.spec.selector !== true;
-            },
-            showmodel_spec_properties: function () {
-                this.showmodel.spec.properties = this.showmodel.spec.properties !== true;
-            },
-            showmodel_spec_template_properties: function () {
-                this.showmodel.spec.template.properties = this.showmodel.spec.template.properties !== true;
-            },
-            showmodel_spec_template: function () {
-                this.showmodel.spec.template.on = this.showmodel.spec.template.on !== true;
-            },
-            showmodel_spec_template_metadata: function () {
-                this.showmodel.spec.template.metadata.on = this.showmodel.spec.template.metadata.on !== true;
-            },
-            showmodel_spec_template_metadata_finalizers: function () {
-                this.showmodel.spec.template.metadata.finalizers = this.showmodel.spec.template.metadata.finalizers !== true;
-            },
-            showmodel_spec_template_metadata_initializers: function () {
-                this.showmodel.spec.template.metadata.initializers.on = this.showmodel.spec.template.metadata.initializers.on !== true;
-            },
-            showmodel_spec_template_metadata_annotations: function () {
-                this.showmodel.spec.template.metadata.annotations = this.showmodel.spec.template.metadata.annotations !== true;
-            },
-            showmodel_spec_template_metadata_properties: function () {
-                this.showmodel.spec.template.metadata.properties = this.showmodel.spec.template.metadata.properties !== true;
-            },
-            showmodel_spec_template_metadata_labels: function () {
-                this.showmodel.spec.template.metadata.labels = this.showmodel.spec.template.metadata.labels !== true;
-            },
-            showmodel_spec_template_metadata_ownerReferences: function () {
-                this.showmodel.spec.template.metadata.ownerReferences.on = this.showmodel.spec.template.metadata.ownerReferences.on !== true;
-            },
-            showmodel_spec_template_metadata_ownerReferences_properties: function () {
-                this.showmodel.spec.template.metadata.ownerReferences.properties = this.showmodel.spec.template.metadata.ownerReferences.properties !== true;
-            },
-            showmodel_spec_template_metadata_initializers_pending: function () {
-                this.showmodel.spec.template.metadata.initializers.pending = this.showmodel.spec.template.metadata.initializers.pending !== true;
-            },
-            showmodel_spec_template_metadata_initializers_properties: function () {
-                this.showmodel.spec.template.metadata.initializers.properties = this.showmodel.spec.template.metadata.initializers.properties !== true;
-            },
-            showmodel_spec_template_metadata_initializers_result: function () {
-                this.showmodel.spec.template.metadata.initializers.result.on = this.showmodel.spec.template.metadata.initializers.result.on !== true;
-            },
-            showmodel_spec_template_metadata_initializers_result_properties: function () {
-                this.showmodel.spec.template.metadata.initializers.result.properties = this.showmodel.spec.template.metadata.initializers.result.properties !== true;
-            },
-            showmodel_spec_template_metadata_initializers_result_details: function () {
-                this.showmodel.spec.template.metadata.initializers.result.details.on = this.showmodel.spec.template.metadata.initializers.result.details.on !== true;
-            },
-            showmodel_spec_template_metadata_initializers_result_details_properties: function () {
-                this.showmodel.spec.template.metadata.initializers.result.details.properties = this.showmodel.spec.template.metadata.initializers.result.details.properties !== true;
-            },
-            showmodel_spec_template_metadata_initializers_result_details_causes: function () {
-                this.showmodel.spec.template.metadata.initializers.result.details.causes = this.showmodel.spec.template.metadata.initializers.result.details.causes !== true;
-            },
-            showmodel_spec_template_metadata_initializers_result_metadata: function () {
-                this.showmodel.spec.template.metadata.initializers.result.metadata.on = this.showmodel.spec.template.metadata.initializers.result.metadata.on !== true;
-            },
-            showmodel_spec_template_metadata_initializers_result_metadata_properties: function () {
-                this.showmodel.spec.template.metadata.initializers.result.metadata.properties = this.showmodel.spec.template.metadata.initializers.result.metadata.properties !== true;
-            },
-            showmodel_spec_template_spec: function () {
-                this.showmodel.spec.template.spec.on = this.showmodel.spec.template.spec.on !== true;
-            },
-            showmodel_spec_template_spec_containers: function () {
-
-                this.showmodel.spec.template.spec.containers.on = this.showmodel.spec.template.spec.containers.on !== true;
-            },
-            showmodel_spec_template_spec_hostAliases: function () {
-                this.showmodel.spec.template.spec.hostAliases.on = this.showmodel.spec.template.spec.hostAliases.on !== true;
-            },
-            showmodel_spec_template_spec_imagePullSecrets: function () {
-                this.showmodel.spec.template.spec.imagePullSecrets.on = this.showmodel.spec.template.spec.imagePullSecrets.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers: function () {
-                this.showmodel.spec.template.spec.initContainers.on = this.showmodel.spec.template.spec.initContainers.on !== true;
-            },
-            showmodel_spec_template_spec_nodeSelector: function () {
-                this.showmodel.spec.template.spec.nodeSelector.on = this.showmodel.spec.template.spec.nodeSelector.on !== true;
-            },
-            showmodel_spec_template_spec_tolerations: function () {
-                this.showmodel.spec.template.spec.tolerations.on = this.showmodel.spec.template.spec.tolerations.on !== true;
-            },
-            showmodel_spec_template_spec_securityContext: function () {
-                this.showmodel.spec.template.spec.securityContext.on = this.showmodel.spec.template.spec.securityContext.on !== true;
-            },
-            showmodel_spec_template_spec_volumes: function () {
-                this.showmodel.spec.template.spec.volumes.on = this.showmodel.spec.template.spec.volumes.on !== true;
-            },
-            showmodel_spec_template_spec_properties: function () {
-                this.showmodel.spec.template.spec.properties = this.showmodel.spec.template.spec.properties !== true;
-            },
-            showmodel_spec_template_spec_affinity: function () {
-                this.showmodel.spec.template.spec.affinity.on = this.showmodel.spec.template.spec.affinity.on !== true;
-            },
-            showmodel_spec_template_spec_affinity_properties: function () {
-                this.showmodel.spec.template.spec.affinity.properties = this.showmodel.spec.template.spec.affinity.properties !== true;
-            },
-            showmodel_spec_template_spec_affinity_nodeAffinity: function () {
-                this.showmodel.spec.template.spec.affinity.nodeAffinity.on = this.showmodel.spec.template.spec.affinity.nodeAffinity.on !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAntiAffinity: function () {
-                this.showmodel.spec.template.spec.affinity.podAntiAffinity.on = this.showmodel.spec.template.spec.affinity.podAntiAffinity.on !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAffinity: function () {
-                this.showmodel.spec.template.spec.affinity.podAffinity.on = this.showmodel.spec.template.spec.affinity.podAffinity.on !== true;
-            },
-            showmodel_spec_template_spec_affinity_nodeAffinity_properties: function () {
-                this.showmodel.spec.template.spec.affinity.nodeAffinity.properties = this.showmodel.spec.template.spec.affinity.nodeAffinity.properties !== true;
-            },
-            showmodel_spec_template_spec_affinity_nodeAffinity_preferredDuringSchedulingIgnoredDuringExecution: function () {
-                this.showmodel.spec.template.spec.affinity.nodeAffinity.preferredexecution.on = this.showmodel.spec.template.spec.affinity.nodeAffinity.preferredexecution.on !== true;
-            },
-            showmodel_spec_template_spec_affinity_nodeAffinity_preferredexecution_properties: function () {
-                this.showmodel.spec.template.spec.affinity.nodeAffinity.preferredexecution.properties = this.showmodel.spec.template.spec.affinity.nodeAffinity.preferredexecution.properties !== true;
-            },
-            showmodel_spec_template_spec_affinity_nodeAffinity_preferredexecution_preference: function () {
-                this.showmodel.spec.template.spec.affinity.nodeAffinity.preferredexecution.preference.on = this.showmodel.spec.template.spec.affinity.nodeAffinity.preferredexecution.preference.on !== true;
-            },
-            showmodel_spec_template_spec_affinity_nodeAffinity_preferredexecution_preference_matchexpion: function () {
-                this.showmodel.spec.template.spec.affinity.nodeAffinity.preferredexecution.preference.matchexpion.on = this.showmodel.spec.template.spec.affinity.nodeAffinity.preferredexecution.preference.matchexpion.on !== true;
-            },
-            showmodel_spec_template_spec_affinity_nodeAffinity_preferredexecution_preference_properties: function () {
-                this.showmodel.spec.template.spec.affinity.nodeAffinity.preferredexecution.preference.properties = this.showmodel.spec.template.spec.affinity.nodeAffinity.preferredexecution.preference.properties !== true;
-            },
-            showmodel_spec_template_spec_affinity_nodeAffinity_preferredexecution_preference_matchexpion_properties: function () {
-                this.showmodel.spec.template.spec.affinity.nodeAffinity.preferredexecution.preference.matchexpion.properties = this.showmodel.spec.template.spec.affinity.nodeAffinity.preferredexecution.preference.matchexpion.properties !== true;
-            },
-            showmodel_spec_template_spec_affinity_nodeAffinity_preferredexecution_preference_matchexpion_values: function () {
-                this.showmodel.spec.template.spec.affinity.nodeAffinity.preferredexecution.preference.matchexpion.values = this.showmodel.spec.template.spec.affinity.nodeAffinity.preferredexecution.preference.matchexpion.values !== true;
-            },
-            showmodel_spec_template_spec_affinity_nodeAffinity_requiredexecution: function () {
-                this.showmodel.spec.template.spec.affinity.nodeAffinity.requiredexecution.on = this.showmodel.spec.template.spec.affinity.nodeAffinity.requiredexecution.on !== true;
-            },
-            showmodel_spec_template_spec_affinity_nodeAffinity_requiredexecution_properties: function () {
-                this.showmodel.spec.template.spec.affinity.nodeAffinity.requiredexecution.properties = this.showmodel.spec.template.spec.affinity.nodeAffinity.requiredexecution.properties !== true;
-            },
-            showmodel_spec_template_spec_affinity_nodeAffinity_requiredexecution_nodeSelector: function () {
-                this.showmodel.spec.template.spec.affinity.nodeAffinity.requiredexecution.nodeSelector.on = this.showmodel.spec.template.spec.affinity.nodeAffinity.requiredexecution.nodeSelector.on !== true;
-            },
-            showmodel_spec_template_spec_affinity_nodeAffinity_requiredexecution_nodeSelector_properties: function () {
-                this.showmodel.spec.template.spec.affinity.nodeAffinity.requiredexecution.nodeSelector.properties = this.showmodel.spec.template.spec.affinity.nodeAffinity.requiredexecution.nodeSelector.properties !== true;
-            },
-            showmodel_spec_template_spec_affinity_nodeAffinity_requiredexecution_nodeSelector_matchexpreesion: function () {
-                this.showmodel.spec.template.spec.affinity.nodeAffinity.requiredexecution.nodeSelector.matchexpreesion.on = this.showmodel.spec.template.spec.affinity.nodeAffinity.requiredexecution.nodeSelector.matchexpreesion.on !== true;
-            },
-            showmodel_spec_template_spec_affinity_nodeAffinity_requiredexecution_nodeSelector_matchexpreesion_properties: function () {
-                this.showmodel.spec.template.spec.affinity.nodeAffinity.requiredexecution.nodeSelector.matchexpreesion.properties = this.showmodel.spec.template.spec.affinity.nodeAffinity.requiredexecution.nodeSelector.matchexpreesion.properties !== true;
-            },
-            showmodel_spec_template_spec_affinity_nodeAffinity_requiredexecution_nodeSelector_matchexpreesion_values: function () {
-                this.showmodel.spec.template.spec.affinity.nodeAffinity.requiredexecution.nodeSelector.matchexpreesion.values = this.showmodel.spec.template.spec.affinity.nodeAffinity.requiredexecution.nodeSelector.matchexpreesion.values !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAffinity_properties: function () {
-                this.showmodel.spec.template.spec.affinity.podAffinity.properties = this.showmodel.spec.template.spec.affinity.podAffinity.properties !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAffinity_preferredexceution_properties: function () {
-                this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.properties = this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.properties !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAffinity_preferredexecution_podaffinityterm: function () {
-                this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.on = this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.on !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAffinity_preferredexecution_podaffinityterm_namespaces: function () {
-                this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.namespaces = this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.namespaces !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAffinity_preferredexecution: function () {
-                this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.on = this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.on !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAffinity_preferredexecution_podaffinityterm_properties: function () {
-                this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.properties = this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.properties !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAffinity_preferredexecution_podaffinityterm_labels: function () {
-                this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.labels.on = this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.labels.on !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAffinity_preferredexecution_podaffinityterm_labels_properties: function () {
-                this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.labels.properties = this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.labels.properties !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAffinity_preferredexecution_podaffinityterm_labels_matchexpion: function () {
-                this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.labels.matchexpion.on = this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.labels.matchexpion.on !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAffinity_preferredexecution_podaffinityterm_labels_matchexpion_properties: function () {
-                this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.labels.matchexpion.properties = this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.labels.matchexpion.properties !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAffinity_preferredexecution_podaffinityterm_labels_matchexpion_values: function () {
-                this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.labels.matchexpion.values = this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.labels.matchexpion.values !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAffinity_preferredexecution_podaffinityterm_labels_matchlabels: function () {
-                this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.labels.matchlabels = this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.labels.matchlabels !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAffinity_requiredexecution: function () {
-                this.showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.on = this.showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.on !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAffinity_requiredexecution_properties: function () {
-                this.showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.properties = this.showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.properties !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAffinity_requiredexecution_namespaces: function () {
-                this.showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.namespaces = this.showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.namespaces !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAffinity_requiredexecution_labels: function () {
-                this.showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.labels.on = this.showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.labels.on !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAffinity_requiredexecution_labels_matchlabels: function () {
-                this.showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.labels.matchlabels = this.showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.labels.matchlabels !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAffinity_requiredexecution_labels_matchexpressions: function () {
-                this.showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.labels.matchexpressions.on = this.showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.labels.matchexpressions.on !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAffinity_requiredexecution_labels_properties: function () {
-                this.showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.labels.properties = this.showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.labels.properties !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAffinity_requiredexecution_labels_matchexpressions_properties: function () {
-                this.showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.labels.matchexpressions.properties = this.showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.labels.matchexpressions.properties !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAffinity_requiredexecution_labels_matchexpressions_values: function () {
-                this.showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.labels.matchexpressions.values = this.showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.labels.matchexpressions.values !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAntiAffinity_preferredexecution: function () {
-                this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.on = this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.on !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAntiAffinity_requiredexecution: function () {
-                this.showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.on = this.showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.on !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAntiAffinity_properties: function () {
-                this.showmodel.spec.template.spec.affinity.podAntiAffinity.properties = this.showmodel.spec.template.spec.affinity.podAntiAffinity.properties !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAntiAffinity_preferredexecution_properties: function () {
-                this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.properties = this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.properties !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAntiAffinity_preferredexecution_podaffinityterm: function () {
-                this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.on = this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.on !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAntiAffinity_preferredexecution_podaffinityterm_properties: function () {
-                this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.properties = this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.properties !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAntiAffinity_preferredexecution_podaffinityterm_labels: function () {
-                this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.labels.on = this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.labels.on !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAntiAffinity_preferredexecution_podaffinityterm_labels_matchexpressions: function () {
-                this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.labels.matchexpressions.on = this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.labels.matchexpressions.on !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAntiAffinity_preferredexecution_podaffinityterm_namespaces: function () {
-                this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.namespaces = this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.namespaces !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAntiAffinity_preferredexecution_podaffinityterm_labels_matchlabels: function () {
-                this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.labels.matchlabels = this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.labels.matchlabels !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAntiAffinity_preferredexecution_podaffinityterm_labels_properties: function () {
-                this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.labels.properties = this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.labels.properties !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAntiAffinity_preferredexecution_podaffinityterm_labels_matchexpressions_properties: function () {
-                this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.labels.matchexpressions.properties = this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.labels.matchexpressions.properties !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAntiAffinity_preferredexecution_podaffinityterm_labels_matchexpressions_values: function () {
-                this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.labels.matchexpressions.values = this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.labels.matchexpressions.values !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAntiAffinity_requiredexecution_properties: function () {
-                this.showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.properties = this.showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.properties !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAntiAffinity_requiredexecution_namespaces: function () {
-                this.showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.namespaces = this.showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.namespaces !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAntiAffinity_requiredexecution_labels: function () {
-                this.showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.labels.on = this.showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.labels.on !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAntiAffinity_requiredexecution_labels_properties: function () {
-                this.showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.labels.properties = this.showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.labels.properties !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAntiAffinity_requiredexecution_labels_matchlabels: function () {
-                this.showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.labels.matchlabels = this.showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.labels.matchlabels !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAntiAffinity_requiredexecution_labels_matchexpressions: function () {
-                this.showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.labels.matchexpressions.on = this.showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.labels.matchexpressions.on !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAntiAffinity_requiredexecution_labels_matchexpressions_properties: function () {
-                this.showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.labels.matchexpressions.properties = this.showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.labels.matchexpressions.properties !== true;
-            },
-            showmodel_spec_template_spec_affinity_podAntiAffinity_requiredexecution_labels_matchexpressions_values: function () {
-                this.showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.labels.matchexpressions.values = this.showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.labels.matchexpressions.values !== true;
-            },
-            showmodel_spec_template_spec_hostAliases_properties: function () {
-                this.showmodel.spec.template.spec.hostAliases.properties = this.showmodel.spec.template.spec.hostAliases.properties !== true;
-            },
-            showmodel_spec_template_spec_hostAliases_hostname: function () {
-                this.showmodel.spec.template.spec.hostAliases.hostname = this.showmodel.spec.template.spec.hostAliases.hostname !== true;
-            },
-            showmodel_spec_template_spec_imagePullSecrets_properties: function () {
-                this.showmodel.spec.template.spec.imagePullSecrets.properties = this.showmodel.spec.template.spec.imagePullSecrets.properties !== true;
-            },
-            showmodel_spec_template_spec_securityContext_properties: function () {
-                this.showmodel.spec.template.spec.securityContext.properties = this.showmodel.spec.template.spec.securityContext.properties !== true;
-            },
-            showmodel_spec_template_spec_securityContext_seLinuxOptions: function () {
-                this.showmodel.spec.template.spec.securityContext.selinuxoptions.on = this.showmodel.spec.template.spec.securityContext.selinuxoptions.on !== true;
-            },
-            showmodel_spec_template_spec_securityContext_selinuxoptions_suppgroups: function () {
-                this.showmodel.spec.template.spec.securityContext.selinuxoptions.suppgroups = this.showmodel.spec.template.spec.securityContext.selinuxoptions.suppgroups !== true;
-            },
-            showmodel_spec_template_spec_securityContext_selinuxoptions_properties: function () {
-                this.showmodel.spec.template.spec.securityContext.selinuxoptions.properties = this.showmodel.spec.template.spec.securityContext.selinuxoptions.properties !== true;
-            },
-            showmodel_spec_template_spec_tolerations_properties: function () {
-                this.showmodel.spec.template.spec.tolerations.properties = this.showmodel.spec.template.spec.tolerations.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_properties: function () {
-                this.showmodel.spec.template.spec.volumes.properties = this.showmodel.spec.template.spec.volumes.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_awsstore_properties: function () {
-                this.showmodel.spec.template.spec.volumes.awsstore.properties = this.showmodel.spec.template.spec.volumes.awsstore.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_configMap_items_properties: function () {
-                this.showmodel.spec.template.spec.volumes.configMap.items.properties = this.showmodel.spec.template.spec.volumes.configMap.items.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_configMap_items: function () {
-                this.showmodel.spec.template.spec.volumes.configMap.items.on = this.showmodel.spec.template.spec.volumes.configMap.items.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_configMap: function () {
-                this.showmodel.spec.template.spec.volumes.configMap.on = this.showmodel.spec.template.spec.volumes.configMap.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_awsstore: function () {
-                this.showmodel.spec.template.spec.volumes.awsstore.on = this.showmodel.spec.template.spec.volumes.awsstore.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_azuredisk: function () {
-                this.showmodel.spec.template.spec.volumes.azuredisk.on = this.showmodel.spec.template.spec.volumes.azuredisk.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_azuredisk_properties: function () {
-                this.showmodel.spec.template.spec.volumes.azuredisk.properties = this.showmodel.spec.template.spec.volumes.azuredisk.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_azurefile: function () {
-                this.showmodel.spec.template.spec.volumes.azurefile.on = this.showmodel.spec.template.spec.volumes.azurefile.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_azurefile_properties: function () {
-                this.showmodel.spec.template.spec.volumes.azurefile.properties = this.showmodel.spec.template.spec.volumes.azurefile.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_cephfs: function () {
-                this.showmodel.spec.template.spec.volumes.cephfs.on = this.showmodel.spec.template.spec.volumes.cephfs.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_cephfs_properties: function () {
-                this.showmodel.spec.template.spec.volumes.cephfs.properties = this.showmodel.spec.template.spec.volumes.cephfs.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_cephfs_monitors: function () {
-                this.showmodel.spec.template.spec.volumes.cephfs.monitors = this.showmodel.spec.template.spec.volumes.cephfs.monitors !== true;
-            },
-            showmodel_spec_template_spec_volumes_cephfs_secretRef: function () {
-                this.showmodel.spec.template.spec.volumes.cephfs.secretRef.on = this.showmodel.spec.template.spec.volumes.cephfs.secretRef.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_cephfs_secretRef_properties: function () {
-                this.showmodel.spec.template.spec.volumes.cephfs.secretRef.properties = this.showmodel.spec.template.spec.volumes.cephfs.secretRef.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_cinder: function () {
-                this.showmodel.spec.template.spec.volumes.cinder.on = this.showmodel.spec.template.spec.volumes.cinder.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_cinder_properties: function () {
-                this.showmodel.spec.template.spec.volumes.cinder.properties = this.showmodel.spec.template.spec.volumes.cinder.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_configMap_properties: function () {
-                this.showmodel.spec.template.spec.volumes.configMap.properties = this.showmodel.spec.template.spec.volumes.configMap.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_downwardAPI: function () {
-                this.showmodel.spec.template.spec.volumes.downwardAPI.on = this.showmodel.spec.template.spec.volumes.downwardAPI.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_downwardAPI_properties: function () {
-                this.showmodel.spec.template.spec.volumes.downwardAPI.properties = this.showmodel.spec.template.spec.volumes.downwardAPI.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_downwardAPI_items_properties: function () {
-                this.showmodel.spec.template.spec.volumes.downwardAPI.items.properties = this.showmodel.spec.template.spec.volumes.downwardAPI.items.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_downwardAPI_items_field: function () {
-                this.showmodel.spec.template.spec.volumes.downwardAPI.items.field.on = this.showmodel.spec.template.spec.volumes.downwardAPI.items.field.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_downwardAPI_items_resource: function () {
-                this.showmodel.spec.template.spec.volumes.downwardAPI.items.resource.on = this.showmodel.spec.template.spec.volumes.downwardAPI.items.resource.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_downwardAPI_items: function () {
-                this.showmodel.spec.template.spec.volumes.downwardAPI.items.on = this.showmodel.spec.template.spec.volumes.downwardAPI.items.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_downwardAPI_items_field_properties: function () {
-                this.showmodel.spec.template.spec.volumes.downwardAPI.items.field.properties = this.showmodel.spec.template.spec.volumes.downwardAPI.items.field.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_downwardAPI_items_resource_properties: function () {
-                this.showmodel.spec.template.spec.volumes.downwardAPI.items.resource.properties = this.showmodel.spec.template.spec.volumes.downwardAPI.items.resource.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_downwardAPI_items_resource_divisor: function () {
-                this.showmodel.spec.template.spec.volumes.downwardAPI.items.resource.divisor.on = this.showmodel.spec.template.spec.volumes.downwardAPI.items.resource.divisor.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_downwardAPI_items_resource_divisor_properties: function () {
-                this.showmodel.spec.template.spec.volumes.downwardAPI.items.resource.divisor.properties = this.showmodel.spec.template.spec.volumes.downwardAPI.items.resource.divisor.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_emptyDir: function () {
-                this.showmodel.spec.template.spec.volumes.emptyDir.on = this.showmodel.spec.template.spec.volumes.emptyDir.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_emptyDir_properties: function () {
-                this.showmodel.spec.template.spec.volumes.emptyDir.properties = this.showmodel.spec.template.spec.volumes.emptyDir.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_emptyDir_sizeLimit: function () {
-                this.showmodel.spec.template.spec.volumes.emptyDir.sizeLimit.on = this.showmodel.spec.template.spec.volumes.emptyDir.sizeLimit.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_emptyDir_sizeLimit_properties: function () {
-                this.showmodel.spec.template.spec.volumes.emptyDir.sizeLimit.properties = this.showmodel.spec.template.spec.volumes.emptyDir.sizeLimit.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_fc: function () {
-                this.showmodel.spec.template.spec.volumes.fc.on = this.showmodel.spec.template.spec.volumes.fc.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_fc_properties: function () {
-                this.showmodel.spec.template.spec.volumes.fc.properties = this.showmodel.spec.template.spec.volumes.fc.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_fc_targetWWNs: function () {
-                this.showmodel.spec.template.spec.volumes.fc.targetWWNs = this.showmodel.spec.template.spec.volumes.fc.targetWWNs !== true;
-            },
-            showmodel_spec_template_spec_volumes_flexVolume: function () {
-                this.showmodel.spec.template.spec.volumes.flexVolume.on = this.showmodel.spec.template.spec.volumes.flexVolume.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_flexVolume_properties: function () {
-                this.showmodel.spec.template.spec.volumes.flexVolume.properties = this.showmodel.spec.template.spec.volumes.flexVolume.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_flexVolume_options: function () {
-                this.showmodel.spec.template.spec.volumes.flexVolume.options = this.showmodel.spec.template.spec.volumes.flexVolume.options !== true;
-            },
-            showmodel_spec_template_spec_volumes_flexVolume_ref: function () {
-                this.showmodel.spec.template.spec.volumes.flexVolume.ref.on = this.showmodel.spec.template.spec.volumes.flexVolume.ref.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_flexVolume_ref_properties: function () {
-                this.showmodel.spec.template.spec.volumes.flexVolume.ref.properties = this.showmodel.spec.template.spec.volumes.flexVolume.ref.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_flocker: function () {
-                this.showmodel.spec.template.spec.volumes.flocker.on = this.showmodel.spec.template.spec.volumes.flocker.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_flocker_properties: function () {
-                this.showmodel.spec.template.spec.volumes.flocker.properties = this.showmodel.spec.template.spec.volumes.flocker.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_gcePersistentDisk: function () {
-                this.showmodel.spec.template.spec.volumes.gcePersistentDisk.on = this.showmodel.spec.template.spec.volumes.gcePersistentDisk.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_gcePersistentDisk_properties: function () {
-                this.showmodel.spec.template.spec.volumes.gcePersistentDisk.properties = this.showmodel.spec.template.spec.volumes.gcePersistentDisk.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_gitRepo: function () {
-                this.showmodel.spec.template.spec.volumes.gitRepo.on = this.showmodel.spec.template.spec.volumes.gitRepo.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_gitRepo_properties: function () {
-                this.showmodel.spec.template.spec.volumes.gitRepo.properties = this.showmodel.spec.template.spec.volumes.gitRepo.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_glusterfs: function () {
-                this.showmodel.spec.template.spec.volumes.glusterfs.on = this.showmodel.spec.template.spec.volumes.glusterfs.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_glusterfs_properties: function () {
-                this.showmodel.spec.template.spec.volumes.glusterfs.properties = this.showmodel.spec.template.spec.volumes.glusterfs.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_iscsi_ref_properties: function () {
-                this.showmodel.spec.template.spec.volumes.iscsi.ref.properties = this.showmodel.spec.template.spec.volumes.iscsi.ref.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_iscsi_ref: function () {
-                this.showmodel.spec.template.spec.volumes.iscsi.ref.on = this.showmodel.spec.template.spec.volumes.iscsi.ref.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_iscsi_portals: function () {
-                this.showmodel.spec.template.spec.volumes.iscsi.portals = this.showmodel.spec.template.spec.volumes.iscsi.portals !== true;
-            },
-            showmodel_spec_template_spec_volumes_iscsi_properties: function () {
-                this.showmodel.spec.template.spec.volumes.iscsi.properties = this.showmodel.spec.template.spec.volumes.iscsi.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_iscsi: function () {
-                this.showmodel.spec.template.spec.volumes.iscsi.on = this.showmodel.spec.template.spec.volumes.iscsi.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_hostPath_properties: function () {
-                this.showmodel.spec.template.spec.volumes.hostPath.properties = this.showmodel.spec.template.spec.volumes.hostPath.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_hostPath: function () {
-                this.showmodel.spec.template.spec.volumes.hostPath.on = this.showmodel.spec.template.spec.volumes.hostPath.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_nfs: function () {
-                this.showmodel.spec.template.spec.volumes.nfs.on = this.showmodel.spec.template.spec.volumes.nfs.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_nfs_properties: function () {
-                this.showmodel.spec.template.spec.volumes.nfs.properties = this.showmodel.spec.template.spec.volumes.nfs.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_persistentVolumeClaim: function () {
-                this.showmodel.spec.template.spec.volumes.persistentVolumeClaim.on = this.showmodel.spec.template.spec.volumes.persistentVolumeClaim.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_persistentVolumeClaim_properties: function () {
-                this.showmodel.spec.template.spec.volumes.persistentVolumeClaim.properties = this.showmodel.spec.template.spec.volumes.persistentVolumeClaim.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_photonPersistentDisk: function () {
-                this.showmodel.spec.template.spec.volumes.photonPersistentDisk.on = this.showmodel.spec.template.spec.volumes.photonPersistentDisk.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_photonPersistentDisk_properties: function () {
-                this.showmodel.spec.template.spec.volumes.photonPersistentDisk.properties = this.showmodel.spec.template.spec.volumes.photonPersistentDisk.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_portworxVolume: function () {
-                this.showmodel.spec.template.spec.volumes.portworxVolume.on = this.showmodel.spec.template.spec.volumes.portworxVolume.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_portworxVolume_properties: function () {
-                this.showmodel.spec.template.spec.volumes.portworxVolume.properties = this.showmodel.spec.template.spec.volumes.portworxVolume.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_projected: function () {
-                this.showmodel.spec.template.spec.volumes.projected.on = this.showmodel.spec.template.spec.volumes.projected.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_projected_properties: function () {
-                this.showmodel.spec.template.spec.volumes.projected.properties = this.showmodel.spec.template.spec.volumes.projected.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_projected_sources: function () {
-                this.showmodel.spec.template.spec.volumes.projected.sources.on = this.showmodel.spec.template.spec.volumes.projected.sources.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_projected_sources_properties: function () {
-                this.showmodel.spec.template.spec.volumes.projected.sources.properties = this.showmodel.spec.template.spec.volumes.projected.sources.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_projected_sources_configMap: function () {
-                this.showmodel.spec.template.spec.volumes.projected.sources.configMap.on = this.showmodel.spec.template.spec.volumes.projected.sources.configMap.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_projected_sources_configMap_properties: function () {
-                this.showmodel.spec.template.spec.volumes.projected.sources.configMap.properties = this.showmodel.spec.template.spec.volumes.projected.sources.configMap.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_projected_sources_configMap_items: function () {
-                this.showmodel.spec.template.spec.volumes.projected.sources.configMap.items.on = this.showmodel.spec.template.spec.volumes.projected.sources.configMap.items.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_projected_sources_downwardAPI: function () {
-                this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.on = this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_projected_sources_downwardAPI_properties: function () {
-                this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.properties = this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_projected_sources_downwardAPI_items: function () {
-                this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.items.on = this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.items.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_projected_sources_downwardAPI_items_properties: function () {
-                this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.items.properties = this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.items.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_projected_sources_downwardAPI_items_fieldref: function () {
-                this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.items.fieldref.on = this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.items.fieldref.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_projected_sources_downwardAPI_items_fieldref_properties: function () {
-                this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.items.fieldref.properties = this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.items.fieldref.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_projected_sources_downwardAPI_items_resourceFieldRef: function () {
-                this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.items.resourceFieldRef.on = this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.items.resourceFieldRef.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_projected_sources_downwardAPI_items_resourceFieldRef_properties: function () {
-                this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.items.resourceFieldRef.properties = this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.items.resourceFieldRef.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_projected_sources_secret: function () {
-                this.showmodel.spec.template.spec.volumes.projected.sources.secret.on = this.showmodel.spec.template.spec.volumes.projected.sources.secret.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_projected_sources_secret_items: function () {
-                this.showmodel.spec.template.spec.volumes.projected.sources.secret.items.on = this.showmodel.spec.template.spec.volumes.projected.sources.secret.items.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_projected_sources_secret_properties: function () {
-                this.showmodel.spec.template.spec.volumes.projected.sources.secret.properties = this.showmodel.spec.template.spec.volumes.projected.sources.secret.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_projected_sources_secret_items_properties: function () {
-                this.showmodel.spec.template.spec.volumes.projected.sources.secret.items.properties = this.showmodel.spec.template.spec.volumes.projected.sources.secret.items.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_projected_sources_configMap_items_properties: function () {
-                this.showmodel.spec.template.spec.volumes.projected.sources.configMap.items.properties = this.showmodel.spec.template.spec.volumes.projected.sources.configMap.items.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_projected_sources_downwardAPI_items_resourceFieldRef_divisor: function () {
-                this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.items.resourceFieldRef.divisor.on = this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.items.resourceFieldRef.divisor.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_projected_sources_downwardAPI_items_resourceFieldRef_divisor_properties: function () {
-                this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.items.resourceFieldRef.divisor.properties = this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.items.resourceFieldRef.divisor.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_quobyte: function () {
-                this.showmodel.spec.template.spec.volumes.quobyte.on = this.showmodel.spec.template.spec.volumes.quobyte.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_quobyte_properties: function () {
-                this.showmodel.spec.template.spec.volumes.projected.properties = this.showmodel.spec.template.spec.volumes.projected.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_rbd: function () {
-                this.showmodel.spec.template.spec.volumes.rbd.on = this.showmodel.spec.template.spec.volumes.rbd.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_rbd_properties: function () {
-                this.showmodel.spec.template.spec.volumes.rbd.properties = this.showmodel.spec.template.spec.volumes.rbd.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_rbd_monitors: function () {
-                this.showmodel.spec.template.spec.volumes.rbd.monitors = this.showmodel.spec.template.spec.volumes.rbd.monitors !== true;
-            },
-            showmodel_spec_template_spec_volumes_rbd_secretRef: function () {
-                this.showmodel.spec.template.spec.volumes.rbd.secretRef.on = this.showmodel.spec.template.spec.volumes.rbd.secretRef.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_rbd_secretRef_properties: function () {
-                this.showmodel.spec.template.spec.volumes.rbd.secretRef.properties = this.showmodel.spec.template.spec.volumes.rbd.secretRef.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_scaleIO: function () {
-                this.showmodel.spec.template.spec.volumes.scaleIO.on = this.showmodel.spec.template.spec.volumes.scaleIO.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_scaleIO_properties: function () {
-                this.showmodel.spec.template.spec.volumes.scaleIO.properties = this.showmodel.spec.template.spec.volumes.scaleIO.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_scaleIO_secretRef: function () {
-                this.showmodel.spec.template.spec.volumes.scaleIO.secretRef.on = this.showmodel.spec.template.spec.volumes.scaleIO.secretRef.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_scaleIO_secretRef_properties: function () {
-                this.showmodel.spec.template.spec.volumes.scaleIO.secretRef.properties = this.showmodel.spec.template.spec.volumes.scaleIO.secretRef.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_secret: function () {
-                this.showmodel.spec.template.spec.volumes.secret.on = this.showmodel.spec.template.spec.volumes.secret.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_secret_properties: function () {
-                this.showmodel.spec.template.spec.volumes.secret.properties = this.showmodel.spec.template.spec.volumes.secret.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_secret_items: function () {
-                this.showmodel.spec.template.spec.volumes.secret.items.on = this.showmodel.spec.template.spec.volumes.secret.items.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_secret_item_properties: function () {
-                this.showmodel.spec.template.spec.volumes.secret.items.properties = this.showmodel.spec.template.spec.volumes.secret.items.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_storageos_properties: function () {
-                this.showmodel.spec.template.spec.volumes.storageos.properties = this.showmodel.spec.template.spec.volumes.storageos.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_storageos_secretRef: function () {
-                this.showmodel.spec.template.spec.volumes.storageos.secretRef.on = this.showmodel.spec.template.spec.volumes.storageos.secretRef.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_storageos_secretRef_properties: function () {
-                this.showmodel.spec.template.spec.volumes.storageos.secretRef.properties = this.showmodel.spec.template.spec.volumes.storageos.secretRef.properties !== true;
-            },
-            showmodel_spec_template_spec_volumes_storageos: function () {
-                this.showmodel.spec.template.spec.volumes.storageos.on = this.showmodel.spec.template.spec.volumes.storageos.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_vsphereVolume: function () {
-                this.showmodel.spec.template.spec.volumes.vsphereVolume.on = this.showmodel.spec.template.spec.volumes.vsphereVolume.on !== true;
-            },
-            showmodel_spec_template_spec_volumes_vsphereVolume_properties: function () {
-                this.showmodel.spec.template.spec.volumes.vsphereVolume.properties = this.showmodel.spec.template.spec.volumes.vsphereVolume.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_properties: function () {
-                this.showmodel.spec.template.spec.containers.properties = this.showmodel.spec.template.spec.containers.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_args: function () {
-                this.showmodel.spec.template.spec.containers.args = this.showmodel.spec.template.spec.containers.args !== true;
-            },
-            showmodel_spec_template_spec_containers_command: function () {
-                this.showmodel.spec.template.spec.containers.command = this.showmodel.spec.template.spec.containers.command !== true;
-            },
-            showmodel_spec_template_spec_containers_env: function () {
-                this.showmodel.spec.template.spec.containers.env.on = this.showmodel.spec.template.spec.containers.env.on !== true;
-            },
-            showmodel_spec_template_spec_containers_envFrom: function () {
-                this.showmodel.spec.template.spec.containers.envFrom.on = this.showmodel.spec.template.spec.containers.envFrom.on !== true;
-            },
-            showmodel_spec_template_spec_containers_env_valueFrom: function () {
-                this.showmodel.spec.template.spec.containers.env.valueFrom.on = this.showmodel.spec.template.spec.containers.env.valueFrom.on !== true;
-            },
-            showmodel_spec_template_spec_containers_env_valueFrom_properties: function () {
-                this.showmodel.spec.template.spec.containers.env.valueFrom.properties = this.showmodel.spec.template.spec.containers.env.valueFrom.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_env_properties: function () {
-                this.showmodel.spec.template.spec.containers.env.properties = this.showmodel.spec.template.spec.containers.env.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_env_valueFrom_configMapKeyRef: function () {
-                this.showmodel.spec.template.spec.containers.env.valueFrom.configMapKeyRef.on = this.showmodel.spec.template.spec.containers.env.valueFrom.configMapKeyRef.on !== true;
-            },
-            showmodel_spec_template_spec_containers_env_valueFrom_fieldRef: function () {
-                this.showmodel.spec.template.spec.containers.env.valueFrom.fieldRef.on = this.showmodel.spec.template.spec.containers.env.valueFrom.fieldRef.on !== true;
-            },
-            showmodel_spec_template_spec_containers_env_valueFrom_resourceFieldRef: function () {
-                this.showmodel.spec.template.spec.containers.env.valueFrom.resourceFieldRef.on = this.showmodel.spec.template.spec.containers.env.valueFrom.resourceFieldRef.on !== true;
-            },
-            showmodel_spec_template_spec_containers_env_valueFrom_secretKeyRef: function () {
-                this.showmodel.spec.template.spec.containers.env.valueFrom.secretKeyRef.on = this.showmodel.spec.template.spec.containers.env.valueFrom.secretKeyRef.on !== true;
-            },
-            showmodel_spec_template_spec_containers_env_valueFrom_configMapKeyRef_properties: function () {
-                this.showmodel.spec.template.spec.containers.env.valueFrom.configMapKeyRef.properties = this.showmodel.spec.template.spec.containers.env.valueFrom.configMapKeyRef.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_env_valueFrom_fieldRef_properties: function () {
-                this.showmodel.spec.template.spec.containers.env.valueFrom.fieldRef.properties = this.showmodel.spec.template.spec.containers.env.valueFrom.fieldRef.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_env_valueFrom_resourceFieldRef_divisor: function () {
-                this.showmodel.spec.template.spec.containers.env.valueFrom.resourceFieldRef.divisor.on = this.showmodel.spec.template.spec.containers.env.valueFrom.resourceFieldRef.divisor.on !== true;
-            },
-            showmodel_spec_template_spec_containers_env_valueFrom_resourceFieldRef_divisor_properties: function () {
-                this.showmodel.spec.template.spec.containers.env.valueFrom.resourceFieldRef.divisor.properties = this.showmodel.spec.template.spec.containers.env.valueFrom.resourceFieldRef.divisor.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_env_valueFrom_resourceFieldRef_properties: function () {
-                this.showmodel.spec.template.spec.containers.env.valueFrom.resourceFieldRef.properties = this.showmodel.spec.template.spec.containers.env.valueFrom.resourceFieldRef.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_env_valueFrom_secretKeyRef_properties: function () {
-                this.showmodel.spec.template.spec.containers.env.valueFrom.secretKeyRef.properties = this.showmodel.spec.template.spec.containers.env.valueFrom.secretKeyRef.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_envFrom_configMapRef: function () {
-                this.showmodel.spec.template.spec.containers.envFrom.configMapRef.on = this.showmodel.spec.template.spec.containers.envFrom.configMapRef.on !== true;
-            },
-            showmodel_spec_template_spec_containers_envFrom_secretRef: function () {
-                this.showmodel.spec.template.spec.containers.envFrom.secretRef.on = this.showmodel.spec.template.spec.containers.envFrom.secretRef.on !== true;
-            },
-            showmodel_spec_template_spec_containers_envFrom_secretRef_properties: function () {
-                this.showmodel.spec.template.spec.containers.envFrom.secretRef.properties = this.showmodel.spec.template.spec.containers.envFrom.secretRef.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_envFrom_properties: function () {
-                this.showmodel.spec.template.spec.containers.envFrom.properties = this.showmodel.spec.template.spec.containers.envFrom.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_envFrom_configMapRef_properties: function () {
-                this.showmodel.spec.template.spec.containers.envFrom.configMapRef.properties = this.showmodel.spec.template.spec.containers.envFrom.configMapRef.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_volumeMounts: function () {
-                this.showmodel.spec.template.spec.containers.volumeMounts.on = this.showmodel.spec.template.spec.containers.volumeMounts.on !== true;
-            },
-            showmodel_spec_template_spec_containers_volumeMounts_properties: function () {
-                this.showmodel.spec.template.spec.containers.volumeMounts.properties = this.showmodel.spec.template.spec.containers.volumeMounts.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_ports: function () {
-                this.showmodel.spec.template.spec.containers.ports.on = this.showmodel.spec.template.spec.containers.ports.on !== true;
-            },
-            showmodel_spec_template_spec_containers_ports_properties: function () {
-                this.showmodel.spec.template.spec.containers.ports.properties = this.showmodel.spec.template.spec.containers.ports.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_lifecycle: function () {
-                this.showmodel.spec.template.spec.containers.lifecycle.on = this.showmodel.spec.template.spec.containers.lifecycle.on !== true;
-            },
-            showmodel_spec_template_spec_containers_lifecycle_properties: function () {
-                this.showmodel.spec.template.spec.containers.lifecycle.properties = this.showmodel.spec.template.spec.containers.lifecycle.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_lifecycle_postStart: function () {
-                this.showmodel.spec.template.spec.containers.lifecycle.postStart.on = this.showmodel.spec.template.spec.containers.lifecycle.postStart.on !== true;
-            },
-            showmodel_spec_template_spec_containers_lifecycle_postStart_exec: function () {
-                this.showmodel.spec.template.spec.containers.lifecycle.postStart.exec.on = this.showmodel.spec.template.spec.containers.lifecycle.postStart.exec.on !== true;
-            },
-            showmodel_spec_template_spec_containers_lifecycle_postStart_httpGet: function () {
-                this.showmodel.spec.template.spec.containers.lifecycle.postStart.httpGet.on = this.showmodel.spec.template.spec.containers.lifecycle.postStart.httpGet.on !== true;
-            },
-            showmodel_spec_template_spec_containers_lifecycle_postStart_tcpSocket: function () {
-                this.showmodel.spec.template.spec.containers.lifecycle.postStart.tcpSocket.on = this.showmodel.spec.template.spec.containers.lifecycle.postStart.tcpSocket.on !== true;
-            },
-            showmodel_spec_template_spec_containers_lifecycle_postStart_properties: function () {
-                this.showmodel.spec.template.spec.containers.lifecycle.postStart.properties = this.showmodel.spec.template.spec.containers.lifecycle.postStart.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_lifecycle_preStop: function () {
-                this.showmodel.spec.template.spec.containers.lifecycle.preStop.on = this.showmodel.spec.template.spec.containers.lifecycle.preStop.on !== true;
-            },
-            showmodel_spec_template_spec_containers_livenessProbe: function () {
-                this.showmodel.spec.template.spec.containers.livenessProbe.on = this.showmodel.spec.template.spec.containers.livenessProbe.on !== true;
-            },
-            showmodel_spec_template_spec_containers_readinessProbe: function () {
-                this.showmodel.spec.template.spec.containers.readinessProbe.on = this.showmodel.spec.template.spec.containers.readinessProbe.on !== true;
-            },
-            showmodel_spec_template_spec_containers_resources: function () {
-                this.showmodel.spec.template.spec.containers.resources.on = this.showmodel.spec.template.spec.containers.resources.on !== true;
-            },
-            showmodel_spec_template_spec_containers_securityContext: function () {
-                this.showmodel.spec.template.spec.containers.securityContext.on = this.showmodel.spec.template.spec.containers.securityContext.on !== true;
-            },
-            showmodel_spec_template_spec_containers_lifecycle_postStart_exec_properties: function () {
-                this.showmodel.spec.template.spec.containers.lifecycle.postStart.exec.properties = this.showmodel.spec.template.spec.containers.lifecycle.postStart.exec.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_lifecycle_postStart_exec_command: function () {
-                this.showmodel.spec.template.spec.containers.lifecycle.postStart.exec.command = this.showmodel.spec.template.spec.containers.lifecycle.postStart.exec.command !== true;
-            },
-            showmodel_spec_template_spec_containers_lifecycle_postStart_httpGet_httpHeaders_properties: function () {
-                this.showmodel.spec.template.spec.containers.lifecycle.postStart.httpGet.httpHeaders.properties = this.showmodel.spec.template.spec.containers.lifecycle.postStart.httpGet.httpHeaders.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_lifecycle_postStart_httpGet_httpHeaders: function () {
-                this.showmodel.spec.template.spec.containers.lifecycle.postStart.httpGet.httpHeaders.on = this.showmodel.spec.template.spec.containers.lifecycle.postStart.httpGet.httpHeaders.on !== true;
-            },
-            showmodel_spec_template_spec_containers_lifecycle_postStart_httpGet_properties: function () {
-                this.showmodel.spec.template.spec.containers.lifecycle.postStart.httpGet.properties = this.showmodel.spec.template.spec.containers.lifecycle.postStart.httpGet.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_lifecycle_postStart_httpGet_port: function () {
-                this.showmodel.spec.template.spec.containers.lifecycle.postStart.httpGet.port.on = this.showmodel.spec.template.spec.containers.lifecycle.postStart.httpGet.port.on !== true;
-            },
-            showmodel_spec_template_spec_containers_lifecycle_postStart_httpGet_port_properties: function () {
-                this.showmodel.spec.template.spec.containers.lifecycle.postStart.httpGet.port.properties = this.showmodel.spec.template.spec.containers.lifecycle.postStart.httpGet.port.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_lifecycle_postStart_tcpSocket_properties: function () {
-                this.showmodel.spec.template.spec.containers.lifecycle.postStart.tcpSocket.properties = this.showmodel.spec.template.spec.containers.lifecycle.postStart.tcpSocket.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_lifecycle_postStart_tcpSocket_port: function () {
-                this.showmodel.spec.template.spec.containers.lifecycle.postStart.tcpSocket.port.on = this.showmodel.spec.template.spec.containers.lifecycle.postStart.tcpSocket.port.on !== true;
-            },
-            showmodel_spec_template_spec_containers_lifecycle_postStart_tcpSocket_port_properties: function () {
-                this.showmodel.spec.template.spec.containers.lifecycle.postStart.tcpSocket.port.properties = this.showmodel.spec.template.spec.containers.lifecycle.postStart.tcpSocket.port.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_lifecycle_preStop_exec: function () {
-                this.showmodel.spec.template.spec.containers.lifecycle.preStop.exec.on = this.showmodel.spec.template.spec.containers.lifecycle.preStop.exec.on !== true;
-            },
-            showmodel_spec_template_spec_containers_lifecycle_preStop_exec_properties: function () {
-                this.showmodel.spec.template.spec.containers.lifecycle.preStop.exec.properties = this.showmodel.spec.template.spec.containers.lifecycle.preStop.exec.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_lifecycle_preStop_exec_command: function () {
-                this.showmodel.spec.template.spec.containers.lifecycle.preStop.exec.command = this.showmodel.spec.template.spec.containers.lifecycle.preStop.exec.command !== true;
-            },
-            showmodel_spec_template_spec_containers_lifecycle_preStop_httpGet: function () {
-                this.showmodel.spec.template.spec.containers.lifecycle.preStop.httpGet.on = this.showmodel.spec.template.spec.containers.lifecycle.preStop.httpGet.on !== true;
-            },
-            showmodel_spec_template_spec_containers_lifecycle_preStop_httpGet_properties: function () {
-                this.showmodel.spec.template.spec.containers.lifecycle.preStop.httpGet.properties = this.showmodel.spec.template.spec.containers.lifecycle.preStop.httpGet.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_lifecycle_preStop_httpGet_httpHeaders: function () {
-                this.showmodel.spec.template.spec.containers.lifecycle.preStop.httpGet.httpHeaders.on = this.showmodel.spec.template.spec.containers.lifecycle.preStop.httpGet.httpHeaders.on !== true;
-            },
-            showmodel_spec_template_spec_containers_lifecycle_preStop_httpGet_httpHeaders_properties: function () {
-                this.showmodel.spec.template.spec.containers.lifecycle.preStop.httpGet.httpHeaders.properties = this.showmodel.spec.template.spec.containers.lifecycle.preStop.httpGet.httpHeaders.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_lifecycle_preStop_httpGet_port: function () {
-                this.showmodel.spec.template.spec.containers.lifecycle.preStop.httpGet.port.on = this.showmodel.spec.template.spec.containers.lifecycle.preStop.httpGet.port.on !== true;
-            },
-            showmodel_spec_template_spec_containers_lifecycle_preStop_httpGet_port_properties: function () {
-                this.showmodel.spec.template.spec.containers.lifecycle.preStop.httpGet.port.properties = this.showmodel.spec.template.spec.containers.lifecycle.preStop.httpGet.port.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_lifecycle_preStop_tcpSocket: function () {
-                this.showmodel.spec.template.spec.containers.lifecycle.preStop.tcpSocket.on = this.showmodel.spec.template.spec.containers.lifecycle.preStop.tcpSocket.on !== true;
-            },
-            showmodel_spec_template_spec_containers_lifecycle_preStop_properties: function () {
-                this.showmodel.spec.template.spec.containers.lifecycle.preStop.properties = this.showmodel.spec.template.spec.containers.lifecycle.preStop.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_lifecycle_preStop_tcpSocket_port_properties: function () {
-                this.showmodel.spec.template.spec.containers.lifecycle.preStop.tcpSocket.port.properties = this.showmodel.spec.template.spec.containers.lifecycle.preStop.tcpSocket.port.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_lifecycle_preStop_tcpSocket_properties: function () {
-                this.showmodel.spec.template.spec.containers.lifecycle.preStop.tcpSocket.properties = this.showmodel.spec.template.spec.containers.lifecycle.preStop.tcpSocket.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_lifecycle_preStop_tcpSocket_port: function () {
-                this.showmodel.spec.template.spec.containers.lifecycle.preStop.tcpSocket.port.on = this.showmodel.spec.template.spec.containers.lifecycle.preStop.tcpSocket.port.on !== true;
-            },
-            showmodel_spec_template_spec_containers_livenessProbe_properties: function () {
-                this.showmodel.spec.template.spec.containers.livenessProbe.properties = this.showmodel.spec.template.spec.containers.livenessProbe.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_livenessProbe_exec: function () {
-                this.showmodel.spec.template.spec.containers.livenessProbe.exec.on = this.showmodel.spec.template.spec.containers.livenessProbe.exec.on !== true;
-            },
-            showmodel_spec_template_spec_containers_livenessProbe_exec_properties: function () {
-                this.showmodel.spec.template.spec.containers.livenessProbe.exec.properties = this.showmodel.spec.template.spec.containers.livenessProbe.exec.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_livenessProbe_exec_command: function () {
-                this.showmodel.spec.template.spec.containers.livenessProbe.exec.command = this.showmodel.spec.template.spec.containers.livenessProbe.exec.command !== true;
-            },
-            showmodel_spec_template_spec_containers_livenessProbe_httpGet: function () {
-                this.showmodel.spec.template.spec.containers.livenessProbe.httpGet.on = this.showmodel.spec.template.spec.containers.livenessProbe.httpGet.on !== true;
-            },
-            showmodel_spec_template_spec_containers_livenessProbe_tcpSocket: function () {
-                this.showmodel.spec.template.spec.containers.livenessProbe.tcpSocket.on = this.showmodel.spec.template.spec.containers.livenessProbe.tcpSocket.on !== true;
-            },
-            showmodel_spec_template_spec_containers_livenessProbe_httpGet_properties: function () {
-                this.showmodel.spec.template.spec.containers.livenessProbe.httpGet.properties = this.showmodel.spec.template.spec.containers.livenessProbe.httpGet.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_livenessProbe_httpGet_httpHeaders: function () {
-                this.showmodel.spec.template.spec.containers.livenessProbe.httpGet.httpHeaders.on = this.showmodel.spec.template.spec.containers.livenessProbe.httpGet.httpHeaders.on !== true;
-            },
-            showmodel_spec_template_spec_containers_livenessProbe_httpGet_httpHeaders_properties: function () {
-                this.showmodel.spec.template.spec.containers.livenessProbe.httpGet.httpHeaders.properties = this.showmodel.spec.template.spec.containers.livenessProbe.httpGet.httpHeaders.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_livenessProbe_httpGet_port: function () {
-                this.showmodel.spec.template.spec.containers.livenessProbe.httpGet.port.on = this.showmodel.spec.template.spec.containers.livenessProbe.httpGet.port.on !== true;
-            },
-            showmodel_spec_template_spec_containers_livenessProbe_httpGet_port_properties: function () {
-                this.showmodel.spec.template.spec.containers.livenessProbe.httpGet.port.properties = this.showmodel.spec.template.spec.containers.livenessProbe.httpGet.port.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_livenessProbe_tcpSocket_properties: function () {
-                this.showmodel.spec.template.spec.containers.livenessProbe.tcpSocket.properties = this.showmodel.spec.template.spec.containers.livenessProbe.tcpSocket.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_livenessProbe_tcpSocket_port: function () {
-                this.showmodel.spec.template.spec.containers.livenessProbe.tcpSocket.port.on = this.showmodel.spec.template.spec.containers.livenessProbe.tcpSocket.port.on !== true;
-            },
-            showmodel_spec_template_spec_containers_livenessProbe_tcpSocket_port_properties: function () {
-                this.showmodel.spec.template.spec.containers.livenessProbe.tcpSocket.port.properties = this.showmodel.spec.template.spec.containers.livenessProbe.tcpSocket.port.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_resources_properties: function () {
-                this.showmodel.spec.template.spec.containers.resources.properties = this.showmodel.spec.template.spec.containers.resources.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_resources_limits: function () {
-                this.showmodel.spec.template.spec.containers.resources.limits.on = this.showmodel.spec.template.spec.containers.resources.limits.on !== true;
-            },
-            showmodel_spec_template_spec_containers_resources_requests: function () {
-                this.showmodel.spec.template.spec.containers.resources.requests.on = this.showmodel.spec.template.spec.containers.resources.requests.on !== true;
-            },
-            showmodel_spec_template_spec_containers_resources_limits_key: function () {
-                this.showmodel.spec.template.spec.containers.resources.limits.key.on = this.showmodel.spec.template.spec.containers.resources.limits.key.on !== true;
-            },
-            showmodel_spec_template_spec_containers_resources_limits_key_properties: function () {
-                this.showmodel.spec.template.spec.containers.resources.limits.key.properties = this.showmodel.spec.template.spec.containers.resources.limits.key.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_readinessProbe_properties: function () {
-                this.showmodel.spec.template.spec.containers.readinessProbe.properties = this.showmodel.spec.template.spec.containers.readinessProbe.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_readinessProbe_exec: function () {
-                this.showmodel.spec.template.spec.containers.readinessProbe.exec.on = this.showmodel.spec.template.spec.containers.readinessProbe.exec.on !== true;
-            },
-            showmodel_spec_template_spec_containers_readinessProbe_exec_properties: function () {
-                this.showmodel.spec.template.spec.containers.readinessProbe.exec.properties = this.showmodel.spec.template.spec.containers.readinessProbe.exec.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_readinessProbe_exec_command: function () {
-                this.showmodel.spec.template.spec.containers.readinessProbe.exec.command = this.showmodel.spec.template.spec.containers.readinessProbe.exec.command !== true;
-            },
-            showmodel_spec_template_spec_containers_readinessProbe_httpGet: function () {
-                this.showmodel.spec.template.spec.containers.readinessProbe.httpGet.on = this.showmodel.spec.template.spec.containers.readinessProbe.httpGet.on !== true;
-            },
-            showmodel_spec_template_spec_containers_readinessProbe_httpGet_properties: function () {
-                this.showmodel.spec.template.spec.containers.readinessProbe.httpGet.properties = this.showmodel.spec.template.spec.containers.readinessProbe.httpGet.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_readinessProbe_httpGet_httpHeaders: function () {
-                this.showmodel.spec.template.spec.containers.readinessProbe.httpGet.httpHeaders.on = this.showmodel.spec.template.spec.containers.readinessProbe.httpGet.httpHeaders.on !== true;
-            },
-            showmodel_spec_template_spec_containers_readinessProbe_httpGet_httpHeaders_properties: function () {
-                this.showmodel.spec.template.spec.containers.readinessProbe.httpGet.httpHeaders.properties = this.showmodel.spec.template.spec.containers.readinessProbe.httpGet.httpHeaders.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_readinessProbe_httpGet_port: function () {
-                this.showmodel.spec.template.spec.containers.readinessProbe.httpGet.port.on = this.showmodel.spec.template.spec.containers.readinessProbe.httpGet.port.on !== true;
-            },
-            showmodel_spec_template_spec_containers_readinessProbe_httpGet_port_properties: function () {
-                this.showmodel.spec.template.spec.containers.readinessProbe.httpGet.port.properties = this.showmodel.spec.template.spec.containers.readinessProbe.httpGet.port.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_readinessProbe_tcpSocket: function () {
-                this.showmodel.spec.template.spec.containers.readinessProbe.tcpSocket.on = this.showmodel.spec.template.spec.containers.readinessProbe.tcpSocket.on !== true;
-            },
-            showmodel_spec_template_spec_containers_readinessProbe_tcpSocket_properties: function () {
-                this.showmodel.spec.template.spec.containers.readinessProbe.tcpSocket.properties = this.showmodel.spec.template.spec.containers.readinessProbe.tcpSocket.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_readinessProbe_tcpSocket_port: function () {
-                this.showmodel.spec.template.spec.containers.readinessProbe.tcpSocket.port.on = this.showmodel.spec.template.spec.containers.readinessProbe.tcpSocket.port.on !== true;
-            },
-            showmodel_spec_template_spec_containers_readinessProbe_tcpSocket_port_properties: function () {
-                this.showmodel.spec.template.spec.containers.readinessProbe.tcpSocket.port.properties = this.showmodel.spec.template.spec.containers.readinessProbe.tcpSocket.port.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_securityContext_properties: function () {
-                this.showmodel.spec.template.spec.containers.securityContext.properties = this.showmodel.spec.template.spec.containers.securityContext.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_resources_requests_key: function () {
-                this.showmodel.spec.template.spec.containers.resources.requests.key.on = this.showmodel.spec.template.spec.containers.resources.requests.key.on !== true;
-            },
-            showmodel_spec_template_spec_containers_resources_requests_key_properties: function () {
-                this.showmodel.spec.template.spec.containers.resources.requests.key.properties = this.showmodel.spec.template.spec.containers.resources.requests.key.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_securityContext_capabilities: function () {
-                this.showmodel.spec.template.spec.containers.securityContext.capabilities.on = this.showmodel.spec.template.spec.containers.securityContext.capabilities.on !== true;
-            },
-            showmodel_spec_template_spec_containers_securityContext_capabilities_properties: function () {
-                this.showmodel.spec.template.spec.containers.securityContext.capabilities.properties = this.showmodel.spec.template.spec.containers.securityContext.capabilities.properties !== true;
-            },
-            showmodel_spec_template_spec_containers_securityContext_capabilities_add: function () {
-                this.showmodel.spec.template.spec.containers.securityContext.capabilities.add = this.showmodel.spec.template.spec.containers.securityContext.capabilities.add !== true;
-            },
-            showmodel_spec_template_spec_containers_securityContext_capabilities_drop: function () {
-                this.showmodel.spec.template.spec.containers.securityContext.capabilities.drop = this.showmodel.spec.template.spec.containers.securityContext.capabilities.drop !== true;
-            },
-            showmodel_spec_template_spec_containers_securityContext_seLinuxOptions: function () {
-                this.showmodel.spec.template.spec.containers.securityContext.seLinuxOptions.on = this.showmodel.spec.template.spec.containers.securityContext.seLinuxOptions.on !== true;
-            },
-            showmodel_spec_template_spec_containers_securityContext_seLinuxOptions_properties: function () {
-                this.showmodel.spec.template.spec.containers.securityContext.seLinuxOptions.properties = this.showmodel.spec.template.spec.containers.securityContext.seLinuxOptions.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.properties = this.showmodel.spec.template.spec.initContainers.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_args: function () {
-                this.showmodel.spec.template.spec.initContainers.args = this.showmodel.spec.template.spec.initContainers.args !== true;
-            },
-            showmodel_spec_template_spec_initContainers_command: function () {
-                this.showmodel.spec.template.spec.initContainers.command = this.showmodel.spec.template.spec.initContainers.command !== true;
-            },
-            showmodel_spec_template_spec_initContainers_env: function () {
-                this.showmodel.spec.template.spec.initContainers.env.on = this.showmodel.spec.template.spec.initContainers.env.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_env_valueFrom: function () {
-                this.showmodel.spec.template.spec.initContainers.env.valueFrom.on = this.showmodel.spec.template.spec.initContainers.env.valueFrom.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_env_valueFrom_configMapKeyRef: function () {
-                this.showmodel.spec.template.spec.initContainers.env.valueFrom.configMapKeyRef.on = this.showmodel.spec.template.spec.initContainers.env.valueFrom.configMapKeyRef.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_env_valueFrom_configMapKeyRef_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.env.valueFrom.configMapKeyRef.properties = this.showmodel.spec.template.spec.initContainers.env.valueFrom.configMapKeyRef.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_env_valueFrom_fieldRef: function () {
-                this.showmodel.spec.template.spec.initContainers.env.valueFrom.fieldRef.on = this.showmodel.spec.template.spec.initContainers.env.valueFrom.fieldRef.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_env_valueFrom_fieldRef_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.env.valueFrom.fieldRef.properties = this.showmodel.spec.template.spec.initContainers.env.valueFrom.fieldRef.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_env_valueFrom_resourceFieldRef: function () {
-                this.showmodel.spec.template.spec.initContainers.env.valueFrom.resourceFieldRef.on = this.showmodel.spec.template.spec.initContainers.env.valueFrom.resourceFieldRef.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_env_valueFrom_resourceFieldRef_divisor: function () {
-                this.showmodel.spec.template.spec.initContainers.env.valueFrom.resourceFieldRef.divisor.on = this.showmodel.spec.template.spec.initContainers.env.valueFrom.resourceFieldRef.divisor.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_env_valueFrom_resourceFieldRef_divisor_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.env.valueFrom.resourceFieldRef.divisor.properties = this.showmodel.spec.template.spec.initContainers.env.valueFrom.resourceFieldRef.divisor.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_env_valueFrom_resourceFieldRef_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.env.valueFrom.resourceFieldRef.properties = this.showmodel.spec.template.spec.initContainers.env.valueFrom.resourceFieldRef.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_env_valueFrom_secretKeyRef: function () {
-                this.showmodel.spec.template.spec.initContainers.env.valueFrom.secretKeyRef.on = this.showmodel.spec.template.spec.initContainers.env.valueFrom.secretKeyRef.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_env_valueFrom_secretKeyRef_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.env.valueFrom.secretKeyRef.properties = this.showmodel.spec.template.spec.initContainers.env.valueFrom.secretKeyRef.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_env_valueFrom_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.env.valueFrom.properties = this.showmodel.spec.template.spec.initContainers.env.valueFrom.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_env_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.env.properties = this.showmodel.spec.template.spec.initContainers.env.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_envFrom: function () {
-                this.showmodel.spec.template.spec.initContainers.envFrom.on = this.showmodel.spec.template.spec.initContainers.envFrom.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_envFrom_configMapRef: function () {
-                this.showmodel.spec.template.spec.initContainers.envFrom.configMapRef.on = this.showmodel.spec.template.spec.initContainers.envFrom.configMapRef.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_envFrom_configMapRef_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.envFrom.configMapRef.properties = this.showmodel.spec.template.spec.initContainers.envFrom.configMapRef.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_envFrom_secretRef: function () {
-                this.showmodel.spec.template.spec.initContainers.envFrom.secretRef.on = this.showmodel.spec.template.spec.initContainers.envFrom.secretRef.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_envFrom_secretRef_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.envFrom.secretRef.properties = this.showmodel.spec.template.spec.initContainers.envFrom.secretRef.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_envFrom_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.envFrom.properties = this.showmodel.spec.template.spec.initContainers.envFrom.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_lifecycle: function () {
-                this.showmodel.spec.template.spec.initContainers.lifecycle.on = this.showmodel.spec.template.spec.initContainers.lifecycle.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_lifecycle_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.lifecycle.properties = this.showmodel.spec.template.spec.initContainers.lifecycle.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_lifecycle_postStart: function () {
-                this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.on = this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_lifecycle_postStart_exec: function () {
-                this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.exec.on = this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.exec.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_lifecycle_postStart_exec_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.exec.properties = this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.exec.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_lifecycle_postStart_exec_command: function () {
-                this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.exec.command = this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.exec.command !== true;
-            },
-            showmodel_spec_template_spec_initContainers_lifecycle_postStart_httpGet: function () {
-                this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.httpGet.on = this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.httpGet.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_lifecycle_postStart_httpGet_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.httpGet.properties = this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.httpGet.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_lifecycle_postStart_httpGet_httpHeaders: function () {
-                this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.httpGet.httpHeaders.on = this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.httpGet.httpHeaders.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_lifecycle_postStart_httpGet_httpHeaders_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.httpGet.httpHeaders.properties = this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.httpGet.httpHeaders.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_lifecycle_postStart_httpGet_port: function () {
-                this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.httpGet.port.on = this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.httpGet.port.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_lifecycle_postStart_httpGet_port_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.httpGet.port.properties = this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.httpGet.port.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_lifecycle_postStart_tcpSocket: function () {
-                this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.tcpSocket.on = this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.tcpSocket.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_lifecycle_postStart_tcpSocket_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.tcpSocket.properties = this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.tcpSocket.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_lifecycle_postStart_tcpSocket_port: function () {
-                this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.tcpSocket.port.on = this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.tcpSocket.port.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_lifecycle_postStart_tcpSocket_port_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.tcpSocket.port.properties = this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.tcpSocket.port.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_lifecycle_postStart_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.properties = this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_lifecycle_preStop: function () {
-                this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.on = this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_lifecycle_preStop_exec: function () {
-                this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.exec.on = this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.exec.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_lifecycle_preStop_exec_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.exec.properties = this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.exec.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_lifecycle_preStop_exec_command: function () {
-                this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.exec.command = this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.exec.command !== true;
-            },
-            showmodel_spec_template_spec_initContainers_lifecycle_preStop_httpGet: function () {
-                this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.httpGet.on = this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.httpGet.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_lifecycle_preStop_httpGet_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.httpGet.properties = this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.httpGet.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_lifecycle_preStop_httpGet_httpHeaders: function () {
-                this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.httpGet.httpHeaders.on = this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.httpGet.httpHeaders.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_lifecycle_preStop_httpGet_httpHeaders_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.httpGet.httpHeaders.properties = this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.httpGet.httpHeaders.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_lifecycle_preStop_httpGet_port: function () {
-                this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.httpGet.port.on = this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.httpGet.port.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_lifecycle_preStop_httpGet_port_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.httpGet.port.properties = this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.httpGet.port.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_lifecycle_preStop_tcpSocket: function () {
-                this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.tcpSocket.on = this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.tcpSocket.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_lifecycle_preStop_tcpSocket_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.tcpSocket.properties = this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.tcpSocket.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_lifecycle_preStop_tcpSocket_port: function () {
-                this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.tcpSocket.port.on = this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.tcpSocket.port.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_lifecycle_preStop_tcpSocket_port_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.tcpSocket.port.properties = this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.tcpSocket.port.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_lifecycle_preStop_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.properties = this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_livenessProbe: function () {
-                this.showmodel.spec.template.spec.initContainers.livenessProbe.on = this.showmodel.spec.template.spec.initContainers.livenessProbe.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_livenessProbe_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.livenessProbe.properties = this.showmodel.spec.template.spec.initContainers.livenessProbe.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_livenessProbe_exec: function () {
-                this.showmodel.spec.template.spec.initContainers.livenessProbe.exec.on = this.showmodel.spec.template.spec.initContainers.livenessProbe.exec.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_livenessProbe_exec_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.livenessProbe.exec.properties = this.showmodel.spec.template.spec.initContainers.livenessProbe.exec.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_livenessProbe_exec_command: function () {
-                this.showmodel.spec.template.spec.initContainers.livenessProbe.exec.command = this.showmodel.spec.template.spec.initContainers.livenessProbe.exec.command !== true;
-            },
-            showmodel_spec_template_spec_initContainers_livenessProbe_httpGet: function () {
-                this.showmodel.spec.template.spec.initContainers.livenessProbe.httpGet.on = this.showmodel.spec.template.spec.initContainers.livenessProbe.httpGet.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_livenessProbe_httpGet_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.livenessProbe.httpGet.properties = this.showmodel.spec.template.spec.initContainers.livenessProbe.httpGet.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_livenessProbe_httpGet_httpHeaders: function () {
-                this.showmodel.spec.template.spec.initContainers.livenessProbe.httpGet.httpHeaders.on = this.showmodel.spec.template.spec.initContainers.livenessProbe.httpGet.httpHeaders.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_livenessProbe_httpGet_httpHeaders_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.livenessProbe.httpGet.httpHeaders.properties = this.showmodel.spec.template.spec.initContainers.livenessProbe.httpGet.httpHeaders.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_livenessProbe_httpGet_port: function () {
-                this.showmodel.spec.template.spec.initContainers.livenessProbe.httpGet.port.on = this.showmodel.spec.template.spec.initContainers.livenessProbe.httpGet.port.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_livenessProbe_httpGet_port_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.livenessProbe.httpGet.port.properties = this.showmodel.spec.template.spec.initContainers.livenessProbe.httpGet.port.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_livenessProbe_tcpSocket: function () {
-                this.showmodel.spec.template.spec.initContainers.livenessProbe.tcpSocket.on = this.showmodel.spec.template.spec.initContainers.livenessProbe.tcpSocket.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_livenessProbe_tcpSocket_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.livenessProbe.tcpSocket.properties = this.showmodel.spec.template.spec.initContainers.livenessProbe.tcpSocket.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_livenessProbe_tcpSocket_port: function () {
-                this.showmodel.spec.template.spec.initContainers.livenessProbe.tcpSocket.port.on = this.showmodel.spec.template.spec.initContainers.livenessProbe.tcpSocket.port.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_livenessProbe_tcpSocket_port_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.livenessProbe.tcpSocket.port.properties = this.showmodel.spec.template.spec.initContainers.livenessProbe.tcpSocket.port.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_ports: function () {
-                this.showmodel.spec.template.spec.initContainers.ports.on = this.showmodel.spec.template.spec.initContainers.ports.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_ports_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.ports.properties = this.showmodel.spec.template.spec.initContainers.ports.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_readinessProbe: function () {
-                this.showmodel.spec.template.spec.initContainers.readinessProbe.on = this.showmodel.spec.template.spec.initContainers.readinessProbe.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_readinessProbe_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.readinessProbe.properties = this.showmodel.spec.template.spec.initContainers.readinessProbe.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_readinessProbe_exec: function () {
-                this.showmodel.spec.template.spec.initContainers.readinessProbe.exec.on = this.showmodel.spec.template.spec.initContainers.readinessProbe.exec.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_readinessProbe_exec_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.readinessProbe.exec.properties = this.showmodel.spec.template.spec.initContainers.readinessProbe.exec.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_readinessProbe_httpGet: function () {
-                this.showmodel.spec.template.spec.initContainers.readinessProbe.httpGet.on = this.showmodel.spec.template.spec.initContainers.readinessProbe.httpGet.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_readinessProbe_exec_command: function () {
-                this.showmodel.spec.template.spec.initContainers.readinessProbe.exec.command = this.showmodel.spec.template.spec.initContainers.readinessProbe.exec.command !== true;
-            },
-            showmodel_spec_template_spec_initContainers_readinessProbe_httpGet_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.readinessProbe.httpGet.properties = this.showmodel.spec.template.spec.initContainers.readinessProbe.httpGet.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_readinessProbe_httpGet_httpHeaders: function () {
-                this.showmodel.spec.template.spec.initContainers.readinessProbe.httpGet.httpHeaders.on = this.showmodel.spec.template.spec.initContainers.readinessProbe.httpGet.httpHeaders.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_readinessProbe_httpGet_httpHeaders_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.readinessProbe.httpGet.httpHeaders.properties = this.showmodel.spec.template.spec.initContainers.readinessProbe.httpGet.httpHeaders.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_readinessProbe_httpGet_port: function () {
-                this.showmodel.spec.template.spec.initContainers.readinessProbe.httpGet.port.on = this.showmodel.spec.template.spec.initContainers.readinessProbe.httpGet.port.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_readinessProbe_httpGet_port_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.readinessProbe.httpGet.port.properties = this.showmodel.spec.template.spec.initContainers.readinessProbe.httpGet.port.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_readinessProbe_tcpSocket: function () {
-                this.showmodel.spec.template.spec.initContainers.readinessProbe.tcpSocket.on = this.showmodel.spec.template.spec.initContainers.readinessProbe.tcpSocket.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_readinessProbe_tcpSocket_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.readinessProbe.tcpSocket.properties = this.showmodel.spec.template.spec.initContainers.readinessProbe.tcpSocket.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainer_readinessProbe_tcpSocket_port: function () {
-                this.showmodel.spec.template.spec.containers.readinessProbe.tcpSocket.port.on = this.showmodel.spec.template.spec.containers.readinessProbe.tcpSocket.port.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_readinessProbe_tcpSocket_port_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.readinessProbe.tcpSocket.port.properties = this.showmodel.spec.template.spec.initContainers.readinessProbe.tcpSocket.port.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_resources: function () {
-                this.showmodel.spec.template.spec.initContainers.resources.on = this.showmodel.spec.template.spec.initContainers.resources.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_resources_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.resources.properties = this.showmodel.spec.template.spec.initContainers.resources.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_resources_limits: function () {
-                this.showmodel.spec.template.spec.initContainers.resources.limits.on = this.showmodel.spec.template.spec.initContainers.resources.limits.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_resources_limits_key: function () {
-                this.showmodel.spec.template.spec.initContainers.resources.limits.key.on = this.showmodel.spec.template.spec.initContainers.resources.limits.key.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_resources_limits_key_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.resources.limits.key.properties = this.showmodel.spec.template.spec.initContainers.resources.limits.key.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_resources_requests: function () {
-                this.showmodel.spec.template.spec.initContainers.resources.requests.on = this.showmodel.spec.template.spec.initContainers.resources.requests.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_resources_requests_key: function () {
-                this.showmodel.spec.template.spec.initContainers.resources.requests.key.on = this.showmodel.spec.template.spec.initContainers.resources.requests.key.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_resources_requests_key_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.resources.requests.key.properties = this.showmodel.spec.template.spec.initContainers.resources.requests.key.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_securityContext: function () {
-                this.showmodel.spec.template.spec.initContainers.securityContext.on = this.showmodel.spec.template.spec.initContainers.securityContext.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_securityContext_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.securityContext.properties = this.showmodel.spec.template.spec.initContainers.securityContext.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_securityContext_capabilities: function () {
-                this.showmodel.spec.template.spec.initContainers.securityContext.capabilities.on = this.showmodel.spec.template.spec.initContainers.securityContext.capabilities.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_securityContext_capabilities_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.securityContext.capabilities.properties = this.showmodel.spec.template.spec.initContainers.securityContext.capabilities.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_securityContext_capabilities_add: function () {
-                this.showmodel.spec.template.spec.initContainers.securityContext.capabilities.add = this.showmodel.spec.template.spec.initContainers.securityContext.capabilities.add !== true;
-            },
-            showmodel_spec_template_spec_initContainers_securityContext_capabilities_drop: function () {
-                this.showmodel.spec.template.spec.initContainers.securityContext.capabilities.drop = this.showmodel.spec.template.spec.initContainers.securityContext.capabilities.drop !== true;
-            },
-            showmodel_spec_template_spec_initContainers_securityContext_seLinuxOptions: function () {
-                this.showmodel.spec.template.spec.initContainers.securityContext.seLinuxOptions.on = this.showmodel.spec.template.spec.initContainers.securityContext.seLinuxOptions.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_securityContext_seLinuxOptions_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.securityContext.seLinuxOptions.properties = this.showmodel.spec.template.spec.initContainers.securityContext.seLinuxOptions.properties !== true;
-            },
-            showmodel_spec_template_spec_initContainers_volumeMounts: function () {
-                this.showmodel.spec.template.spec.initContainers.volumeMounts.on = this.showmodel.spec.template.spec.initContainers.volumeMounts.on !== true;
-            },
-            showmodel_spec_template_spec_initContainers_volumeMounts_properties: function () {
-                this.showmodel.spec.template.spec.initContainers.volumeMounts.properties = this.showmodel.spec.template.spec.initContainers.volumeMounts.properties !== true;
             },
             addnewdataspecselector: function () {
                 this.tempnewdata.tempselector.push(['','']);
@@ -11952,7 +9790,7 @@
                 this.tempnewdata.tempnodeSelector.splice(index, 1);
             },
             addnewdataspectemplatespecvolumes: function () {
-                this.tempnewdata.volumes.push({'name': uuid().replace(/-/g,''), 'hostPath': {'path': ''}});
+                this.tempnewdata.volumes.push({'name': '', 'hostPath': {'path': ''}});
             },
             addnewdataspectemplatespeccontainersenv: function () {
                 this.tempnewdata.envs.push({name: '',value: ''});
@@ -11971,10 +9809,15 @@
                 this.tempnewdata.commands.splice(cindex, 1);
             },
             addnewdataspectemplatespeccontainersvolumeMounts: function () {
-                this.tempnewdata.volumeMounts.push({name:uuid().replace(/-/g,''),mountPath: ''});
+                this.tempnewdata.volumeMounts.push({name:'',mountPath: ''});
             },
             delnewdataspectemplatespeccontainersvolumeMounts: function (index) {
                 this.tempnewdata.volumeMounts.splice(index, 1);
+            },
+            changebase: function () {
+                this.newdata.metadata.name = this.newdata.spec.template.spec.hostname + '-' + this.newdata.spec.template.spec.subdomain;
+                //this.tempselector[0][0] = 'app';
+                //this.tempselector[0][1] = this.newdata.spec.template.spec.hostname + '-' +  this.newdata.spec.template.spec.subdomain;
             },
             addnewdataspectemplatespeccontainersports: function () {
                 this.tempnewdata.ports.push({'containerPort': ''});
