@@ -5,7 +5,7 @@
 	<sqlinfo sqlid="find_sys_roles">
 		<sqlname>查询角色列表</sqlname>
 		<sql><![CDATA[
-			SELECT role_id,role_name,role_remark
+			SELECT role_id,role_name,role_remark,role_type
 			FROM sys_role
 			WHERE ($ISNULL{role_name} OR role_name like '%$U{role_name}%')
 			AND ($ISNULL{role_remark} OR role_remark like '%$U{role_remark}%') 
@@ -15,14 +15,14 @@
 	<sqlinfo sqlid="add_sys_role">
 		<sqlname>添加角色</sqlname>
 		<sql><![CDATA[
-		INSERT INTO sys_role (role_id, role_name, role_remark) VALUES ($AUTOID{role_id}, $S{role_name}, $S{role_remark})
+		INSERT INTO sys_role (role_id,role_type,role_name, role_remark) VALUES ($AUTOID{role_id},$S{role_type},$S{role_name}, $S{role_remark})
 		]]></sql>
 	</sqlinfo>
 	
 	<sqlinfo sqlid="update_sys_role">
 		<sqlname>修改角色</sqlname>
 		<sql><![CDATA[
-		    UPDATE sys_role SET role_name = $S{role_name}, role_remark = $S{role_remark}
+		    update sys_role set role_name = $S{role_name},role_type = $S{role_type}, role_remark = $S{role_remark}
 		    WHERE role_id = $S{role_id}
 		]]></sql>
 	</sqlinfo>
@@ -30,7 +30,7 @@
 	<sqlinfo sqlid="delete_sys_role">
 		<sqlname>删除角色</sqlname>
 		<sql><![CDATA[
-		    DELETE FROM sys_role WHERE role_id = $S{role_id}
+		    delete from sys_role where role_id = $S{role_id}
 		]]></sql>
 	</sqlinfo>
 

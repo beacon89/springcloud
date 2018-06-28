@@ -7,10 +7,18 @@
             </p>
             <Form label-position="right" :inline="true" :label-width="80">
                 <FormItem label="名称">
-                    <Input v-model="searchData.role_name" clearable placeholder="请输入..."></Input>
+                    <Row>
+                        <Col >
+                            <Input v-model="searchData.role_name" clearable placeholder="请输入..."></Input>
+                        </Col>
+                    </Row>
                 </FormItem>
                 <FormItem label="备注">
-                    <Input v-model="searchData.role_remark" clearable placeholder="请输入..."></Input>
+                    <Row>
+                        <Col >
+                            <Input v-model="searchData.role_remark" clearable placeholder="请输入..."></Input>
+                        </Col>
+                    </Row>
                 </FormItem>
                 <div style="text-align: center;">
                     <FormItem>
@@ -26,7 +34,7 @@
         <Table :data="tableData" :columns="tableColumns" stripe></Table>
         <div style="margin: 10px;overflow: hidden">
             <div style="float: right;">
-                <Page :total="total" :current="start" @on-change="changePage"></Page>
+                <Page :showTotal="true" :total="total" :current="start" @on-change="changePage"></Page>
             </div>
         </div>
 
@@ -37,16 +45,33 @@
             <div style="text-align:center">
                 <Form ref="addData" :label-width="80" :model="addData" :rules="validRule">
                     <FormItem label="名称" prop="role_name">
-                        <Input v-model="addData.role_name" clearable placeholder="请输入..."/>
+                        <Row>
+                            <Col span="16">
+                                <Input v-model="addData.role_name" clearable placeholder="请输入..."/>
+                            </Col>
+                        </Row>
+                    </FormItem>
+                    <FormItem label="类型" prop="role_type">
+                        <Row>
+                            <Col span="16">
+                                <Select v-model="addData.role_type" clearable>
+                                    <Option v-for="item in roletypes" :value="item.itemkey" :key="item.itemkey">{{ item.itemval }}</Option>
+                                </Select>
+                            </Col>
+                        </Row>
                     </FormItem>
                     <FormItem label="备注">
-                        <Input v-model="addData.role_remark" clearable placeholder="请输入..."/>
+                        <Row>
+                            <Col span="16">
+                                <Input v-model="addData.role_remark" clearable placeholder="请输入..."/>
+                            </Col>
+                        </Row>
                     </FormItem>
                 </Form>
             </div>
             <div slot="footer" style="text-align: center;">
-                <Button @click="cancleAdd">取消</Button>
                 <Button type="primary"  @click="addRole">添加</Button>
+                <Button @click="cancleAdd">取消</Button>
             </div>
         </Modal>
 
@@ -57,16 +82,33 @@
             <div style="text-align:center">
                 <Form ref="editData" :label-width="80" :model="editData" :rules="validRule">
                     <FormItem label="名称" prop="role_name">
-                        <Input v-model="editData.role_name" clearable placeholder="请输入..."/>
+                        <Row>
+                            <Col span="16">
+                                <Input v-model="editData.role_name" clearable placeholder="请输入..."/>
+                            </Col>
+                        </Row>
+                    </FormItem>
+                    <FormItem label="类型" prop="role_type">
+                        <Row>
+                            <Col span="16">
+                                <Select v-model="editData.role_type" clearable>
+                                    <Option v-for="item in roletypes" :value="item.itemkey" :key="item.itemkey">{{ item.itemval }}</Option>
+                                </Select>
+                            </Col>
+                        </Row>
                     </FormItem>
                     <FormItem label="备注">
-                        <Input v-model="editData.role_remark" clearable placeholder="请输入..."/>
+                        <Row>
+                            <Col span="16">
+                                <Input v-model="editData.role_remark" clearable placeholder="请输入..."/>
+                            </Col>
+                        </Row>
                     </FormItem>
                 </Form>
             </div>
             <div slot="footer" style="text-align: center;">
-                <Button @click="edit_model=false">取消</Button>
                 <Button type="primary"  @click="editRole">修改</Button>
+                <Button @click="edit_model=false">取消</Button>
             </div>
         </Modal>
 
@@ -78,8 +120,8 @@
                 <Tree ref="menuDatas" :data="menuDatas" multiple></Tree>
             </div>
             <div slot="footer" style="text-align: center;">
-                <Button @click="set_menu_model=false">取消</Button>
                 <Button type="primary"  @click="setRoleMenu">保存</Button>
+                <Button @click="set_menu_model=false">取消</Button>
             </div>
         </Modal>
     </div>
@@ -104,6 +146,9 @@ export default {
                 role_name: [
                     { required: true, message: '该项不能为空', trigger: 'blur' }
                 ],
+                role_type: [
+                    {type: 'number',required: true, message: '该项不能为空', trigger: 'blur' }
+                ],
                 role_remark: [
                     { required: true, message: '该项不能为空', trigger: 'blur' }
                 ]
@@ -113,11 +158,28 @@ export default {
                 role_name:"",
                 role_remark:""
             },
+            roletypes:[],
             tableData: [],
             tableColumns: [
                 {
                     title: '名称',
                     key: 'role_name'
+                },
+                {
+                    title: '类型',
+                    key: 'role_type',
+                    render: (h, params) => {
+                        var role_type = params.row.role_type;
+                        for(var i=0; i< this.roletypes.length; i++){
+                            if(this.roletypes[i].itemkey == role_type){
+                                return h("Tag",{
+                                    props:{
+                                        color:this.roletypes[i].itemrender
+                                    }
+                                },this.roletypes[i].itemval);
+                            }
+                        }
+                    }
                 },
                 {
                     title: '备注',
@@ -276,7 +338,6 @@ export default {
         },
         setRoleMenu(){//修改角色
             var selectNodes = this.$refs["menuDatas"].getSelectedNodes();
-
             var menus = "";
             if(selectNodes && selectNodes.length > 0){
                 for(var i=0; i<selectNodes.length; i++){
@@ -293,6 +354,9 @@ export default {
         }
     },
     mounted () {
+        this.kayak.dict.dict("sys_role_type").then(data=>{
+            this.roletypes = data;
+        });
         this.loadDatas();
     },
 };

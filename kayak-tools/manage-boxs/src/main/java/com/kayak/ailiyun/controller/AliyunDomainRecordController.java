@@ -30,7 +30,10 @@ import com.aliyuncs.alidns.model.v20150109.UpdateDomainRecordRequest;
 import com.aliyuncs.alidns.model.v20150109.UpdateDomainRecordResponse;
 import com.aliyuncs.exceptions.ClientException;
 import com.kayak.base.action.BaseController;
+import com.kayak.base.sql.SqlRow;
 import com.kayak.base.system.RequestSupport;
+import com.kayak.base.util.Tools;
+import com.kayak.dept.dao.DeptDao;
 import com.kayak.util.AliyunUtils;
 
 @RestController
@@ -67,6 +70,9 @@ public class AliyunDomainRecordController extends BaseController {
 
 	@Autowired
 	private DescribeRecordLogsRequest describeRecordLogs;
+	
+	@Autowired
+	private DeptDao deptDao;
 
 	/**
 	 * Action AddDomainRecord 添加解析记录
@@ -185,7 +191,7 @@ public class AliyunDomainRecordController extends BaseController {
 	 * @return Status 当前解析记录状态
 	 * @throws ClientException
 	 */
-	@RequestMapping(value = "/aliyun/setDomainRecordStatus")
+	@RequestMapping(value = "/aliyun/setDomainRecordStatus.json")
 	public String setDomainRecordStatus() {
 		try {
 			Map<String, Object> parmas = RequestSupport.getBodyParameters();
@@ -241,8 +247,14 @@ public class AliyunDomainRecordController extends BaseController {
 			}
 			this.describeDomainRecords.setPageNumber(AliyunUtils.canReadLong(parmas.get("pageNumber")));
 			this.describeDomainRecords.setPageSize(AliyunUtils.canReadLong(parmas.get("pageSize")));
-			this.describeDomainRecords.setRRKeyWord(AliyunUtils.canReadStr(parmas.get("rRKeyWord")));
-			this.describeDomainRecords.setTypeKeyWord(AliyunUtils.canReadStr(parmas.get("typeKeyWord")));
+			if(Tools.obj2Str(parmas.get("roletype")).equals("1")) {
+				this.describeDomainRecords.setRRKeyWord(AliyunUtils.canReadStr(parmas.get("rRKeyWord")));
+			}else {
+				//获取用户所在的部门,将部门简称放入进去
+				 int dept_id =  Tools.str2Int(Tools.obj2Str(parmas.get("deptid")));
+				 SqlRow  dept = deptDao.findSysDeptById(dept_id);
+				 this.describeDomainRecords.setRRKeyWord(Tools.obj2Str(dept.get("dept_ename")));
+			}
 			this.describeDomainRecords.setValueKeyWord(AliyunUtils.canReadStr(parmas.get("valueKeyWord")));
 			DescribeDomainRecordsResponse response = iacsClient.getAcsResponse(this.describeDomainRecords);
 			Map<String, Object> map = new HashMap<>();
@@ -253,6 +265,9 @@ public class AliyunDomainRecordController extends BaseController {
 			map.put("totalCount", response.getTotalCount());
 			return super.updateSuccess(map);
 		} catch (ClientException e) {
+			log.error(e.getMessage());
+			return super.updateFailure(e.getMessage());
+		} catch (Exception e) {
 			log.error(e.getMessage());
 			return super.updateFailure(e.getMessage());
 		}

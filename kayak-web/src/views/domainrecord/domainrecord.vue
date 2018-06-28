@@ -7,12 +7,21 @@
         </p>
         <Row>
             <Form ref="querydata" label-position="right" :model="querydata" :inline="true" :label-width="120">
-                <FormItem label="主机名称关键字" prop="rRKeyWord">
-                    <Input v-model="querydata.rRKeyWord" clearable placeholder="请输入..."/>
-                </FormItem>
-                <FormItem label="主机IP关键字" prop="valueKeyWord">
-                    <Input v-model="querydata.valueKeyWord" clearable placeholder="请输入..."/>
-                </FormItem>
+
+                <Row>
+                    <Col span="8" v-if="userroletype ==='1'">
+                        <FormItem label="主机名称关键字" prop="rRKeyWord">
+                            <Input v-model="querydata.rRKeyWord" clearable placeholder="请输入..."/>
+                        </FormItem>
+                    </Col>
+                    <!--
+                    <Col span="8">
+                        <FormItem label="主机IP关键字" prop="valueKeyWord">
+                            <Input v-model="querydata.valueKeyWord" clearable placeholder="请输入..."/>
+                        </FormItem>
+                    </Col>-->
+                </Row>
+
                 <div style="text-align: center;">
                     <span @click="query('querydata')" style="margin: 0 10px;"><Button type="primary" icon="search">查询</Button></span>
                     <Button @click="clean('querydata')" type="ghost">取消</Button>
@@ -22,13 +31,12 @@
         <Row>
             <div>
                 <div style="margin-bottom: 8px;">
-                    <Button type="primary" icon="plus" @click="showaddpage('adddata')">添加域名</Button>
+                   <!--  <Button type="primary" icon="plus" @click="showaddpage('adddata')">添加域名</Button> -->
                 </div>
                 <Table :loading="loading" :columns="columns" :data="data"></Table>
                 <div style="margin: 10px;overflow: hidden">
                     <div style="float: right;">
-                        <Page :showTotal="true" :total="totalCount" :current="pageNumber" :pageSize="pageSize"
-                              @on-change="changePage"/>
+                        <Page :showTotal="true" :total="totalCount" :current="pageNumber" :pageSize="pageSize" @on-change="changePage"/>
                     </div>
                 </div>
             </div>
@@ -291,18 +299,20 @@
                 pageSize: 20,
                 delloading:true,
                 delmodal:false,
+                userroletype:'',
+                userdeptid:'',
                 data: [],
                 columns: [
                     {
-                        key: 'rr',
+                        key: 'RR',
                         title: '主机名称',
                         sortable: true
                     },
-                    {
-                        key: 'value',
-                        title: '主机IP',
-                        sortable: true
-                    },
+                    // {
+                    //     key: 'value',
+                    //     title: '主机IP',
+                    //     sortable: true
+                    // },
                     {
                         key: 'status',
                         title: '记录状态',
@@ -350,20 +360,20 @@
                                         }
                                     }
                                 }, '详细'),
-                                h('Button', {
-                                    props: {
-                                        type: 'primary',
-                                        size: 'small'
-                                    },
-                                    style: {
-                                        marginRight: '5px'
-                                    },
-                                    on: {
-                                        click: () => {
-                                            this.showmodpage(params.row);
-                                        }
-                                    }
-                                }, '修改'),
+                                // h('Button', {
+                                //     props: {
+                                //         type: 'primary',
+                                //         size: 'small'
+                                //     },
+                                //     style: {
+                                //         marginRight: '5px'
+                                //     },
+                                //     on: {
+                                //         click: () => {
+                                //             this.showmodpage(params.row);
+                                //         }
+                                //     }
+                                // }, '修改'),
                                 h('Button', {
                                     props: {
                                         type: 'error',
@@ -451,14 +461,18 @@
         methods: {
             query(name) {
                 let _this = this;
-                this.kayak.httpUtil.query({url:"aliyun/describeDomainRecords.json",method:"post",params:{'pageNumber':this.pageNumber,'pageSize':this.pageSize,'domainName':this.querydata.domainName,'rRKeyWord':this.querydata.rRKeyWord, 'typeKeyWord':this.querydata.typeKeyWord,'valueKeyWord':this.querydata.valueKeyWord
+                this.kayak.httpUtil.query({url:"aliyun/describeDomainRecords.json",method:"post",
+                    params:{'pageNumber':this.pageNumber,
+                            'pageSize':this.pageSize,
+                            'domainName':this.querydata.domainName,
+                            'rRKeyWord':this.querydata.rRKeyWord,
+                            'valueKeyWord':this.querydata.valueKeyWord,
+                            'roletype':this.userroletype,
+                            'deptid':this.userdeptid,
                     },successAlert:false}).then(data=>{
-                    if(data.success == true) {
-                        _this.total = data.totalCount;
-                        _this.tableData = data.rows;
-                    }else{
-                        _this.$Message.error(data.error);
-                    }
+                    _this.totalCount = data.returndata.totalCount;
+                    _this.data = data.returndata.rows;
+                    _this.loading = false;
                 });
             },
             changePage(pageNumber) {
@@ -574,63 +588,38 @@
                 }else{
                     row.status = 'ENABLE';
                 }
-                this.$http.post(this.httpurl.toString() + '/feigen/setDomainRecordStatus', this.$qs.stringify({
-                    recordId:row.recordId,
-                    status:row.status
-                })).then(function (response) {
-                    if(response.data.returnState == "0000"){
-                        _this.query('querydata');
-                        _this.$Message.success('状态设置成功!');
-                    }else{
-                        _this.$Message.error(response.data.returnMsg);
-                    }
-                }).catch(function (error) {
-                    if(typeof(error.response) == "undefined"){
-                        _this.$Message.error("错误信息：" + error);
-                    }else{
-                        _this.$Message.error("错误信息：" + error.response.data.message);
-                    }
+                this.kayak.httpUtil.update({url:"aliyun/setDomainRecordStatus.json",method:"post",params:{"recordId":row.recordId,"status":row.status},successAlert:false}).then(data=>{
+                    _this.query('querydata');
                 });
             },infoobj(row){
                 let _this = this;
-                this.$http.post(this.httpurl.toString() + '/feigen/describeDomainRecordInfo', this.$qs.stringify({
-                    recordId:row.recordId
-                })).then(function (response) {
-                    if(response.data.returnState == "0000"){
-                        _this.infodata.requestId = response.data.requestId;
-                        _this.infodata.domainId= response.data.domainId;
-                        _this.infodata.domainName= response.data.domainName;
-                        _this.infodata.punyCode= response.data.punyCode;
-                        _this.infodata.groupId= response.data.groupId;
-                        _this.infodata.groupName= response.data.groupName;
-                        _this.infodata.recordId= response.data.recordId;
-                        _this.infodata.rr = response.data.rR;
-                        _this.infodata.type= response.data.type;
-                        _this.infodata.value= response.data.value;
-                        _this.infodata.ttl= response.data.tTL;
-                        _this.infodata.priority= response.data.priority;
-                        _this.infodata.line= response.data.line;
-                        _this.infodata.status= response.data.status;
-                        _this.infodata.locked= response.data.locked.toString();
-                        _this.infomodel = true;
-                        _this.$Message.success('明细查询成功!');
-                    }else{
-                        _this.$Message.error(response.data.returnMsg);
-                    }
-
-                }).catch(function (error) {
-                    if(typeof(error.response) == "undefined"){
-                        _this.$Message.error("错误信息：" + error);
-                    }else{
-                        _this.$Message.error("错误信息：" + error.response.data.message);
-                    }
+                this.kayak.httpUtil.query({url:"aliyun/describeDomainRecordInfo.json",method:"post",params:{"recordId":row.recordId},successAlert:false}).then(data=>{
+                    _this.infodata.requestId = data.returndata.requestId;
+                    _this.infodata.domainId= data.returndata.domainId;
+                    _this.infodata.domainName= data.returndata.domainName;
+                    _this.infodata.punyCode= data.returndata.punyCode;
+                    _this.infodata.groupId= data.returndata.groupId;
+                    _this.infodata.groupName= data.returndata.groupName;
+                    _this.infodata.recordId= data.returndata.recordId;
+                    _this.infodata.rr = data.returndata.rR;
+                    _this.infodata.type= data.returndata.type;
+                    _this.infodata.value= data.returndata.value;
+                    _this.infodata.ttl= data.returndata.tTL;
+                    _this.infodata.priority= data.returndata.priority;
+                    _this.infodata.line= data.returndata.line;
+                    _this.infodata.status= data.returndata.status;
+                    _this.infodata.locked= data.returndata.locked.toString();
+                    _this.infomodel = true;
                 });
             },infoclean(){
                 this.infomodel = false;
             }
         },
         mounted() {
+            this.userroletype = sessionStorage.getItem("roletype");
+            this.userdeptid = sessionStorage.getItem("deptid");
             this.query('querydata');
+
         }
     }
 </script>

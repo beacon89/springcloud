@@ -16,8 +16,8 @@
                         <Col span="16" style="padding-left:6px;">
                             <Row class-name="made-child-con-middle" type="flex" align="middle">
                                 <div>
-                                    <b class="card-user-infor-name"></b>
-                                    <p></p>
+                                    <b class="card-user-infor-name">{{this.username}}</b>
+                                    <p>{{this.deptname}}</p>
                                 </div>
                             </Row>
                         </Col>
@@ -169,6 +169,8 @@ export default {
             //cityData: cityData,
             //showAddNewTodo: false,
             //newToDoItemValue: ''
+            username:'',
+            deptname:'',
         };
     },
     computed: {
@@ -203,6 +205,8 @@ export default {
         //this.kayak.httpUtil.query({url:"deploy/getDeployCount.json",method:"post",params:{}}).then(data=>{
             //this.count = data;
        // });
+        this.username = sessionStorage.getItem('username');
+        this.deptname = sessionStorage.getItem('deptname');
     }
 };
 </script>

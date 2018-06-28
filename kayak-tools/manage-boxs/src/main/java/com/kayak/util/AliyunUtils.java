@@ -25,7 +25,7 @@ public class AliyunUtils {
 	}
 	
 	public static Long canReadLong(Object object) {
-		if(object != null && !object.toString().equals("") && object.toString().length() > 0 && object instanceof Long) {
+		if(object != null && !object.toString().equals("") && object.toString().length() > 0) {
 			return Long.valueOf(object.toString()).longValue();
 		}else {
 			return null;

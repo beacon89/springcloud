@@ -20,5 +20,25 @@
 		<exename>删除部门</exename>
 		<sqlids>delete_sys_dept,delete_sys_dept_role</sqlids>
 	</sqlexecute>
+	
+	<sqlexecute exeid="add_sys_dept_role" datasource="dsSys">
+		<exename>添加部门角色</exename>
+		<sqlids>delete_sys_dept_role,add_sys_dept_role</sqlids>
+	</sqlexecute>
+	
+	<sqlexecute exeid="find_sys_dept_role_name" datasource="dsSys">
+		<exename>查询部门下的角色</exename>
+		<sqlids>find_sys_dept_role_name</sqlids>
+	</sqlexecute>
+	
+	<sqlexecute exeid="find_sys_dept_role" datasource="dsSys">
+		<exename>查询该部门所有角色</exename>
+		<sqlids>find_sys_dept_role</sqlids>
+	</sqlexecute>
+	
+	<sqlexecute exeid="find_sys_dept_byid" datasource="dsSys">
+		<exename>根据ID查询部门信息</exename>
+		<sqlids>find_sys_dept_byid</sqlids>
+	</sqlexecute>
 
 </sqlexecutes>

@@ -30,5 +30,12 @@ public class UserDao extends ComnDao {
 		}
 		return null;
 	}
+	
+	public String updateUserPasswd(String user_id,String user_password) throws Exception {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("user_id", user_id);
+		params.put("user_password", user_password);
+		return this.update("update_sys_user_password", params);
+	}
 
 }

@@ -46,6 +46,10 @@ public class LoginAction extends BaseController {
 			Map<String, Object> returnmap = new HashMap<>();
 			String token = JwtUtil.getToken(user.getString("user_id"));
 			returnmap.put("token", token);
+			returnmap.put("deptname", user.getString("dept_name"));
+			returnmap.put("deptid", user.getString("dept_id"));
+			returnmap.put("roleid", user.getString("role_id"));
+			returnmap.put("roletype", user.getString("role_type"));
 			return super.updateSuccess(returnmap);
 		} catch (Exception e) {
 			return super.updateFailure("服务器异常，请稍后服务");

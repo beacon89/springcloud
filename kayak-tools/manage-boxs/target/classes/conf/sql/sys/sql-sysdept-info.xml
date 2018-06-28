@@ -5,24 +5,40 @@
 	<sqlinfo sqlid="find_sys_dept">
 		<sqlname>查询部门列表</sqlname>
 		<sql><![CDATA[
-			select dept_id,dept_name,dept_remark
+			select dept_id,dept_name,dept_ename,dept_remark
 			from sys_dept
 			WHERE ($ISNULL{dept_name} OR dept_name like '%$U{dept_name}%')
 			AND ($ISNULL{dept_remark} OR dept_remark like '%$U{dept_remark}%') 
+		]]></sql>
+	</sqlinfo>
+	
+	<sqlinfo sqlid="find_sys_dept_byid">
+		<sqlname>查询部门列表</sqlname>
+		<sql><![CDATA[
+			select dept_id,dept_name,dept_ename,dept_remark from sys_dept where dept_id = $S{dept_id}
 		]]></sql>
 	</sqlinfo>
 
 	<sqlinfo sqlid="add_sys_dept">
 		<sqlname>添加部门</sqlname>
 		<sql><![CDATA[
-		insert into sys_dept (dept_id, dept_name, dept_remark) VALUES ($AUTOID{dept_id}, $S{dept_name}, $S{dept_remark})
+		insert into sys_dept (dept_id, dept_name, dept_ename,dept_remark) VALUES ($AUTOID{dept_id}, $S{dept_name}, $S{dept_ename},$S{dept_remark})
 		]]></sql>
+		<checks>
+			<check comparesign="eql" exitall="true">
+				<checkname>数据校验</checkname>
+				<checksql>select count(1) from sys_dept where
+					dept_name=$S{dept_name}</checksql>
+				<compareval>1</compareval>
+				<errtext>该部门名称已经存在</errtext>
+			</check>
+		</checks>
 	</sqlinfo>
 	
 	<sqlinfo sqlid="update_sys_dept">
 		<sqlname>修改部门</sqlname>
 		<sql><![CDATA[
-		    update sys_dept set dept_name = $S{dept_name}, dept_remark = $S{dept_remark}
+		    update sys_dept set dept_name = $S{dept_name}, dept_remark = $S{dept_remark}, dept_ename = $S{dept_ename}
 		    where dept_id = $S{dept_id}
 		]]></sql>
 	</sqlinfo>
@@ -31,6 +47,34 @@
 		<sqlname>删除部门</sqlname>
 		<sql><![CDATA[
 		    delete from sys_dept where dept_id = $S{dept_id}
+		]]></sql>
+	</sqlinfo>
+	
+	<sqlinfo sqlid="find_sys_dept_role">
+		<sqlname>查询该部门所有角色</sqlname>
+		<sql><![CDATA[
+		    select role_id from sys_dept_role where dept_id = $S{dept_id}
+		]]></sql>
+	</sqlinfo>
+	
+	<sqlinfo sqlid="find_sys_dept_role_name">
+		<sqlname>查询该部门所有角色</sqlname>
+		<sql><![CDATA[
+		    select b.role_name,a.role_id from sys_dept_role a,sys_role b where a.role_id = b.role_id and a.dept_id = $S{dept_id}
+		]]></sql>
+	</sqlinfo>
+	
+	<sqlinfo sqlid="delete_sys_dept_role">
+		<sqlname>删除部门角色</sqlname>
+		<sql><![CDATA[
+		    delete from sys_dept_role where dept_id = $S{dept_id}
+		]]></sql>
+	</sqlinfo>
+	
+	<sqlinfo sqlid="add_sys_dept_role">
+		<sqlname>添加部门角色</sqlname>
+		<sql><![CDATA[
+		    $REPEAT[insert into sys_dept_role(dept_id,role_id) values ($N{dept_ids},$N{role_ids})][dept_ids,role_ids][statement]
 		]]></sql>
 	</sqlinfo>
 

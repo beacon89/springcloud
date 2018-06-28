@@ -10,47 +10,27 @@
                 个人信息
             </p>
             <div>
-                <Form 
-                    ref="userForm"
-                    :model="userForm" 
-                    :label-width="100" 
-                    label-position="right"
-                    :rules="inforValidate"
-                >
-                    <FormItem label="用户姓名：" prop="name">
-                        <div style="display:inline-block;width:300px;">
-                            <Input v-model="userForm.name" ></Input>
-                        </div>
-                    </FormItem>
-                    <FormItem label="用户手机：" prop="cellphone" >
-                        <div style="display:inline-block;width:204px;">
-                            <Input v-model="userForm.cellphone" @on-keydown="hasChangePhone"></Input>
-                        </div>
-                        <div style="display:inline-block;position:relative;">
-                            <Button @click="getIdentifyCode" :disabled="canGetIdentifyCode">{{ gettingIdentifyCodeBtnContent }}</Button>
-                            <div class="own-space-input-identifycode-con" v-if="inputCodeVisible">
-                                <div style="background-color:white;z-index:110;margin:10px;">
-                                    <Input v-model="securityCode" placeholder="请填写短信验证码" ></Input>
-                                    <div style="margin-top:10px;text-align:right">
-                                        <Button type="ghost" @click="cancelInputCodeBox">取消</Button>
-                                        <Button type="primary" @click="submitCode" :loading="checkIdentifyCodeLoading">确定</Button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </FormItem>
-                    <FormItem label="公司：">
-                        <span>{{ userForm.company }}</span>
+                <Form  ref="userForm" :model="userForm" :label-width="100" label-position="right":rules="inforValidate" >
+                    <FormItem label="用户姓名：" >
+                        <Row>
+                            <Col span="6">
+                                <Input v-model="userForm.name" disabled></Input>
+                            </Col>
+                        </Row>
                     </FormItem>
                     <FormItem label="部门：">
-                        <span>{{ userForm.department }}</span>
+                        <Row>
+                            <Col span="6">
+                                <Input v-model="userForm.department" disabled></Input>
+                            </Col>
+                        </Row>
                     </FormItem>
                     <FormItem label="登录密码：">
                         <Button type="text" size="small" @click="showEditPassword">修改密码</Button>
                     </FormItem>
-                    <div>
-                        <Button type="text" style="width: 100px;" @click="cancelEditUserInfor">取消</Button>
-                        <Button type="primary" style="width: 100px;" :loading="save_loading" @click="saveEdit">保存</Button>
+                    <div style="text-align: center; margin-bottom: 20px" >
+                       <!-- <Button type="primary" style="width: 100px;" :loading="save_loading" @click="saveEdit">保存</Button>
+                        <Button type="error" style="width: 100px;" @click="cancelEditUserInfor">取消</Button>-->
                     </div>
                 </Form>
             </div>
@@ -69,8 +49,8 @@
                 </FormItem>
             </Form>
             <div slot="footer">
+                <Button type="primary"  @click="saveEditPass">保存</Button>
                 <Button type="text" @click="cancelEditPass">取消</Button>
-                <Button type="primary" :loading="savePassLoading" @click="saveEditPass">保存</Button>
             </div>
         </Modal>
     </div>
@@ -98,8 +78,6 @@ export default {
         return {
             userForm: {
                 name: '',
-                cellphone: '',
-                company: '',
                 department: ''
             },
             uid: '', // 登录用户的userId
@@ -108,7 +86,6 @@ export default {
             save_loading: false,
             identifyError: '', // 验证码错误
             editPasswordModal: false, // 修改密码模态框显示
-            savePassLoading: false,
             oldPassError: '',
             identifyCodeRight: false, // 验证码是否正确
             hasGetIdentifyCode: false, // 是否点了获取验证码
@@ -134,7 +111,7 @@ export default {
                 ],
                 newPass: [
                     { required: true, message: '请输入新密码', trigger: 'blur' },
-                    { min: 6, message: '请至少输入6个字符', trigger: 'blur' },
+                    { min: 3, message: '请至少输入6个字符', trigger: 'blur' },
                     { max: 32, message: '最多输入32个字符', trigger: 'blur' }
                 ],
                 rePass: [
@@ -210,13 +187,18 @@ export default {
         saveEditPass () {
             this.$refs['editPasswordForm'].validate((valid) => {
                 if (valid) {
-                    this.savePassLoading = true;
-                    // you can write ajax request here
+                    let password = this.kayak.md5.hex_md5(this.editPasswordForm.oldPass+"kayak2018");
+                    let newpassword =  this.kayak.md5.hex_md5(this.editPasswordForm.newPass+"kayak2018");
+                    this.kayak.httpUtil.update({url:"user/updateMyPassword.json",method:"post",params:{"username":this.userForm.name,"userpassword":password,"newpassword":newpassword}}).then(data=> {
+                        this.editPasswordModal = false;
+                        this.editPasswordForm = {};
+                    });
                 }
             });
         },
         init () {
-            this.userForm.name = sessionStorage.getItem("user");
+            this.userForm.name = sessionStorage.getItem("username");
+            this.userForm.department = sessionStorage.getItem("deptname");
         },
         cancelInputCodeBox () {
             this.inputCodeVisible = false;

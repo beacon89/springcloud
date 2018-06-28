@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kayak.base.action.BaseController;
+import com.kayak.base.system.RequestSupport;
+import com.kayak.base.util.Tools;
 import com.kayak.k8s.beans.KayakReplicationControllerList;
 import com.kayak.util.KubernetesUtils;
 
@@ -43,8 +45,10 @@ public class KubernetesController extends BaseController {
 	}
 
 	@RequestMapping(value = "/k8s/createReplicationController.json")
-	public String createReplicationController(@PathVariable("json") String json) {
+	public String createReplicationController() {
 		try {
+			Map<String, Object> parmas = RequestSupport.getBodyParameters();
+			String json = Tools.obj2Str(parmas.get("json"));
 			ReplicationController rc = KubernetesUtils.getReplicationControllerBySteam(this.kubernetesClient,json);
 			if (rc == null) {
 				return super.updateSuccess("无法将数据变成yml文件!");
@@ -71,8 +75,11 @@ public class KubernetesController extends BaseController {
 	}
 
 	@RequestMapping(value = "/k8s/getReplicationControllerLists.json")
-	public String getReplicationControllerLists(@PathVariable("pageNumber") int pageNumber, @PathVariable("pageSize") int pageSize) {
+	public String getReplicationControllerLists() {
 		try {
+			Map<String, Object> parmas = RequestSupport.getBodyParameters();
+			int pageNumber = Tools.str2Int(Tools.obj2Str(parmas.get("pageNumber")));
+			int pageSize = Tools.str2Int(Tools.obj2Str(parmas.get("pageSize")));
 			KayakReplicationControllerList rc = KubernetesUtils.getReplicationControllerLists(pageNumber, pageSize,this.kubernetesClient);
 			Map<String, Object> map = new HashMap<>();
 			map.put("rows", rc.getItems());

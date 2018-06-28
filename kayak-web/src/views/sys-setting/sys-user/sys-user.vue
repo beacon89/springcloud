@@ -7,22 +7,38 @@
             </p>
             <Form label-position="right" :inline="true" :label-width="80">
                 <FormItem label="名称">
-                    <Input v-model="searchData.user_name" clearable placeholder="请输入..."/>
+                    <Row>
+                        <Col>
+                            <Input v-model="searchData.user_name" clearable placeholder="请输入..."/>
+                        </Col>
+                    </Row>
                 </FormItem>
                 <FormItem label="状态">
-                    <Select v-model="searchData.user_status" style="width:200px">
-                        <Option value="0" key="0">全部</Option>
-                        <Option v-for="item in sys_user_status" :value="item.itemkey" :key="item.itemkey">{{ item.itemval }}</Option>
-                    </Select>
+                    <Row>
+                        <Col>
+                            <Select v-model="searchData.user_status" style="width:200px">
+                                <Option value="0" key="0">全部</Option>
+                                <Option v-for="item in sys_user_status" :value="item.itemkey" :key="item.itemkey">{{ item.itemval }}</Option>
+                            </Select>
+                        </Col>
+                    </Row>
                 </FormItem>
                 <FormItem label="角色">
-                    <Select v-model="searchData.role_id" style="width:200px">
-                        <Option value="0" key="0">全部</Option>
-                        <Option v-for="item in sys_roles" :value="item.role_id" :key="item.role_id">{{ item.role_name }}</Option>
-                    </Select>
+                    <Row>
+                        <Col>
+                            <Select v-model="searchData.role_id" style="width:200px">
+                                <Option value="0" key="0">全部</Option>
+                                <Option v-for="item in sys_roles" :value="item.role_id" :key="item.role_id">{{ item.role_name }}</Option>
+                            </Select>
+                        </Col>
+                    </Row>
                 </FormItem>
                 <FormItem label="备注">
-                    <Input v-model="searchData.user_remark" clearable placeholder="请输入..."/>
+                    <Row>
+                        <Col>
+                            <Input v-model="searchData.user_remark" clearable placeholder="请输入..."/>
+                        </Col>
+                    </Row>
                 </FormItem>
                 <div style="text-align: center;">
                     <FormItem>
@@ -38,7 +54,7 @@
         <Table :data="tableData" :columns="tableColumns" stripe></Table>
         <div style="margin: 10px;overflow: hidden">
             <div style="float: right;">
-                <Page :total="total" :current="start" @on-change="changePage"></Page>
+                <Page :showTotal="true" :total="total" :current="start" @on-change="changePage"></Page>
             </div>
         </div>
 
@@ -49,29 +65,58 @@
             <div style="text-align:center">
                 <Form ref="addData" :label-width="80" :model="addData" :rules="validRule">
                     <FormItem label="名称" prop="user_name">
-                        <Input v-model="addData.user_name" clearable placeholder="请输入..."/>
+                        <Row>
+                            <Col span="16">
+                                <Input v-model="addData.user_name" clearable placeholder="请输入..."/>
+                            </Col>
+                        </Row>
                     </FormItem>
-                    <FormItem label="角色">
-                        <Select v-model="addData.role_id">
-                            <Option v-for="item in sys_roles" :value="item.role_id" :key="item.role_id">{{ item.role_name }}</Option>
-                        </Select>
+                    <FormItem label="部门" prop="dept_id">
+                        <Row>
+                            <Col span="16">
+                                <Select v-model="addData.dept_id" @on-change="queryroleslist(addData.dept_id)">
+                                    <Option v-for="item in sys_depts" :value="item.dept_id" :key="item.dept_id">{{ item.dept_name }}</Option>
+                                </Select>
+                            </Col>
+                        </Row>
+                    </FormItem>
+                    <FormItem label="角色" prop="role_id">
+                        <Row>
+                            <Col span="16">
+                                <Select v-model="addData.role_id">
+                                    <Option v-for="item in sys_roles" :value="item.role_id" :key="item.role_id">{{ item.role_name }}</Option>
+                                </Select>
+                            </Col>
+                        </Row>
                     </FormItem>
                     <FormItem label="密码" prop="user_password">
-                        <Input v-model="addData.user_password" type="password" clearable placeholder="请输入..."/>
+                        <Row>
+                            <Col span="16">
+                                <Input v-model="addData.user_password" type="password" clearable placeholder="请输入..."/>
+                            </Col>
+                        </Row>
                     </FormItem>
-                    <FormItem label="状态">
-                        <Select v-model="addData.user_status">
-                            <Option v-for="item in sys_user_status" :value="item.itemkey" :key="item.itemkey">{{ item.itemval }}</Option>
-                        </Select>
+                    <FormItem label="状态" prop="user_status">
+                        <Row>
+                            <Col span="16">
+                                <Select v-model="addData.user_status">
+                                    <Option v-for="item in sys_user_status" :value="item.itemkey" :key="item.itemkey">{{ item.itemval }}</Option>
+                                </Select>
+                            </Col>
+                        </Row>
                     </FormItem>
                     <FormItem label="备注">
-                        <Input v-model="addData.user_remark" clearable placeholder="请输入..."/>
+                        <Row>
+                            <Col span="16">
+                                <Input v-model="addData.user_remark" clearable placeholder="请输入..."/>
+                            </Col>
+                        </Row>
                     </FormItem>
                 </Form>
             </div>
             <div slot="footer" style="text-align: center;">
-                <Button @click="cancleAdd">取消</Button>
                 <Button type="primary"  @click="addUser">添加</Button>
+                <Button @click="cancleAdd">取消</Button>
             </div>
         </Modal>
 
@@ -82,26 +127,51 @@
             <div style="text-align:center">
                 <Form ref="editData" :label-width="80" :model="editData" :rules="validRule">
                     <FormItem label="名称" prop="user_name">
-                        <Input v-model="editData.user_name" clearable placeholder="请输入..."/>
+                        <Row>
+                            <Col span="16">
+                                <Input v-model="editData.user_name" clearable placeholder="请输入..."/>
+                            </Col>
+                        </Row>
                     </FormItem>
-                    <FormItem label="角色">
-                        <Select v-model="editData.role_id">
-                            <Option v-for="item in sys_roles" :value="item.role_id" :key="item.role_id">{{ item.role_name }}</Option>
-                        </Select>
+                    <FormItem label="部门" prop="dept_id">
+                        <Row>
+                            <Col span="16">
+                                <Select v-model="editData.dept_id" @on-change="queryroleslist(editData.dept_id)" clearable>
+                                    <Option v-for="item in sys_depts" :value="item.dept_id" :key="item.dept_id">{{ item.dept_name }}</Option>
+                                </Select>
+                            </Col>
+                        </Row>
                     </FormItem>
-                    <FormItem label="状态">
-                        <Select v-model="editData.user_status">
-                            <Option v-for="item in sys_user_status" :value="item.itemkey" :key="item.itemkey">{{ item.itemval }}</Option>
-                        </Select>
+                    <FormItem label="角色" prop="role_id">
+                        <Row>
+                            <Col span="16">
+                                <Select v-model="editData.role_id" clearable>
+                                    <Option v-for="item in sys_roles" :value="item.role_id" :key="item.role_id">{{ item.role_name }}</Option>
+                                </Select>
+                            </Col>
+                        </Row>
+                    </FormItem>
+                    <FormItem label="状态" prop="user_status">
+                        <Row>
+                            <Col span="16">
+                                <Select v-model="editData.user_status" clearable>
+                                    <Option v-for="item in sys_user_status" :value="item.itemkey" :key="item.itemkey">{{ item.itemval }}</Option>
+                                </Select>
+                            </Col>
+                        </Row>
                     </FormItem>
                     <FormItem label="备注">
-                        <Input v-model="editData.user_remark" clearable placeholder="请输入..."/>
+                        <Row>
+                            <Col span="16">
+                                <Input v-model="editData.user_remark" clearable placeholder="请输入..."/>
+                            </Col>
+                        </Row>
                     </FormItem>
                 </Form>
             </div>
             <div slot="footer" style="text-align: center;">
-                <Button @click="edit_model=false">取消</Button>
                 <Button type="primary"  @click="editUser">修改</Button>
+                <Button @click="edit_model=false">取消</Button>
             </div>
         </Modal>
 
@@ -112,16 +182,24 @@
             <div style="text-align:center">
                 <Form ref="restData" :label-width="80" :model="restData" :rules="validRule">
                     <FormItem label="密码" prop="user_password">
-                        <Input v-model="restData.user_password" type="password" clearable placeholder="请输入..."/>
+                        <Row>
+                            <Col span="16">
+                                <Input v-model="restData.user_password" type="password" clearable placeholder="请输入..."/>
+                            </Col>
+                        </Row>
                     </FormItem>
                     <FormItem label="确认密码" prop="user_password2">
-                        <Input v-model="restData.user_password2" type="password" clearable placeholder="请输入..."/>
+                        <Row>
+                            <Col span="16">
+                                <Input v-model="restData.user_password2" type="password" clearable placeholder="请输入..."/>
+                            </Col>
+                        </Row>
                     </FormItem>
                 </Form>
             </div>
             <div slot="footer" style="text-align: center;">
-                <Button @click="rest_model=false">取消</Button>
                 <Button type="primary"  @click="restPassword">修改</Button>
+                <Button @click="rest_model=false">取消</Button>
             </div>
         </Modal>
     </div>
@@ -141,10 +219,14 @@ export default {
             searchData:{},
             sys_user_status:[],
             sys_roles:[],
+            sys_depts:[],
             addData:{},
             validRule: {
                 role_id: [
-                    { required: true, message: '该项不能为空', trigger: 'blur' }
+                    { type: 'number',required: true, message: '该项不能为空', trigger: 'blur' }
+                ],
+                dept_id:[
+                    { type: 'number',required: true, message: '该项不能为空', trigger: 'blur' }
                 ],
                 user_name: [
                     { required: true, message: '该项不能为空', trigger: 'blur' }
@@ -156,7 +238,7 @@ export default {
                     { required: true, message: '该项不能为空', trigger: 'blur' }
                 ],
                 user_status: [
-                    { required: true, message: '该项不能为空', trigger: 'blur' }
+                    { type: 'number',required: true, message: '该项不能为空', trigger: 'blur' }
                 ]
             },
             editData:{
@@ -164,7 +246,8 @@ export default {
                 role_id:"",
                 user_name:"",
                 user_status:"",
-                user_remark:""
+                user_remark:"",
+                dept_id:""
             },
             restData:{},
             tableData: [],
@@ -213,6 +296,9 @@ export default {
                                 on: {
                                     click: () => {
                                         this.kayak.util.clone(this.editData,user.row);
+                                        this.kayak.httpUtil.comnQuery({exeid:"find_sys_dept_role_name",method:"post",params:{"dept_id":user.row.dept_id}}).then(data=>{
+                                            this.sys_roles = data.rows;
+                                        });
                                         this.edit_model = true;
                                     }
                                 }
@@ -268,7 +354,12 @@ export default {
             this.start = start;
             this.loadDatas();
         },
-
+        optioncheck:function(index){
+            if(this.editData.dept_id == this.sys_depts[index].dept_id){
+                return true;
+            }
+            return false;
+        },
         search(){
            this.start = 1;
             this.loadDatas();
@@ -283,7 +374,6 @@ export default {
                     var user_password = this.addData.user_password;
                     user_password = this.kayak.md5.hex_md5(user_password+"kayak2018");
                     this.addData.user_password = user_password;
-
                     this.kayak.httpUtil.comnUpdate({method:"post",exeid:"add_sys_user",params:this.addData}).then(data=>{
                         this.add_model = false;
                         this.loadDatas();
@@ -329,6 +419,12 @@ export default {
             if(!re){
                 this.addData = {};
             }
+        },
+        queryroleslist:function (dept_id) {
+            this.sys_roles = [];
+            this.kayak.httpUtil.comnQuery({exeid:"find_sys_dept_role_name",method:"post",params:{"dept_id":dept_id}}).then(data=>{
+                this.sys_roles = data.rows;
+            });
         }
     },
     mounted () {
@@ -336,9 +432,8 @@ export default {
             this.sys_user_status = data;
             this.loadDatas();
         });
-
-        this.kayak.httpUtil.comnQuery({exeid:"find_sys_roles",method:"post",params:{}}).then(data=>{
-            this.sys_roles = data.rows;
+        this.kayak.httpUtil.comnQuery({exeid:"find_sys_dept",method:"post",params:{}}).then(data=>{
+            this.sys_depts = data.rows;
         });
     },
 };

@@ -7,10 +7,18 @@
             </p>
             <Form label-position="right" :inline="true" :label-width="80">
                 <FormItem label="字典标识">
-                    <Input v-model="searchData.dict" clearable placeholder="请输入..."/>
+                    <Row>
+                        <Col>
+                            <Input v-model="searchData.dict" clearable placeholder="请输入..."/>
+                        </Col>
+                    </Row>
                 </FormItem>
                 <FormItem label="字典名称">
-                    <Input v-model="searchData.dictname" clearable placeholder="请输入..."/>
+                    <Row>
+                        <Col>
+                            <Input v-model="searchData.dictname" clearable placeholder="请输入..."/>
+                        </Col>
+                    </Row>
                 </FormItem>
                 <div style="text-align: center;">
                     <FormItem>
@@ -28,7 +36,7 @@
                 <Table :data="tableDictData" :columns="tableDictColumns" @on-row-click="reloadDictItemDatas" stripe></Table>
                 <div style="margin: 10px;overflow: hidden">
                     <div style="float: right;">
-                        <Page :total="dict_total" :current="dict_start" @on-change="dictChangePage"></Page>
+                        <Page :showTotal="true" :total="dict_total" :current="dict_start" @on-change="dictChangePage"></Page>
                     </div>
                 </div>
             </Col>
@@ -36,7 +44,7 @@
                 <Table :data="tableDictItemData" :columns="tableDictItemColumns" stripe></Table>
                 <div style="margin: 10px;overflow: hidden">
                     <div style="float: right;">
-                        <Page :total="dict_item_total" :current="dict_item_start" @on-change="dictItemChange"></Page>
+                        <Page :showTotal="true" :total="dict_item_total" :current="dict_item_start" @on-change="dictItemChange"></Page>
                     </div>
                 </div>
             </Col>
@@ -49,16 +57,24 @@
             <div style="text-align:center">
                 <Form ref="addDictData" :label-width="80" :model="addDictData" :rules="validRule">
                     <FormItem label="字典标识" prop="dict">
-                        <Input v-model="addDictData.dict" clearable placeholder="请输入..."/>
+                        <Row>
+                            <Col span="16">
+                                <Input v-model="addDictData.dict" clearable placeholder="请输入..."/>
+                            </Col>
+                        </Row>
                     </FormItem>
                     <FormItem label="字典名称" prop="dictname">
-                        <Input v-model="addDictData.dictname" clearable placeholder="请输入..."/>
+                        <Row>
+                            <Col span="16">
+                                <Input v-model="addDictData.dictname" clearable placeholder="请输入..."/>
+                            </Col>
+                        </Row>
                     </FormItem>
                 </Form>
             </div>
             <div slot="footer" style="text-align: center;">
-                <Button @click="cancleAdd">取消</Button>
                 <Button type="primary"  @click="addDict">添加</Button>
+                <Button @click="cancleAdd">取消</Button>
             </div>
         </Modal>
 
@@ -69,16 +85,24 @@
             <div style="text-align:center">
                 <Form ref="editDictData" :label-width="80" :model="editDictData" :rules="validRule">
                     <FormItem label="字典标识" prop="dict">
-                        <Input v-model="editDictData.dict" disabled placeholder="请输入..."/>
+                        <Row>
+                            <Col span="16">
+                                <Input v-model="editDictData.dict" disabled placeholder="请输入..."/>
+                            </Col>
+                        </Row>
                     </FormItem>
                     <FormItem label="字典名称" prop="dictname">
-                        <Input v-model="editDictData.dictname" clearable placeholder="请输入..."/>
+                        <Row>
+                            <Col span="16">
+                                <Input v-model="editDictData.dictname" clearable placeholder="请输入..."/>
+                            </Col>
+                        </Row>
                     </FormItem>
                 </Form>
             </div>
             <div slot="footer" style="text-align: center;">
-                <Button @click="edit_dict_model=false">取消</Button>
                 <Button type="primary"  @click="editDict">修改</Button>
+                <Button @click="edit_dict_model=false">取消</Button>
             </div>
         </Modal>
 
@@ -89,25 +113,45 @@
             <div style="text-align:center">
                 <Form ref="addDictItemData" :label-width="80" :model="addDictItemData" :rules="validItemRule">
                     <FormItem label="字典标识">
-                        <Input v-model="select_dict" disabled placeholder="请输入..."/>
+                        <Row>
+                            <Col span="16">
+                                <Input v-model="select_dict" disabled placeholder="请输入..."/>
+                            </Col>
+                        </Row>
                     </FormItem>
                     <FormItem label="子项值" prop="itemkey">
-                        <Input v-model="addDictItemData.itemkey" clearable placeholder="请输入..."/>
+                        <Row>
+                            <Col span="16">
+                                <Input v-model="addDictItemData.itemkey" clearable placeholder="请输入..."/>
+                            </Col>
+                        </Row>
                     </FormItem>
                     <FormItem label="子项名" prop="itemval">
-                        <Input v-model="addDictItemData.itemval" clearable placeholder="请输入..."/>
+                        <Row>
+                            <Col span="16">
+                                <Input v-model="addDictItemData.itemval" clearable placeholder="请输入..."/>
+                            </Col>
+                        </Row>
                     </FormItem>
                     <FormItem label="渲染样式">
-                        <Input v-model="addDictItemData.itemrender" clearable placeholder="请输入..."/>
+                        <Row>
+                            <Col span="16">
+                                <Input v-model="addDictItemData.itemrender" clearable placeholder="请输入..."/>
+                            </Col>
+                        </Row>
                     </FormItem>
                     <FormItem label="排序">
-                        <Input v-model="addDictItemData.itemorder" clearable placeholder="请输入..."/>
+                        <Row>
+                            <Col span="16">
+                                <Input v-model="addDictItemData.itemorder" clearable placeholder="请输入..."/>
+                            </Col>
+                        </Row>
                     </FormItem>
                 </Form>
             </div>
             <div slot="footer" style="text-align: center;">
-                <Button @click="cancleAddItem">取消</Button>
                 <Button type="primary"  @click="addDictItem">添加</Button>
+                <Button @click="cancleAddItem">取消</Button>
             </div>
         </Modal>
 
@@ -118,25 +162,45 @@
             <div style="text-align:center">
                 <Form ref="editDictItemData" :label-width="80" :model="editDictItemData" :rules="validRule">
                     <FormItem label="字典标识">
-                        <Input v-model="editDictItemData.dict" disabled placeholder="请输入..."/>
+                        <Row>
+                            <Col span="16">
+                                <Input v-model="editDictItemData.dict" disabled placeholder="请输入..."/>
+                            </Col>
+                        </Row>
                     </FormItem>
                     <FormItem label="子项值" prop="itemkey">
-                        <Input v-model="editDictItemData.itemkey" disabled placeholder="请输入..."/>
+                        <Row>
+                            <Col span="16">
+                                <Input v-model="editDictItemData.itemkey" disabled placeholder="请输入..."/>
+                            </Col>
+                        </Row>
                     </FormItem>
                     <FormItem label="子项名" prop="itemval">
-                        <Input v-model="editDictItemData.itemval" clearable placeholder="请输入..."/>
+                        <Row>
+                            <Col span="16">
+                                <Input v-model="editDictItemData.itemval" clearable placeholder="请输入..."/>
+                            </Col>
+                        </Row>
                     </FormItem>
                     <FormItem label="渲染样式">
-                        <Input v-model="editDictItemData.itemrender" clearable placeholder="请输入..."/>
+                        <Row>
+                            <Col span="16">
+                                <Input v-model="editDictItemData.itemrender" clearable placeholder="请输入..."/>
+                            </Col>
+                        </Row>
                     </FormItem>
                     <FormItem label="排序">
-                        <Input v-model="editDictItemData.itemorder" clearable placeholder="请输入..."/>
+                        <Row>
+                            <Col span="16">
+                                <Input v-model="editDictItemData.itemorder" clearable placeholder="请输入..."/>
+                            </Col>
+                        </Row>
                     </FormItem>
                 </Form>
             </div>
             <div slot="footer" style="text-align: center;">
-                <Button @click="edit_dict_item_model=false">取消</Button>
                 <Button type="primary"  @click="editDictItem">修改</Button>
+                <Button @click="edit_dict_item_model=false">取消</Button>
             </div>
         </Modal>
     </div>

@@ -13,6 +13,10 @@ module.exports = {
         'vender-base': '@/vendors/vendors.base.js',
         'vender-exten': '@/vendors/vendors.exten.js'
     },
+    devServer: {
+        inline: true,
+        port: 8081,
+    },
     output: {
         path: path.resolve(__dirname, '../dist/dist')
     },

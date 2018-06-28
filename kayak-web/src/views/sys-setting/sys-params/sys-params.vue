@@ -7,10 +7,18 @@
             </p>
             <Form label-position="right" :inline="true" :label-width="80">
                 <FormItem label="主键">
-                    <Input v-model="searchData.param_key" clearable placeholder="请输入..."></Input>
+                    <Row>
+                        <Col>
+                            <Input v-model="searchData.param_key" clearable placeholder="请输入..."></Input>
+                        </Col>
+                    </Row>
                 </FormItem>
                 <FormItem label="名称">
-                    <Input v-model="searchData.param_name" clearable placeholder="请输入..."></Input>
+                    <Row>
+                        <Col>
+                            <Input v-model="searchData.param_name" clearable placeholder="请输入..."></Input>
+                        </Col>
+                    </Row>
                 </FormItem>
                 <div style="text-align: center;">
                     <FormItem>
@@ -23,10 +31,10 @@
         <div style="margin-bottom: 8px;">
             <Button type="primary" icon="plus" @click="add_model=true">添加参数</Button>
         </div>
-        <Table :data="tableData" :columns="tableColumns" stripe></Table>
+        <Table  :data="tableData" :columns="tableColumns" stripe></Table>
         <div style="margin: 10px;overflow: hidden">
             <div style="float: right;">
-                <Page :total="total" :current="start" @on-change="changePage"></Page>
+                <Page :showTotal="true" :total="total" :current="start" @on-change="changePage"></Page>
             </div>
         </div>
 
@@ -37,22 +45,38 @@
             <div style="text-align:center">
                 <Form ref="addParamsData" :label-width="80" :model="addParamsData" :rules="validRule">
                     <FormItem label="主键" prop="param_key">
-                        <Input v-model="addParamsData.param_key" clearable placeholder="请输入..."/>
+                        <Row>
+                            <Col span="16">
+                                <Input v-model="addParamsData.param_key" clearable placeholder="请输入..."/>
+                            </Col>
+                        </Row>
                     </FormItem>
                     <FormItem label="名称" prop="param_name">
-                        <Input v-model="addParamsData.param_name" clearable placeholder="请输入..."/>
+                        <Row>
+                            <Col span="16">
+                                <Input v-model="addParamsData.param_name" clearable placeholder="请输入..."/>
+                            </Col>
+                        </Row>
                     </FormItem>
                     <FormItem label="值" prop="param_value">
-                        <Input v-model="addParamsData.param_value" clearable placeholder="请输入..."/>
+                        <Row>
+                            <Col span="16">
+                                <Input v-model="addParamsData.param_value" clearable placeholder="请输入..."/>
+                            </Col>
+                        </Row>
                     </FormItem>
                     <FormItem label="备注">
-                        <Input v-model="addParamsData.param_remark" clearable placeholder="请输入..."/>
+                        <Row>
+                            <Col span="16">
+                                <Input v-model="addParamsData.param_remark" clearable placeholder="请输入..."/>
+                            </Col>
+                        </Row>
                     </FormItem>
                 </Form>
             </div>
             <div slot="footer" style="text-align: center;">
-                <Button @click="cancleAdd">取消</Button>
                 <Button type="primary"  @click="addParams">添加</Button>
+                <Button @click="cancleAdd">取消</Button>
             </div>
         </Modal>
 
@@ -63,22 +87,38 @@
             <div style="text-align:center">
                 <Form ref="editParamsData" :label-width="80" :model="editParamsData" :rules="validRule">
                     <FormItem label="主键" prop="param_key">
-                        <Input v-model="editParamsData.param_key" readonly placeholder="请输入..."/>
+                        <Row>
+                            <Col span="16">
+                                <Input v-model="editParamsData.param_key" readonly placeholder="请输入..."/>
+                            </Col>
+                        </Row>
                     </FormItem>
                     <FormItem label="名称" prop="param_name">
-                        <Input v-model="editParamsData.param_name" clearable placeholder="请输入..."/>
+                        <Row>
+                            <Col span="16">
+                                <Input v-model="editParamsData.param_name" clearable placeholder="请输入..."/>
+                            </Col>
+                        </Row>
                     </FormItem>
                     <FormItem label="值" prop="param_value">
-                        <Input v-model="editParamsData.param_value" clearable placeholder="请输入..."/>
+                        <Row>
+                            <Col span="16">
+                                <Input v-model="editParamsData.param_value" clearable placeholder="请输入..."/>
+                            </Col>
+                        </Row>
                     </FormItem>
                     <FormItem label="备注">
-                        <Input v-model="editParamsData.param_remark" clearable placeholder="请输入..."/>
+                        <Row>
+                            <Col span="16">
+                                <Input v-model="editParamsData.param_remark" clearable placeholder="请输入..."/>
+                            </Col>
+                        </Row>
                     </FormItem>
                 </Form>
             </div>
             <div slot="footer" style="text-align: center;">
-                <Button @click="edit_model=false">取消</Button>
                 <Button type="primary"  @click="editParams">修改</Button>
+                <Button @click="edit_model=false">取消</Button>
             </div>
         </Modal>
     </div>

@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0b77759d-a4f8-4338-9c97-9a37d6d201e1" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/views/sys-setting/sys-dept/sys-department.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kayak-tools/base-boxs/target/classes/META-INF/maven/com.kayak/base-boxs/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/base-boxs/target/classes/META-INF/maven/com.kayak/base-boxs/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kayak-tools/config-boxs/target/classes/META-INF/maven/com.kayak/config-boxs/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/config-boxs/target/classes/META-INF/maven/com.kayak/config-boxs/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kayak-tools/database-boxs/target/classes/META-INF/maven/com.kayak/database-boxs/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/database-boxs/target/classes/META-INF/maven/com.kayak/database-boxs/pom.properties" afterDir="false" />
@@ -10,374 +9,55 @@
       <change beforePath="$PROJECT_DIR$/../kayak-tools/feign-boxs/target/classes/META-INF/maven/com.kayak/feign-boxs/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/feign-boxs/target/classes/META-INF/maven/com.kayak/feign-boxs/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/META-INF/maven/com.kayak/kubernetes-boxs/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/kubernetes-boxs/target/classes/META-INF/maven/com.kayak/kubernetes-boxs/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kayak-tools/logs/kstrap.log" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/logs/kstrap.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/.project" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/.project" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/.settings/org.eclipse.core.resources.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/.settings/org.eclipse.core.resources.prefs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/java/com/kayak/ManageApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/java/com/kayak/ManageApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/java/com/kayak/ailiyun/controller/AliyunBatchDNSController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/java/com/kayak/ailiyun/controller/AliyunBatchDNSController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/java/com/kayak/aliyun/properties/AliyunDnsPropertie.java" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/java/com/kayak/aliyun/properties/AliyunDnsPropertie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/java/com/kayak/filter/LoginFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/java/com/kayak/filter/LoginFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/java/com/kayak/k8s/beans/KubernetesKayakClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/java/com/kayak/k8s/beans/KubernetesKayakClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/java/com/kayak/k8s/properties/KubModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/java/com/kayak/k8s/properties/KubModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/java/com/kayak/log/action/LogAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/java/com/kayak/ailiyun/controller/AliyunBatchDNSController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/java/com/kayak/ailiyun/controller/AliyunDNSDomainController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/java/com/kayak/ailiyun/controller/AliyunDNSGroupController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/java/com/kayak/ailiyun/controller/AliyunDNSResolverController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/java/com/kayak/ailiyun/controller/AliyunDNSSLBStatusController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/java/com/kayak/ailiyun/controller/AliyunDomainRecordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/java/com/kayak/ailiyun/controller/AliyunDomainRecordController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/java/com/kayak/ailiyun/controller/AliyunResolverDomainController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/java/com/kayak/dept/action/DeptAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/java/com/kayak/dept/action/DeptAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/java/com/kayak/dept/dao/DeptDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/java/com/kayak/dept/dao/DeptDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/java/com/kayak/login/action/LoginAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/java/com/kayak/login/action/LoginAction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/java/com/kayak/user/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/java/com/kayak/user/dao/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/resources/conf/spring/spring-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/resources/conf/spring/spring-context.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/java/com/kayak/util/AliyunUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/java/com/kayak/util/AliyunUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/resources/conf/sql/sys/sql-sysdept-execute.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/resources/conf/sql/sys/sql-sysdept-execute.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/resources/conf/sql/sys/sql-sysdept-info.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/resources/conf/sql/sys/sql-sysdept-info.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/resources/conf/sql/sys/sql-sysrole-info.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/resources/conf/sql/sys/sql-sysrole-info.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/resources/conf/sql/sys/sql-sysuser-info.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/src/main/resources/conf/sql/sys/sql-sysuser-info.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/META-INF/maven/com.kayak/manage-boxs/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/META-INF/maven/com.kayak/manage-boxs/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/META-INF/maven/com.kayak/manage-boxs/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/META-INF/maven/com.kayak/manage-boxs/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/bootstrap.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/com/kayak/ManageApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/com/kayak/ManageApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/com/kayak/ailiyun/controller/AliyunBatchDNSController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/com/kayak/ailiyun/controller/AliyunBatchDNSController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/com/kayak/aliyun/properties/AliyunDnsPropertie.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/com/kayak/aliyun/properties/AliyunDnsPropertie.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/com/kayak/filter/LoginFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/com/kayak/filter/LoginFilter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/com/kayak/k8s/beans/KubernetesKayakClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/com/kayak/k8s/beans/KubernetesKayakClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/com/kayak/k8s/properties/KubModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/com/kayak/k8s/properties/KubModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/com/kayak/log/action/LogAction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/com/kayak/ailiyun/controller/AliyunBatchDNSController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/com/kayak/ailiyun/controller/AliyunDNSDomainController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/com/kayak/ailiyun/controller/AliyunDNSGroupController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/com/kayak/ailiyun/controller/AliyunDNSResolverController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/com/kayak/ailiyun/controller/AliyunDNSSLBStatusController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/com/kayak/ailiyun/controller/AliyunDomainRecordController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/com/kayak/ailiyun/controller/AliyunDomainRecordController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/com/kayak/ailiyun/controller/AliyunResolverDomainController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/com/kayak/dept/action/DeptAction.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/com/kayak/dept/action/DeptAction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/com/kayak/dept/dao/DeptDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/com/kayak/dept/dao/DeptDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/com/kayak/login/action/LoginAction.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/com/kayak/login/action/LoginAction.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/com/kayak/user/dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/com/kayak/user/dao/UserDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/conf/spring/spring-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/conf/spring/spring-context.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/com/kayak/util/AliyunUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/com/kayak/util/AliyunUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/conf/sql/sys/sql-sysdept-execute.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/conf/sql/sys/sql-sysdept-execute.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/conf/sql/sys/sql-sysdept-info.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/conf/sql/sys/sql-sysdept-info.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/conf/sql/sys/sql-sysrole-info.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/conf/sql/sys/sql-sysrole-info.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/conf/sql/sys/sql-sysuser-info.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/manage-boxs/target/classes/conf/sql/sys/sql-sysuser-info.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kayak-tools/montior-boxs/target/classes/META-INF/maven/com.kayak/montior-boxs/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/montior-boxs/target/classes/META-INF/maven/com.kayak/montior-boxs/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kayak-tools/system-boxs/target/classes/META-INF/maven/com.kayak/system-boxs/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/system-boxs/target/classes/META-INF/maven/com.kayak/system-boxs/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kayak-tools/tools-boxs/target/classes/META-INF/maven/com.kayak/tools-boxs/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/tools-boxs/target/classes/META-INF/maven/com.kayak/tools-boxs/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kayak-tools/zuul-boxs/target/classes/META-INF/maven/com.kayak/zuul-boxs/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kayak-tools/zuul-boxs/target/classes/META-INF/maven/com.kayak/zuul-boxs/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.babelrc" beforeDir="false" afterPath="$PROJECT_DIR$/.babelrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.eslintignore" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.eslintrc.json" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.postcssrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/.postcssrc.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README_EN.md" beforeDir="false" afterPath="$PROJECT_DIR$/README_EN.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/webpack.base.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/webpack.base.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/webpack.dev.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/webpack.dev.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/webpack.prod.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/webpack.prod.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/github-gif/access.gif" beforeDir="false" afterPath="$PROJECT_DIR$/github-gif/access.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/github-gif/article-publish.gif" beforeDir="false" afterPath="$PROJECT_DIR$/github-gif/article-publish.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/github-gif/code.png" beforeDir="false" afterPath="$PROJECT_DIR$/github-gif/code.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/github-gif/count-to.gif" beforeDir="false" afterPath="$PROJECT_DIR$/github-gif/count-to.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/github-gif/dragable-list.gif" beforeDir="false" afterPath="$PROJECT_DIR$/github-gif/dragable-list.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/github-gif/dragable-table.gif" beforeDir="false" afterPath="$PROJECT_DIR$/github-gif/dragable-table.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/github-gif/editable-table.gif" beforeDir="false" afterPath="$PROJECT_DIR$/github-gif/editable-table.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/github-gif/error-page.gif" beforeDir="false" afterPath="$PROJECT_DIR$/github-gif/error-page.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/github-gif/exportable-table.gif" beforeDir="false" afterPath="$PROJECT_DIR$/github-gif/exportable-table.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/github-gif/home.gif" beforeDir="false" afterPath="$PROJECT_DIR$/github-gif/home.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/github-gif/image-editor.gif" beforeDir="false" afterPath="$PROJECT_DIR$/github-gif/image-editor.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/github-gif/locking.gif" beforeDir="false" afterPath="$PROJECT_DIR$/github-gif/locking.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/github-gif/message.gif" beforeDir="false" afterPath="$PROJECT_DIR$/github-gif/message.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/github-gif/page-tags.gif" beforeDir="false" afterPath="$PROJECT_DIR$/github-gif/page-tags.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/github-gif/sidebarmenu.gif" beforeDir="false" afterPath="$PROJECT_DIR$/github-gif/sidebarmenu.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/github-gif/split-pane.gif" beforeDir="false" afterPath="$PROJECT_DIR$/github-gif/split-pane.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/github-gif/table2image.gif" beforeDir="false" afterPath="$PROJECT_DIR$/github-gif/table2image.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/github-gif/theme.gif" beforeDir="false" afterPath="$PROJECT_DIR$/github-gif/theme.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/github-gif/upload.gif" beforeDir="false" afterPath="$PROJECT_DIR$/github-gif/upload.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/github-gif/workflow.gif" beforeDir="false" afterPath="$PROJECT_DIR$/github-gif/workflow.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/cropper-test.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/cropper-test.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/logo-min.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/logo-min.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/logo.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/logo.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/libs/table2excel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/libs/table2excel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/libs/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/libs/util.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/locale/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/locale/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/locale/locale.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/locale/locale.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/modules/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/modules/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/modules/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/modules/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/common.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/common.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/fonts/ionicons.eot" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/fonts/ionicons.eot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/fonts/ionicons.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/fonts/ionicons.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/fonts/ionicons.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/fonts/ionicons.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/fonts/ionicons.woff" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/fonts/ionicons.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/loading.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/loading.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/login_bg.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/login_bg.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/template/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/src/template/index.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Main.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/access/access-test.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/access/access.less" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/access/access.vue" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/domainrecord/domainrecord.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/domainrecord/domainrecord.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/error-page/403.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/error-page/403.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/error-page/403.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/error-page/403.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/error-page/404.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/error-page/404.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/error-page/404.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/error-page/404.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/error-page/500.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/error-page/500.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/error-page/500.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/error-page/500.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/error-page/error-page.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/error-page/error-page.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/error-page/error-page.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/error-page/error-page.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/home/components/countUp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/home/components/countUp.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/home/components/dataSourcePie.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/home/components/dataSourcePie.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/home/components/inforCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/home/components/inforCard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/home/components/map.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/home/components/map.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/home/components/mapDataTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/home/components/mapDataTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/home/components/serviceRequests.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/home/components/serviceRequests.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/home/components/styles/infor-card.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/home/components/styles/infor-card.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/home/components/styles/to-do-list-item.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/home/components/styles/to-do-list-item.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/home/components/toDoListItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/home/components/toDoListItem.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/home/components/userFlow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/home/components/userFlow.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/home/components/visiteVolume.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/home/components/visiteVolume.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/home/home.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/home/home.less" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/home/home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/home/home.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/home/map-data/china.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/home/map-data/china.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/home/map-data/get-city-value.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/home/map-data/get-city-value.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/home/map-data/get-geography-value.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/home/map-data/get-geography-value.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/home/map-data/get-style-json.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/home/map-data/get-style-json.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/k8s/k8sreplicationcontroller.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/k8s/k8sreplicationcontroller.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/login.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/login.less" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/main-components/breadcrumb-nav.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/main-components/breadcrumb-nav.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/main-components/fullscreen.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/main-components/fullscreen.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/main-components/lockscreen/components/locking-page.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/main-components/lockscreen/components/locking-page.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/main-components/lockscreen/components/unlock.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/main-components/lockscreen/components/unlock.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/main-components/lockscreen/lockscreen.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/main-components/lockscreen/lockscreen.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/main-components/lockscreen/styles/unlock.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/main-components/lockscreen/styles/unlock.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/main-components/message-tip.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/main-components/message-tip.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/main-components/shrinkable-menu/components/sidebarMenu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/main-components/shrinkable-menu/components/sidebarMenu.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/main-components/shrinkable-menu/components/sidebarMenuShrink.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/main-components/shrinkable-menu/components/sidebarMenuShrink.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/main-components/shrinkable-menu/shrinkable-menu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/main-components/shrinkable-menu/shrinkable-menu.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/main-components/shrinkable-menu/styles/menu.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/main-components/shrinkable-menu/styles/menu.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/main-components/tags-page-opened.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/main-components/tags-page-opened.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/main-components/theme-switch/theme-switch.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/main-components/theme-switch/theme-switch.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/main-components/theme-switch/theme/g.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/main-components/theme-switch/theme/g.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/main-components/theme-switch/theme/r.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/main-components/theme-switch/theme/r.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/main-components/theme-switch/theme/y.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/main-components/theme-switch/theme/y.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/main.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/main.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/message/message.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/message/message.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/message/message.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/message/message.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/monitor/gauge.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/monitor/monitor.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/monitor/vertical.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/area-linkage/area-linkage.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/area-linkage/area-linkage.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/area-linkage/area-linkage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/area-linkage/area-linkage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/area-linkage/components/al-cascader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/area-linkage/components/al-cascader.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/area-linkage/components/al-selector.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/area-linkage/components/al-selector.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/area-linkage/util/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/area-linkage/util/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/count-to/CountTo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/count-to/CountTo.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/count-to/count-to.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/count-to/count-to.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/count-to/count-to.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/count-to/count-to.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/draggable-list/draggable-list.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/draggable-list/draggable-list.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/draggable-list/draggable-list.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/draggable-list/draggable-list.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/file-upload/file-upload.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/file-upload/file-upload.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/file-upload/upload.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/file-upload/upload.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/image-editor/cropper.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/image-editor/cropper.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/image-editor/image-editor.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/image-editor/image-editor.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/image-editor/image-editor.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/image-editor/image-editor.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/markdown-editor/markdown-editor.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/markdown-editor/markdown-editor.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/markdown-editor/markdown-editor.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/markdown-editor/markdown-editor.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/markdown-editor/simplemde.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/markdown-editor/simplemde.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/scroll-bar/scroll-bar-page.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/scroll-bar/vue-scroller-bars/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/scroll-bar/vue-scroller-bars/scroll-bar.less" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/scroll-bar/vue-scroller-bars/scroll-bar.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/split-pane/split-pane-page.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/split-pane/split-pane-page.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/split-pane/split-pane/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/split-pane/split-pane/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/split-pane/split-pane/split-pane.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/split-pane/split-pane/split-pane.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/split-pane/split-pane/split-pane.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/split-pane/split-pane/split-pane.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/text-editor.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/text-editor.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/langs/en_GB.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/langs/en_GB.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/langs/zh_CN.GB2312.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/langs/zh_CN.GB2312.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/advlist/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/advlist/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/advlist/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/advlist/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/advlist/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/advlist/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/anchor/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/anchor/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/anchor/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/anchor/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/anchor/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/anchor/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/autolink/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/autolink/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/autolink/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/autolink/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/autolink/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/autolink/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/autoresize/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/autoresize/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/autoresize/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/autoresize/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/autoresize/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/autoresize/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/autosave/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/autosave/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/autosave/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/autosave/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/autosave/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/autosave/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/bbcode/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/bbcode/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/bbcode/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/bbcode/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/bbcode/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/bbcode/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/charmap/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/charmap/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/charmap/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/charmap/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/charmap/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/charmap/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/code/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/code/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/code/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/code/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/code/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/code/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/codesample/css/prism.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/codesample/css/prism.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/codesample/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/codesample/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/codesample/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/codesample/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/codesample/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/codesample/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/colorpicker/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/colorpicker/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/colorpicker/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/colorpicker/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/colorpicker/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/colorpicker/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/contextmenu/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/contextmenu/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/contextmenu/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/contextmenu/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/contextmenu/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/contextmenu/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/directionality/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/directionality/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/directionality/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/directionality/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/directionality/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/directionality/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/img/smiley-cool.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/img/smiley-cool.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/img/smiley-cry.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/img/smiley-cry.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/img/smiley-embarassed.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/img/smiley-embarassed.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/img/smiley-foot-in-mouth.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/img/smiley-foot-in-mouth.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/img/smiley-frown.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/img/smiley-frown.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/img/smiley-innocent.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/img/smiley-innocent.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/img/smiley-kiss.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/img/smiley-kiss.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/img/smiley-laughing.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/img/smiley-laughing.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/img/smiley-money-mouth.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/img/smiley-money-mouth.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/img/smiley-sealed.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/img/smiley-sealed.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/img/smiley-smile.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/img/smiley-smile.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/img/smiley-surprised.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/img/smiley-surprised.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/img/smiley-tongue-out.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/img/smiley-tongue-out.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/img/smiley-undecided.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/img/smiley-undecided.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/img/smiley-wink.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/img/smiley-wink.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/img/smiley-yell.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/img/smiley-yell.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/emoticons/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/fullpage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/fullpage/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/fullpage/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/fullpage/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/fullpage/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/fullpage/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/fullscreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/fullscreen/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/fullscreen/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/fullscreen/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/fullscreen/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/fullscreen/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/help/img/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/help/img/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/help/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/help/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/help/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/help/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/help/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/help/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/hr/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/hr/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/hr/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/hr/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/hr/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/hr/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/image/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/image/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/image/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/image/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/image/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/image/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/imagetools/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/imagetools/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/imagetools/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/imagetools/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/imagetools/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/imagetools/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/importcss/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/importcss/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/importcss/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/importcss/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/importcss/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/importcss/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/insertdatetime/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/insertdatetime/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/insertdatetime/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/insertdatetime/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/insertdatetime/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/insertdatetime/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/legacyoutput/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/legacyoutput/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/legacyoutput/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/legacyoutput/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/legacyoutput/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/legacyoutput/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/link/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/link/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/link/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/link/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/link/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/link/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/lists/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/lists/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/lists/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/lists/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/lists/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/lists/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/media/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/media/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/media/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/media/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/media/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/media/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/nonbreaking/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/nonbreaking/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/nonbreaking/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/nonbreaking/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/nonbreaking/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/nonbreaking/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/noneditable/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/noneditable/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/noneditable/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/noneditable/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/noneditable/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/noneditable/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/pagebreak/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/pagebreak/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/pagebreak/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/pagebreak/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/pagebreak/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/pagebreak/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/paste/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/paste/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/paste/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/paste/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/paste/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/paste/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/preview/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/preview/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/preview/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/preview/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/preview/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/preview/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/print/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/print/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/print/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/print/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/print/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/print/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/save/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/save/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/save/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/save/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/save/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/save/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/searchreplace/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/searchreplace/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/searchreplace/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/searchreplace/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/searchreplace/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/searchreplace/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/spellchecker/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/spellchecker/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/spellchecker/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/spellchecker/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/spellchecker/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/spellchecker/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/tabfocus/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/tabfocus/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/tabfocus/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/tabfocus/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/tabfocus/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/tabfocus/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/table/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/table/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/table/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/table/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/table/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/table/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/template/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/template/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/template/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/template/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/template/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/template/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/textcolor/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/textcolor/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/textcolor/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/textcolor/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/textcolor/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/textcolor/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/textpattern/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/textpattern/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/textpattern/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/textpattern/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/textpattern/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/textpattern/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/toc/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/toc/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/toc/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/toc/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/toc/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/toc/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/visualblocks/css/visualblocks.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/visualblocks/css/visualblocks.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/visualblocks/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/visualblocks/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/visualblocks/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/visualblocks/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/visualblocks/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/visualblocks/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/visualchars/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/visualchars/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/visualchars/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/visualchars/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/visualchars/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/visualchars/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/wordcount/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/wordcount/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/wordcount/plugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/wordcount/plugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/wordcount/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/plugins/wordcount/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/skins/lightgray/content.inline.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/skins/lightgray/content.inline.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/skins/lightgray/content.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/skins/lightgray/content.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/skins/lightgray/content.mobile.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/skins/lightgray/content.mobile.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/skins/lightgray/fonts/tinymce-mobile.woff" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/skins/lightgray/fonts/tinymce-mobile.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/skins/lightgray/fonts/tinymce-small.eot" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/skins/lightgray/fonts/tinymce-small.eot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/skins/lightgray/fonts/tinymce-small.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/skins/lightgray/fonts/tinymce-small.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/skins/lightgray/fonts/tinymce-small.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/skins/lightgray/fonts/tinymce-small.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/skins/lightgray/fonts/tinymce-small.woff" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/skins/lightgray/fonts/tinymce-small.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/skins/lightgray/fonts/tinymce.eot" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/skins/lightgray/fonts/tinymce.eot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/skins/lightgray/fonts/tinymce.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/skins/lightgray/fonts/tinymce.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/skins/lightgray/fonts/tinymce.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/skins/lightgray/fonts/tinymce.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/skins/lightgray/fonts/tinymce.woff" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/skins/lightgray/fonts/tinymce.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/skins/lightgray/img/anchor.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/skins/lightgray/img/anchor.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/skins/lightgray/img/loader.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/skins/lightgray/img/loader.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/skins/lightgray/img/object.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/skins/lightgray/img/object.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/skins/lightgray/img/trans.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/skins/lightgray/img/trans.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/skins/lightgray/skin.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/skins/lightgray/skin.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/skins/lightgray/skin.mobile.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/skins/lightgray/skin.mobile.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/themes/inlite/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/themes/inlite/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/themes/inlite/theme.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/themes/inlite/theme.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/themes/inlite/theme.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/themes/inlite/theme.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/themes/modern/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/themes/modern/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/themes/modern/theme.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/themes/modern/theme.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/themes/modern/theme.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/my-components/text-editor/tinymce/themes/modern/theme.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/own-space/own-space.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/own-space/own-space.less" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/own-space/own-space.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/own-space/own-space.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/tables/components/ExportExcel.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/tables/components/canEditTable.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/tables/components/dragableTable.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/tables/components/editable-table.less" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/tables/components/multiPageTable.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/tables/components/table.less" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/tables/components/table_data.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/tables/data/search.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/tables/data/table2csv.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/tables/data/table2excel.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/tables/dragable-table.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/tables/editable-table.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/tables/exportable-table.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/tables/searchable-table.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/tables/table-to-image.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/td_icon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/td_icon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/sys-setting/sys-dept/sys-department.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/sys-setting/sys-dept/sys-department.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/sys-setting/sys-dict/sys-dict.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/sys-setting/sys-dict/sys-dict.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/sys-setting/sys-params/sys-params.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/sys-setting/sys-params/sys-params.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/sys-setting/sys-role/sys-role.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/sys-setting/sys-role/sys-role.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/sys-setting/sys-user/sys-user.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/sys-setting/sys-user/sys-user.vue" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -389,40 +69,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="router.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/router/router.js">
+      <file leaf-file-name="k8sreplicationcontroller.vue" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/views/k8s/k8sreplicationcontroller.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="71" column="48" selection-start-line="71" selection-start-column="48" selection-end-line="71" selection-end-column="48" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sys-department.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/views/sys-setting/sys-dept/sys-department.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="514">
-              <caret line="116" column="26" selection-start-line="116" selection-start-column="26" selection-end-line="116" selection-end-column="26" />
+            <state relative-caret-position="416">
+              <caret line="1696" column="92" selection-start-line="1696" selection-start-column="92" selection-end-line="1696" selection-end-column="92" />
               <folding>
-                <element signature="n#style#0;n#Card#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#Form#0;n#Card#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#Button#1;n#FormItem#0;n#div#0;n#Form#0;n#Card#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="e#934545#994474#0" />
+                <element signature="e#935562#994463#0" />
+                <element signature="e#935809#980562#0" />
+                <element signature="e#937356#980544#0" />
+                <element signature="e#951398#952905#0" />
+                <element signature="e#980713#981961#0" />
+                <element signature="e#982087#984008#0" />
+                <element signature="e#984036#989741#0" />
+                <element signature="e#989771#990104#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sys-role.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/views/sys-setting/sys-role/sys-role.vue">
+      <file leaf-file-name="domainrecord.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/views/domainrecord/domainrecord.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="281">
-              <caret line="236" column="10" lean-forward="true" selection-start-line="233" selection-start-column="8" selection-end-line="236" selection-end-column="10" />
+            <state relative-caret-position="320">
+              <caret line="475" column="19" lean-forward="true" selection-start-line="463" selection-start-column="16" selection-end-line="475" selection-end-column="19" />
               <folding>
-                <element signature="n#div#0;n#template#0;n#!!top" />
-                <element signature="e#4513#10262#0" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#Row#1;n#Card#0;n#template#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -439,22 +112,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>pageTagsList</find>
-      <find>shrinkableMenu</find>
-      <find>home</find>
-      <find>total_machine</find>
-      <find>count</find>
-      <find>showAddNewTodo</find>
-      <find>newToDoItemValue</find>
-      <find>avatorImgPath</find>
-      <find>Cookies</find>
-      <find>login.vue</find>
-      <find>localStorage.avatorImgPath</find>
-      <find>ownSpace</find>
-      <find>search</find>
-      <find>tableData</find>
-      <find>editData</find>
+      <find>filterable</find>
+      <find>elementId</find>
+      <find>set_menu_model</find>
+      <find>scrp</find>
+      <find>角色</find>
+      <find>dept_name</find>
+      <find>addUser</find>
+      <find>queryroleslist</find>
+      <find>optioncheck</find>
+      <find>edit_model</find>
+      <find>deptname</find>
+      <find>cellphone</find>
+      <find>cancelEditPass</find>
+      <find>saveEditPass</find>
+      <find>saveEdit</find>
       <find>changePage</find>
+      <find>infoobj</find>
+      <find>sys_user_status</find>
+      <find>Number</find>
+      <find>valueKeyWord</find>
+      <find>typeKeyWord</find>
+      <find>savePassLoading</find>
+      <find>rRKeyWord</find>
+      <find>clearnewdata</find>
+      <find>newdata</find>
+      <find>showmodel_spec_template_spec_initContainers_volumeMounts_properties</find>
+      <find>showmodel_properties</find>
+      <find>this</find>
+      <find>tempnewdata</find>
+      <find>addnewdata</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -469,17 +156,22 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/views/k8s/k8sreplicationcontroller.vue" />
-        <option value="$PROJECT_DIR$/src/views/domainrecord/domainrecord.vue" />
         <option value="$PROJECT_DIR$/src/views/main-components/shrinkable-menu/shrinkable-menu.vue" />
         <option value="$PROJECT_DIR$/src/views/Main.vue" />
-        <option value="$PROJECT_DIR$/src/views/home/home.vue" />
         <option value="$PROJECT_DIR$/src/main.js" />
-        <option value="$PROJECT_DIR$/src/views/login.vue" />
-        <option value="$PROJECT_DIR$/src/views/own-space/own-space.vue" />
         <option value="$PROJECT_DIR$/src/views/sys-setting/sys-department.vue" />
-        <option value="$PROJECT_DIR$/src/views/sys-setting/sys-dept/sys-department.vue" />
         <option value="$PROJECT_DIR$/src/router/router.js" />
+        <option value="$PROJECT_DIR$/build/webpack.base.config.js" />
+        <option value="$PROJECT_DIR$/src/views/sys-setting/sys-dict/sys-dict.vue" />
+        <option value="$PROJECT_DIR$/src/views/sys-setting/sys-params/sys-params.vue" />
+        <option value="$PROJECT_DIR$/src/views/home/home.vue" />
+        <option value="$PROJECT_DIR$/src/views/sys-setting/sys-dept/sys-department.vue" />
+        <option value="$PROJECT_DIR$/src/views/sys-setting/sys-user/sys-user.vue" />
+        <option value="$PROJECT_DIR$/src/views/sys-setting/sys-role/sys-role.vue" />
+        <option value="$PROJECT_DIR$/src/views/login.vue" />
+        <option value="$PROJECT_DIR$/src/views/domainrecord/domainrecord.vue" />
+        <option value="$PROJECT_DIR$/src/views/own-space/own-space.vue" />
+        <option value="$PROJECT_DIR$/src/views/k8s/k8sreplicationcontroller.vue" />
       </list>
     </option>
   </component>
@@ -525,6 +217,11 @@
             <path>
               <item name="kayak-web" type="b2602c69:ProjectViewProjectNode" />
               <item name="kayak-web" type="462c0819:PsiDirectoryNode" />
+              <item name="build" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kayak-web" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kayak-web" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -538,6 +235,34 @@
               <item name="kayak-web" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kayak-web" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kayak-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="domainrecord" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kayak-web" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kayak-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="home" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kayak-web" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kayak-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="k8s" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kayak-web" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kayak-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="own-space" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="kayak-web" type="b2602c69:ProjectViewProjectNode" />
@@ -682,12 +407,12 @@
       <workItem from="1529502228434" duration="917000" />
       <workItem from="1529504184686" duration="5000" />
       <workItem from="1529890031246" duration="618000" />
-      <workItem from="1530080938273" duration="5958000" />
+      <workItem from="1530080938273" duration="40712000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7498000" />
+    <option name="totallyTimeSpent" value="42252000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -707,7 +432,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.48254365" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25679544" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.25679544" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -783,20 +508,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="990">
           <caret line="66" column="76" selection-start-line="66" selection-start-column="76" selection-end-line="66" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/k8s/k8sreplicationcontroller.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/domainrecord/domainrecord.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
         </state>
       </provider>
     </entry>
@@ -905,17 +616,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/home/home.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="68" selection-start-line="18" selection-start-column="68" selection-end-line="18" selection-end-column="68" />
-          <folding>
-            <element signature="n#style#0;n#Col#1;n#Row#0;n#Card#0;n#Col#0;n#Row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#1090#2999#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/sys-setting/sys-department.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -933,23 +633,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/login.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="66" column="52" selection-start-line="66" selection-start-column="48" selection-end-line="66" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/own-space/own-space.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1580">
-          <caret line="21" column="52" selection-start-line="21" selection-start-column="44" selection-end-line="21" selection-end-column="52" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#FormItem#1;n#Form#0;n#div#0;n#Card#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/iview/src/components/dropdown/dropdown-item.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -957,33 +640,101 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/sys-setting/sys-user/sys-user.vue">
+    <entry file="file://$PROJECT_DIR$/build/config.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/webpack.base.config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="333" column="11" selection-start-line="333" selection-start-column="4" selection-end-line="333" selection-end-column="11" />
+        <state relative-caret-position="255">
+          <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/kayak/Util.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/iview/src/components/input/input.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="33" column="17" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/tinymce/themes/inlite/theme.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="18680" column="11" selection-start-line="18680" selection-start-column="11" selection-end-line="18680" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/iview/src/components/select/dropdown.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/iview/dist/iview.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="10865" column="20" selection-start-line="10865" selection-start-column="20" selection-end-line="10865" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/iview/src/components/select/select.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="18" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="18" />
           <folding>
-            <element signature="n#div#0;n#template#0;n#!!top" />
-            <element signature="e#6417#11218#0" />
-            <element signature="e#11240#14079#0" />
+            <element signature="e#2457#2484#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/sys-setting/sys-role/sys-role.vue">
+    <entry file="file://$PROJECT_DIR$/node_modules/iview/src/components/select/option.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="236" column="10" lean-forward="true" selection-start-line="233" selection-start-column="8" selection-end-line="236" selection-end-column="10" />
+        <state relative-caret-position="120">
+          <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/home/home.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/home/home.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3120">
+          <caret line="208" column="21" selection-start-line="208" selection-start-column="13" selection-end-line="208" selection-end-column="21" />
           <folding>
-            <element signature="n#div#0;n#template#0;n#!!top" />
-            <element signature="e#4513#10262#0" />
+            <element signature="n#style#0;n#Col#1;n#Row#0;n#Card#0;n#Col#0;n#Row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router/router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="16" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/iview/src/components/button/button.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="19" column="115" selection-start-line="19" selection-start-column="110" selection-end-line="19" selection-end-column="115" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/sys-setting/sys-dept/sys-department.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="514">
-          <caret line="116" column="26" selection-start-line="116" selection-start-column="26" selection-end-line="116" selection-end-column="26" />
+        <state relative-caret-position="2892">
+          <caret line="198" column="33" selection-start-line="198" selection-start-column="33" selection-end-line="198" selection-end-column="33" />
           <folding>
             <element signature="n#style#0;n#Card#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#Form#0;n#Card#0;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -991,14 +742,107 @@
             <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#Modal#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#Modal#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#Modal#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#Modal#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#Modal#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#Modal#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#Modal#2;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#Modal#2;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#Modal#2;n#div#0;n#template#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/router/router.js">
+    <entry file="file://$PROJECT_DIR$/src/views/sys-setting/sys-params/sys-params.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="71" column="48" selection-start-line="71" selection-start-column="48" selection-end-line="71" selection-end-column="48" />
+        <state relative-caret-position="-891">
+          <caret line="76" column="59" lean-forward="true" selection-start-line="76" selection-start-column="59" selection-end-line="76" selection-end-column="59" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/sys-setting/sys-user/sys-user.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="446">
+          <caret line="276" column="21" lean-forward="true" selection-start-line="265" selection-start-column="20" selection-end-line="276" selection-end-column="21" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#Form#0;n#Card#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/sys-setting/sys-dict/sys-dict.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2835">
+          <caret line="46" column="48" selection-start-line="46" selection-start-column="48" selection-end-line="46" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/sys-setting/sys-role/sys-role.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="173" column="69" selection-start-line="173" selection-start-column="69" selection-end-line="173" selection-end-column="69" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#Form#0;n#Card#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#Modal#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#Modal#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#Modal#2;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#Modal#2;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/own-space/own-space.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="194" selection-start-line="194" selection-end-line="194" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#Form#0;n#div#0;n#Card#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/login.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="461">
+          <caret line="67" column="54" selection-start-line="67" selection-start-column="48" selection-end-line="67" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/domainrecord/domainrecord.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="475" column="19" lean-forward="true" selection-start-line="463" selection-start-column="16" selection-end-line="475" selection-end-column="19" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#Row#1;n#Card#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/k8s/k8sreplicationcontroller.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="1696" column="92" selection-start-line="1696" selection-start-column="92" selection-end-line="1696" selection-end-column="92" />
+          <folding>
+            <element signature="e#934545#994474#0" />
+            <element signature="e#935562#994463#0" />
+            <element signature="e#935809#980562#0" />
+            <element signature="e#937356#980544#0" />
+            <element signature="e#951398#952905#0" />
+            <element signature="e#980713#981961#0" />
+            <element signature="e#982087#984008#0" />
+            <element signature="e#984036#989741#0" />
+            <element signature="e#989771#990104#0" />
+          </folding>
         </state>
       </provider>
     </entry>

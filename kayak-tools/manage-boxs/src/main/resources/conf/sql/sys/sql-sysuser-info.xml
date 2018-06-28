@@ -5,7 +5,7 @@
 	<sqlinfo sqlid="find_sys_users">
 		<sqlname>查询用户列表</sqlname>
 		<sql><![CDATA[
-			SELECT t.user_id,t.role_id,t.user_name,t.user_status,t.user_remark, t2.role_name
+			SELECT t.user_id,t.role_id,dept_id,t.user_name,t.user_status,t.user_remark, t2.role_name
 			FROM sys_user t
 			LEFT JOIN sys_role t2 ON t.role_id = t2.role_id
 			WHERE ($ISNULL{user_name} OR t.user_name like '%$U{user_name}%')
@@ -16,17 +16,17 @@
 	<sqlinfo sqlid="find_sys_user_by_name">
 		<sqlname>根据用户名查询用户</sqlname>
 		<sql><![CDATA[
-			SELECT t.user_id,t.role_id,t.user_name,t.user_password,t.user_status,t.user_remark
-			FROM sys_user t
-			WHERE  user_name = $S{user_name}
+			select t.user_id,t.role_id,t.dept_id,s.dept_name,s.dept_ename,t.user_name,t.user_password,t.user_status,t.user_remark,r.role_type
+			from sys_user t left join sys_dept s on t.dept_id = s.dept_id left join sys_role r on t.role_id = r.role_id
+			where  user_name = $S{user_name}
 		]]></sql>
 	</sqlinfo>
 
 	<sqlinfo sqlid="add_sys_user">
 		<sqlname>添加用户</sqlname>
 		<sql><![CDATA[
-			INSERT INTO sys_user (user_id, role_id, user_name, user_password, user_status, user_remark) VALUES 
-				($AUTOID{user_id}, $N{role_id}, $S{user_name}, $S{user_password}, $N{user_status}, $S{user_remark})
+			INSERT INTO sys_user (user_id, role_id, user_name, dept_id, user_password, user_status, user_remark) VALUES 
+				($AUTOID{user_id}, $N{role_id},$S{user_name}, $N{dept_id},$S{user_password}, $N{user_status}, $S{user_remark})
 		]]></sql>
 		<checks>
 			<check comparesign="eql" exitall="true">
@@ -42,7 +42,7 @@
 	<sqlinfo sqlid="update_sys_user">
 		<sqlname>修改用户</sqlname>
 		<sql><![CDATA[
-		    UPDATE sys_user SET role_id = $N{role_id}, user_name = $S{user_name}, user_status = $N{user_status}, user_remark = $S{user_remark}
+		    UPDATE sys_user SET role_id = $N{role_id}, user_name = $S{user_name},dept_id = $N{dept_id}, user_status = $N{user_status}, user_remark = $S{user_remark}
 		    WHERE user_id = $N{user_id}
 		]]></sql>
 		<checks>
