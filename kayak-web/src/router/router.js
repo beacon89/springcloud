@@ -80,7 +80,8 @@ export const appRouter = [
         component: Main,
         children: [
             { path: 'domain-record',icon:'levels',title: '域名管理', name: 'domain-record', component: () => import('@/views/domainrecord/domainrecord.vue') },
-            { path: 'k8s-record',icon:'social-dribbble-outline',title: '控制管理', name: 'k8s-record', component: () => import('@/views/k8s/k8sreplicationcontroller.vue') },
+            { path: 'k8s-record',icon:'social-dribbble-outline',title: 'RC管理', name: 'k8s-record', component: () => import('@/views/k8s/k8sreplicationcontroller.vue') },
+            { path: 'k8s-recordedit',icon:'social-dribbble-outline',title: 'RC管理(文本)', name: 'k8s-recordedit', component: () => import('@/views/k8s/k8sreplicationcontrolleredit.vue') },
             { path: 'index', title: '错误页面', name: 'errorpage_index', component: () => import('@/views/error-page/error-page.vue') }
         ]
     }

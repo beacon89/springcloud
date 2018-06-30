@@ -98,7 +98,6 @@ public class AliyunDomainRecordController extends BaseController {
 			this.addDomainRecord.setValue(AliyunUtils.canReadStr(parmas.get("value")));
 			this.addDomainRecord.setTTL(AliyunUtils.canReadLong(parmas.get("ttl")));
 			this.addDomainRecord.setPriority(AliyunUtils.canReadLong(parmas.get("priority")));
-			this.addDomainRecord.setLine(AliyunUtils.canReadStr(parmas.get("line")));
 			AddDomainRecordResponse response = iacsClient.getAcsResponse(this.addDomainRecord);
 			Map<String, Object> map = new HashMap<>();
 			map.put("requestId", response.getRecordId());
@@ -167,7 +166,6 @@ public class AliyunDomainRecordController extends BaseController {
 			this.updateDomainRecord.setValue(AliyunUtils.canReadStr(parmas.get("value")));
 			this.updateDomainRecord.setTTL(AliyunUtils.canReadLong(parmas.get("ttl")));
 			this.updateDomainRecord.setPriority(AliyunUtils.canReadLong(parmas.get("priority")));
-			this.updateDomainRecord.setLine(AliyunUtils.canReadStr(parmas.get("line")));
 			UpdateDomainRecordResponse response = iacsClient.getAcsResponse(this.updateDomainRecord);
 			Map<String, Object> map = new HashMap<>();
 			map.put("requestId", response.getRecordId());

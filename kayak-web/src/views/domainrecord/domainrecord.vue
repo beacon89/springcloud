@@ -21,9 +21,8 @@
                         </FormItem>
                     </Col>-->
                 </Row>
-
                 <div style="text-align: center;">
-                    <span @click="query('querydata')" style="margin: 0 10px;"><Button type="primary" icon="search">查询</Button></span>
+                    <Button type="primary" icon="search" @click="query('querydata')">查询</Button>
                     <Button @click="clean('querydata')" type="ghost">取消</Button>
                 </div>
             </Form>
@@ -31,7 +30,7 @@
         <Row>
             <div>
                 <div style="margin-bottom: 8px;">
-                   <!--  <Button type="primary" icon="plus" @click="showaddpage('adddata')">添加域名</Button> -->
+                   <!-- <Button type="primary" icon="plus" @click="showaddpage('adddata')">添加域名</Button>-->
                 </div>
                 <Table :loading="loading" :columns="columns" :data="data"></Table>
                 <div style="margin: 10px;overflow: hidden">
@@ -104,11 +103,6 @@
                 </Modal>
             </div>
         </Row>
-        <div>
-            <Modal  v-model="delmodal" title="删除域名？" :loading="delloading" @on-cancel="cleardelete"  @on-ok="deleterow" :closable="false">
-                <p>您确定要删除该域名么？？？，一旦删除则不可能恢复哦!~</p>
-            </Modal>
-        </div>
         <Row>
             <div>
                 <Modal :width="800" v-model="modmodel" >
@@ -297,8 +291,6 @@
                 totalCount: 0,
                 pageNumber: 1,
                 pageSize: 20,
-                delloading:true,
-                delmodal:false,
                 userroletype:'',
                 userdeptid:'',
                 data: [],
@@ -308,11 +300,11 @@
                         title: '主机名称',
                         sortable: true
                     },
-                    // {
-                    //     key: 'value',
-                    //     title: '主机IP',
-                    //     sortable: true
-                    // },
+                    //{
+                       // key: 'value',
+                       // title: '主机IP',
+                       // sortable: true
+                    //},
                     {
                         key: 'status',
                         title: '记录状态',
@@ -346,20 +338,6 @@
                                         }
                                     }
                                 }, '开关'),
-                                h('Button', {
-                                    props: {
-                                        type: 'info',
-                                        size: 'small'
-                                    },
-                                    style: {
-                                        marginRight: '5px'
-                                    },
-                                    on: {
-                                        click: () => {
-                                            this.infoobj(params.row)
-                                        }
-                                    }
-                                }, '详细'),
                                 // h('Button', {
                                 //     props: {
                                 //         type: 'primary',
@@ -374,17 +352,38 @@
                                 //         }
                                 //     }
                                 // }, '修改'),
-                                h('Button', {
+                                h('Poptip', {
+                                    props: {
+                                        title: '确认删除吗？',
+                                        confirm:true
+                                    },
+                                    on: {
+                                        "on-cancel": () => {
+                                        },
+                                        "on-ok": () => {
+                                            this.deletePage(params.row);
+                                        }
+                                    }
+                                }, [h('Button', {
                                     props: {
                                         type: 'error',
                                         size: 'small'
+                                    }
+                                }, '删除')]),
+                                h('Button', {
+                                    props: {
+                                        type: 'info',
+                                        size: 'small'
+                                    },
+                                    style: {
+                                        marginRight: '5px'
                                     },
                                     on: {
                                         click: () => {
-                                            this.shwodelete(params.row);
+                                            this.infoobj(params.row)
                                         }
                                     }
-                                }, '删除')
+                                }, '详细')
                             ]);
                         }
                     }
@@ -489,65 +488,29 @@
                 let _this = this;
                 this.$refs[name].validate((valid) => {
                     if (valid) {
-                        this.$http.post(this.httpurl.toString() + '/feigen/addDomainRecord', this.$qs.stringify({
-                            rr:this.adddata.rr,
-                            type:this.adddata.type,
-                            value:this.adddata.value,
-                            ttl:this.adddata.ttl,
-                            priority:this.adddata.priority
-                        })).then(function (response) {
-                            if(response.data.returnState == "0000") {
-                                _this.addmodel = false;
-                                _this.query('querydata');
-                            }else{
-                                _this.$Message.error(response.data.returnMsg);
-                            }
-                        }).catch(function (error) {
-                            if(typeof(error.response) == "undefined"){
-                                _this.$Message.error("错误信息：" + error);
-                            }else{
-                                _this.$Message.error("错误信息：" + error.response.data.message);
-                            }
+                        this.kayak.httpUtil.update({url:"aliyun/addDomainRecord.json",method:"post",params:{
+                            "rr":this.adddata.rr,"type":this.adddata.type, "value":this.adddata.value, "ttl":this.adddata.ttl,"priority":this.adddata.priority
+                            },successAlert:false}).then(data=>{
+                            _this.addmodel = false;
+                            _this.query('querydata');
                         });
-
                     }else {
                         this.$Message.error('请先输入正确的数据格式!');
                     }
                 });
-            },shwodelete(row){
-                this.deldata.recordId = row.recordId;
-                this.delmodal = true;
-            },cleardelete(){
-                this.deldata.recordId= '';
-                this.delmodal = false;
             },
-            deleterow(){
+            deletePage:function(row){
                 let _this = this;
-                this.$http.post(this.httpurl.toString() + '/feigen/deleteDomainRecord', this.$qs.stringify({
-                    recordId:_this.deldata.recordId
-                })).then(function (response) {
-                    if(response.data.returnState == "0000"){
-                        _this.query('querydata');
-                        _this.delmodal = false;
-                        _this.deldata.recordId= '';
-                        _this.$Message.success('删除成功!');
-                    }else{
-                        _this.$Message.error(response.data.returnMsg);
-                    }
-                }).catch(function (error) {
-                    if(typeof(error.response) == "undefined"){
-                        _this.$Message.error("错误信息：" + error);
-                    }else{
-                        _this.$Message.error("错误信息：" + error.response.data.message);
-                    }
+                this.kayak.httpUtil.query({url:"aliyun/deleteDomainRecord.json",method:"post",params:{"recordId":row.recordId},successAlert:false}).then(data=>{
+                    _this.query('querydata');
                 });
             },showmodpage(row){
                 this.modmodel = true;
                 this.moddata.recordId = row.recordId;
-                this.moddata.rr = row.rr;
+                this.moddata.rr = row.RR;
                 this.moddata.type = row.type;
                 this.moddata.value = row.value;
-                this.moddata.ttl = row.ttl;
+                this.moddata.ttl = row.TTL;
                 this.moddata.priority = row.priority;
             },cleanmod(name){
                 this.$refs[name].resetFields();
@@ -555,30 +518,19 @@
                 let _this = this;
                 this.$refs[name].validate((valid) => {
                     if (valid) {
-                        this.$http.post(this.httpurl.toString() + '/feigen/updateDomainRecord', this.$qs.stringify({
-                            recordId:this.moddata.recordId,
-                            rr:this.moddata.rr,
-                            type:this.moddata.type,
-                            value:this.moddata.value,
-                            ttl:this.moddata.ttl,
-                            priority:this.moddata.priority
-                        })).then(function (response) {
-                            if(response.data.returnState == "0000"){
-                                _this.query('querydata');
-                                _this.modmodel = false;
-                                _this.$Message.success('更新状态成功!');
-                            }else{
-                                _this.$Message.error(response.data.returnMsg);
-                            }
-                        }).catch(function (error) {
-                            if(typeof(error.response) == "undefined"){
-                                _this.$Message.error("错误信息：" + error);
-                            }else{
-                                _this.$Message.error("错误信息：" + error.response.data.message);
-                            }
+                        this.kayak.httpUtil.update({url:"aliyun/updateDomainRecord.json",method:"post",params:{
+                                'recordId':this.moddata.recordId,
+                                'rr':this.moddata.rr,
+                                'type':this.moddata.type,
+                                'value':this.moddata.value,
+                                'ttl':this.moddata.ttl,
+                                priority:this.moddata.priority
+                            },successAlert:false}).then(data=>{
+                            _this.modmodel = false;
+                            _this.query('querydata');
                         });
                     }else {
-                        this.$Message.error('请先输入正确的数据格式!');
+                        _this.$Message.error('请先输入正确的数据格式!');
                     }
                 });
             },setstatus(row,value){
@@ -611,7 +563,8 @@
                     _this.infodata.locked= data.returndata.locked.toString();
                     _this.infomodel = true;
                 });
-            },infoclean(){
+            },
+            infoclean(){
                 this.infomodel = false;
             }
         },

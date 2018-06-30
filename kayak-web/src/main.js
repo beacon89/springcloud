@@ -8,12 +8,13 @@ import '@/locale';
 import 'iview/dist/styles/iview.css';
 import VueI18n from 'vue-i18n';
 import util from './libs/util';
-
-
 import kayakInstall from './libs/kayak.js';
+import VueCodemirror from 'vue-codemirror'
+
 
 Vue.use(VueI18n);
 Vue.use(iView);
+Vue.use(VueCodemirror);
 
 kayakInstall.install(Vue);
 

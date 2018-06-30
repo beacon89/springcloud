@@ -1,5 +1,6 @@
 package com.kayak.k8s.model;
 
+
 import io.fabric8.kubernetes.api.model.ReplicationController;
 
 public class KayakRcModel {
@@ -22,15 +23,9 @@ public class KayakRcModel {
 
 	private ReplicationController replicationcontroller;
 	
+	private String json;
+	
 	private KubRcShowModel modelflag;
-
-	public KubRcShowModel getModelflag() {
-		return modelflag;
-	}
-
-	public void setModelflag(KubRcShowModel modelflag) {
-		this.modelflag = modelflag;
-	}
 
 	public String getApiVersion() {
 		return apiVersion;
@@ -103,5 +98,23 @@ public class KayakRcModel {
 	public void setReplicas(Integer replicas) {
 		this.replicas = replicas;
 	}
+
+	public String getJson() {
+		return json;
+	}
+
+	public void setJson(String json) {
+		this.json = json;
+	}
+
+	public KubRcShowModel getModelflag() {
+		return modelflag;
+	}
+
+	public void setModelflag(KubRcShowModel modelflag) {
+		this.modelflag = modelflag;
+	}
+	
+	
 
 }

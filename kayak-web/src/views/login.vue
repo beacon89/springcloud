@@ -64,6 +64,7 @@ export default {
                     password = this.kayak.md5.hex_md5(password+"kayak2018");
                     this.kayak.httpUtil.query({url:"login.json",method:"post",params:{"username":this.form.userName,"password":password}}).then(data=>{
                         localStorage.setItem("authorization",data.returndata.token);
+                        localStorage.setItem("password",password);
                         sessionStorage.setItem('username',this.form.userName);
                         sessionStorage.setItem('deptid',data.returndata.deptid);
                         sessionStorage.setItem('deptname',data.returndata.deptname);

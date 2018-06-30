@@ -3,9 +3,10 @@ package com.kayak.k8s.beans;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kayak.k8s.model.KayakRcModel;
 import com.kayak.k8s.model.KubRcShowModel;
-import com.kayak.k8s.model.TestModel;
 
 import io.fabric8.kubernetes.api.model.Container;
 import io.fabric8.kubernetes.api.model.ContainerPort;
@@ -23,44 +24,11 @@ public class KayakReplicationControllerList {
 	private Integer pageSize;
 	
 	public  KayakReplicationControllerList() {
-		this.pageNumber = 1;
-		this.pageSize = 20;
 		this.items = new ArrayList<KayakRcModel>();
 	}
 	
 	
-	//TEST
-	public KayakReplicationControllerList getKayakReplicationControllerListTest() {
-		List<Integer> portlist = new ArrayList<Integer>();
-		List<ReplicationController> list =  new ArrayList<>();
-		TestModel model1 = new TestModel();
-		list.add(model1.getReplicationController());
-		for(ReplicationController rc :list) {
-			KayakRcModel model = new KayakRcModel();
-			model.setApiVersion(rc.getApiVersion());
-			model.setCreationTimestamp(rc.getMetadata().getCreationTimestamp());
-			model.setGeneration(rc.getMetadata().getGeneration());
-			model.setKind(rc.getKind());
-			model.setName(rc.getMetadata().getName());
-			model.setNamespace(rc.getMetadata().getNamespace());
-			model.setReplicas(rc.getSpec().getReplicas());
-			List<Container> containerlist = rc.getSpec().getTemplate().getSpec().getContainers();
-			for(Container container:containerlist) {
-				List<ContainerPort> containerportlist = container.getPorts();
-				for(ContainerPort containerport:containerportlist) {
-					portlist.add(containerport.getContainerPort());
-				}
-			} 
-			model.setPorts(portlist.toString());
-			model.setReplicationcontroller(rc);
-			model.setModelflag(new KubRcShowModel(rc));
-			items.add(model);
-		}
-		return this;
-	}
-	
-	
-	public KayakReplicationControllerList(int pageNumber,int pageSize,ReplicationControllerList rclist) {
+	public KayakReplicationControllerList(int pageNumber,int pageSize,ReplicationControllerList rclist) throws JsonProcessingException {
 		this.totalCount = rclist.getItems().size();
 		this.pageNumber = pageNumber;
 		this.pageSize = pageSize;
@@ -74,6 +42,7 @@ public class KayakReplicationControllerList {
 			list = rclist.getItems();
 		}
 		items = new ArrayList<KayakRcModel>();
+		ObjectMapper mapper = new ObjectMapper();
 		for(ReplicationController rc :list) {
 			KayakRcModel model = new KayakRcModel();
 			model.setApiVersion(rc.getApiVersion());
@@ -93,7 +62,7 @@ public class KayakReplicationControllerList {
 			model.setPorts(portlist.toString());
 			model.setReplicationcontroller(rc);
 			model.setModelflag(new KubRcShowModel(rc));
-	
+			model.setJson(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(rc));
 			items.add(model);
 		}
 	}

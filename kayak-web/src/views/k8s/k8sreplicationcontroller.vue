@@ -1,7 +1,4 @@
 <style lang="less">
-    @import '../../styles/common.less';
-    @import '../tables/components/table.less';
-
     .add_lable {
         margin-bottom : 18px;
     }
@@ -140,139 +137,126 @@
                 </p>
                 <Row class="first" v-if="typeof(infodata.apiVersion) !== 'undefined' ">
                     <Col span="12">
-                        <Input typeof="text" v-model="infodata.apiVersion" disabled>
-                            <span slot="prepend">apiVersion:</span>
-                        </Input>
-                    </Col>
+                        <Input typeof="text" v-model="infodata.apiVersion" disabled><span
+                            slot="prepend">apiVersion:</span></Input></Col>
                 </Row>
                 <Row class="first" v-if="typeof(infodata.kind) !== 'undefined'">
                     <Col span="12">
-                        <Input v-model="infodata.kind" disabled>
-                            <span slot="prepend">kind:</span>
-                        </Input>
-                    </Col>
+                        <Input v-model="infodata.kind" disabled><span slot="prepend">kind:</span></Input></Col>
                 </Row>
                 <Row v-if="typeof(infodata.metadata) !== 'undefined'">
-                    <div class="first" >
+                    <div class="first" @click="showmodel_metadata">
                         <span style="font-size:small">&nbsp;metadata:</span>
                         <Icon type="plus-circled"></Icon>
                     </div>
-                    <div>
+                    <div v-show="showmodel.metadata.on">
                         <Row v-if="typeof(infodata.metadata.annotations) !== 'undefined' ">
-                            <div class="second">
+                            <div class="second" @click="showmodel_metadata_annotations">
                                 <span style="font-size:small">&nbsp;&nbsp;&malt;&nbsp;annotations:</span>
                                 <Icon type="plus-circled"/>
                             </div>
-                            <div class="third"  v-for="(val,key) in infodata.metadata.annotations" :key="key"  v-model="infodata.metadata.annotations[key]">
+                            <div class="third" v-show="showmodel.metadata.annotations"
+                                 v-for="(val,key) in infodata.metadata.annotations" :key="key"
+                                 v-model="infodata.metadata.annotations[key]">
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nearhk;&nbsp;{{key}} -- {{val}}
                             </div>
                         </Row>
                         <Row class="second" v-if="typeof(infodata.metadata.clusterName) !== 'undefined'">
                             <Col span="12">
-                                <Input v-model="infodata.metadata.clusterName" disabled>
-                                    <span slot="prepend">&malt;&nbsp;clusterName:</span>
-                                </Input>
-                            </Col>
+                                <Input v-model="infodata.metadata.clusterName" disabled><span slot="prepend">&malt;&nbsp;clusterName:</span></Input></Col>
                         </Row>
                         <Row class="second" v-if="typeof(infodata.metadata.creationTimestamp) !== 'undefined'">
                             <Col span="12">
-                                <Input v-model="infodata.metadata.creationTimestamp" disabled>
-                                    <span slot="prepend">&malt;&nbsp;creationTimestamp:</span>
-                                </Input>
-                            </Col>
+                                <Input v-model="infodata.metadata.creationTimestamp" disabled><span slot="prepend">&malt;&nbsp;creationTimestamp:</span></Input></Col>
                         </Row>
                         <Row class="second"
                              v-if="typeof(infodata.metadata.deletionGracePeriodSeconds) !== 'undefined' && infodata.metadata.deletionGracePeriodSeconds !== 0 ">
                             <Col span="12">
-                                <Input v-model="infodata.metadata.deletionGracePeriodSeconds" disabled>
-                                    <span slot="prepend">&malt;&nbsp;deletionGracePeriodSeconds:</span>
-                                </Input>
-                            </Col>
+                                <Input v-model="infodata.metadata.deletionGracePeriodSeconds" disabled><span
+                                    slot="prepend">&malt;&nbsp;deletionGracePeriodSeconds:</span></Input></Col>
                         </Row>
                         <Row class="second" v-if="typeof(infodata.metadata.deletionTimestamp) !== 'undefined' ">
                             <Col span="12">
-                                <Input v-model="infodata.metadata.deletionTimestamp" disabled>
-                                    <span slot="prepend">&malt;&nbsp;deletionTimestamp:</span>
-                                </Input>
-                            </Col>
+                                <Input v-model="infodata.metadata.deletionTimestamp" disabled><span slot="prepend">&malt;&nbsp;deletionTimestamp:</span></Input></Col>
                         </Row>
                         <Row class="second" v-if="typeof(infodata.metadata.generateName) !== 'undefined' ">
                             <Col span="12">
-                                <Input v-model="infodata.metadata.generateName" disabled>
-                                    <span slot="prepend">&malt;&nbsp;generateName:</span>
-                                </Input>
-                            </Col>
+                                <Input v-model="infodata.metadata.generateName" disabled><span slot="prepend">&malt;&nbsp;generateName:</span></Input></Col>
                         </Row>
                         <Row v-if="typeof(infodata.metadata.initializers) !== 'undefined'">
-                            <div class="second" >
+                            <div class="second" @click="showmodel_metadata_initializers">
                                 <span style="font-size:small"> &nbsp;&nbsp;&malt;&nbsp;initializers:</span>
                                 <Icon type="plus-circled"/>
                             </div>
-                            <div >
+                            <div v-show="showmodel.metadata.initializers.on">
                                 <Row v-if="typeof(infodata.metadata.initializers.pending) !== 'undefined' && infodata.metadata.initializers.pending.length > 0">
-                                    <div class="third" >
+                                    <div class="third" @click="showmodel_metadata_initializers_pending">
                                         <span style="font-size:small">&nesear;&nbsp;pending:</span>
                                         <Icon type="plus-circled"/>
                                     </div>
-                                    <div v-for="(item,index) in infodata.metadata.initializers.pending" :key="index" v-model="infodata.metadata.initializers.pending[index]">
+                                    <div v-show="showmodel.metadata.initializers.pending"
+                                         v-for="(item,index) in infodata.metadata.initializers.pending" :key="index"
+                                         v-model="infodata.metadata.initializers.pending[index]">
                                         <div class="fourth">
                                             <span style="font-size:small">&midast;&nbsp;列表数:{{index}}:</span>
                                         </div>
                                         <Row class="fifth" v-if="typeof(item.name) !== 'undefined' ">
                                             <Col span="12">
-                                                <Input v-model="item.name" disabled>
-                                                    <span slot="prepend">&triminus;&nbsp;name:</span>
-                                                </Input>
-                                            </Col>
+                                                <Input v-model="item.name" disabled><span slot="prepend">&triminus;&nbsp;name:</span></Input></Col>
                                         </Row>
-                                        <Row v-if="typeof(item.additionalProperties) !== 'undefined' ">
+                                        <Row v-if="typeof(item.additionalProperties) !== 'undefined' && JSON.stringify(item.additionalProperties).length > 2 ">
                                             <div class="fifth">
                                                 <span style="font-size:small">&nbsp;&nbsp;&triminus;&nbsp;additionalProperties:</span>
                                             </div>
-                                            <div class="sixth" v-for="(val,key) in item.additionalProperties":key="key" v-model="item.additionalProperties[key]">
+                                            <div class="sixth" v-for="(val,key) in item.additionalProperties"
+                                                 :key="key" v-model="item.additionalProperties[key]">
                                                 &mapsto;&nbsp;{{key}} -- {{val}}
                                             </div>
                                         </Row>
                                     </div>
                                 </Row>
                                 <Row v-if="typeof(infodata.metadata.initializers.result) !== 'undefined' ">
-                                    <div class="third">
+                                    <div @click="showmodel_metadata_initializers_result" class="third">
                                         <span style="font-size:small">&nesear;&nbsp;result:</span>
                                         <Icon type="plus-circled"/>
                                     </div>
-                                    <div>
-                                        <Row class="fourth" v-if="typeof(infodata.metadata.initializers.result.apiVersion) !== 'undefined'">
+                                    <div v-show="showmodel.metadata.initializers.result.on">
+                                        <Row class="fourth"
+                                             v-if="typeof(infodata.metadata.initializers.result.apiVersion) !== 'undefined'">
                                             <Col span="12">
-                                                <Input v-model="infodata.metadata.initializers.result.apiVersion"  disabled>
-                                                    <span slot="prepend">&sc;&nbsp;apiVersion:</span>
-                                                </Input>
+                                                <Input v-model="infodata.metadata.initializers.result.apiVersion"
+                                                       disabled>
+                                                <span slot="prepend">&sc;&nbsp;apiVersion:</span></Input>
                                             </Col>
                                         </Row>
-                                        <Row class="fourth">
+                                        <Row class="fourth"
+                                             v-if="typeof(infodata.metadata.initializers.result.code) !== 'undefined'">
                                             <Col span="12">
                                                 <Input v-model="infodata.metadata.initializers.result.code" disabled>
-                                                    <span slot="prepend">&sc;&nbsp;code:</span>
-                                                </Input>
+                                                <span slot="prepend">&sc;&nbsp;code:</span></Input>
                                             </Col>
                                         </Row>
                                         <Row v-if="typeof(infodata.metadata.initializers.result.details) !== 'undefined'">
-                                            <div class="fourth">
+                                            <div class="fourth"
+                                                 @click="showmodel_metadata_initializers_result_details">
                                                 <span style="font-size:small">&nbsp;&nbsp;&sc;&nbsp;details:</span>
                                                 <Icon type="plus-circled"/>
                                             </div>
-                                            <div>
+                                            <div v-show="showmodel.metadata.initializers.result.details.on">
                                                 <Row v-if="typeof(infodata.metadata.initializers.result.details.group) !== 'undefined'">
                                                     <Col span="12">
-                                                        <Input class="fifth" v-model="infodata.metadata.initializers.result.details.group" disabled>
-                                                            <span slot="prepend">&dagger;&nbsp;group:</span>
-                                                        </Input>
+                                                        <Input class="fifth"
+                                                               v-model="infodata.metadata.initializers.result.details.group"
+                                                               disabled>
+                                                        <span slot="prepend">&dagger;&nbsp;group:</span></Input>
                                                     </Col>
                                                 </Row>
-                                                <Row class="fifth" v-if="typeof(infodata.metadata.initializers.result.details.kind) !== 'undefined'">
+                                                <Row class="fifth"
+                                                     v-if="typeof(infodata.metadata.initializers.result.details.kind) !== 'undefined'">
                                                     <Col span="12">
-                                                        <Input v-model="infodata.metadata.initializers.result.details.kind"  disabled>
-                                                            <span slot="prepend">&dagger;&nbsp;kind:</span>
-                                                        </Input>
+                                                        <Input v-model="infodata.metadata.initializers.result.details.kind"
+                                                               disabled>
+                                                        <span slot="prepend">&dagger;&nbsp;kind:</span></Input>
                                                     </Col>
                                                 </Row>
                                                 <Row v-if="typeof(infodata.metadata.initializers.result.details.name) !== 'undefined'">
@@ -317,7 +301,7 @@
                                                                 <span slot="prepend">&ultri;&nbsp;reason:</span></Input>
                                                             </Col>
                                                         </Row>
-                                                        <Row v-if="typeof(causesobj.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(causesobj.additionalProperties) !== 'undefined' && JSON.stringify(causesobj.additionalProperties).length > 2">
                                                             <div class="seventh">
                                                                 <span style="font-size:small">&nbsp;&nbsp;&ultri;&nbsp;additionalProperties:</span>
                                                             </div>
@@ -346,7 +330,7 @@
                                                         <span slot="prepend">&dagger;&nbsp;uid:</span></Input>
                                                     </Col>
                                                 </Row>
-                                                <Row v-if="typeof(infodata.metadata.initializers.result.details.additionalProperties) !== 'undefined' ">
+                                                <Row v-if="typeof(infodata.metadata.initializers.result.details.additionalProperties) !== 'undefined' && JSON.stringify(infodata.metadata.initializers.result.details.additionalProperties).length > 2">
                                                     <div class="fifth"
                                                          @click="showmodel_metadata_initializers_result_details_properties">
                                                         <span>&nbsp;&nbsp;&dagger;&nbsp;additionalProperties:</span>
@@ -399,7 +383,7 @@
                                                         <span slot="prepend">&jukcy;&nbsp;selfLink:</span></Input>
                                                     </Col>
                                                 </Row>
-                                                <Row v-if="typeof(infodata.metadata.initializers.result.metadata.additionalProperties) !== 'undefined'">
+                                                <Row v-if="typeof(infodata.metadata.initializers.result.metadata.additionalProperties) !== 'undefined' && JSON.stringify(infodata.metadata.initializers.result.metadata.additionalProperties).length > 2">
                                                     <div class="fifth"
                                                          @click="showmodel_metadata_initializers_result_metadata_properties">
                                                         <span style="font-size:small">&nbsp;&nbsp;&jukcy;&nbsp;additionalProperties:</span>
@@ -429,7 +413,7 @@
                                                        disabled><span
                                                     slot="prepend">&sc;&nbsp;status:</span></Input></Col>
                                         </Row>
-                                        <Row v-if="typeof(infodata.metadata.initializers.result.additionalProperties) !== 'undefined' ">
+                                        <Row v-if="typeof(infodata.metadata.initializers.result.additionalProperties) !== 'undefined' && JSON.stringify(infodata.metadata.initializers.result.additionalProperties).length > 2">
                                             <div class="fourth"
                                                  @click="showmodel_metadata_initializers_result_properties">
                                                 <span style="font-size:small">&nbsp;&nbsp;&sc;&nbsp;additionalProperties:</span>
@@ -445,7 +429,7 @@
                                         </Row>
                                     </div>
                                 </Row>
-                                <Row v-if="typeof(infodata.metadata.initializers.additionalProperties) !== 'undefined' ">
+                                <Row v-if="typeof(infodata.metadata.initializers.additionalProperties) !== 'undefined' && JSON.stringify(infodata.metadata.initializers.additionalProperties).length > 2">
                                     <div class="third" @click="showmodel_metadata_initializers_properties">
                                         <span style="font-size:small">&nesear;&nbsp;additionalProperties:</span>
                                         <Icon type="plus-circled"/>
@@ -513,7 +497,7 @@
                                             <Input v-model="owner.uid" disabled><span
                                                 slot="prepend">&oast;&nbsp;uid:</span></Input></Col>
                                     </Row>
-                                    <Row v-if="typeof(owner.additionalProperties) !== 'undefined' ">
+                                    <Row v-if="typeof(owner.additionalProperties) !== 'undefined' && JSON.stringify(owner.additionalProperties).length > 2">
                                         <div class="fourth">
                                             <span style="font-size:small">&nbsp;&nbsp;&oast;&nbsp;additionalProperties:</span>
                                         </div>
@@ -561,7 +545,7 @@
                                 <span slot="prepend">&nbsp;&malt;&nbsp;uid:</span></Input>
                             </Col>
                         </Row>
-                        <Row v-if="typeof(infodata.metadata.additionalProperties) !== 'undefined' &&  modelflag.metadata.properties === true">
+                        <Row v-if="typeof(infodata.metadata.additionalProperties) !== 'undefined' &&  JSON.stringify(infodata.metadata.additionalProperties).length > 2">
                             <div class="second" @click="showmodel_metadata_properties">
                                 <span style="font-size:small">&nbsp;&nbsp;&malt;&nbsp;additionalProperties:</span>
                                 <Icon type="plus-circled"/>
@@ -603,7 +587,7 @@
                                 <Icon type="plus-circled"></Icon>
                             </div>
                             <div v-show="showmodel.spec.template.on">
-                                <Row v-if="typeof(infodata.spec.template.additionalProperties) !== 'undefined'  &&  modelflag.spec.template.properties === true ">
+                                <Row v-if="typeof(infodata.spec.template.additionalProperties) !== 'undefined'  &&  JSON.stringify(infodata.spec.template.additionalProperties).length > 2 ">
                                     <div class="third" @click="showmodel_spec_template_properties">
                                         <span>&nbsp;&nbsp;&sect;&nbsp;additionalProperties:</span>
                                         <Icon type="plus-circled"/>
@@ -718,7 +702,7 @@
                                                                 <span slot="prepend">&triminus;&nbsp;name:</span></Input>
                                                             </Col>
                                                         </Row>
-                                                        <Row v-if="typeof(item.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(item.additionalProperties) !== 'undefined'  &&  JSON.stringify(item.additionalProperties).length > 2 ">
                                                             <div class="seventh">
                                                                 <span style="font-size:small">&nbsp;&nbsp;&triminus;&nbsp;additionalProperties:</span>
                                                             </div>
@@ -797,7 +781,7 @@
                                                                                 <span slot="prepend">&ultri;&nbsp;reason:</span></Input>
                                                                             </Col>
                                                                         </Row>
-                                                                        <Row v-if="typeof(obj.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(obj.additionalProperties) !== 'undefined' &&  JSON.stringify(obj.additionalProperties).length > 2 ">
                                                                             <div class="eighth">
                                                                                 <span style="font-size:small">&nbsp;&nbsp;&ultri;&nbsp;additionalProperties:</span>
                                                                             </div>
@@ -852,7 +836,7 @@
                                                                         <span slot="prepend">&dagger;&nbsp;uid:</span></Input>
                                                                     </Col>
                                                                 </Row>
-                                                                <Row v-if="typeof(infodata.spec.template.metadata.initializers.result.details.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(infodata.spec.template.metadata.initializers.result.details.additionalProperties) !== 'undefined' && JSON.stringify(infodata.spec.template.metadata.initializers.result.details.additionalProperties).length > 2 ">
                                                                     <div class="seventh"
                                                                          @click="showmodel_spec_template_metadata_initializers_result_details_properties">
                                                                         <span style="font-size:small">&nbsp;&nbsp;&dagger;&nbsp;additionalProperties:</span>
@@ -907,7 +891,7 @@
                                                                         <span slot="prepend">&jukcy;&nbsp;selfLink:</span></Input>
                                                                     </Col>
                                                                 </Row>
-                                                                <Row v-if="typeof(infodata.spec.template.metadata.initializers.result.metadata.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(infodata.spec.template.metadata.initializers.result.metadata.additionalProperties) !== 'undefined' && JSON.stringify(infodata.spec.template.metadata.initializers.result.metadata.additionalProperties).length > 2 ">
                                                                     <div class="seventh"
                                                                          @click="showmodel_spec_template_metadata_initializers_result_metadata_properties">
                                                                         <span style="font-size:small">&nbsp;&nbsp;&jukcy;&nbsp;additionalProperties:</span>
@@ -939,7 +923,7 @@
                                                                 <span slot="prepend">&sc;&nbsp;status:</span></Input>
                                                             </Col>
                                                         </Row>
-                                                        <Row v-if="typeof(infodata.spec.template.metadata.initializers.result.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(infodata.spec.template.metadata.initializers.result.additionalProperties) !== 'undefined' && JSON.stringify(infodata.spec.template.metadata.initializers.result.additionalProperties).length > 2 ">
                                                             <div class="sixth"
                                                                  @click="showmodel_spec_template_metadata_initializers_result_properties">
                                                                 <span style="font-size:small">&nbsp;&nbsp;&sc;&nbsp;additionalProperties:</span>
@@ -955,7 +939,7 @@
                                                         </Row>
                                                     </div>
                                                 </Row>
-                                                <Row v-if="typeof(infodata.spec.template.metadata.initializers.additionalProperties) !== 'undefined' ">
+                                                <Row v-if="typeof(infodata.spec.template.metadata.initializers.additionalProperties) !== 'undefined' && JSON.stringify(infodata.spec.template.metadata.initializers.additionalProperties).length > 2 ">
                                                     <div class="fifth"
                                                          @click="showmodel_spec_template_metadata_initializers_properties">
                                                         <span style="font-size:small">&lagran;&nbsp;additionalProperties:</span>
@@ -1046,7 +1030,7 @@
                                                         <span slot="prepend">&oast;&nbsp;uid:</span></Input>
                                                     </Col>
                                                 </Row>
-                                                <Row v-if="typeof(owner.additionalProperties) !== 'undefined' ">
+                                                <Row v-if="typeof(owner.additionalProperties) !== 'undefined' && JSON.stringify(owner.additionalProperties).length > 2 ">
                                                     <div class="sixth"
                                                          @click="showmodel_spec_template_metadata_ownerReferences_properties">
                                                         <span style="font-size:small">&nbsp;&nbsp;&oast;&nbsp;additionalProperties:</span>
@@ -1083,7 +1067,7 @@
                                                 <span slot="prepend">&laemptyv;&nbsp;uid:</span></Input>
                                             </Col>
                                         </Row>
-                                        <Row v-if="typeof(infodata.spec.template.metadata.additionalProperties) !== 'undefined' &&  modelflag.spec.template.metadata.properties === true">
+                                        <Row v-if="typeof(infodata.spec.template.metadata.additionalProperties) !== 'undefined' && JSON.stringify(infodata.spec.template.metadata.additionalProperties).length > 2 ">
                                             <div class="fourth"
                                                  @click="showmodel_spec_template_metadata_properties">
                                                 <span>&nbsp;&nbsp;&laemptyv;&nbsp;additionalProperties:</span>
@@ -1117,7 +1101,7 @@
                                                         <Icon type="plus-circled"/>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.affinity.nodeAffinity.on">
-                                                        <Row v-if="typeof(infodata.spec.template.spec.affinity.nodeAffinity.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(infodata.spec.template.spec.affinity.nodeAffinity.additionalProperties) !== 'undefined' && JSON.stringify(infodata.spec.template.spec.affinity.nodeAffinity.additionalProperties).length > 2 ">
                                                             <div class="sixth"
                                                                  @click="showmodel_spec_template_spec_affinity_nodeAffinity_properties">
                                                                 <span>&nbsp;&nbsp;&dbkarow;&nbsp;additionalProperties:</span>
@@ -1151,7 +1135,7 @@
                                                                         <span slot="prepend">&rAarr;&nbsp;weight:</span></Input>
                                                                     </Col>
                                                                 </Row>
-                                                                <Row v-if="typeof(execution.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(execution.additionalProperties) !== 'undefined' && JSON.stringify(execution.additionalProperties).length > 2 ">
                                                                     <div class="eighth"
                                                                          @click="showmodel_spec_template_spec_affinity_nodeAffinity_preferredexecution_properties">
                                                                         <span>&nbsp;&nbsp;&rAarr;&nbsp;additionalProperties:</span>
@@ -1172,7 +1156,7 @@
                                                                         <Icon type="plus-circled"/>
                                                                     </div>
                                                                     <div v-show="showmodel.spec.template.spec.affinity.nodeAffinity.preferredexecution.preference.on">
-                                                                        <Row v-if="typeof(execution.preference.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(execution.preference.additionalProperties) !== 'undefined' && JSON.stringify(execution.preference.additionalProperties).length > 2 ">
                                                                             <div class="ninth"
                                                                                  @click="showmodel_spec_template_spec_affinity_nodeAffinity_preferredexecution_preference_properties">
                                                                                 <span>&nbsp;&nbsp;&nearr;&nbsp;additionalProperties:</span>
@@ -1213,7 +1197,7 @@
                                                                                         <span slot="prepend">&rAarr;&nbsp;operator:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
-                                                                                <Row v-if="typeof(item.additionalProperties) !== 'undefined' ">
+                                                                                <Row v-if="typeof(item.additionalProperties) !== 'undefined' && JSON.stringify(item.additionalProperties).length > 2 ">
                                                                                     <div class="eleventh"
                                                                                          @click="showmodel_spec_template_spec_affinity_nodeAffinity_preferredexecution_preference_matchexpion_properties">
                                                                                         <span>&nbsp;&nbsp;&rAarr;&nbsp;additionalProperties:</span>
@@ -1256,7 +1240,7 @@
                                                                 <Icon type="plus-circled"/>
                                                             </div>
                                                             <div v-show="showmodel.spec.template.spec.affinity.nodeAffinity.requiredexecution.on">
-                                                                <Row v-if="typeof(infodata.spec.template.spec.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(infodata.spec.template.spec.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.additionalProperties) !== 'undefined' && JSON.stringify(infodata.spec.template.spec.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.additionalProperties).length > 2">
                                                                     <div class="seventh"
                                                                          @click="showmodel_spec_template_spec_affinity_nodeAffinity_requiredexecution_properties">
                                                                         <span>&nbsp;&nbsp;&rAarr;&nbsp;additionalProperties:</span>
@@ -1283,7 +1267,7 @@
                                                                             <div class="eighth">
                                                                                 <span style="font-size:small">&nbsp;&nbsp;&iiiint;&nbsp;列表数:{{index}}:</span>
                                                                             </div>
-                                                                            <Row v-if="typeof(item.additionalProperties) !== 'undefined' ">
+                                                                            <Row v-if="typeof(item.additionalProperties) !== 'undefined' && JSON.stringify(item.additionalProperties).length > 2 ">
                                                                                 <div class="ninth"
                                                                                      @click="showmodel_spec_template_spec_affinity_nodeAffinity_requiredexecution_nodeSelector_properties">
                                                                                     <div>
@@ -1329,7 +1313,7 @@
                                                                                             <span slot="prepend">&laemptyv;&nbsp;operator:</span></Input>
                                                                                         </Col>
                                                                                     </Row>
-                                                                                    <Row v-if="typeof(expression.additionalProperties) !== 'undefined' ">
+                                                                                    <Row v-if="typeof(expression.additionalProperties) !== 'undefined' && JSON.stringify(expression.additionalProperties).length > 2 ">
                                                                                         <div class="eleventh"
                                                                                              @click="showmodel_spec_template_spec_affinity_nodeAffinity_requiredexecution_nodeSelector_matchexpreesion_properties">
                                                                                             <span>&nbsp;&nbsp;&laemptyv;&nbsp;additionalProperties:</span>
@@ -1391,7 +1375,7 @@
                                                         <Icon type="plus-circled"/>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.affinity.podAffinity.on">
-                                                        <Row v-if="typeof(infodata.spec.template.spec.affinity.podAffinity.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(infodata.spec.template.spec.affinity.podAffinity.additionalProperties) !== 'undefined'  ">
                                                             <div class="sixth"
                                                                  @click="showmodel_spec_template_spec_affinity_podAffinity_properties">
                                                                 <span>&nbsp;&nbsp;&tritime;&nbsp;additionalProperties:</span>
@@ -1418,7 +1402,7 @@
                                                                 <div class="seventh">
                                                                     <span style="font-size:small">&midast;&nbsp;下标数:{{index}}:</span>
                                                                 </div>
-                                                                <Row v-if="typeof(execution.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(execution.additionalProperties) !== 'undefined' && JSON.stringify(execution.additionalProperties).length > 2 ">
                                                                     <div class="eighth"
                                                                          @click="showmodel_spec_template_spec_affinity_podAffinity_preferredexceution_properties">
                                                                         <div>
@@ -1462,7 +1446,7 @@
                                                                                 <span slot="prepend">&aelig;&nbsp;topologyKey:</span></Input>
                                                                             </Col>
                                                                         </Row>
-                                                                        <Row v-if="typeof(execution.podAffinityTerm.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(execution.podAffinityTerm.additionalProperties) !== 'undefined' && JSON.stringify(execution.podAffinityTerm.additionalProperties).length > 2 ">
                                                                             <div class="ninth"
                                                                                  @click="showmodel_spec_template_spec_affinity_podAffinity_preferredexecution_podaffinityterm_properties">
                                                                                 <span>&nbsp;&nbsp;&aelig;&nbsp;additionalProperties:</span>
@@ -1483,7 +1467,7 @@
                                                                                 <Icon type="plus-circled"></Icon>
                                                                             </div>
                                                                             <div v-show="showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.labels.on">
-                                                                                <Row v-if="typeof(execution.podAffinityTerm.labelSelector.additionalProperties) !== 'undefined' ">
+                                                                                <Row v-if="typeof(execution.podAffinityTerm.labelSelector.additionalProperties) !== 'undefined' &&  JSON.stringify(execution.podAffinityTerm.labelSelector.additionalProperties).length > 2 ">
                                                                                     <div class="tenth"
                                                                                          @click="showmodel_spec_template_spec_affinity_podAffinity_preferredexecution_podaffinityterm_labels_properties">
                                                                                         <span>&nbsp;&nbsp;&tritime;&nbsp;additionalProperties:</span>
@@ -1527,7 +1511,7 @@
                                                                                                 <span slot="prepend">&rAarr;&nbsp;operator:</span></Input>
                                                                                             </Col>
                                                                                         </Row>
-                                                                                        <Row v-if="typeof(matchexpreesion.additionalProperties) !== 'undefined' ">
+                                                                                        <Row v-if="typeof(matchexpreesion.additionalProperties) !== 'undefined' && JSON.stringify(matchexpreesion.additionalProperties).length > 2">
                                                                                             <div class="eleventh"
                                                                                                  @click="showmodel_spec_template_spec_affinity_podAffinity_preferredexecution_podaffinityterm_labels_matchexpion_properties">
                                                                                                 <span>&nbsp;&nbsp;&rAarr;&nbsp;additionalProperties:</span>
@@ -1597,7 +1581,7 @@
                                                                 <div class="seventh">
                                                                     <span style="font-size:small">&midast;&nbsp;下标数:{{index}}:</span>
                                                                 </div>
-                                                                <Row v-if="typeof(execution.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(execution.additionalProperties) !== 'undefined' && JSON.stringify(execution.additionalProperties).length > 2 ">
                                                                     <div class="eighth"
                                                                          @click="showmodel_spec_template_spec_affinity_podAffinity_requiredexecution_properties">
                                                                         <span>&nbsp;&nbsp;&tritime;&nbsp;additionalProperties:</span>
@@ -1638,7 +1622,7 @@
                                                                         <Icon type="plus-circled"></Icon>
                                                                     </div>
                                                                     <div v-show="showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.labels.on">
-                                                                        <Row v-if="typeof(execution.labelSelector.additionalProperties) !== 'undefined'">
+                                                                        <Row v-if="typeof(execution.labelSelector.additionalProperties) !== 'undefined' && JSON.stringify(execution.labelSelector.additionalProperties).length > 2 ">
                                                                             <div class="ninth"
                                                                                  @click="showmodel_spec_template_spec_affinity_podAffinity_requiredexecution_labels_properties">
                                                                                 <span>&nbsp;&nbsp;&rAarr;&nbsp;additionalProperties:</span>
@@ -1679,7 +1663,7 @@
                                                                                 <div class="tenth">
                                                                                     <span style="font-size:small">&nbsp;&nbsp;&scpolint;&nbsp;下标数:{{index}}:</span>
                                                                                 </div>
-                                                                                <Row v-if="typeof(match.additionalProperties) !== 'undefined'">
+                                                                                <Row v-if="typeof(match.additionalProperties) !== 'undefined' && JSON.stringify(match.additionalProperties).length > 2">
                                                                                     <div class="eleventh"
                                                                                          @click="showmodel_spec_template_spec_affinity_podAffinity_requiredexecution_labels_matchexpressions_properties">
                                                                                         <span>&nbsp;&nbsp;&rAarr;&nbsp;matchLabels:</span>
@@ -1737,7 +1721,7 @@
                                                         <Icon type="plus-circled"/>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.affinity.podAntiAffinity.on">
-                                                        <Row v-if="typeof(infodata.spec.template.spec.affinity.podAntiAffinity.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(infodata.spec.template.spec.affinity.podAntiAffinity.additionalProperties) !== 'undefined' && JSON.stringify(infodata.spec.template.spec.affinity.podAntiAffinity.additionalProperties).length > 2 ">
                                                             <div class="sixth"
                                                                  @click="showmodel_spec_template_spec_affinity_podAntiAffinity_properties">
                                                                 <span>&nbsp;&nbsp;&tritime;&nbsp;additionalProperties:</span>
@@ -1764,7 +1748,7 @@
                                                                 <div>
                                                                     <span class="seventh" style="font-size:small">&midast;&nbsp;下标数:{{index}}:</span>
                                                                 </div>
-                                                                <Row v-if="typeof(execution.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(execution.additionalProperties) !== 'undefined' && JSON.stringify(execution.additionalProperties).length > 2 ">
                                                                     <div class="eighth"
                                                                          @click="showmodel_spec_template_spec_affinity_podAntiAffinity_preferredexecution_properties">
                                                                         <span>&nbsp;&nbsp;&tritime;&nbsp;additionalProperties:</span>
@@ -1792,7 +1776,7 @@
                                                                                 <span slot="prepend">&lagran;&nbsp;topologyKey:</span></Input>
                                                                             </Col>
                                                                         </Row>
-                                                                        <Row v-if="typeof(execution.podAffinityTerm.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(execution.podAffinityTerm.additionalProperties) !== 'undefined' && JSON.stringify(execution.podAffinityTerm.additionalProperties).length > 2 ">
                                                                             <div class="ninth"
                                                                                  @click="showmodel_spec_template_spec_affinity_podAntiAffinity_preferredexecution_podaffinityterm_properties">
                                                                                 <span>&nbsp;&nbsp;&lagran;&nbsp;additionalProperties:</span>
@@ -1827,7 +1811,7 @@
                                                                                 <Icon type="plus-circled"></Icon>
                                                                             </div>
                                                                             <div v-show="showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.labels.on">
-                                                                                <Row v-if="typeof(execution.podAffinityTerm.labelSelector.additionalProperties) !== 'undefined' ">
+                                                                                <Row v-if="typeof(execution.podAffinityTerm.labelSelector.additionalProperties) !== 'undefined' && JSON.stringify(execution.podAffinityTerm.labelSelector.additionalProperties).length > 2">
                                                                                     <div class="tenth"
                                                                                          @click="showmodel_spec_template_spec_affinity_podAntiAffinity_preferredexecution_podaffinityterm_labels_properties">
                                                                                         <span>&nbsp;&nbsp;&scpolint;&nbsp;additionalProperties:</span>
@@ -1871,7 +1855,7 @@
                                                                                         <span class="eleventh"
                                                                                               style="font-size:small">&midast;&nbsp;下标数:{{index}}:</span>
                                                                                         </div>
-                                                                                        <Row v-if="typeof(expressions.additionalProperties) !== 'undefined' ">
+                                                                                        <Row v-if="typeof(expressions.additionalProperties) !== 'undefined' && JSON.stringify(expressions.additionalProperties).length > 2">
                                                                                             <div class="twelfth"
                                                                                                  @click="showmodel_spec_template_spec_affinity_podAntiAffinity_preferredexecution_podaffinityterm_labels_matchexpressions_properties">
                                                                                                 <span>&nbsp;&nbsp;&scy;&nbsp;additionalProperties:</span>
@@ -1944,7 +1928,7 @@
                                                                 <div>
                                                                     <span class="seventh" style="font-size:small">&midast;&nbsp;下标数:{{index}}:</span>
                                                                 </div>
-                                                                <Row v-if="typeof(execution.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(execution.additionalProperties) !== 'undefined' && JSON.stringify(execution.additionalProperties).length > 2">
                                                                     <div class="eighth"
                                                                          @click="showmodel_spec_template_spec_affinity_podAntiAffinity_requiredexecution_properties">
                                                                         <span>&nbsp;&nbsp;&rAarr;&nbsp;additionalProperties:</span>
@@ -1985,7 +1969,7 @@
                                                                         <Icon type="plus-circled"></Icon>
                                                                     </div>
                                                                     <div v-show="showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.labels.on">
-                                                                        <Row v-if="typeof(execution.labelSelector.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(execution.labelSelector.additionalProperties) !== 'undefined' && JSON.stringify(execution.labelSelector.additionalProperties).length > 2 ">
                                                                             <div class="ninth"
                                                                                  @click="showmodel_spec_template_spec_affinity_podAntiAffinity_requiredexecution_labels_properties">
                                                                                 <span>&nbsp;&nbsp;&tritime;&nbsp;additionalProperties:</span>
@@ -2026,7 +2010,7 @@
                                                                                         <span slot="prepend">&rAarr;&nbsp;operator:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
-                                                                                <Row v-if="typeof(matchexpreesion.additionalProperties) !== 'undefined' ">
+                                                                                <Row v-if="typeof(matchexpreesion.additionalProperties) !== 'undefined' && JSON.stringify(matchexpreesion.additionalProperties).length > 2">
                                                                                     <div class="eleventh"
                                                                                          @click="showmodel_spec_template_spec_affinity_podAntiAffinity_requiredexecution_labels_matchexpressions_properties">
                                                                                         <span>&nbsp;&nbsp;&rAarr;&nbsp;additionalProperties:</span>
@@ -2077,7 +2061,7 @@
                                                         </Row>
                                                     </div>
                                                 </Row>
-                                                <Row v-if="typeof(infodata.spec.template.spec.affinity.additionalProperties) !== 'undefined' ">
+                                                <Row v-if="typeof(infodata.spec.template.spec.affinity.additionalProperties) !== 'undefined' && JSON.stringify(infodata.spec.template.spec.affinity.additionalProperties).length > 2">
                                                     <div class="fifth"
                                                          @click="showmodel_spec_template_spec_affinity_properties">
                                                         <span>&nbsp;&nbsp;&lat;&nbsp;additionalProperties:</span>
@@ -2119,7 +2103,7 @@
                                                 <div class="fifth">
                                                     <span style="font-size:small">&midast;&nbsp;下标数:{{index}}:</span>
                                                 </div>
-                                                <Row v-if="typeof(container.additionalProperties) !== 'undefined' ">
+                                                <Row v-if="typeof(container.additionalProperties) !== 'undefined' && JSON.stringify(container.additionalProperties).length > 2">
                                                     <div class="sixth"
                                                          @click="showmodel_spec_template_spec_containers_properties">
                                                         <span>&nbsp;&nbsp;&rAarr;&nbsp;additionalProperties:</span>
@@ -2217,7 +2201,7 @@
                                                                                 <span slot="prepend">&sdotb;&nbsp;optional:</span></Input>
                                                                             </Col>
                                                                         </Row>
-                                                                        <Row v-if="typeof(env.valueFrom.configMapKeyRef.additionalProperties) !== 'undefined'">
+                                                                        <Row v-if="typeof(env.valueFrom.configMapKeyRef.additionalProperties) !== 'undefined' && JSON.stringify(env.valueFrom.configMapKeyRef.additionalProperties).length > 2">
                                                                             <div class="eleventh"
                                                                                  @click="showmodel_spec_template_spec_containers_env_valueFrom_configMapKeyRef_properties">
                                                                                 <span>&nbsp;&nbsp;&sdotb;&nbsp;additionalProperties:</span>
@@ -2254,7 +2238,7 @@
                                                                                 <span slot="prepend">&sdotb;&nbsp;fieldPath:</span></Input>
                                                                             </Col>
                                                                         </Row>
-                                                                        <Row v-if="typeof(env.valueFrom.fieldRef.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(env.valueFrom.fieldRef.additionalProperties) !== 'undefined' && JSON.stringify(env.valueFrom.fieldRef.additionalProperties).length > 2 ">
                                                                             <div class="tenth"
                                                                                  @click="showmodel_spec_template_spec_containers_env_valueFrom_fieldRef_properties">
                                                                                 <span>&nbsp;&nbsp;&sdotb;&nbsp;additionalProperties:</span>
@@ -2305,7 +2289,7 @@
                                                                                         <span slot="prepend">&jukcy;&nbsp;format:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
-                                                                                <Row v-if="typeof(env.valueFrom.resourceFieldRef.divisor.additionalProperties) !== 'undefined' ">
+                                                                                <Row v-if="typeof(env.valueFrom.resourceFieldRef.divisor.additionalProperties) !== 'undefined' && JSON.stringify(env.valueFrom.resourceFieldRef.divisor.additionalProperties).length > 2 ">
                                                                                     <div class="eleventh"
                                                                                          @click="showmodel_spec_template_spec_containers_env_valueFrom_resourceFieldRef_divisor_properties">
                                                                                         <span>&nbsp;&nbsp;&jukcy;&nbsp;additionalProperties:</span>
@@ -2329,7 +2313,7 @@
                                                                                 <span slot="prepend">&lArr;&nbsp;resource:</span></Input>
                                                                             </Col>
                                                                         </Row>
-                                                                        <Row v-if="typeof(env.valueFrom.resourceFieldRef.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(env.valueFrom.resourceFieldRef.additionalProperties) !== 'undefined' && JSON.stringify(env.valueFrom.resourceFieldRef.additionalProperties).length > 2 ">
                                                                             <div class="tenth"
                                                                                  @click="showmodel_spec_template_spec_containers_env_valueFrom_resourceFieldRef_properties">
                                                                                 <span>&nbsp;&nbsp;&lArr;&nbsp;additionalProperties:</span>
@@ -2373,7 +2357,7 @@
                                                                                 <span slot="prepend">&glj;&nbsp;optional:</span></Input>
                                                                             </Col>
                                                                         </Row>
-                                                                        <Row v-if="typeof(env.valueFrom.secretKeyRef.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(env.valueFrom.secretKeyRef.additionalProperties) !== 'undefined' && JSON.stringify(env.valueFrom.secretKeyRef.additionalProperties).length > 2 ">
                                                                             <div class="tenth"
                                                                                  @click="showmodel_spec_template_spec_containers_env_valueFrom_secretKeyRef_properties">
                                                                                 <span>&nbsp;&nbsp;&glj;&nbsp;additionalProperties:</span>
@@ -2389,7 +2373,7 @@
                                                                         </Row>
                                                                     </div>
                                                                 </Row>
-                                                                <Row v-if="typeof(env.valueFrom.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(env.valueFrom.additionalProperties) !== 'undefined' && JSON.stringify(env.valueFrom.additionalProperties).length > 2 ">
                                                                     <div class="ninth"
                                                                          @click="showmodel_spec_template_spec_containers_env_valueFrom_properties">
                                                                         <span>&nbsp;&nbsp;&dbkarow;additionalProperties:</span>
@@ -2405,7 +2389,7 @@
                                                                 </Row>
                                                             </div>
                                                         </Row>
-                                                        <Row v-if="typeof(env.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(env.additionalProperties) !== 'undefined' && JSON.stringify(env.additionalProperties).length > 2 ">
                                                             <div class="eighth"
                                                                  @click="showmodel_spec_template_spec_containers_env_properties">
                                                                 <span>&nbsp;&nbsp;&rAarr;&nbsp;additionalProperties:</span>
@@ -2453,7 +2437,7 @@
                                                                         <span slot="prepend">&lagran;&nbsp;optional:</span></Input>
                                                                     </Col>
                                                                 </Row>
-                                                                <Row v-if="typeof(from.configMapRef.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(from.configMapRef.additionalProperties) !== 'undefined' && JSON.stringify(from.configMapRef.additionalProperties).length > 2 ">
                                                                     <div class="ninth"
                                                                          @click="showmodel_spec_template_spec_containers_envFrom_configMapRef_properties">
                                                                         <span>&nbsp;&nbsp;&lagran;&nbsp;additionalProperties:</span>
@@ -2496,7 +2480,7 @@
                                                                         <span slot="prepend">&sccue;&nbsp;optional:</span></Input>
                                                                     </Col>
                                                                 </Row>
-                                                                <Row v-if="typeof(from.secretRef.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(from.secretRef.additionalProperties) !== 'undefined' && JSON.stringify(from.secretRef.additionalProperties).length > 2 ">
                                                                     <div class="ninth"
                                                                          @click="showmodel_spec_template_spec_containers_envFrom_secretRef_properties">
                                                                         <span>&nbsp;&nbsp;&sccue;&nbsp;additionalProperties:</span>
@@ -2512,7 +2496,7 @@
                                                                 </Row>
                                                             </div>
                                                         </Row>
-                                                        <Row v-if="typeof(from.additionalProperties) !== 'undefined'">
+                                                        <Row v-if="typeof(from.additionalProperties) !== 'undefined' && JSON.stringify(from.additionalProperties).length > 2 ">
                                                             <div class="eighth"
                                                                  @click="showmodel_spec_template_spec_containers_envFrom_properties">
                                                                 <span>&nbsp;&nbsp;&asympeq;&nbsp;additionalProperties:</span>
@@ -2547,7 +2531,7 @@
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.containers.lifecycle.on">
-                                                        <Row v-if="typeof(container.lifecycle.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(container.lifecycle.additionalProperties) !== 'undefined' && JSON.stringify(container.lifecycle.additionalProperties).length > 2 ">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_containers_lifecycle_properties">
                                                                 <span>&nbsp;&nbsp;&asympeq;&nbsp;additionalProperties:</span>
@@ -2575,7 +2559,7 @@
                                                                         <Icon type="plus-circled"></Icon>
                                                                     </div>
                                                                     <div v-show="showmodel.spec.template.spec.containers.lifecycle.postStart.exec.on">
-                                                                        <Row v-if="typeof(container.lifecycle.postStart.exec.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(container.lifecycle.postStart.exec.additionalProperties) !== 'undefined' && JSON.stringify(container.lifecycle.postStart.exec.additionalProperties).length > 2 ">
                                                                             <div class="ninth"
                                                                                  @click="showmodel_spec_template_spec_containers_lifecycle_postStart_exec_properties">
                                                                                 <span>&nbsp;&nbsp;&kappav;&nbsp;additionalProperties:</span>
@@ -2613,7 +2597,7 @@
                                                                         <Icon type="plus-circled"></Icon>
                                                                     </div>
                                                                     <div v-show="showmodel.spec.template.spec.containers.lifecycle.postStart.httpGet.on">
-                                                                        <Row v-if="typeof(container.lifecycle.postStart.httpGet.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(container.lifecycle.postStart.httpGet.additionalProperties) !== 'undefined'  && JSON.stringify(container.lifecycle.postStart.httpGet.additionalProperties).length > 2 ">
                                                                             <div class="ninth"
                                                                                  @click="showmodel_spec_template_spec_containers_lifecycle_postStart_httpGet_properties">
                                                                                 <span>&nbsp;&nbsp;&asympeq;&nbsp;additionalProperties:</span>
@@ -2647,7 +2631,7 @@
                                                                                 <div class="tenth">
                                                                                     <span style="font-size:small">&midast;&nbsp;列表数:{{index}}:</span>
                                                                                 </div>
-                                                                                <Row v-if="typeof(httpHeader.additionalProperties) !== 'undefined'">
+                                                                                <Row v-if="typeof(httpHeader.additionalProperties) !== 'undefined'  && JSON.stringify(httpHeader.additionalProperties).length > 2 ">
                                                                                     <div class="eleventh"
                                                                                          @click="showmodel_spec_template_spec_containers_lifecycle_postStart_httpGet_httpHeaders_properties">
                                                                                         <span>&nbsp;&nbsp;&asympeq;&nbsp;additionalProperties:</span>
@@ -2692,7 +2676,7 @@
                                                                                 <Icon type="plus-circled"></Icon>
                                                                             </div>
                                                                             <div v-show="showmodel.spec.template.spec.containers.lifecycle.postStart.httpGet.port.on">
-                                                                                <Row v-if="typeof(container.lifecycle.postStart.httpGet.port.additionalProperties) !== 'undefined' ">
+                                                                                <Row v-if="typeof(container.lifecycle.postStart.httpGet.port.additionalProperties) !== 'undefined' && JSON.stringify(container.lifecycle.postStart.httpGet.port.additionalProperties).length > 2  ">
                                                                                     <div class="tenth"
                                                                                          @click="showmodel_spec_template_spec_containers_lifecycle_postStart_httpGet_port_properties">
                                                                                         <span>&nbsp;&nbsp;&scsim;&nbsp;additionalProperties:</span>
@@ -2747,7 +2731,7 @@
                                                                         <Icon type="plus-circled"></Icon>
                                                                     </div>
                                                                     <div v-show="showmodel.spec.template.spec.containers.lifecycle.postStart.tcpSocket.on">
-                                                                        <Row v-if="typeof(container.lifecycle.postStart.tcpSocket.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(container.lifecycle.postStart.tcpSocket.additionalProperties) !== 'undefined' && JSON.stringify(container.lifecycle.postStart.tcpSocket.additionalProperties).length > 2 ">
                                                                             <div class="ninth"
                                                                                  @click="showmodel_spec_template_spec_containers_lifecycle_postStart_tcpSocket_properties">
                                                                                 <span>&nbsp;&nbsp;&larrbfs;&nbsp;additionalProperties:</span>
@@ -2796,7 +2780,7 @@
                                                                                         <span slot="prepend">&rAarr;&nbsp;strVal:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
-                                                                                <Row v-if="typeof(container.lifecycle.postStart.tcpSocket.port.additionalProperties) !== 'undefined' ">
+                                                                                <Row v-if="typeof(container.lifecycle.postStart.tcpSocket.port.additionalProperties) !== 'undefined' && JSON.stringify(container.lifecycle.postStart.tcpSocket.port.additionalProperties).length > 2 ">
                                                                                     <div class="tenth"
                                                                                          @click="showmodel_spec_template_spec_containers_lifecycle_postStart_tcpSocket_port_properties">
                                                                                         <span>&nbsp;&nbsp;&rAarr;&nbsp;additionalProperties:</span>
@@ -2815,7 +2799,7 @@
                                                                         </Row>
                                                                     </div>
                                                                 </Row>
-                                                                <Row v-if="typeof(container.lifecycle.postStart.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(container.lifecycle.postStart.additionalProperties) !== 'undefined' && JSON.stringify(container.lifecycle.postStart.additionalProperties).length > 2  ">
                                                                     <div class="eighth"
                                                                          @click="showmodel_spec_template_spec_containers_lifecycle_postStart_properties">
                                                                         <span>&nbsp;&nbsp;&lhblk;&nbsp;additionalProperties:</span>
@@ -2845,7 +2829,7 @@
                                                                         <Icon type="plus-circled"></Icon>
                                                                     </div>
                                                                     <div v-show="showmodel.spec.template.spec.containers.lifecycle.preStop.exec.on">
-                                                                        <Row v-if="typeof(container.lifecycle.preStop.exec.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(container.lifecycle.preStop.exec.additionalProperties) !== 'undefined' && JSON.stringify(container.lifecycle.preStop.exec.additionalProperties).length > 2  ">
                                                                             <div class="ninth"
                                                                                  @click="showmodel_spec_template_spec_containers_lifecycle_preStop_exec_properties">
                                                                                 <span>&nbsp;&nbsp;&kappav;&nbsp;additionalProperties:</span>
@@ -2883,7 +2867,7 @@
                                                                         <Icon type="plus-circled"></Icon>
                                                                     </div>
                                                                     <div v-show="showmodel.spec.template.spec.containers.lifecycle.preStop.httpGet.on">
-                                                                        <Row v-if="typeof(container.lifecycle.preStop.httpGet.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(container.lifecycle.preStop.httpGet.additionalProperties) !== 'undefined' && JSON.stringify(container.lifecycle.preStop.httpGet.additionalProperties).length > 2 ">
                                                                             <div class="ninth"
                                                                                  @click="showmodel_spec_template_spec_containers_lifecycle_preStop_httpGet_properties">
                                                                                 <span>&nbsp;&nbsp;&asympeq;&nbsp;additionalProperties:</span>
@@ -2917,7 +2901,7 @@
                                                                                 <div class="tenth">
                                                                                     <span style="font-size:small">&midast;&nbsp;列表数:{{index}}:</span>
                                                                                 </div>
-                                                                                <Row v-if="typeof(httpHeader.additionalProperties) !== 'undefined' ">
+                                                                                <Row v-if="typeof(httpHeader.additionalProperties) !== 'undefined' && JSON.stringify(httpHeader.additionalProperties).length > 2  ">
                                                                                     <div class="eleventh"
                                                                                          @click="showmodel_spec_template_spec_containers_lifecycle_preStop_httpGet_httpHeaders_properties">
                                                                                         <span>&nbsp;&nbsp;&dcy;&nbsp;additionalProperties:</span>
@@ -2962,7 +2946,7 @@
                                                                                 <Icon type="plus-circled"></Icon>
                                                                             </div>
                                                                             <div v-show="showmodel.spec.template.spec.containers.lifecycle.preStop.httpGet.port.on">
-                                                                                <Row v-if="typeof(container.lifecycle.preStop.httpGet.port.additionalProperties) !== 'undefined' ">
+                                                                                <Row v-if="typeof(container.lifecycle.preStop.httpGet.port.additionalProperties) !== 'undefined' && JSON.stringify(container.lifecycle.preStop.httpGet.port.additionalProperties).length > 2 ">
                                                                                     <div class="tenth"
                                                                                          @click="showmodel_spec_template_spec_containers_lifecycle_preStop_httpGet_port_properties">
                                                                                         <span>&nbsp;&nbsp;&scsim;&nbsp;additionalProperties:</span>
@@ -3016,7 +3000,7 @@
                                                                         <Icon type="plus-circled"></Icon>
                                                                     </div>
                                                                     <div v-show="showmodel.spec.template.spec.containers.lifecycle.preStop.tcpSocket.on">
-                                                                        <Row v-if="typeof(container.lifecycle.preStop.tcpSocket.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(container.lifecycle.preStop.tcpSocket.additionalProperties) !== 'undefined' && JSON.stringify(container.lifecycle.preStop.tcpSocket.additionalProperties).length > 2 ">
                                                                             <div class="ninth"
                                                                                  @click="showmodel_spec_template_spec_containers_lifecycle_preStop_tcpSocket_properties">
                                                                                 <span>&nbsp;&nbsp;&larrbfs;&nbsp;additionalProperties:</span>
@@ -3065,7 +3049,7 @@
                                                                                         <span slot="prepend">&rAarr;&nbsp;strVal:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
-                                                                                <Row v-if="typeof(container.lifecycle.preStop.tcpSocket.port.additionalProperties) !== 'undefined' ">
+                                                                                <Row v-if="typeof(container.lifecycle.preStop.tcpSocket.port.additionalProperties) !== 'undefined' && JSON.stringify(container.lifecycle.preStop.tcpSocket.port.additionalProperties).length > 2 ">
                                                                                     <div class="tenth"
                                                                                          @click="showmodel_spec_template_spec_containers_lifecycle_preStop_tcpSocket_port_properties">
                                                                                         <span>&nbsp;&nbsp;&rAarr;&nbsp;additionalProperties:</span>
@@ -3084,7 +3068,7 @@
                                                                         </Row>
                                                                     </div>
                                                                 </Row>
-                                                                <Row v-if="typeof(container.lifecycle.preStop.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(container.lifecycle.preStop.additionalProperties) !== 'undefined' && JSON.stringify(container.lifecycle.preStop.additionalProperties).length > 2 ">
                                                                     <div class="eighth"
                                                                          @click="showmodel_spec_template_spec_containers_lifecycle_preStop_properties">
                                                                         <span>&nbsp;&nbsp;&lhblk;&nbsp;additionalProperties:</span>
@@ -3109,7 +3093,7 @@
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.containers.livenessProbe.on">
-                                                        <Row v-if="typeof(container.livenessProbe.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(container.livenessProbe.additionalProperties) !== 'undefined' && JSON.stringify(container.livenessProbe.additionalProperties).length > 2 ">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_containers_livenessProbe_properties">
                                                                 <span>&nbsp;&nbsp;&wcirc;&nbsp;additionalProperties:</span>
@@ -3130,7 +3114,7 @@
                                                                 <Icon type="plus-circled"/>
                                                             </div>
                                                             <div v-show="showmodel.spec.template.spec.containers.livenessProbe.exec.on">
-                                                                <Row v-if="typeof(container.livenessProbe.exec.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(container.livenessProbe.exec.additionalProperties) !== 'undefined' && JSON.stringify(container.livenessProbe.exec.additionalProperties).length > 2 ">
                                                                     <div class="eighth"
                                                                          @click="showmodel_spec_template_spec_containers_livenessProbe_exec_properties">
                                                                         <span>&nbsp;&nbsp;&scaron;&nbsp;additionalProperties:</span>
@@ -3177,7 +3161,7 @@
                                                                 <Icon type="plus-circled"/>
                                                             </div>
                                                             <div v-show="showmodel.spec.template.spec.containers.livenessProbe.httpGet.on">
-                                                                <Row v-if="typeof(container.livenessProbe.httpGet.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(container.livenessProbe.httpGet.additionalProperties) !== 'undefined' && JSON.stringify(container.livenessProbe.httpGet.additionalProperties).length > 2 ">
                                                                     <div class="eighth"
                                                                          @click="showmodel_spec_template_spec_containers_livenessProbe_httpGet_properties">
                                                                         <span>&nbsp;&nbsp;&icirc;&nbsp;additionalProperties:</span>
@@ -3211,7 +3195,7 @@
                                                                         <div class="ninth">
                                                                             <span style="font-size:small">&midast;&nbsp;下标数:{{index}}:</span>
                                                                         </div>
-                                                                        <Row v-if="typeof(httpHeader.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(httpHeader.additionalProperties) !== 'undefined' && JSON.stringify(httpHeader.additionalProperties).length > 2 ">
                                                                             <div class="tenth"
                                                                                  @click="showmodel_spec_template_spec_containers_livenessProbe_httpGet_httpHeaders_properties">
                                                                                 <span>&nbsp;&nbsp;&bernou;&nbsp;additionalProperties:</span>
@@ -3256,7 +3240,7 @@
                                                                         <Icon type="plus-circled"/>
                                                                     </div>
                                                                     <div v-show="showmodel.spec.template.spec.containers.livenessProbe.httpGet.port.on">
-                                                                        <Row v-if="typeof(container.livenessProbe.httpGet.port.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(container.livenessProbe.httpGet.port.additionalProperties) !== 'undefined' && JSON.stringify(container.livenessProbe.httpGet.port.additionalProperties).length > 2 ">
                                                                             <div class="ninth"
                                                                                  @click="showmodel_spec_template_spec_containers_livenessProbe_httpGet_port_properties">
                                                                                 <span>&nbsp;&nbsp;&drbkarow;&nbsp;additionalProperties:</span>
@@ -3331,7 +3315,7 @@
                                                                 <Icon type="plus-circled"/>
                                                             </div>
                                                             <div v-show="showmodel.spec.template.spec.containers.livenessProbe.tcpSocket.on">
-                                                                <Row v-if="typeof(container.livenessProbe.tcpSocket.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(container.livenessProbe.tcpSocket.additionalProperties) !== 'undefined' && JSON.stringify(container.livenessProbe.tcpSocket.additionalProperties).length > 2 ">
                                                                     <div class="eighth"
                                                                          @click="showmodel_spec_template_spec_containers_livenessProbe_tcpSocket_properties">
                                                                         <span>&nbsp;&nbsp;&circeq;&nbsp;additionalProperties:</span>
@@ -3359,7 +3343,7 @@
                                                                         <Icon type="plus-circled"/>
                                                                     </div>
                                                                     <div v-show="showmodel.spec.template.spec.containers.livenessProbe.tcpSocket.port.on">
-                                                                        <Row v-if="typeof(container.livenessProbe.tcpSocket.port.additionalProperties) !== 'undefined'">
+                                                                        <Row v-if="typeof(container.livenessProbe.tcpSocket.port.additionalProperties) !== 'undefined'  && JSON.stringify(container.livenessProbe.tcpSocket.port.additionalProperties).length > 2 ">
                                                                             <div class="ninth"
                                                                                  @click="showmodel_spec_template_spec_containers_livenessProbe_tcpSocket_port_properties">
                                                                                 <span>&nbsp;&nbsp;&pcy;&nbsp;additionalProperties:</span>
@@ -3426,7 +3410,7 @@
                                                         <div class="seventh">
                                                             <span style="font-size:small">&midast;&nbsp;列表数:{{index}}:</span>
                                                         </div>
-                                                        <Row v-if="typeof(prot.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(prot.additionalProperties) !== 'undefined'  && JSON.stringify(prot.additionalProperties).length > 2 ">
                                                             <div class="eighth"
                                                                  @click="showmodel_spec_template_spec_containers_ports_properties">
                                                                 <span>&nbsp;&nbsp;&wedbar;&nbsp;additionalProperties:</span>
@@ -3479,7 +3463,7 @@
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.containers.readinessProbe.on">
-                                                        <Row v-if="typeof(container.readinessProbe.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(container.readinessProbe.additionalProperties) !== 'undefined' && JSON.stringify(container.readinessProbe.additionalProperties).length > 2 ">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_containers_readinessProbe_properties">
                                                                 <span>&nbsp;&nbsp;&wcirc;&nbsp;additionalProperties:</span>
@@ -3500,7 +3484,7 @@
                                                                 <Icon type="plus-circled"/>
                                                             </div>
                                                             <div v-show="showmodel.spec.template.spec.containers.readinessProbe.exec.on">
-                                                                <Row v-if="typeof(container.readinessProbe.exec.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(container.readinessProbe.exec.additionalProperties) !== 'undefined' && JSON.stringify(container.readinessProbe.exec.additionalProperties).length > 2">
                                                                     <div class="eighth"
                                                                          @click="showmodel_spec_template_spec_containers_readinessProbe_exec_properties">
                                                                         <span>&nbsp;&nbsp;&scaron;&nbsp;additionalProperties:</span>
@@ -3547,7 +3531,7 @@
                                                                 <Icon type="plus-circled"/>
                                                             </div>
                                                             <div v-show="showmodel.spec.template.spec.containers.readinessProbe.httpGet.on">
-                                                                <Row v-if="typeof(container.readinessProbe.httpGet.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(container.readinessProbe.httpGet.additionalProperties) !== 'undefined' && JSON.stringify(container.readinessProbe.httpGet.additionalProperties).length > 2 ">
                                                                     <div class="eighth"
                                                                          @click="showmodel_spec_template_spec_containers_readinessProbe_httpGet_properties">
                                                                         <span>&nbsp;&nbsp;&icirc;&nbsp;additionalProperties:</span>
@@ -3581,7 +3565,7 @@
                                                                         <div class="ninth">
                                                                             <span style="font-size:small">&midast;&nbsp;下标数:{{index}}:</span>
                                                                         </div>
-                                                                        <Row v-if="typeof(httpHeader.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(httpHeader.additionalProperties) !== 'undefined' && JSON.stringify(httpHeader.additionalProperties).length > 2 ">
                                                                             <div class="tenth"
                                                                                  @click="showmodel_spec_template_spec_containers_readinessProbe_httpGet_httpHeaders_properties">
                                                                                 <span>&nbsp;&nbsp;&bernou;&nbsp;additionalProperties:</span>
@@ -3626,7 +3610,7 @@
                                                                         <Icon type="plus-circled"/>
                                                                     </div>
                                                                     <div v-show="showmodel.spec.template.spec.containers.readinessProbe.httpGet.port.on">
-                                                                        <Row v-if="typeof(container.readinessProbe.httpGet.port.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(container.readinessProbe.httpGet.port.additionalProperties) !== 'undefined'  && JSON.stringify(container.readinessProbe.httpGet.port.additionalProperties).length > 2 ">
                                                                             <div class="ninth"
                                                                                  @click="showmodel_spec_template_spec_containers_readinessProbe_httpGet_port_properties">
                                                                                 <span>&nbsp;&nbsp;&drbkarow;&nbsp;additionalProperties:</span>
@@ -3701,7 +3685,7 @@
                                                                 <Icon type="plus-circled"/>
                                                             </div>
                                                             <div v-show="showmodel.spec.template.spec.containers.readinessProbe.tcpSocket.on">
-                                                                <Row v-if="typeof(container.readinessProbe.tcpSocket.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(container.readinessProbe.tcpSocket.additionalProperties) !== 'undefined' && JSON.stringify(container.readinessProbe.tcpSocket.additionalProperties).length > 2 ">
                                                                     <div class="eighth"
                                                                          @click="showmodel_spec_template_spec_containers_readinessProbe_tcpSocket_properties">
                                                                         <span>&nbsp;&nbsp;&circeq;&nbsp;additionalProperties:</span>
@@ -3729,7 +3713,7 @@
                                                                         <Icon type="plus-circled"/>
                                                                     </div>
                                                                     <div v-show="showmodel.spec.template.spec.containers.readinessProbe.tcpSocket.port.on">
-                                                                        <Row v-if="typeof(container.readinessProbe.tcpSocket.port.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(container.readinessProbe.tcpSocket.port.additionalProperties) !== 'undefined' && JSON.stringify(container.readinessProbe.tcpSocket.port.additionalProperties).length > 2 ">
                                                                             <div class="ninth"
                                                                                  @click="showmodel_spec_template_spec_containers_readinessProbe_tcpSocket_port_properties">
                                                                                 <span>&nbsp;&nbsp;&pcy;&nbsp;additionalProperties:</span>
@@ -3778,14 +3762,14 @@
                                                         </Row>
                                                     </div>
                                                 </Row>
-                                                <Row v-if="typeof(container.resources) !== 'undefined'">
+                                                <Row v-if="typeof(container.resources) !== 'undefined' && JSON.stringify(container.resources).length > 53">
                                                     <div class="sixth"
                                                          @click="showmodel_spec_template_spec_containers_resources">
                                                         <span>&nbsp;&nbsp;&rAarr;&nbsp;resources:</span>
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.containers.resources.on">
-                                                        <Row v-if="typeof(container.resources.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(container.resources.additionalProperties) !== 'undefined' && JSON.stringify(container.resources.additionalProperties).length > 2 ">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_containers_resources_properties">
                                                                 <span>&nbsp;&nbsp;&wcirc;&nbsp;additionalProperties:</span>
@@ -3819,7 +3803,7 @@
                                                                         <Icon type="plus-circled"/>
                                                                     </div>
                                                                     <div v-show="showmodel.spec.template.spec.containers.resources.limits.key.on">
-                                                                        <Row v-if="typeof(limit.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(limit.additionalProperties) !== 'undefined'  && JSON.stringify(limit.additionalProperties).length > 2 ">
                                                                             <div class="tenth"
                                                                                  @click="showmodel_spec_template_spec_containers_resources_limits_key_properties">
                                                                                 <span>&nbsp;&nbsp;&nbsp;&zeetrf;&nbsp;additionalProperties:</span>
@@ -3870,7 +3854,7 @@
                                                                         <Icon type="plus-circled"/>
                                                                     </div>
                                                                     <div v-show="showmodel.spec.template.spec.containers.resources.requests.key.on">
-                                                                        <Row v-if="typeof(request.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(request.additionalProperties) !== 'undefined' && JSON.stringify(request.additionalProperties).length > 2  ">
                                                                             <div class="tenth"
                                                                                  @click="showmodel_spec_template_spec_containers_resources_requests_key_properties">
                                                                                 <span>&nbsp;&zeetrf;&nbsp;additionalProperties:</span>
@@ -3905,14 +3889,14 @@
                                                         </Row>
                                                     </div>
                                                 </Row>
-                                                <Row v-if="typeof(container.securityContext) !== 'undefined'">
+                                                <Row v-if="typeof(container.securityContext) !== 'undefined'  ">
                                                     <div class="sixth"
                                                          @click="showmodel_spec_template_spec_containers_securityContext">
                                                         <span>&nbsp;&nbsp;&rAarr;&nbsp;securityContext:</span>
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.containers.securityContext.on">
-                                                        <Row v-if="typeof(container.securityContext.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(container.securityContext.additionalProperties) !== 'undefined' && JSON.stringify(container.securityContext.additionalProperties).length > 2  ">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_containers_securityContext_properties">
                                                                 <span>&nbsp;&nbsp;&wcirc;&nbsp;additionalProperties:</span>
@@ -3933,7 +3917,7 @@
                                                                 <Icon type="plus-circled"/>
                                                             </div>
                                                             <div v-show="showmodel.spec.template.spec.containers.securityContext.capabilities.on">
-                                                                <Row v-if="typeof(container.securityContext.capabilities.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(container.securityContext.capabilities.additionalProperties) !== 'undefined' && JSON.stringify(container.securityContext.capabilities.additionalProperties).length > 2 ">
                                                                     <div class="eighth"
                                                                          @click="showmodel_spec_template_spec_containers_securityContext_capabilities_properties">
                                                                         <span>&nbsp;&nbsp;&xi;&nbsp;additionalProperties:</span>
@@ -4013,7 +3997,7 @@
                                                                 <Icon type="plus-circled"/>
                                                             </div>
                                                             <div v-show="showmodel.spec.template.spec.containers.securityContext.seLinuxOptions.on">
-                                                                <Row v-if="typeof(container.securityContext.seLinuxOptions.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(container.securityContext.seLinuxOptions.additionalProperties) !== 'undefined' && JSON.stringify(container.securityContext.seLinuxOptions.additionalProperties).length > 2 ">
                                                                     <div class="eighth"
                                                                          @click="showmodel_spec_template_spec_containers_securityContext_seLinuxOptions_properties">
                                                                         <span>&nbsp;&nbsp;&ycirc;&nbsp;additionalProperties:</span>
@@ -4126,7 +4110,7 @@
                                                                 <span slot="prepend">&laemptyv;&nbsp;subPath:</span></Input>
                                                             </Col>
                                                         </Row>
-                                                        <Row v-if="typeof(volumemount.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(volumemount.additionalProperties) !== 'undefined' && JSON.stringify(volumemount.additionalProperties).length > 2 ">
                                                             <div class="eighth"
                                                                  @click="showmodel_spec_template_spec_containers_volumeMounts_properties">
                                                                 <span>&nbsp;&nbsp;&laemptyv;&nbsp;additionalProperties:</span>
@@ -4168,7 +4152,7 @@
                                                 <div class="fifth">
                                                     <span style="font-size:small">&midast;&nbsp;下标数:{{index}}:</span>
                                                 </div>
-                                                <Row v-if="typeof(host.additionalProperties) !== 'undefined' ">
+                                                <Row v-if="typeof(host.additionalProperties) !== 'undefined' && JSON.stringify(host.additionalProperties).length > 2 ">
                                                     <div class="sixth"
                                                          @click="showmodel_spec_template_spec_hostAliases_properties">
                                                         <span>&nbsp;&nbsp;&sccue;&nbsp;additionalProperties:</span>
@@ -4242,7 +4226,7 @@
                                                 <div class="fifth">
                                                     <span style="font-size:small">&midast;&nbsp;下标数:{{index}}:</span>
                                                 </div>
-                                                <Row v-if="typeof(image.additionalProperties) !== 'undefined' ">
+                                                <Row v-if="typeof(image.additionalProperties) !== 'undefined' && JSON.stringify(image.additionalProperties).length > 2 ">
                                                     <div class="sixth"
                                                          @click="showmodel_spec_template_spec_imagePullSecrets_properties">
                                                         <span>&nbsp;&nbsp;&sccue;&nbsp;additionalProperties:</span>
@@ -4276,7 +4260,7 @@
                                                 <div class="fifth">
                                                     <span style="font-size:small">&midast;&nbsp;下标数:{{index}}:</span>
                                                 </div>
-                                                <Row v-if="typeof(initcontainer.additionalProperties) !== 'undefined' ">
+                                                <Row v-if="typeof(initcontainer.additionalProperties) !== 'undefined' && JSON.stringify(initcontainer.additionalProperties).length > 2 ">
                                                     <div class="sixth"
                                                          @click="showmodel_spec_template_spec_initContainers_properties">
                                                         <span>&nbsp;&nbsp;&rAarr;&nbsp;additionalProperties:</span>
@@ -4375,7 +4359,7 @@
                                                                                 <span slot="prepend">&sdotb;&nbsp;optional:</span></Input>
                                                                             </Col>
                                                                         </Row>
-                                                                        <Row v-if="typeof(env.valueFrom.configMapKeyRef.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(env.valueFrom.configMapKeyRef.additionalProperties) !== 'undefined' && JSON.stringify(env.valueFrom.configMapKeyRef.additionalProperties).length > 2 ">
                                                                             <div class="tenth"
                                                                                  @click="showmodel_spec_template_spec_initContainers_env_valueFrom_configMapKeyRef_properties">
                                                                                 <span>&nbsp;&nbsp;&sdotb;&nbsp;additionalProperties:</span>
@@ -4412,7 +4396,7 @@
                                                                                 <span slot="prepend">&sdotb;&nbsp;fieldPath:</span></Input>
                                                                             </Col>
                                                                         </Row>
-                                                                        <Row v-if="typeof(env.valueFrom.fieldRef.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(env.valueFrom.fieldRef.additionalProperties) !== 'undefined' && JSON.stringify(env.valueFrom.fieldRef.additionalProperties).length > 2 ">
                                                                             <div class="tenth"
                                                                                  @click="showmodel_spec_template_spec_initContainers_env_valueFrom_fieldRef_properties">
                                                                                 <span>&nbsp;&nbsp;&sdotb;&nbsp;additionalProperties:</span>
@@ -4463,7 +4447,7 @@
                                                                                         <span slot="prepend">&jukcy;&nbsp;format:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
-                                                                                <Row v-if="typeof(env.valueFrom.resourceFieldRef.divisor.additionalProperties) !== 'undefined' ">
+                                                                                <Row v-if="typeof(env.valueFrom.resourceFieldRef.divisor.additionalProperties) !== 'undefined' && JSON.stringify(env.valueFrom.resourceFieldRef.divisor.additionalProperties).length > 2 ">
                                                                                     <div class="eleventh"
                                                                                          @click="showmodel_spec_template_spec_initContainers_env_valueFrom_resourceFieldRef_divisor_properties">
                                                                                         <span>&nbsp;&nbsp;&jukcy;&nbsp;additionalProperties:</span>
@@ -4487,7 +4471,7 @@
                                                                                 <span slot="prepend">&lArr;&nbsp;resource:</span></Input>
                                                                             </Col>
                                                                         </Row>
-                                                                        <Row v-if="typeof(env.valueFrom.resourceFieldRef.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(env.valueFrom.resourceFieldRef.additionalProperties) !== 'undefined' && JSON.stringify(env.valueFrom.resourceFieldRef.additionalProperties).length > 2  ">
                                                                             <div class="tenth"
                                                                                  @click="showmodel_spec_template_spec_initContainers_env_valueFrom_resourceFieldRef_properties">
                                                                                 <span>&nbsp;&nbsp;&lArr;&nbsp;additionalProperties:</span>
@@ -4531,7 +4515,7 @@
                                                                                 <span slot="prepend">&glj;&nbsp;optional:</span></Input>
                                                                             </Col>
                                                                         </Row>
-                                                                        <Row v-if="typeof(env.valueFrom.secretKeyRef.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(env.valueFrom.secretKeyRef.additionalProperties) !== 'undefined' && JSON.stringify(env.valueFrom.secretKeyRef.additionalProperties).length > 2 ">
                                                                             <div class="tenth"
                                                                                  @click="showmodel_spec_template_spec_initContainers_env_valueFrom_secretKeyRef_properties">
                                                                                 <span>&nbsp;&nbsp;&glj;&nbsp;additionalProperties:</span>
@@ -4547,7 +4531,7 @@
                                                                         </Row>
                                                                     </div>
                                                                 </Row>
-                                                                <Row v-if="typeof(env.valueFrom.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(env.valueFrom.additionalProperties) !== 'undefined' && JSON.stringify(env.valueFrom.additionalProperties).length > 2 ">
                                                                     <div class="ninth"
                                                                          @click="showmodel_spec_template_spec_initContainers_env_valueFrom_properties">
                                                                         <span>&nbsp;&nbsp;&dbkarow;additionalProperties:</span>
@@ -4563,7 +4547,7 @@
                                                                 </Row>
                                                             </div>
                                                         </Row>
-                                                        <Row v-if="typeof(env.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(env.additionalProperties) !== 'undefined' && JSON.stringify(env.additionalProperties).length > 2 ">
                                                             <div class="eighth"
                                                                  @click="showmodel_spec_template_spec_initContainers_env_properties">
                                                                 <span>&nbsp;&nbsp;&rAarr;&nbsp;additionalProperties:</span>
@@ -4611,7 +4595,7 @@
                                                                         <span slot="prepend">&lagran;&nbsp;optional:</span></Input>
                                                                     </Col>
                                                                 </Row>
-                                                                <Row v-if="typeof(from.configMapRef.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(from.configMapRef.additionalProperties) !== 'undefined' && JSON.stringify(from.configMapRef.additionalProperties).length > 2  ">
                                                                     <div class="ninth"
                                                                          @click="showmodel_spec_template_spec_initContainers_envFrom_configMapRef_properties">
                                                                         <span>&nbsp;&nbsp;&lagran;&nbsp;additionalProperties:</span>
@@ -4654,7 +4638,7 @@
                                                                         <span slot="prepend">&sccue;&nbsp;optional:</span></Input>
                                                                     </Col>
                                                                 </Row>
-                                                                <Row v-if="typeof(from.secretRef.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(from.secretRef.additionalProperties) !== 'undefined' && JSON.stringify(from.secretRef.additionalProperties).length > 2 ">
                                                                     <div class="ninth"
                                                                          @click="showmodel_spec_template_spec_initContainers_envFrom_secretRef_properties">
                                                                         <span>&nbsp;&nbsp;&sccue;&nbsp;additionalProperties:</span>
@@ -4670,7 +4654,7 @@
                                                                 </Row>
                                                             </div>
                                                         </Row>
-                                                        <Row v-if="typeof(from.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(from.additionalProperties) !== 'undefined' && JSON.stringify(from.additionalProperties).length > 2">
                                                             <div class="eighth"
                                                                  @click="showmodel_spec_template_spec_initContainers_envFrom_properties">
                                                                 <span>&nbsp;&nbsp;&asympeq;&nbsp;additionalProperties:</span>
@@ -4705,7 +4689,7 @@
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.initContainers.lifecycle.on">
-                                                        <Row v-if="typeof(initcontainer.lifecycle.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(initcontainer.lifecycle.additionalProperties) !== 'undefined' && JSON.stringify(initcontainer.lifecycle.additionalProperties).length > 2 ">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_initContainers_lifecycle_properties">
                                                                 <span>&nbsp;&nbsp;&asympeq;&nbsp;additionalProperties:</span>
@@ -4733,7 +4717,7 @@
                                                                         <Icon type="plus-circled"></Icon>
                                                                     </div>
                                                                     <div v-show="showmodel.spec.template.spec.initContainers.lifecycle.postStart.exec.on">
-                                                                        <Row v-if="typeof(initcontainer.lifecycle.postStart.exec.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(initcontainer.lifecycle.postStart.exec.additionalProperties) !== 'undefined' && JSON.stringify(initcontainer.lifecycle.postStart.exec.additionalProperties).length > 2 ">
                                                                             <div class="ninth"
                                                                                  @click="showmodel_spec_template_spec_initContainers_lifecycle_postStart_exec_properties">
                                                                                 <span>&nbsp;&nbsp;&kappav;&nbsp;additionalProperties:</span>
@@ -4771,7 +4755,7 @@
                                                                         <Icon type="plus-circled"></Icon>
                                                                     </div>
                                                                     <div v-show="showmodel.spec.template.spec.initContainers.lifecycle.postStart.httpGet.on">
-                                                                        <Row v-if="typeof(initcontainer.lifecycle.postStart.httpGet.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(initcontainer.lifecycle.postStart.httpGet.additionalProperties) !== 'undefined' && JSON.stringify(initcontainer.lifecycle.postStart.httpGet.additionalProperties).length > 2  ">
                                                                             <div class="ninth"
                                                                                  @click="showmodel_spec_template_spec_initContainers_lifecycle_postStart_httpGet_properties">
                                                                                 <span>&nbsp;&nbsp;&asympeq;&nbsp;additionalProperties:</span>
@@ -4805,7 +4789,7 @@
                                                                                 <div class="tenth">
                                                                                     <span style="font-size:small">&midast;&nbsp;列表数:{{index}}:</span>
                                                                                 </div>
-                                                                                <Row v-if="typeof(httpHeader.additionalProperties) !== 'undefined' ">
+                                                                                <Row v-if="typeof(httpHeader.additionalProperties) !== 'undefined' && JSON.stringify(httpHeader.additionalProperties).length > 2 ">
                                                                                     <div class="eleventh"
                                                                                          @click="showmodel_spec_template_spec_initContainers_lifecycle_postStart_httpGet_httpHeaders_properties">
                                                                                         <span>&nbsp;&nbsp;&asympeq;&nbsp;additionalProperties:</span>
@@ -4850,7 +4834,7 @@
                                                                                 <Icon type="plus-circled"></Icon>
                                                                             </div>
                                                                             <div v-show="showmodel.spec.template.spec.initContainers.lifecycle.postStart.httpGet.port.on">
-                                                                                <Row v-if="typeof(initcontainer.lifecycle.postStart.httpGet.port.additionalProperties) !== 'undefined' ">
+                                                                                <Row v-if="typeof(initcontainer.lifecycle.postStart.httpGet.port.additionalProperties) !== 'undefined' && JSON.stringify(initcontainer.lifecycle.postStart.httpGet.port.additionalProperties).length > 2 ">
                                                                                     <div class="tenth"
                                                                                          @click="showmodel_spec_template_spec_initContainers_lifecycle_postStart_httpGet_port_properties">
                                                                                         <span>&nbsp;&nbsp;&scsim;&nbsp;additionalProperties:</span>
@@ -4905,7 +4889,7 @@
                                                                         <Icon type="plus-circled"></Icon>
                                                                     </div>
                                                                     <div v-show="showmodel.spec.template.spec.initContainers.lifecycle.postStart.tcpSocket.on">
-                                                                        <Row v-if="typeof(initcontainer.lifecycle.postStart.tcpSocket.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(initcontainer.lifecycle.postStart.tcpSocket.additionalProperties) !== 'undefined' && JSON.stringify(initcontainer.lifecycle.postStart.tcpSocket.additionalProperties).length > 2 ">
                                                                             <div class="ninth"
                                                                                  @click="showmodel_spec_template_spec_initContainers_lifecycle_postStart_tcpSocket_properties">
                                                                                 <span>&nbsp;&nbsp;&larrbfs;&nbsp;additionalProperties:</span>
@@ -4954,7 +4938,7 @@
                                                                                         <span slot="prepend">&rAarr;&nbsp;strVal:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
-                                                                                <Row v-if="typeof(initcontainer.lifecycle.postStart.tcpSocket.port.additionalProperties) !== 'undefined' ">
+                                                                                <Row v-if="typeof(initcontainer.lifecycle.postStart.tcpSocket.port.additionalProperties) !== 'undefined' && JSON.stringify(initcontainer.lifecycle.postStart.tcpSocket.port.additionalProperties).length > 2 ">
                                                                                     <div class="tenth"
                                                                                          @click="showmodel_spec_template_spec_initContainers_lifecycle_postStart_tcpSocket_port_properties">
                                                                                         <span>&nbsp;&nbsp;&rAarr;&nbsp;additionalProperties:</span>
@@ -4973,7 +4957,7 @@
                                                                         </Row>
                                                                     </div>
                                                                 </Row>
-                                                                <Row v-if="typeof(initcontainer.lifecycle.postStart.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(initcontainer.lifecycle.postStart.additionalProperties) !== 'undefined' && JSON.stringify(initcontainer.lifecycle.postStart.additionalProperties).length > 2  ">
                                                                     <div class="eighth"
                                                                          @click="showmodel_spec_template_spec_initContainers_lifecycle_postStart_properties">
                                                                         <span>&nbsp;&nbsp;&lhblk;&nbsp;additionalProperties:</span>
@@ -5003,7 +4987,7 @@
                                                                         <Icon type="plus-circled"></Icon>
                                                                     </div>
                                                                     <div v-show="showmodel.spec.template.spec.initContainers.lifecycle.preStop.exec.on">
-                                                                        <Row v-if="typeof(initcontainer.lifecycle.preStop.exec.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(initcontainer.lifecycle.preStop.exec.additionalProperties) !== 'undefined' && JSON.stringify(initcontainer.lifecycle.preStop.exec.additionalProperties).length > 2  ">
                                                                             <div class="ninth"
                                                                                  @click="showmodel_spec_template_spec_initContainers_lifecycle_preStop_exec_properties">
                                                                                 <span>&nbsp;&nbsp;&kappav;&nbsp;additionalProperties:</span>
@@ -5041,7 +5025,7 @@
                                                                         <Icon type="plus-circled"></Icon>
                                                                     </div>
                                                                     <div v-show="showmodel.spec.template.spec.initContainers.lifecycle.preStop.httpGet.on">
-                                                                        <Row v-if="typeof(initcontainer.lifecycle.preStop.httpGet.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(initcontainer.lifecycle.preStop.httpGet.additionalProperties) !== 'undefined' && JSON.stringify(initcontainer.lifecycle.preStop.httpGet.additionalProperties).length > 2 ">
                                                                             <div class="ninth"
                                                                                  @click="showmodel_spec_template_spec_initContainers_lifecycle_preStop_httpGet_properties">
                                                                                 <span>&nbsp;&nbsp;&asympeq;&nbsp;additionalProperties:</span>
@@ -5075,7 +5059,7 @@
                                                                                 <div class="tenth">
                                                                                     <span style="font-size:small">&midast;&nbsp;列表数:{{index}}:</span>
                                                                                 </div>
-                                                                                <Row v-if="typeof(httpHeader.additionalProperties) !== 'undefined' ">
+                                                                                <Row v-if="typeof(httpHeader.additionalProperties) !== 'undefined' && JSON.stringify(httpHeader.additionalProperties).length > 2">
                                                                                     <div class="eleventh"
                                                                                          @click="showmodel_spec_template_spec_initContainers_lifecycle_preStop_httpGet_httpHeaders_properties">
                                                                                         <span>&nbsp;&nbsp;&dcy;&nbsp;additionalProperties:</span>
@@ -5120,7 +5104,7 @@
                                                                                 <Icon type="plus-circled"></Icon>
                                                                             </div>
                                                                             <div v-show="showmodel.spec.template.spec.initContainers.lifecycle.preStop.httpGet.port.on">
-                                                                                <Row v-if="typeof(initcontainer.lifecycle.preStop.httpGet.port.additionalProperties) !== 'undefined' ">
+                                                                                <Row v-if="typeof(initcontainer.lifecycle.preStop.httpGet.port.additionalProperties) !== 'undefined' && JSON.stringify(initcontainer.lifecycle.preStop.httpGet.port.additionalProperties).length > 2 ">
                                                                                     <div class="tenth"
                                                                                          @click="showmodel_spec_template_spec_initContainers_lifecycle_preStop_httpGet_port_properties">
                                                                                         <span>&nbsp;&nbsp;&scsim;&nbsp;additionalProperties:</span>
@@ -5174,7 +5158,7 @@
                                                                         <Icon type="plus-circled"></Icon>
                                                                     </div>
                                                                     <div v-show="showmodel.spec.template.spec.initContainers.lifecycle.preStop.tcpSocket.on">
-                                                                        <Row v-if="typeof(initcontainer.lifecycle.preStop.tcpSocket.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(initcontainer.lifecycle.preStop.tcpSocket.additionalProperties) !== 'undefined' && JSON.stringify(initcontainer.lifecycle.preStop.tcpSocket.additionalProperties).length > 2 ">
                                                                             <div class="ninth"
                                                                                  @click="showmodel_spec_template_spec_initContainers_lifecycle_preStop_tcpSocket_properties">
                                                                                 <span>&nbsp;&nbsp;&larrbfs;&nbsp;additionalProperties:</span>
@@ -5223,7 +5207,7 @@
                                                                                         <span slot="prepend">&rAarr;&nbsp;strVal:</span></Input>
                                                                                     </Col>
                                                                                 </Row>
-                                                                                <Row v-if="typeof(initcontainer.lifecycle.preStop.tcpSocket.port.additionalProperties) !== 'undefined' ">
+                                                                                <Row v-if="typeof(initcontainer.lifecycle.preStop.tcpSocket.port.additionalProperties) !== 'undefined' && JSON.stringify(initcontainer.lifecycle.preStop.tcpSocket.port.additionalProperties).length > 2 ">
                                                                                     <div class="tenth"
                                                                                          @click="showmodel_spec_template_spec_initContainers_lifecycle_preStop_tcpSocket_port_properties">
                                                                                         <span>&nbsp;&nbsp;&rAarr;&nbsp;additionalProperties:</span>
@@ -5242,7 +5226,7 @@
                                                                         </Row>
                                                                     </div>
                                                                 </Row>
-                                                                <Row v-if="typeof(initcontainer.lifecycle.preStop.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(initcontainer.lifecycle.preStop.additionalProperties) !== 'undefined' && JSON.stringify(initcontainer.lifecycle.preStop.additionalProperties).length > 2 ">
                                                                     <div class="eighth"
                                                                          @click="showmodel_spec_template_spec_initContainers_lifecycle_preStop_properties">
                                                                         <span>&nbsp;&nbsp;&lhblk;&nbsp;additionalProperties:</span>
@@ -5267,7 +5251,7 @@
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.initContainers.livenessProbe.on">
-                                                        <Row v-if="typeof(initcontainer.livenessProbe.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(initcontainer.livenessProbe.additionalProperties) !== 'undefined' && JSON.stringify(initcontainer.livenessProbe.additionalProperties).length > 2">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_initContainers_livenessProbe_properties">
                                                                 <span>&nbsp;&nbsp;&wcirc;&nbsp;additionalProperties:</span>
@@ -5288,7 +5272,7 @@
                                                                 <Icon type="plus-circled"/>
                                                             </div>
                                                             <div v-show="showmodel.spec.template.spec.initContainers.livenessProbe.exec.on">
-                                                                <Row v-if="typeof(initcontainer.livenessProbe.exec.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(initcontainer.livenessProbe.exec.additionalProperties) !== 'undefined' && JSON.stringify(initcontainer.livenessProbe.exec.additionalProperties).length > 2">
                                                                     <div class="eighth"
                                                                          @click="showmodel_spec_template_spec_initContainers_livenessProbe_exec_properties">
                                                                         <span>&nbsp;&nbsp;&scaron;&nbsp;additionalProperties:</span>
@@ -5335,7 +5319,7 @@
                                                                 <Icon type="plus-circled"/>
                                                             </div>
                                                             <div v-show="showmodel.spec.template.spec.initContainers.livenessProbe.httpGet.on">
-                                                                <Row v-if="typeof(initcontainer.livenessProbe.httpGet.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(initcontainer.livenessProbe.httpGet.additionalProperties) !== 'undefined'  && JSON.stringify(initcontainer.livenessProbe.httpGet.additionalProperties).length > 2 ">
                                                                     <div class="eighth"
                                                                          @click="showmodel_spec_template_spec_initContainers_livenessProbe_httpGet_properties">
                                                                         <span>&nbsp;&nbsp;&icirc;&nbsp;additionalProperties:</span>
@@ -5369,7 +5353,7 @@
                                                                         <div class="ninth">
                                                                             <span style="font-size:small">&midast;&nbsp;下标数:{{index}}:</span>
                                                                         </div>
-                                                                        <Row v-if="typeof(httpHeader.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(httpHeader.additionalProperties) !== 'undefined'  && JSON.stringify(httpHeader.additionalProperties).length > 2 ">
                                                                             <div class="tenth"
                                                                                  @click="showmodel_spec_template_spec_initContainers_livenessProbe_httpGet_httpHeaders_properties">
                                                                                 <span>&nbsp;&nbsp;&bernou;&nbsp;additionalProperties:</span>
@@ -5414,7 +5398,7 @@
                                                                         <Icon type="plus-circled"/>
                                                                     </div>
                                                                     <div v-show="showmodel.spec.template.spec.initContainers.livenessProbe.httpGet.port.on">
-                                                                        <Row v-if="typeof(initcontainer.livenessProbe.httpGet.port.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(initcontainer.livenessProbe.httpGet.port.additionalProperties) !== 'undefined'  && JSON.stringify(initcontainer.livenessProbe.httpGet.port.additionalProperties).length > 2 ">
                                                                             <div class="ninth"
                                                                                  @click="showmodel_spec_template_spec_initContainers_livenessProbe_httpGet_port_properties">
                                                                                 <span>&nbsp;&nbsp;&drbkarow;&nbsp;additionalProperties:</span>
@@ -5489,7 +5473,7 @@
                                                                 <Icon type="plus-circled"/>
                                                             </div>
                                                             <div v-show="showmodel.spec.template.spec.initContainers.livenessProbe.tcpSocket.on">
-                                                                <Row v-if="typeof(initcontainer.livenessProbe.tcpSocket.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(initcontainer.livenessProbe.tcpSocket.additionalProperties) !== 'undefined'  && JSON.stringify(initcontainer.livenessProbe.tcpSocket.additionalProperties).length > 2 ">
                                                                     <div class="eighth"
                                                                          @click="showmodel_spec_template_spec_initContainers_livenessProbe_tcpSocket_properties">
                                                                         <span>&nbsp;&nbsp;&circeq;&nbsp;additionalProperties:</span>
@@ -5517,7 +5501,7 @@
                                                                         <Icon type="plus-circled"/>
                                                                     </div>
                                                                     <div v-show="showmodel.spec.template.spec.initContainers.livenessProbe.tcpSocket.port.on">
-                                                                        <Row v-if="typeof(initcontainer.livenessProbe.tcpSocket.port.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(initcontainer.livenessProbe.tcpSocket.port.additionalProperties) !== 'undefined' && JSON.stringify(initcontainer.livenessProbe.tcpSocket.port.additionalProperties).length > 2 ">
                                                                             <div class="ninth"
                                                                                  @click="showmodel_spec_template_spec_initContainers_livenessProbe_tcpSocket_port_properties">
                                                                                 <span>&nbsp;&nbsp;&pcy;&nbsp;additionalProperties:</span>
@@ -5584,7 +5568,7 @@
                                                         <div class="seventh">
                                                             <span style="font-size:small">&midast;&nbsp;列表数:{{index}}:</span>
                                                         </div>
-                                                        <Row v-if="typeof(prot.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(prot.additionalProperties) !== 'undefined' && JSON.stringify(prot.additionalProperties).length > 2 ">
                                                             <div class="eighth"
                                                                  @click="showmodel_spec_template_spec_initContainers_ports_properties">
                                                                 <span>&nbsp;&nbsp;&wedbar;&nbsp;additionalProperties:</span>
@@ -5637,7 +5621,7 @@
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.initContainers.readinessProbe.on">
-                                                        <Row v-if="typeof(initcontainer.readinessProbe.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(initcontainer.readinessProbe.additionalProperties) !== 'undefined' && JSON.stringify(initcontainer.readinessProbe.additionalProperties).length > 2 ">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_initContainers_readinessProbe_properties">
                                                                 <span>&nbsp;&nbsp;&wcirc;&nbsp;additionalProperties:</span>
@@ -5658,7 +5642,7 @@
                                                                 <Icon type="plus-circled"/>
                                                             </div>
                                                             <div v-show="showmodel.spec.template.spec.initContainers.readinessProbe.exec.on">
-                                                                <Row v-if="typeof(initcontainer.readinessProbe.exec.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(initcontainer.readinessProbe.exec.additionalProperties) !== 'undefined' && JSON.stringify(initcontainer.readinessProbe.exec.additionalProperties).length > 2 ">
                                                                     <div class="eighth"
                                                                          @click="showmodel_spec_template_spec_initContainers_readinessProbe_exec_properties">
                                                                         <span>&nbsp;&nbsp;&scaron;&nbsp;additionalProperties:</span>
@@ -5705,7 +5689,7 @@
                                                                 <Icon type="plus-circled"/>
                                                             </div>
                                                             <div v-show="showmodel.spec.template.spec.initContainers.readinessProbe.httpGet.on">
-                                                                <Row v-if="typeof(initcontainer.readinessProbe.httpGet.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(initcontainer.readinessProbe.httpGet.additionalProperties) !== 'undefined' && JSON.stringify(initcontainer.readinessProbe.httpGet.additionalProperties).length > 2 ">
                                                                     <div class="eighth"
                                                                          @click="showmodel_spec_template_spec_initContainers_readinessProbe_httpGet_properties">
                                                                         <span>&nbsp;&nbsp;&icirc;&nbsp;additionalProperties:</span>
@@ -5739,7 +5723,7 @@
                                                                         <div class="ninth">
                                                                             <span style="font-size:small">&midast;&nbsp;下标数:{{index}}:</span>
                                                                         </div>
-                                                                        <Row v-if="typeof(httpHeader.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(httpHeader.additionalProperties) !== 'undefined'  && JSON.stringify(httpHeader.additionalProperties).length > 2  ">
                                                                             <div class="tenth"
                                                                                  @click="showmodel_spec_template_spec_initContainers_readinessProbe_httpGet_httpHeaders_properties">
                                                                                 <span>&nbsp;&nbsp;&bernou;&nbsp;additionalProperties:</span>
@@ -5784,7 +5768,7 @@
                                                                         <Icon type="plus-circled"/>
                                                                     </div>
                                                                     <div v-show="showmodel.spec.template.spec.initContainers.readinessProbe.httpGet.port.on">
-                                                                        <Row v-if="typeof(initcontainer.readinessProbe.httpGet.port.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(initcontainer.readinessProbe.httpGet.port.additionalProperties) !== 'undefined' && JSON.stringify(initcontainer.readinessProbe.httpGet.port.additionalProperties).length > 2  ">
                                                                             <div class="ninth"
                                                                                  @click="showmodel_spec_template_spec_initContainers_readinessProbe_httpGet_port_properties">
                                                                                 <span>&nbsp;&nbsp;&drbkarow;&nbsp;additionalProperties:</span>
@@ -5859,7 +5843,7 @@
                                                                 <Icon type="plus-circled"/>
                                                             </div>
                                                             <div v-show="showmodel.spec.template.spec.initContainers.readinessProbe.tcpSocket.on">
-                                                                <Row v-if="typeof(initcontainer.readinessProbe.tcpSocket.additionalProperties) !== 'undefined'">
+                                                                <Row v-if="typeof(initcontainer.readinessProbe.tcpSocket.additionalProperties) !== 'undefined' && JSON.stringify(initcontainer.readinessProbe.tcpSocket.additionalProperties).length > 2 ">
                                                                     <div class="eighth"
                                                                          @click="showmodel_spec_template_spec_initContainers_readinessProbe_tcpSocket_properties">
                                                                         <span>&nbsp;&nbsp;&circeq;&nbsp;additionalProperties:</span>
@@ -5887,7 +5871,7 @@
                                                                         <Icon type="plus-circled"/>
                                                                     </div>
                                                                     <div v-show="showmodel.spec.template.spec.containers.readinessProbe.tcpSocket.port.on">
-                                                                        <Row v-if="typeof(initcontainer.readinessProbe.tcpSocket.port.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(initcontainer.readinessProbe.tcpSocket.port.additionalProperties) !== 'undefined' && JSON.stringify(initcontainer.readinessProbe.tcpSocket.port.additionalProperties).length > 2 ">
                                                                             <div class="ninth"
                                                                                  @click="showmodel_spec_template_spec_initContainers_readinessProbe_tcpSocket_port_properties">
                                                                                 <span>&nbsp;&nbsp;&pcy;&nbsp;additionalProperties:</span>
@@ -5936,14 +5920,14 @@
                                                         </Row>
                                                     </div>
                                                 </Row>
-                                                <Row v-if="typeof(initcontainer.resources) !== 'undefined'">
+                                                <Row v-if="typeof(initcontainer.resources) !== 'undefined' && JSON.stringify(initcontainer.resources).length > 27 ">
                                                     <div class="sixth"
                                                          @click="showmodel_spec_template_spec_initContainers_resources">
                                                         <span>&nbsp;&nbsp;&rAarr;&nbsp;resources:</span>
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.initContainers.resources.on">
-                                                        <Row v-if="typeof(initcontainer.resources.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(initcontainer.resources.additionalProperties) !== 'undefined' && JSON.stringify(initcontainer.resources.additionalProperties).length > 2  ">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_initContainers_resources_properties">
                                                                 <span>&nbsp;&nbsp;&wcirc;&nbsp;additionalProperties:</span>
@@ -5977,7 +5961,7 @@
                                                                         <Icon type="plus-circled"/>
                                                                     </div>
                                                                     <div v-show="showmodel.spec.template.spec.initContainers.resources.limits.key.on">
-                                                                        <Row v-if="typeof(limit.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(limit.additionalProperties) !== 'undefined' && JSON.stringify(limit.additionalProperties).length > 2 ">
                                                                             <div class="tenth"
                                                                                  @click="showmodel_spec_template_spec_initContainers_resources_limits_key_properties">
                                                                                 <span>&zeetrf;&nbsp;additionalProperties:</span>
@@ -6028,7 +6012,7 @@
                                                                         <Icon type="plus-circled"/>
                                                                     </div>
                                                                     <div v-show="showmodel.spec.template.spec.initContainers.resources.requests.key.on">
-                                                                        <Row v-if="typeof(request.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(request.additionalProperties) !== 'undefined' && JSON.stringify(request.additionalProperties).length > 2 ">
                                                                             <div class="tenth"
                                                                                  @click="showmodel_spec_template_spec_initContainers_resources_requests_key_properties">
                                                                                 <span>&nbsp;&zeetrf;&nbsp;additionalProperties:</span>
@@ -6070,7 +6054,7 @@
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.initContainers.securityContext.on">
-                                                        <Row v-if="typeof(initcontainer.securityContext.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(initcontainer.securityContext.additionalProperties) !== 'undefined' && JSON.stringify(initcontainer.securityContext.additionalProperties).length > 2 ">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_initContainers_securityContext_properties">
                                                                 <span>&nbsp;&nbsp;&wcirc;&nbsp;additionalProperties:</span>
@@ -6091,7 +6075,7 @@
                                                                 <Icon type="plus-circled"/>
                                                             </div>
                                                             <div v-show="showmodel.spec.template.spec.initContainers.securityContext.capabilities.on">
-                                                                <Row v-if="typeof(initcontainer.securityContext.capabilities.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(initcontainer.securityContext.capabilities.additionalProperties) !== 'undefined'  && JSON.stringify(initcontainer.securityContext.capabilities.additionalProperties).length > 2 ">
                                                                     <div class="eighth"
                                                                          @click="showmodel_spec_template_spec_initContainers_securityContext_capabilities_properties">
                                                                         <span>&nbsp;&nbsp;&xi;&nbsp;additionalProperties:</span>
@@ -6171,7 +6155,7 @@
                                                                 <Icon type="plus-circled"/>
                                                             </div>
                                                             <div v-show="showmodel.spec.template.spec.initContainers.securityContext.seLinuxOptions.on">
-                                                                <Row v-if="typeof(initcontainer.securityContext.seLinuxOptions.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(initcontainer.securityContext.seLinuxOptions.additionalProperties) !== 'undefined' && JSON.stringify(initcontainer.securityContext.seLinuxOptions.additionalProperties).length > 2 ">
                                                                     <div class="eighth"
                                                                          @click="showmodel_spec_template_spec_initContainers_securityContext_seLinuxOptions_properties">
                                                                         <span>&nbsp;&nbsp;&ycirc;&nbsp;additionalProperties:</span>
@@ -6285,7 +6269,7 @@
                                                                 <span slot="prepend">&laemptyv;&nbsp;subPath:</span></Input>
                                                             </Col>
                                                         </Row>
-                                                        <Row v-if="typeof(volumemount.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(volumemount.additionalProperties) !== 'undefined' && JSON.stringify(volumemount.additionalProperties).length > 2 ">
                                                             <div class="eighth"
                                                                  @click="showmodel_spec_template_spec_initContainers_volumeMounts_properties">
                                                                 <span>&nbsp;&nbsp;&laemptyv;&nbsp;additionalProperties:</span>
@@ -6338,7 +6322,7 @@
                                                 <span slot="prepend">&rAarr;&nbsp;schedulerName:</span></Input>
                                             </Col>
                                         </Row>
-                                        <Row v-if="typeof(infodata.spec.template.spec.securityContext) !== 'undefined'">
+                                        <Row v-if="typeof(infodata.spec.template.spec.securityContext) !== 'undefined' && JSON.stringify(infodata.spec.template.spec.securityContext).length > 51 ">
                                             <div class="fourth"
                                                  @click="showmodel_spec_template_spec_securityContext">
                                                 <span>&nbsp;&nbsp;&rAarr;&nbsp;securityContext:</span>
@@ -6387,7 +6371,7 @@
                                                                 <span slot="prepend">&ocir;&nbsp;user:</span></Input>
                                                             </Col>
                                                         </Row>
-                                                        <Row v-if="typeof(infodata.spec.template.spec.securityContext.seLinuxOptions.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(infodata.spec.template.spec.securityContext.seLinuxOptions.additionalProperties) !== 'undefined' && JSON.stringify(infodata.spec.template.spec.securityContext.seLinuxOptions.additionalProperties).length > 2 ">
                                                             <div class="sixth"
                                                                  @click="showmodel_spec_template_spec_securityContext_selinuxoptions_properties">
                                                                 <span>&nbsp;&nbsp;&ocir;&nbsp;additionalProperties:</span>
@@ -6431,7 +6415,7 @@
                                                         <span slot="prepend">&aelig;&nbsp;runAsUser:</span></Input>
                                                     </Col>
                                                 </Row>
-                                                <Row v-if="typeof(infodata.spec.template.spec.securityContext.additionalProperties) !== 'undefined' ">
+                                                <Row v-if="typeof(infodata.spec.template.spec.securityContext.additionalProperties) !== 'undefined' && JSON.stringify(infodata.spec.template.spec.securityContext.additionalProperties).length > 2 ">
                                                     <div class="fifth"
                                                          @click="showmodel_spec_template_spec_securityContext_properties">
                                                         <span>&nbsp;&nbsp;&aelig;&nbsp;additionalProperties:</span>
@@ -6485,7 +6469,7 @@
                                                 <div class="sixth">
                                                     <span style="font-size:small">&midast;&nbsp;下标数:{{index}}:</span>
                                                 </div>
-                                                <Row v-if="typeof(toleration.additionalProperties) !== 'undefined' ">
+                                                <Row v-if="typeof(toleration.additionalProperties) !== 'undefined' && JSON.stringify(toleration.additionalProperties).length > 2 ">
                                                     <div class="seventh"
                                                          @click="showmodel_spec_template_spec_tolerations_properties">
                                                         <span>&nbsp;&nbsp;&sdotb;&nbsp;additionalProperties:</span>
@@ -6541,7 +6525,7 @@
                                                 <div class="fifth">
                                                     <span style="font-size:small">&midast;&nbsp;下标数:{{index}}:</span>
                                                 </div>
-                                                <Row v-if="typeof(volume.additionalProperties) !== 'undefined' ">
+                                                <Row v-if="typeof(volume.additionalProperties) !== 'undefined' && JSON.stringify(volume.additionalProperties).length > 2 ">
                                                     <div class="sixth"
                                                          @click="showmodel_spec_template_spec_volumes_properties">
                                                         <span>&nbsp;&nbsp;&plusb;&nbsp;additionalProperties:</span>
@@ -6561,7 +6545,7 @@
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.volumes.awsstore.on">
-                                                        <Row v-if="typeof(volume.awsElasticBlockStore.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(volume.awsElasticBlockStore.additionalProperties) !== 'undefined' && JSON.stringify(volume.awsElasticBlockStore.additionalProperties).length > 2 ">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_volumes_awsstore_properties">
                                                                 <span>&nbsp;&nbsp;&plusb;&nbsp;additionalProperties:</span>
@@ -6612,7 +6596,7 @@
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.volumes.azuredisk.on">
-                                                        <Row v-if="typeof(volume.azureDisk.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(volume.azureDisk.additionalProperties) !== 'undefined' && JSON.stringify(volume.azureDisk.additionalProperties).length > 2 ">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_volumes_azuredisk_properties">
                                                                 <span>&nbsp;&nbsp;&plusb;&nbsp;additionalProperties:</span>
@@ -6672,7 +6656,7 @@
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.volumes.azurefile.on">
-                                                        <Row v-if="typeof(volume.azureFile.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(volume.azureFile.additionalProperties) !== 'undefined' && JSON.stringify(volume.azureFile.additionalProperties).length > 2 ">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_volumes_azurefile_properties">
                                                                 <span>&nbsp;&nbsp;&plusb;&nbsp;additionalProperties:</span>
@@ -6714,7 +6698,7 @@
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.volumes.cephfs.on">
-                                                        <Row v-if="typeof(volume.cephfs.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(volume.cephfs.additionalProperties) !== 'undefined' && JSON.stringify(volume.cephfs.additionalProperties).length > 2 ">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_volumes_cephfs_properties">
                                                                 <span>&nbsp;&nbsp;&aelig;&nbsp;additionalProperties:</span>
@@ -6768,7 +6752,7 @@
                                                                 <Icon type="plus-circled"></Icon>
                                                             </div>
                                                             <div v-show="showmodel.spec.template.spec.volumes.cephfs.secretRef.on">
-                                                                <Row v-if="typeof(volume.cephfs.secretRef.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(volume.cephfs.secretRef.additionalProperties) !== 'undefined' && JSON.stringify(volume.cephfs.secretRef.additionalProperties).length > 2 ">
                                                                     <div class="eighth"
                                                                          @click="showmodel_spec_template_spec_volumes_cephfs_secretRef_properties">
                                                                         <span>&nbsp;&nbsp;&tritime;&nbsp;additionalProperties:</span>
@@ -6806,7 +6790,7 @@
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.volumes.cinder.on">
-                                                        <Row v-if="typeof(volume.cinder.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(volume.cinder.additionalProperties) !== 'undefined' && JSON.stringify(volume.cinder.additionalProperties).length > 2 ">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_volumes_cinder_properties">
                                                                 <span>&nbsp;&nbsp;&oast;&nbsp;additionalProperties:</span>
@@ -6848,7 +6832,7 @@
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.volumes.configMap.on">
-                                                        <Row v-if="typeof(volume.configMap.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(volume.configMap.additionalProperties) !== 'undefined' && JSON.stringify(volume.configMap.additionalProperties).length > 2 ">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_volumes_configMap_properties">
                                                                 <span>&nbsp;&nbsp;&odash;&nbsp;additionalProperties:</span>
@@ -6905,7 +6889,7 @@
                                                                         <span slot="prepend">&searhk;&nbsp;path:</span></Input>
                                                                     </Col>
                                                                 </Row>
-                                                                <Row v-if="typeof(item.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(item.additionalProperties) !== 'undefined' && JSON.stringify(item.additionalProperties).length > 2 ">
                                                                     <div class="ninth"
                                                                          @click="showmodel_spec_template_spec_volumes_configMap_items_properties">
                                                                         <span>&nbsp;&nbsp;&searhk;&nbsp;additionalProperties:</span>
@@ -6937,7 +6921,7 @@
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.volumes.downwardAPI.on">
-                                                        <Row v-if="typeof(volume.downwardAPI.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(volume.downwardAPI.additionalProperties) !== 'undefined' && JSON.stringify(volume.downwardAPI.additionalProperties).length > 2 ">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_volumes_downwardAPI_properties">
                                                                 <span>&nbsp;&nbsp;&odash;&nbsp;additionalProperties:</span>
@@ -6971,7 +6955,7 @@
                                                                 <div class="eighth">
                                                                     <span style="font-size:small">&midast;&nbsp;列表数:{{index}}:</span>
                                                                 </div>
-                                                                <Row v-if="typeof(item.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(item.additionalProperties) !== 'undefined' && JSON.stringify(item.additionalProperties).length > 2 ">
                                                                     <div class="ninth"
                                                                          @click="showmodel_spec_template_spec_volumes_downwardAPI_items_properties">
                                                                         <span>&nbsp;&nbsp;&searhk;&nbsp;additionalProperties:</span>
@@ -7004,7 +6988,7 @@
                                                                         <Icon type="plus-circled"></Icon>
                                                                     </div>
                                                                     <div v-show="showmodel.spec.template.spec.volumes.downwardAPI.items.field.on">
-                                                                        <Row v-if="typeof(item.fieldRef.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(item.fieldRef.additionalProperties) !== 'undefined' && JSON.stringify(item.fieldRef.additionalProperties).length > 2 ">
                                                                             <div class="tenth"
                                                                                  @click="showmodel_spec_template_spec_volumes_downwardAPI_items_field_properties">
                                                                                 <span>&nbsp;&nbsp;&LeftArrowRightArrow;&nbsp;additionalProperties:</span>
@@ -7041,7 +7025,7 @@
                                                                         <Icon type="plus-circled"></Icon>
                                                                     </div>
                                                                     <div v-show="showmodel.spec.template.spec.volumes.downwardAPI.items.resource.on">
-                                                                        <Row v-if="typeof(item.resourceFieldRef.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(item.resourceFieldRef.additionalProperties) !== 'undefined' && JSON.stringify(item.resourceFieldRef.additionalProperties).length > 2 ">
                                                                             <div class="tenth"
                                                                                  @click="showmodel_spec_template_spec_volumes_downwardAPI_items_resource_properties">
                                                                                 <span>&nbsp;&nbsp;&jukcy;&nbsp;additionalProperties:</span>
@@ -7069,7 +7053,7 @@
                                                                                 <Icon type="plus-circled"></Icon>
                                                                             </div>
                                                                             <div v-show="showmodel.spec.template.spec.volumes.downwardAPI.items.resource.divisor.on">
-                                                                                <Row v-if="typeof(item.resourceFieldRef.divisor.additionalProperties) !== 'undefined' ">
+                                                                                <Row v-if="typeof(item.resourceFieldRef.divisor.additionalProperties) !== 'undefined' && JSON.stringify(item.resourceFieldRef.divisor.additionalProperties).length > 2 ">
                                                                                     <div class="eleventh"
                                                                                          @click="showmodel_spec_template_spec_volumes_downwardAPI_items_resource_divisor_properties">
                                                                                         <span>&nbsp;&nbsp;&kappav;&nbsp;additionalProperties:</span>
@@ -7121,7 +7105,7 @@
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.volumes.emptyDir.on">
-                                                        <Row v-if="typeof(volume.emptyDir.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(volume.emptyDir.additionalProperties) !== 'undefined' && JSON.stringify(volume.emptyDir.additionalProperties).length > 2 ">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_volumes_emptyDir_properties">
                                                                 <span>&nbsp;&nbsp;&odash;&nbsp;additionalProperties:</span>
@@ -7148,7 +7132,7 @@
                                                                 <Icon type="plus-circled"></Icon>
                                                             </div>
                                                             <div v-show="showmodel.spec.template.spec.volumes.emptyDir.sizeLimit.on">
-                                                                <Row v-if="typeof(volume.emptyDir.sizeLimit.additionalProperties) !== 'undefined'">
+                                                                <Row v-if="typeof(volume.emptyDir.sizeLimit.additionalProperties) !== 'undefined' && JSON.stringify(volume.emptyDir.sizeLimit.additionalProperties).length > 2 ">
                                                                     <div class="eighth"
                                                                          @click="showmodel_spec_template_spec_volumes_emptyDir_sizeLimit_properties">
                                                                         <span>&nbsp;&nbsp;&map;&nbsp;additionalProperties:</span>
@@ -7187,7 +7171,7 @@
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.volumes.fc.on">
-                                                        <Row v-if="typeof(volume.fc.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(volume.fc.additionalProperties) !== 'undefined' && JSON.stringify(volume.fc.additionalProperties).length > 2 ">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_volumes_fc_properties">
                                                                 <span>&nbsp;&nbsp;&odash;&nbsp;additionalProperties:</span>
@@ -7241,7 +7225,7 @@
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.volumes.flexVolume.on">
-                                                        <Row v-if="typeof(volume.flexVolume.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(volume.flexVolume.additionalProperties) !== 'undefined' && JSON.stringify(volume.flexVolume.additionalProperties).length > 2 ">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_volumes_flexVolume_properties">
                                                                 <span>&nbsp;&nbsp;&odash;&nbsp;additionalProperties:</span>
@@ -7295,7 +7279,7 @@
                                                                 <Icon type="plus-circled"></Icon>
                                                             </div>
                                                             <div v-show="showmodel.spec.template.spec.volumes.flexVolume.ref.on">
-                                                                <Row v-if="typeof(volume.flexVolume.secretRef.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(volume.flexVolume.secretRef.additionalProperties) !== 'undefined' && JSON.stringify(volume.flexVolume.secretRef.additionalProperties).length > 2 ">
                                                                     <div class="eighth"
                                                                          @click="showmodel_spec_template_spec_volumes_flexVolume_ref_properties">
                                                                         <span>&nbsp;&nbsp;&sext;&nbsp;additionalProperties:</span>
@@ -7327,7 +7311,7 @@
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.volumes.flocker.on">
-                                                        <Row v-if="typeof(volume.flocker.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(volume.flocker.additionalProperties) !== 'undefined' && JSON.stringify(volume.flocker.additionalProperties).length > 2 ">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_volumes_flocker_properties">
                                                                 <span>&nbsp;&nbsp;&odash;&nbsp;additionalProperties:</span>
@@ -7362,7 +7346,7 @@
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.volumes.gcePersistentDisk.on">
-                                                        <Row v-if="typeof(volume.gcePersistentDisk.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(volume.gcePersistentDisk.additionalProperties) !== 'undefined' && JSON.stringify(volume.gcePersistentDisk.additionalProperties).length > 2  ">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_volumes_gcePersistentDisk_properties">
                                                                 <span>&nbsp;&nbsp;&odash;&nbsp;additionalProperties:</span>
@@ -7413,7 +7397,7 @@
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.volumes.gitRepo.on">
-                                                        <Row v-if="typeof(volume.gitRepo.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(volume.gitRepo.additionalProperties) !== 'undefined' && JSON.stringify(volume.gitRepo.additionalProperties).length > 2 ">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_volumes_gitRepo_properties">
                                                                 <span>&nbsp;&nbsp;&odash;&nbsp;additionalProperties:</span>
@@ -7454,7 +7438,7 @@
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.volumes.glusterfs.on">
-                                                        <Row v-if="typeof(volume.glusterfs.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(volume.glusterfs.additionalProperties) !== 'undefined' && JSON.stringify(volume.glusterfs.additionalProperties).length > 2 ">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_volumes_glusterfs_properties">
                                                                 <span>&nbsp;&nbsp;&odash;&nbsp;additionalProperties:</span>
@@ -7496,7 +7480,7 @@
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.volumes.hostPath.on">
-                                                        <Row v-if="typeof(volume.hostPath.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(volume.hostPath.additionalProperties) !== 'undefined' && JSON.stringify(volume.hostPath.additionalProperties).length > 2 ">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_volumes_hostPath_properties">
                                                                 <span>&nbsp;&nbsp;&odash;&nbsp;additionalProperties:</span>
@@ -7525,7 +7509,7 @@
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.volumes.iscsi.on">
-                                                        <Row v-if="typeof(volume.iscsi.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(volume.iscsi.additionalProperties) !== 'undefined' && JSON.stringify(volume.iscsi.additionalProperties).length > 2 ">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_volumes_iscsi_properties">
                                                                 <span>&nbsp;&nbsp;&odash;&nbsp;additionalProperties:</span>
@@ -7604,7 +7588,7 @@
                                                                 <Icon type="plus-circled"></Icon>
                                                             </div>
                                                             <div v-show="showmodel.spec.template.spec.volumes.iscsi.ref.on">
-                                                                <Row v-if="typeof(volume.iscsi.secretRef.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(volume.iscsi.secretRef.additionalProperties) !== 'undefined' && JSON.stringify(volume.iscsi.secretRef.additionalProperties).length > 2 ">
                                                                     <div class="eighth"
                                                                          @click="showmodel_spec_template_spec_volumes_iscsi_ref_properties">
                                                                         <span>&nbsp;&nbsp;&scnsim;&nbsp;additionalProperties:</span>
@@ -7649,7 +7633,7 @@
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.volumes.nfs.on">
-                                                        <Row v-if="typeof(volume.nfs.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(volume.nfs.additionalProperties) !== 'undefined' && JSON.stringify(volume.nfs.additionalProperties).length > 2 ">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_volumes_nfs_properties">
                                                                 <span>&nbsp;&nbsp;&odash;&nbsp;additionalProperties:</span>
@@ -7691,7 +7675,7 @@
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.volumes.persistentVolumeClaim.on">
-                                                        <Row v-if="typeof(volume.persistentVolumeClaim.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(volume.persistentVolumeClaim.additionalProperties) !== 'undefined' && JSON.stringify(volume.persistentVolumeClaim.additionalProperties).length > 2 ">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_volumes_persistentVolumeClaim_properties">
                                                                 <span>&nbsp;&nbsp;&odash;&nbsp;additionalProperties:</span>
@@ -7728,7 +7712,7 @@
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.volumes.photonPersistentDisk.on">
-                                                        <Row v-if="typeof(volume.photonPersistentDisk.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(volume.photonPersistentDisk.additionalProperties) !== 'undefined' && JSON.stringify(volume.photonPersistentDisk.additionalProperties).length > 2  ">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_volumes_photonPersistentDisk_properties">
                                                                 <span>&nbsp;&nbsp;&odash;&nbsp;additionalProperties:</span>
@@ -7765,7 +7749,7 @@
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.volumes.portworxVolume.on">
-                                                        <Row v-if="typeof(volume.portworxVolume.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(volume.portworxVolume.additionalProperties) !== 'undefined' && JSON.stringify(volume.portworxVolume.additionalProperties).length > 2 ">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_volumes_portworxVolume_properties">
                                                                 <span>&nbsp;&nbsp;&odash;&nbsp;additionalProperties:</span>
@@ -7808,7 +7792,7 @@
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.volumes.projected.on">
-                                                        <Row v-if="typeof(volume.projected.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(volume.projected.additionalProperties) !== 'undefined' && JSON.stringify(volume.projected.additionalProperties).length > 2 ">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_volumes_projected_properties">
                                                                 <span>&nbsp;&nbsp;&odash;&nbsp;additionalProperties:</span>
@@ -7841,7 +7825,7 @@
                                                                 <div class="eighth">
                                                                     <span style="font-size:small">&midast;&nbsp;列表数:{{index}}:</span>
                                                                 </div>
-                                                                <Row v-if="typeof(source.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(source.additionalProperties) !== 'undefined' && JSON.stringify(source.additionalProperties).length > 2 ">
                                                                     <div class="ninth"
                                                                          @click="showmodel_spec_template_spec_volumes_projected_sources_properties">
                                                                         <span>&nbsp;&nbsp;&sccue;&nbsp;additionalProperties:</span>
@@ -7863,7 +7847,7 @@
                                                                         <Icon type="plus-circled"></Icon>
                                                                     </div>
                                                                     <div v-show="showmodel.spec.template.spec.volumes.projected.sources.configMap.on">
-                                                                        <Row v-if="typeof(source.configMap.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(source.configMap.additionalProperties) !== 'undefined' && JSON.stringify(source.configMap.additionalProperties).length > 2 ">
                                                                             <div class="tenth"
                                                                                  @click="showmodel_spec_template_spec_volumes_projected_sources_configMap_properties">
                                                                                 <span>&nbsp;&nbsp;&scap;&nbsp;additionalProperties:</span>
@@ -7905,7 +7889,7 @@
                                                                                 <div class="twelfth">
                                                                                     <span style="font-size:small">&midast;&nbsp;列表数:{{index}}:</span>
                                                                                 </div>
-                                                                                <Row v-if="typeof(item.additionalProperties) !== 'undefined' ">
+                                                                                <Row v-if="typeof(item.additionalProperties) !== 'undefined' && JSON.stringify(item.additionalProperties).length > 2 ">
                                                                                     <div class="thirteenth"
                                                                                          @click="showmodel_spec_template_spec_volumes_projected_sources_configMap_items_properties">
                                                                                         <span>&nbsp;&nbsp;&odash;&nbsp;additionalProperties:</span>
@@ -7955,7 +7939,7 @@
                                                                         <Icon type="plus-circled"></Icon>
                                                                     </div>
                                                                     <div v-show="showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.on">
-                                                                        <Row v-if="typeof(source.downwardAPI.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(source.downwardAPI.additionalProperties) !== 'undefined' && JSON.stringify(source.downwardAPI.additionalProperties).length > 2 ">
                                                                             <div class="tenth"
                                                                                  @click="showmodel_spec_template_spec_volumes_projected_sources_downwardAPI_properties">
                                                                                 <span>&nbsp;&nbsp;&odash;&nbsp;additionalProperties:</span>
@@ -7983,7 +7967,7 @@
                                                                                 <div class="eleventh">
                                                                                     <span style="font-size:small">&midast;&nbsp;列表数:{{index}}:</span>
                                                                                 </div>
-                                                                                <Row v-if="typeof(item.additionalProperties) !== 'undefined' ">
+                                                                                <Row v-if="typeof(item.additionalProperties) !== 'undefined' && JSON.stringify(item.additionalProperties).length > 2 ">
                                                                                     <div class="twelfth"
                                                                                          @click="showmodel_spec_template_spec_volumes_projected_sources_downwardAPI_items_properties">
                                                                                         <span>&nbsp;&nbsp;&odash;&nbsp;additionalProperties:</span>
@@ -8005,7 +7989,7 @@
                                                                                         <Icon type="plus-circled"></Icon>
                                                                                     </div>
                                                                                     <div v-show="showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.items.fieldref.on">
-                                                                                        <Row v-if="typeof(item.fieldRef.additionalProperties) !== 'undefined' ">
+                                                                                        <Row v-if="typeof(item.fieldRef.additionalProperties) !== 'undefined' && JSON.stringify(item.fieldRef.additionalProperties).length > 2 ">
                                                                                             <div class="thirteenth"
                                                                                                  @click="showmodel_spec_template_spec_volumes_projected_sources_downwardAPI_items_fieldref_properties">
                                                                                                 <span>&nbsp;&nbsp;&dagger;&nbsp;additionalProperties:</span>
@@ -8059,7 +8043,7 @@
                                                                                         <Icon type="plus-circled"></Icon>
                                                                                     </div>
                                                                                     <div v-show="showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.items.resourceFieldRef.on">
-                                                                                        <Row v-if="typeof(item.resourceFieldRef.additionalProperties) !== 'undefined' ">
+                                                                                        <Row v-if="typeof(item.resourceFieldRef.additionalProperties) !== 'undefined' && JSON.stringify(item.resourceFieldRef.additionalProperties).length > 2 ">
                                                                                             <div class="thirteenth"
                                                                                                  @click="showmodel_spec_template_spec_volumes_projected_sources_downwardAPI_items_resourceFieldRef_properties">
                                                                                                 <span>&nbsp;&nbsp;&odash;&nbsp;additionalProperties:</span>
@@ -8097,7 +8081,7 @@
                                                                                                 <Icon type="plus-circled"></Icon>
                                                                                             </div>
                                                                                             <div v-show="showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.items.resourceFieldRef.divisor.on">
-                                                                                                <Row v-if="typeof(item.resourceFieldRef.divisor.additionalProperties) !== 'undefined' ">
+                                                                                                <Row v-if="typeof(item.resourceFieldRef.divisor.additionalProperties) !== 'undefined' && JSON.stringify(item.resourceFieldRef.divisor.additionalProperties).length > 2 ">
                                                                                                     <div class="fourteenth"
                                                                                                          @click="showmodel_spec_template_spec_volumes_projected_sources_downwardAPI_items_resourceFieldRef_divisor_properties">
                                                                                                         <span>&nbsp;&nbsp;&odiv;&nbsp;additionalProperties:</span>
@@ -8156,7 +8140,7 @@
                                                                                 <div class="eleventh">
                                                                                     <span style="font-size:small">&midast;&nbsp;列表数:{{index}}:</span>
                                                                                 </div>
-                                                                                <Row v-if="typeof(item.additionalProperties) !== 'undefined' ">
+                                                                                <Row v-if="typeof(item.additionalProperties) !== 'undefined' && JSON.stringify(item.additionalProperties).length > 2 ">
                                                                                     <div class="twelfth"
                                                                                          @click="showmodel_spec_template_spec_volumes_projected_sources_secret_items_properties">
                                                                                         <span>&nbsp;&nbsp;&odash;&nbsp;additionalProperties:</span>
@@ -8208,7 +8192,7 @@
                                                                                 <span slot="prepend">&odash;&nbsp;optional:</span></Input>
                                                                             </Col>
                                                                         </Row>
-                                                                        <Row v-if="typeof(source.secret.additionalProperties) !== 'undefined' ">
+                                                                        <Row v-if="typeof(source.secret.additionalProperties) !== 'undefined' && JSON.stringify(source.secret.additionalProperties).length > 2 ">
                                                                             <div class="tenth"
                                                                                  @click="showmodel_spec_template_spec_volumes_projected_sources_secret_properties">
                                                                                 <span>&nbsp;&nbsp;&odash;&nbsp;additionalProperties:</span>
@@ -8237,7 +8221,7 @@
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.volumes.quobyte.on">
-                                                        <Row v-if="typeof(volume.quobyte.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(volume.quobyte.additionalProperties) !== 'undefined' && JSON.stringify(volume.quobyte.additionalProperties).length > 2 ">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_volumes_quobyte_properties">
                                                                 <span>&nbsp;&nbsp;&ocirc;&nbsp;additionalProperties:</span>
@@ -8291,7 +8275,7 @@
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.volumes.rbd.on">
-                                                        <Row v-if="typeof(volume.rbd.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(volume.rbd.additionalProperties) !== 'undefined' && JSON.stringify(volume.rbd.additionalProperties).length > 2 ">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_volumes_rbd_properties">
                                                                 <span>&nbsp;&nbsp;&ocirc;&nbsp;additionalProperties:</span>
@@ -8356,7 +8340,7 @@
                                                                 <Icon type="plus-circled"></Icon>
                                                             </div>
                                                             <div v-show="showmodel.spec.template.spec.volumes.rbd.secretRef.on">
-                                                                <Row v-if="typeof(volume.rbd.secretRef.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(volume.rbd.secretRef.additionalProperties) !== 'undefined' && JSON.stringify(volume.rbd.secretRef.additionalProperties).length > 2 ">
                                                                     <div class="eighth"
                                                                          @click="showmodel_spec_template_spec_volumes_rbd_secretRef_properties">
                                                                         <span>&nbsp;&nbsp;&lat;&nbsp;additionalProperties:</span>
@@ -8394,7 +8378,7 @@
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.volumes.scaleIO.on">
-                                                        <Row v-if="typeof(volume.scaleIO.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(volume.scaleIO.additionalProperties) !== 'undefined' && JSON.stringify(volume.scaleIO.additionalProperties).length > 2  ">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_volumes_scaleIO_properties">
                                                                 <span>&nbsp;&nbsp;&ocirc;&nbsp;additionalProperties:</span>
@@ -8441,7 +8425,7 @@
                                                                 <Icon type="plus-circled"></Icon>
                                                             </div>
                                                             <div v-show="showmodel.spec.template.spec.volumes.scaleIO.secretRef.on">
-                                                                <Row v-if="typeof(volume.scaleIO.secretRef.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(volume.scaleIO.secretRef.additionalProperties) !== 'undefined' && JSON.stringify(volume.scaleIO.secretRef.additionalProperties).length > 2 ">
                                                                     <div class="eighth"
                                                                          @click="showmodel_spec_template_spec_volumes_scaleIO_secretRef_properties">
                                                                         <span>&nbsp;&nbsp;&xhArr;&nbsp;additionalProperties:</span>
@@ -8505,7 +8489,7 @@
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.volumes.secret.on">
-                                                        <Row v-if="typeof(volume.secret.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(volume.secret.additionalProperties) !== 'undefined' && JSON.stringify(volume.secret.additionalProperties).length > 2">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_volumes_secret_properties">
                                                                 <span>&nbsp;&nbsp;&ocirc;&nbsp;additionalProperties:</span>
@@ -8537,7 +8521,7 @@
                                                                 <div class="eighth">
                                                                     <span style="font-size:small">&midast;&nbsp;列表数:{{index}}:</span>
                                                                 </div>
-                                                                <Row v-if="typeof(item.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(item.additionalProperties) !== 'undefined' && JSON.stringify(item.additionalProperties).length > 2 ">
                                                                     <div class="ninth"
                                                                          @click="showmodel_spec_template_spec_volumes_secret_item_properties">
                                                                         <span>&nbsp;&nbsp;&ocirc;&nbsp;additionalProperties:</span>
@@ -8594,7 +8578,7 @@
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.volumes.storageos.on">
-                                                        <Row v-if="typeof(volume.storageos.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(volume.storageos.additionalProperties) !== 'undefined' && JSON.stringify(volume.storageos.additionalProperties).length > 2 ">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_volumes_storageos_properties">
                                                                 <span>&nbsp;&nbsp;&ocirc;&nbsp;additionalProperties:</span>
@@ -8621,7 +8605,7 @@
                                                                 <Icon type="plus-circled"></Icon>
                                                             </div>
                                                             <div v-show="showmodel.spec.template.spec.volumes.storageos.secretRef.on">
-                                                                <Row v-if="typeof(volume.storageos.secretRef.additionalProperties) !== 'undefined' ">
+                                                                <Row v-if="typeof(volume.storageos.secretRef.additionalProperties) !== 'undefined' && JSON.stringify(volume.storageos.secretRef.additionalProperties).length > 2 ">
                                                                     <div class="eighth"
                                                                          @click="showmodel_spec_template_spec_volumes_storageos_secretRef_properties">
                                                                         <span>&nbsp;&nbsp;&searhk;&nbsp;additionalProperties:</span>
@@ -8674,7 +8658,7 @@
                                                         <Icon type="plus-circled"></Icon>
                                                     </div>
                                                     <div v-show="showmodel.spec.template.spec.volumes.vsphereVolume.on">
-                                                        <Row v-if="typeof(volume.vsphereVolume.additionalProperties) !== 'undefined' ">
+                                                        <Row v-if="typeof(volume.vsphereVolume.additionalProperties) !== 'undefined' && JSON.stringify(volume.vsphereVolume.additionalProperties).length > 2 ">
                                                             <div class="seventh"
                                                                  @click="showmodel_spec_template_spec_volumes_vsphereVolume_properties">
                                                                 <span>&nbsp;&nbsp;&ocirc;&nbsp;additionalProperties:</span>
@@ -8719,7 +8703,7 @@
                                                 </Row>
                                             </div>
                                         </Row>
-                                        <Row v-if="typeof(infodata.spec.template.spec.additionalProperties) !== 'undefined' ">
+                                        <Row v-if="typeof(infodata.spec.template.spec.additionalProperties) !== 'undefined' && JSON.stringify(infodata.spec.template.spec.additionalProperties).length > 2 ">
                                             <div class="fourth" @click="showmodel_spec_template_spec_properties">
                                                 <span>&nbsp;&nbsp;&rAarr;&nbsp;additionalProperties:</span>
                                                 <Icon type="plus-circled"></Icon>
@@ -8741,7 +8725,7 @@
                                 <span slot="prepend">&hookrightarrow;&nbsp;replicas:</span></Input>
                             </Col>
                         </Row>
-                        <Row v-if="typeof(infodata.spec.additionalProperties) !== 'undefined' && modelflag.spec.properties === true ">
+                        <Row v-if="typeof(infodata.spec.additionalProperties) !== 'undefined' && JSON.stringify(infodata.spec.additionalProperties).length > 2  ">
                             <div class="second" @click="showmodel_spec_properties">
                                 <span>&nbsp;&nbsp;&hookrightarrow;&nbsp;additionalProperties:</span>
                                 <Icon type="plus-circled"/>
@@ -8813,7 +8797,7 @@
                                         <span slot="prepend">&triminus;&nbsp;type:</span></Input>
                                     </Col>
                                 </Row>
-                                <Row v-if="typeof(item.additionalProperties) !== 'undefined' && modelflag.status.conditions[index] === true">
+                                <Row v-if="typeof(item.additionalProperties) !== 'undefined' && JSON.stringify(item.additionalProperties).length > 2">
                                     <div class="fourth">
                                         <span style="font-size:small">&nbsp;&nbsp;&triminus;&nbsp;additionalProperties:</span>
                                     </div>
@@ -8842,7 +8826,7 @@
                                 <span slot="prepend">&wedbar;&nbsp;replicas:</span></Input>
                             </Col>
                         </Row>
-                        <Row v-if="typeof(infodata.status.additionalProperties) !== 'undefined' &&  modelflag.status.properties === true ">
+                        <Row v-if="typeof(infodata.status.additionalProperties) !== 'undefined' && JSON.stringify(infodata.status.additionalProperties).length > 2 ">
                             <div class="second" @click="showmodel_status_properties">
                                 <span>&nbsp;&nbsp;&wedbar;&nbsp;additionalProperties:</span>
                                 <Icon type="plus-circled"/>
@@ -8855,7 +8839,7 @@
                         </Row>
                     </div>
                 </Row>
-                <Row v-if="typeof(infodata.additionalProperties) !== 'undefined' && modelflag.properties === true ">
+                <Row v-if="typeof(infodata.additionalProperties) !== 'undefined' && JSON.stringify(infodata.additionalProperties).length > 2 ">
                     <div class="first" @click="showmodel_properties">
                         <span>&nbsp;additionalProperties:</span>
                         <Icon type="plus-circled"/>
@@ -8881,13 +8865,19 @@
                     <FormItem class="add_first" >
                         <Row >
                             <Col span="12">
-                                <Input typeof="text" v-model="tempnewdata.apiVersion" disabled><span slot="prepend">apiVersion:</span></Input></Col>
+                                <Input typeof="text" v-model="tempnewdata.apiVersion" disabled>
+                                    <span slot="prepend">apiVersion:</span>
+                                </Input>
+                            </Col>
                         </Row>
                     </FormItem>
                     <FormItem class="add_first" >
                         <Row >
                             <Col span="12">
-                                <Input typeof="text" v-model="tempnewdata.kind" disabled ><span slot="prepend">kind:</span></Input></Col>
+                                <Input typeof="text" v-model="tempnewdata.kind" disabled >
+                                    <span slot="prepend">kind:</span>
+                                </Input>
+                            </Col>
                         </Row>
                     </FormItem>
                     <div class="add_lable" @click="showmodel_metadata">
@@ -8898,7 +8888,10 @@
                         <FormItem class="add_first" >
                             <Row class="add_second">
                                 <Col span="12">
-                                    <Input typeof="text" v-model="tempnewdata.metadata_name" ><span slot="prepend">name:</span></Input></Col>
+                                    <Input typeof="text" disabled v-model="tempnewdata.metadata_name" >
+                                        <span slot="prepend">name:</span>
+                                    </Input>
+                                </Col>
                             </Row>
                         </FormItem>
                     </div>
@@ -8910,7 +8903,10 @@
                         <FormItem class="add_second" prop="spec_replicas">
                             <Row>
                                 <Col span="12">
-                                    <Input type="text" v-model="tempnewdata.spec_replicas" placeholder="实例个数"><span slot="prepend">replicas:</span></Input></Col>
+                                    <Input type="text" v-model="tempnewdata.spec_replicas" placeholder="实例个数">
+                                        <span slot="prepend">replicas:</span>
+                                    </Input>
+                                </Col>
                             </Row>
                         </FormItem>
                         <Row>
@@ -8920,15 +8916,18 @@
                             </div>
                             <div v-show="showmodel.spec.selector">
                                 <FormItem>
-                                    <Row class="add_third" v-for="(item,index) in tempnewdata.tempselector" :key="index">
-                                        <Col span="3" v-for="(lab,selectorind) in item" :key="selectorind">
-                                            <Input typeof="text" v-model="tempnewdata.tempselector[index][selectorind]">
-                                            </Input>
+                                    <Row class="add_third" v-for="(selector,selectorind) in tempnewdata.tempselector" :key="selectorind">
+                                        <Col span="3" >
+                                            <Input typeof="text" disabled v-model="selector[0]"/>
                                         </Col>
+                                        <Col span="10" >
+                                            <Input typeof="text" disabled v-model="selector[1]"/>
+                                        </Col>
+                                        <!--
                                         <Col span="6" >
                                             <Button type="primary" icon="plus" @click="addnewdataspecselector" ></Button>
                                             <Button type="primary" icon="minus" @click="delnewdataspecselector(index)" v-if="tempnewdata.tempselector.length > 1"></Button>
-                                        </Col>
+                                        </Col>-->
                                     </Row>
                                 </FormItem>
                             </div>
@@ -8951,14 +8950,18 @@
                                     <div v-show="showmodel.spec.template.metadata.labels">
                                         <FormItem>
                                             <Row class="add_fifth" v-for="(label,index) in tempnewdata.templabels" :key="index">
-                                                <Col span="3" v-for="(arr,arrindex) in label" :key="arrindex">
-                                                    <Input typeof="text" v-model="tempnewdata.templabels[index][arrindex]">
-                                                    </Input>
+                                                <Col span="3">
+                                                    <Input typeof="text" disabled v-model="label[0]"/>
                                                 </Col>
+                                                <Col span="10">
+                                                    <Input typeof="text" disabled v-model="label[1]"/>
+                                                </Col>
+                                                <!--
                                                 <Col span="6" >
                                                     <Button type="primary" icon="plus" @click="addnewdataspectemplatemetadatalabels" ></Button>
                                                     <Button type="primary" icon="minus" @click="delnewdataspectemplatemetadatalabels(index)" v-if="tempnewdata.templabels.length > 1"></Button>
                                                 </Col>
+                                                -->
                                             </Row>
                                         </FormItem>
                                     </div>
@@ -8968,17 +8971,17 @@
                                     <Icon type="plus-circled"></Icon>
                                 </div>
                                 <div v-show="showmodel.spec.template.spec.on">
-                                    <FormItem class="add_fourth" >
+                                    <FormItem class="add_fourth" prop="spec_template_spec_hostname">
                                         <Row >
                                             <Col span="12">
-                                                <Input v-model="tempnewdata.spec_template_spec_hostname" ><span slot="prepend">hostname:</span></Input>
+                                                <Input v-model="tempnewdata.spec_template_spec_hostname" @on-keyup.stop="setTempnewdataValue"><span slot="prepend">hostname:</span></Input>
                                             </Col>
                                         </Row>
                                     </FormItem>
-                                    <FormItem class="add_fourth" >
+                                    <FormItem class="add_fourth" prop="spec_template_spec_subdomain" >
                                         <Row >
-                                            <Col span="12">
-                                                <Input v-model="tempnewdata.spec_template_spec_subdomain" ><span slot="prepend">subdomain:</span></Input>
+                                            <Col span="12"  >
+                                                <Input v-model="tempnewdata.spec_template_spec_subdomain" @on-keyup.stop="setTempnewdataValue"><span slot="prepend">subdomain:</span></Input>
                                             </Col>
                                         </Row>
                                     </FormItem>
@@ -8994,10 +8997,12 @@
                                                 </Col>
                                             </Row>
                                         </FormItem>
-                                        <FormItem class="add_fifth" prop="spec_template_spec_containers_image">
+                                        <FormItem class="add_fifth" prop="spec_template_spec_containers_image" label="image:">
                                             <Row >
                                                 <Col span="12">
-                                                    <Input v-model="tempnewdata.spec_template_spec_containers_image" ><span slot="prepend">image:</span></Input>
+                                                    <select v-model="tempnewdata.spec_template_spec_containers_image" clearable>
+                                                        <option v-for="item in rcImages" :value="item.itemval" :key="item.itemkey">{{ item.itemval }}</option>
+                                                    </select>
                                                 </Col>
                                             </Row>
                                         </FormItem>
@@ -9024,12 +9029,14 @@
                                                         <div v-show="showmodel.spec.template.spec.containers.lifecycle.postStart.exec.command">
                                                             <Row class="add_ninth" v-for="(command,index) in tempnewdata.commands" :key="index" v-model="tempnewdata.commands">
                                                                 <Col span="12">
-                                                                    <Input v-model="tempnewdata.commands[index]" ><span slot="prepend">——:</span></Input>
+                                                                    <Input v-model="tempnewdata.commands[index]" disabled ><span slot="prepend">——:</span></Input>
                                                                 </Col>
+                                                                <!--
                                                                 <Col span="6" >
                                                                     <Button type="primary" icon="plus" @click="addnewdataspectemplatespeccontainerslifecyclepostStartexeccommand" ></Button>
                                                                     <Button type="primary" icon="minus" @click="delnewdataspectemplatespeccontainerslifecyclepostStartexeccommand(index)" v-if="tempnewdata.commands.length > 1"></Button>
                                                                 </Col>
+                                                                -->
                                                             </Row>
                                                         </div>
                                                     </div>
@@ -9042,10 +9049,10 @@
                                                 <Icon type="plus-circled"></Icon>
                                             </div>
                                             <div v-show="showmodel.spec.template.spec.containers.env.on" v-for="(env, index) in tempnewdata.envs" :key="index">
-                                                <div class="add_lable add_sixth" >
+                                                <!--<div class="add_lable add_sixth" >
                                                     <span style="font-size:small">列表数:{{index}}:</span>
                                                 </div>
-                                                <!--  <FormItem  :prop="'envs.' + index + '.name'">-->
+                                                  <FormItem  :prop="'envs.' + index + '.name'">-->
                                                 <FormItem>
                                                     <Row class="add_seventh">
                                                         <Col span="12">
@@ -9066,6 +9073,7 @@
                                                 </FormItem>
                                             </div>
                                         </div>
+                                        <!--
                                         <div>
                                             <div class="add_lable add_fifth" @click="showmodel_spec_template_spec_containers_ports">
                                                 <span>&nbsp;&nbsp;&nbsp;ports:</span>
@@ -9087,20 +9095,20 @@
                                                     </Row>
                                                 </FormItem>
                                             </div>
-                                        </div>
+                                        </div>-->
                                         <div>
                                             <div class="add_lable add_fifth" @click="showmodel_spec_template_spec_containers_volumeMounts">
                                                 <span>&nbsp;&nbsp;&nbsp;volumeMounts:</span>
                                                 <Icon type="plus-circled"></Icon>
                                             </div>
                                             <div v-show="showmodel.spec.template.spec.containers.volumeMounts.on" v-for="(volume, index) in tempnewdata.volumeMounts" :key="index">
-                                                <div class="add_lable add_sixth" >
+                                                <!-- <div class="add_lable add_sixth" >
                                                     <span style="font-size:small">列表数:{{index}}:</span>
-                                                </div>
-                                                <FormItem>
+                                                </div>-->
+                                                <FormItem v-show="false">
                                                     <Row class="add_seventh">
-                                                        <Col span="12">
-                                                            <Input v-model="volume.name"><span slot="prepend">name:</span></Input>
+                                                        <Col span="12" >
+                                                            <Input v-model="volume.name" disabled><span slot="prepend">name:</span></Input>
                                                         </Col>
                                                     </Row>
                                                 </FormItem>
@@ -9124,15 +9132,21 @@
                                     </div>
                                     <div v-show="showmodel.spec.template.spec.nodeSelector.on">
                                         <FormItem>
-                                            <Row class="add_fifth" v-for="(selector,index) in tempnewdata.tempnodeSelector" :key="index">
-                                                <Col span="3" v-for="(arr,selindex) in selector" :key="selindex">
-                                                    <Input typeof="text" v-model="tempnewdata.tempnodeSelector[index][selindex]">
-                                                    </Input>
+                                            <Row class="add_fifth" v-for="(arr,selindex) in tempnewdata.tempnodeSelector" :key="selindex">
+                                                <Col span="5">
+                                                    <span>{{arr[0]+':'}} </span>
                                                 </Col>
+                                                <Col span="10">
+                                                    <select v-model="arr[1]">
+                                                        <option v-for="item in rcNodeSelector" :value="item.itemval" :key="item.itemkey">{{ item.itemval }}</option>
+                                                    </select>
+                                                </Col>
+                                                <!--
                                                 <Col span="6" >
                                                     <Button type="primary" icon="plus" @click="addtempnodeSelector" ></Button>
                                                     <Button type="primary" icon="minus" @click="deltempnodeSelector(index)" v-if="tempnewdata.tempnodeSelector.length > 1"></Button>
                                                 </Col>
+                                                -->
                                             </Row>
                                         </FormItem>
                                     </div>
@@ -9141,13 +9155,13 @@
                                         <Icon type="plus-circled"></Icon>
                                     </div>
                                     <div v-show="showmodel.spec.template.spec.volumes.on" v-for="(volume, index) in tempnewdata.volumes" :key="index">
-                                        <div class="add_lable add_fifth" >
+                                        <!-- <div class="add_lable add_fifth" >
                                             <span style="font-size:small">列表数:{{index}}:</span>
-                                        </div>
-                                        <FormItem>
+                                        </div>-->
+                                        <FormItem v-show="false">
                                             <Row class="add_sixth">
-                                                <Col span="12">
-                                                    <Input v-model="volume.name"><span slot="prepend">name:</span></Input>
+                                                <Col span="12" >
+                                                    <Input v-model="volume.name" disabled ><span slot="prepend">name:</span></Input>
                                                 </Col>
                                             </Row>
                                         </FormItem>
@@ -9161,10 +9175,11 @@
                                                     <Col span="12">
                                                         <Input v-model="volume.hostPath.path" ><span slot="prepend">path:</span></Input>
                                                     </Col>
+                                                    <!--
                                                     <Col span="6" >
                                                         <Button type="primary" icon="plus"  @click="addnewdataspectemplatespecvolumes" ></Button>
                                                         <Button type="primary" icon="minus" @click="delnewdataspectemplatespecvolumes(index)" v-if="tempnewdata.volumes.length > 1"></Button>
-                                                    </Col>
+                                                    </Col>-->
                                                 </Row>
                                             </FormItem>
                                         </div>
@@ -9175,8 +9190,8 @@
                     </div>
                 </Form>
                 <div slot="footer" style="text-align: center;">
-                    <Button @click="clearnewdata">取消</Button>
                     <Button type="primary" @click="addnewdata('tempnewdata')">保存</Button>
+                    <Button @click="clearnewdata">取消</Button>
                 </div>
             </Modal>
         </div>
@@ -9233,9 +9248,857 @@
                 pageSize: 20,
                 detelmodal:false,
                 delloading:true,
+                rcNodeSelector:[],
+                rcImages:[],
                 delinfo:{},
+                showmodel: {
+                    properties: true,
+                    status: {
+                        on: true,
+                        properties: true,
+                        conditions: true,
+                    },
+                    metadata: {
+                        on: true,
+                        initializers: {
+                            on: true,
+                            pending: true,
+                            result: {
+                                on: true,
+                                properties: true,
+                                metadata: {
+                                    on: true,
+                                    properties: true,
+                                },
+                                details: {
+                                    on: true,
+                                    causes: {
+                                        on: true,
+                                        properties: true,
+                                    },
+                                    properties: true
+                                },
+                            },
+                            properties: true
+                        },
+                        annotations: true,
+                        ownerReferences: {
+                            on: true,
+                            properties: true,
+                        },
+                        labels: true,
+                        finalizers: true,
+                        properties: true
+                    },
+                    spec: {
+                        on: true,
+                        selector: true,
+                        properties: true,
+                        template: {
+                            on: true,
+                            properties: true,
+                            metadata: {
+                                on: true,
+                                annotations: true,
+                                finalizers: true,
+                                initializers: {
+                                    on: true,
+                                    pending: true,
+                                    properties: true,
+                                    result: {
+                                        on: true,
+                                        properties: true,
+                                        details: {
+                                            on: true,
+                                            properties: true,
+                                            causes: true
+                                        },
+                                        metadata: {
+                                            on: true,
+                                            properties: true,
+                                        }
+                                    }
+                                },
+                                labels: true,
+                                ownerReferences: {
+                                    on: true,
+                                    properties: true,
+                                },
+                                properties: true,
+                            },
+                            spec: {
+                                on: true,
+                                affinity: {
+                                    on: true,
+                                    nodeAffinity: {
+                                        on: true,
+                                        properties: true,
+                                        preferredexecution: {
+                                            on: true,
+                                            properties: true,
+                                            preference: {
+                                                on: true,
+                                                matchexpion: {
+                                                    on: true,
+                                                    properties: true,
+                                                    values: true
+                                                },
+                                                properties: true
+                                            },
+                                        },
+                                        requiredexecution: {
+                                            on: true,
+                                            properties: true,
+                                            nodeSelector: {
+                                                on: true,
+                                                properties: true,
+                                                matchexpreesion: {
+                                                    on: true,
+                                                    properties: true,
+                                                    values: true
+                                                }
+                                            }
+                                        }
+                                    },
+                                    podAffinity: {
+                                        on: true,
+                                        properties: true,
+                                        preferredexecution: {
+                                            on: true,
+                                            properties: true,
+                                            podaffinityterm: {
+                                                on: true,
+                                                namespaces: true,
+                                                properties: true,
+                                                labels: {
+                                                    on: true,
+                                                    properties: true,
+                                                    matchexpion: {
+                                                        on: true,
+                                                        properties: true,
+                                                        values: true
+                                                    },
+                                                    matchlabels: true
+                                                }
+                                            },
+                                        },
+                                        requiredexecution: {
+                                            on: true,
+                                            properties: true,
+                                            namespaces: true,
+                                            labels: {
+                                                on: true,
+                                                properties: true,
+                                                matchlabels: true,
+                                                matchexpressions: {
+                                                    on: true,
+                                                    properties: true,
+                                                    values: true
+                                                }
+                                            }
+                                        }
+                                    },
+                                    podAntiAffinity: {
+                                        on: true,
+                                        properties: true,
+                                        preferredexecution: {
+                                            on: true,
+                                            properties: true,
+                                            podaffinityterm: {
+                                                on: true,
+                                                properties: true,
+                                                namespaces: true,
+                                                labels: {
+                                                    on: true,
+                                                    properties: true,
+                                                    matchlabels: true,
+                                                    matchexpressions: {
+                                                        on: true,
+                                                        properties: true,
+                                                        values: true
+                                                    },
+                                                },
+                                            }
+                                        },
+                                        requiredexecution: {
+                                            on: true,
+                                            properties: true,
+                                            namespaces: true,
+                                            labels: {
+                                                on: true,
+                                                properties: true,
+                                                matchexpressions: {
+                                                    on: true,
+                                                    properties: true,
+                                                    values: true
+                                                },
+                                                matchlabels: true
+                                            }
+                                        }
+                                    },
+                                    properties: true
+                                },
+                                containers: {
+                                    on: true,
+                                    properties: true,
+                                    envFrom: {
+                                        on: true,
+                                        properties: true,
+                                        configMapRef: {
+                                            on: true,
+                                            properties: true,
+                                        },
+                                        secretRef: {
+                                            on: true,
+                                            properties: true,
+                                        }
+                                    },
+                                    env: {
+                                        on: true,
+                                        properties: true,
+                                        valueFrom: {
+                                            on: true,
+                                            properties: true,
+                                            resourceFieldRef: {
+                                                on: true,
+                                                properties: true,
+                                                divisor: {
+                                                    on: true,
+                                                    properties: true,
+                                                }
+                                            },
+                                            secretKeyRef: {
+                                                on: true,
+                                                properties: true,
+                                            },
+                                            configMapKeyRef: {
+                                                on: true,
+                                                properties: true,
+                                            },
+                                            fieldRef: {
+                                                on: true,
+                                                properties: true,
+                                            },
+                                        }
+                                    },
+                                    lifecycle: {
+                                        on: true,
+                                        properties: true,
+                                        preStop: {
+                                            on: true,
+                                            properties: true,
+                                            exec: {
+                                                on: true,
+                                                properties: true,
+                                                command: true
+                                            },
+                                            httpGet: {
+                                                on: true,
+                                                properties: true,
+                                                httpHeaders: {
+                                                    on: true,
+                                                    properties: true,
+                                                },
+                                                port: {
+                                                    on: true,
+                                                    properties: true,
+                                                }
+                                            },
+                                            tcpSocket: {
+                                                on: true,
+                                                properties: true,
+                                                port: {
+                                                    on: true,
+                                                    properties: true,
+                                                }
+                                            }
+                                        },
+                                        postStart: {
+                                            on: true,
+                                            properties: true,
+                                            exec: {
+                                                on: true,
+                                                properties: true,
+                                                command: true
+                                            },
+                                            httpGet: {
+                                                on: true,
+                                                properties: true,
+                                                httpHeaders: {
+                                                    on: true,
+                                                    properties: true,
+                                                },
+                                                port: {
+                                                    on: true,
+                                                    properties: true,
+                                                }
+                                            },
+                                            tcpSocket: {
+                                                on: true,
+                                                properties: true,
+                                                port: {
+                                                    on: true,
+                                                    properties: true,
+                                                }
+                                            }
+                                        }
+                                    },
+                                    livenessProbe: {
+                                        on: true,
+                                        properties: true,
+                                        httpGet: {
+                                            on: true,
+                                            properties: true,
+                                            httpHeaders: {
+                                                on: true,
+                                                properties: true,
+                                            },
+                                            port: {
+                                                on: true,
+                                                properties: true,
+                                            }
+                                        },
+                                        exec: {
+                                            on: true,
+                                            properties: true,
+                                            command: true
+                                        },
+                                        tcpSocket: {
+                                            on: true,
+                                            properties: true,
+                                            port: {
+                                                on: true,
+                                                properties: true,
+                                            }
+                                        }
+                                    },
+                                    readinessProbe: {
+                                        on: true,
+                                        properties: true,
+                                        exec: {
+                                            on: true,
+                                            properties: true,
+                                        },
+                                        httpGet: {
+                                            on: true,
+                                            properties: true,
+                                            httpHeaders: {
+                                                on: true,
+                                                properties: true,
+                                            },
+                                            port: {
+                                                on: true,
+                                                properties: true,
+                                            }
+                                        },
+                                        tcpSocket: {
+                                            on: true,
+                                            properties: true,
+                                            port: {
+                                                on: true,
+                                                properties: true,
+                                            }
+                                        }
+                                    },
+                                    resources: {
+                                        on: true,
+                                        properties: true,
+                                        limits: {
+                                            on: true,
+                                            properties: true,
+                                            key: {
+                                                on: true,
+                                                properties: true,
+                                            }
+                                        },
+                                        requests: {
+                                            on: true,
+                                            properties: true,
+                                            key: {
+                                                on: true,
+                                                properties: true,
+                                            }
+                                        },
+                                        key: {
+                                            on: true,
+                                            properties: true,
+                                        }
+                                    },
+                                    securityContext: {
+                                        on: true,
+                                        properties: true,
+                                        capabilities: {
+                                            on: true,
+                                            properties: true,
+                                            add: true,
+                                            drop: true
+                                        },
+                                        seLinuxOptions: {
+                                            on: true,
+                                            properties: true,
+                                        }
+                                    },
+                                    ports: {
+                                        on: true,
+                                        properties: true,
+                                    },
+                                    volumeMounts: {
+                                        on: true,
+                                        properties: true,
+                                    },
+                                    command: true,
+                                    arg: true,
+
+                                },
+                                hostAliases: {
+                                    on: true,
+                                    properties: true,
+                                    hostname: true
+                                },
+                                imagePullSecrets: {
+                                    on: true,
+                                    properties: true
+                                },
+                                initContainers: {
+                                    on: true,
+                                    properties: true,
+                                    command: true,
+                                    args: true,
+                                    env: {
+                                        on: true,
+                                        properties: true,
+                                        valueFrom: {
+                                            on: true,
+                                            properties: true,
+                                            configMapKeyRef: {
+                                                on: true,
+                                                properties: true,
+                                            },
+                                            fieldRef: {
+                                                on: true,
+                                                properties: true,
+                                            },
+                                            resourceFieldRef: {
+                                                on: true,
+                                                properties: true,
+                                                divisor: {
+                                                    on: true,
+                                                    properties: true,
+                                                }
+                                            },
+                                            secretKeyRef: {
+                                                on: true,
+                                                properties: true,
+                                            }
+                                        }
+                                    },
+                                    envFrom: {
+                                        on: true,
+                                        properties: true,
+                                        configMapRef: {
+                                            on: true,
+                                            properties: true,
+                                        },
+                                        secretRef: {
+                                            on: true,
+                                            properties: true,
+                                        }
+                                    },
+                                    lifecycle: {
+                                        on: true,
+                                        properties: true,
+                                        postStart: {
+                                            on: true,
+                                            properties: true,
+                                            exec: {
+                                                on: true,
+                                                properties: true,
+                                                command: true
+                                            },
+                                            httpGet: {
+                                                on: true,
+                                                properties: true,
+                                                httpHeaders: {
+                                                    on: true,
+                                                    properties: true,
+                                                },
+                                                port: {
+                                                    on: true,
+                                                    properties: true,
+                                                }
+                                            },
+                                            tcpSocket: {
+                                                on: true,
+                                                properties: true,
+                                                port: {
+                                                    on: true,
+                                                    properties: true,
+                                                }
+                                            }
+                                        },
+                                        preStop: {
+                                            on: true,
+                                            properties: true,
+                                            exec: {
+                                                on: true,
+                                                properties: true,
+                                                command: true
+                                            },
+                                            httpGet: {
+                                                on: true,
+                                                properties: true,
+                                                httpHeaders: {
+                                                    on: true,
+                                                    properties: true,
+                                                },
+                                                port: {
+                                                    on: true,
+                                                    properties: true,
+                                                }
+                                            },
+                                            tcpSocket: {
+                                                on: true,
+                                                properties: true,
+                                                port: {
+                                                    on: true,
+                                                    properties: true,
+                                                }
+                                            }
+                                        }
+                                    },
+                                    livenessProbe: {
+                                        on: true,
+                                        properties: true,
+                                        exec: {
+                                            on: true,
+                                            properties: true,
+                                            command: true
+                                        },
+                                        httpGet: {
+                                            on: true,
+                                            properties: true,
+                                            httpHeaders: {
+                                                on: true,
+                                                properties: true,
+                                            },
+                                            port: {
+                                                on: true,
+                                                properties: true,
+                                            }
+                                        },
+                                        tcpSocket: {
+                                            on: true,
+                                            properties: true,
+                                            port: {
+                                                on: true,
+                                                properties: true,
+                                            }
+                                        }
+                                    },
+                                    ports: {
+                                        on: true,
+                                        properties: true,
+                                    },
+                                    readinessProbe: {
+                                        on: true,
+                                        properties: true,
+                                        exec: {
+                                            on: true,
+                                            properties: true,
+                                            command: true
+                                        },
+                                        httpGet: {
+                                            on: true,
+                                            properties: true,
+                                            httpHeaders: {
+                                                on: true,
+                                                properties: true,
+                                            },
+                                            port: {
+                                                on: true,
+                                                properties: true,
+                                            }
+                                        },
+                                        tcpSocket: {
+                                            on: true,
+                                            properties: true,
+                                            port: {
+                                                on: true,
+                                                properties: true,
+                                            }
+                                        }
+                                    },
+                                    resources: {
+                                        on: true,
+                                        properties: true,
+                                        limits: {
+                                            on: true,
+                                            properties: true,
+                                            key: {
+                                                on: true,
+                                                properties: true,
+                                            }
+                                        },
+                                        requests: {
+                                            on: true,
+                                            properties: true,
+                                            key: {
+                                                on: true,
+                                                properties: true,
+                                            }
+                                        }
+                                    },
+                                    securityContext: {
+                                        on: true,
+                                        properties: true,
+                                        capabilities: {
+                                            on: true,
+                                            properties: true,
+                                            add: true,
+                                            drop: true
+                                        },
+                                        seLinuxOptions: {
+                                            on: true,
+                                            properties: true,
+                                        }
+                                    },
+                                    volumeMounts: {
+                                        on: true,
+                                        properties: true,
+                                    }
+                                },
+                                nodeSelector: {
+                                    on: true,
+                                    properties: true,
+                                },
+                                securityContext: {
+                                    on: true,
+                                    properties: true,
+                                    selinuxoptions: {
+                                        on: true,
+                                        properties: true,
+                                        suppgroups: true
+                                    }
+                                },
+                                tolerations: {
+                                    on: true,
+                                    properties: true,
+                                },
+                                volumes: {
+                                    on: true,
+                                    properties: true,
+                                    awsstore: {
+                                        on: true,
+                                        properties: true
+                                    },
+                                    azuredisk: {
+                                        on: true,
+                                        properties: true
+                                    },
+                                    azurefile: {
+                                        on: true,
+                                        properties: true
+                                    },
+                                    cephfs: {
+                                        on: true,
+                                        properties: true,
+                                        secretRef: {
+                                            on: true,
+                                            properties: true,
+                                        },
+                                        monitors: true
+                                    },
+                                    cinder: {
+                                        on: true,
+                                        properties: true,
+                                    },
+                                    configMap: {
+                                        on: true,
+                                        properties: true,
+                                        items: {
+                                            on: true,
+                                            properties: true,
+                                        }
+                                    },
+                                    downwardAPI: {
+                                        on: true,
+                                        properties: true,
+                                        items: {
+                                            on: true,
+                                            properties: true,
+                                            field: {
+                                                on: true,
+                                                properties: true,
+                                            },
+                                            resource: {
+                                                on: true,
+                                                properties: true,
+                                                divisor: {
+                                                    on: true,
+                                                    properties: true,
+                                                }
+                                            }
+                                        }
+                                    },
+                                    emptyDir: {
+                                        on: true,
+                                        properties: true,
+                                        sizeLimit: {
+                                            on: true,
+                                            properties: true,
+                                        }
+                                    },
+                                    fc: {
+                                        on: true,
+                                        properties: true,
+                                        targetWWNs: true
+                                    },
+                                    flexVolume: {
+                                        on: true,
+                                        properties: true,
+                                        options: true,
+                                        ref: {
+                                            on: true,
+                                            properties: true
+                                        }
+                                    },
+                                    flocker: {
+                                        on: true,
+                                        properties: true,
+                                    },
+                                    gcePersistentDisk: {
+                                        on: true,
+                                        properties: true,
+                                    },
+                                    gitRepo: {
+                                        on: true,
+                                        properties: true,
+                                    },
+                                    glusterfs: {
+                                        on: true,
+                                        properties: true,
+                                    },
+                                    hostPath: {
+                                        on: true,
+                                        properties: true,
+                                    },
+                                    iscsi: {
+                                        on: true,
+                                        properties: true,
+                                        portals: true,
+                                        ref: {
+                                            on: true,
+                                            properties: true,
+                                        }
+                                    },
+                                    nfs: {
+                                        on: true,
+                                        properties: true,
+                                    },
+                                    persistentVolumeClaim: {
+                                        on: true,
+                                        properties: true,
+                                    },
+                                    photonPersistentDisk: {
+                                        on: true,
+                                        properties: true,
+                                    },
+                                    portworxVolume: {
+                                        on: true,
+                                        properties: true,
+                                    },
+                                    projected: {
+                                        on: true,
+                                        properties: true,
+                                        sources: {
+                                            on: true,
+                                            properties: true,
+                                            configMap: {
+                                                on: true,
+                                                properties: true,
+                                                items: {
+                                                    on: true,
+                                                    properties: true,
+                                                }
+                                            },
+                                            downwardAPI: {
+                                                on: true,
+                                                properties: true,
+                                                items: {
+                                                    on: true,
+                                                    properties: true,
+                                                    fieldref: {
+                                                        on: true,
+                                                        properties: true,
+                                                    },
+                                                    resourceFieldRef: {
+                                                        on: true,
+                                                        properties: true,
+                                                        divisor: {
+                                                            on: true,
+                                                            properties: true,
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            secret: {
+                                                on: true,
+                                                properties: true,
+                                                items: {
+                                                    on: true,
+                                                    properties: true,
+                                                }
+                                            }
+                                        }
+                                    },
+                                    quobyte: {
+                                        on: true,
+                                        properties: true,
+                                    },
+                                    rbd: {
+                                        on: true,
+                                        properties: true,
+                                        monitors: true,
+                                        secretRef: {
+                                            on: true,
+                                            properties: true,
+                                        }
+                                    },
+                                    scaleIO: {
+                                        on: true,
+                                        properties: true,
+                                        secretRef: {
+                                            on: true,
+                                            properties: true,
+                                        }
+                                    },
+                                    secret: {
+                                        on: true,
+                                        properties: true,
+                                        items: {
+                                            on: true,
+                                            properties: true,
+                                        }
+                                    },
+                                    storageos: {
+                                        on: true,
+                                        properties: true,
+                                        secretRef: {
+                                            on: true,
+                                            properties: true,
+                                        }
+                                    },
+                                    vsphereVolume: {
+                                        on: true,
+                                        properties: true,
+                                    }
+                                },
+                                properties: true,
+                            },
+                        },
+                    }
+                },
                 data: [],
-                newdata:{},
                 infomodel: false,
                 newmodel: false,
                 tempnewdata:{
@@ -9243,29 +10106,20 @@
                     kind:'ReplicationController',
                     metadata_name:'',
                     spec_replicas:'1',
-                    tempnodeSelector: [['', '']],
-                    templabels: [['', '']],
-                    tempports: [['', '']],
-                    tempselector: [['', '']],
-                    ports:[{
-                        containerPort:''
-                    }],
+                    tempnodeSelector: [['kubernetes.io/hostname', '']],
+                    templabels: [['app', '']],
+                    tempselector: [['app', '']],
+                    //ports:[{
+                        //containerPort:''
+                    //}],
                     spec_template_spec_containers_name:'',
                     spec_template_spec_containers_image:'',
                     spec_template_spec_hostname:'',
                     spec_template_spec_subdomain:'',
-                    commands:[''],
-                    envs:[{name:'',value:''}],
-                    volumeMounts:[{
-                        name:'',
-                        mountPath:''
-                    }],
-                    volumes:[{
-                        name:'',
-                        hostPath:{
-                            path:''
-                        }
-                    }]
+                    commands:['/dns-init',''],
+                    envs:[{name:'MYSQL_ROOT_PASSWORD',value:'kayak'}],
+                    volumeMounts:[],
+                    volumes:[]
                 },
                 infodata: {
                     apiVersion: '',
@@ -9543,6 +10397,12 @@
                     ],
                     spec_template_spec_containers_image:[
                         {required: true,message:'镜像名称不能为空！', trigger: 'blur' }
+                    ],
+                    spec_template_spec_hostname:[
+                        {required: true,message:'主机名不能为空！', trigger: 'blur' }
+                    ],
+                    spec_template_spec_subdomain:[
+                        {required: true,message:'服务名称不能为空！', trigger: 'blur' }
                     ]
                 }
 
@@ -9551,21 +10411,10 @@
         methods: {
             query: function () {
                 let _this = this;
-                this.$http.post(this.httpurl.toString() + '/k8s/getReplicationControllerLists', this.$qs.stringify({
-                    pageNumber: this.pageNumber,
-                    pageSize: this.pageSize
-                })).then(function (response) {
-                    _this.pageNumber = response.data.pageNumber;
-                    _this.data = response.data.items;
-                    _this.totalCount = response.data.totalCount;
-                    _this.pageSize = response.data.pageSize;
+                this.kayak.httpUtil.query({url:"k8s/getReplicationControllerLists.json",method:"post",params:{'pageNumber':this.pageNumber, 'pageSize':this.pageSize},successAlert:false}).then(data=>{
+                    _this.totalCount = data.returndata.totalCount;
+                    _this.data = data.returndata.rows;
                     _this.loading = false;
-                }).catch(function (error) {
-                    if (typeof(error.response) === "undefined") {
-                        _this.$Message.error("错误信息：" + error);
-                    } else {
-                        _this.$Message.error("错误信息：" + error.response.data.message);
-                    }
                 });
             },
             changePage: function (pageNumber) {
@@ -9582,180 +10431,24 @@
             },
             deleterow: function () {
                 let _this = this;
-                let str = JSON.stringify(this.delinfo);
-                this.$http.post(this.httpurl.toString() + '/k8s/deleteReplicationController', this.$qs.stringify({
-                    'str': str
-                })).then(function (response) {
-                    if (response.data === true) {
-                        _this.$Message.info("删除成功");
-                        _this.delinfo = {};
-                        _this.detelmodal = false;
-                        this.query();
-                    }
-                }).catch(function (error) {
-                    if (typeof(error.response) === "undefined") {
-                        _this.$Message.error("错误信息：" + error);
-                    } else {
-                        _this.$Message.error("错误信息：" + error.response.data.message);
-                    }
+                _this.detelmodal = false;
+                this.kayak.httpUtil.update({url:"k8s/deleteReplicationController.json",method:"post",params:{'k8scode':JSON.stringify(this.delinfo)},successAlert:false}).then(data=>{
+                    _this.query();
                 });
             },
             clearnewdata: function () {
-
+                this.newmodel = false;
             },
             addnewdata:function (name) {
                 let _this = this;
                 this.$refs[name].validate((valid) => {
                     if (!valid) {
-                        this.$Message.error('请填写正确的数据!');
+                        _this.$Message.error('请填写正确的数据!');
                         return;
                     }else {
-                        _this.newdata = {};//初始化
-                        if (_this.$checkUndefined(_this.newdata.spec)) {
-                            _this.newdata.spec = {};
-                        }
-                        if (_this.$checkUndefined(_this.newdata.spec.template)) {
-                            _this.newdata.spec.template = {};
-                        }
-                        if (_this.$checkUndefined(_this.newdata.spec.template.spec)) {
-                            _this.newdata.spec.template.spec = {};
-                        }
-                        if (_this.$checkUndefined(_this.newdata.spec.template.spec.containers)) {
-                            _this.newdata.spec.template.spec.containers = [];
-                        }
-                        //拼装参数
-                        var  mapstr = _this.$Hashmap(_this.tempnewdata.tempnodeSelector);
-                        if (!mapstr !== "" && mapstr !== null && typeof(mapstr) !== undefined) {
-                            _this.newdata.spec.template.spec.nodeSelector = mapstr;
-                        }
-
-                        mapstr = _this.$Hashmap(_this.tempnewdata.templabels);
-                        if (!mapstr !== "" && mapstr !== null && typeof(mapstr) !== undefined) {
-                            if (_this.$checkUndefined(_this.newdata.spec.template.metadata)) {
-                                _this.newdata.spec.template.metadata = {};
-                            }
-                            _this.newdata.spec.template.metadata.labels = mapstr;
-                        }
-
-                        mapstr = _this.$Hashmap(_this.tempnewdata.tempselector);
-                        if (!mapstr !== "" && mapstr !== null && typeof(mapstr) !== undefined) {
-                            _this.newdata.spec.selector = mapstr;
-                        }
-
-                        if (_this.$checkNull(_this.tempnewdata.apiVersion)) {
-                            _this.newdata.apiVersion = _this.tempnewdata.apiVersion;
-                        }
-
-                        if (_this.$checkNull(_this.tempnewdata.kind)) {
-                            _this.newdata.kind = _this.tempnewdata.kind;
-                        }
-
-                        if (_this.$checkNull(_this.tempnewdata.metadata_name)) {
-                            if (this.$checkUndefined(_this.newdata.metadata)) {
-                                _this.newdata.metadata = {};
-                            }
-                            _this.newdata.metadata.name = _this.tempnewdata.metadata_name;
-                        }
-
-                        if (_this.$checkNull(_this.tempnewdata.spec_replicas)) {
-                            _this.newdata.spec.replicas = _this.tempnewdata.spec_replicas;
-                        }
-
-                        if (_this.$checkNull(_this.tempnewdata.spec_template_spec_hostname)) {
-                            _this.newdata.spec.template.spec.hostname = _this.tempnewdata.spec_template_spec_hostname;
-                        }
-
-                        if (_this.$checkNull(_this.tempnewdata.spec_template_spec_subdomain)) {
-                            _this.newdata.spec.template.spec.subdomain = _this.tempnewdata.spec_template_spec_subdomain;
-                        }
-
-                        let container = {};
-                        if (_this.$checkNull(_this.tempnewdata.spec_template_spec_containers_name)) {
-                            container.name = _this.tempnewdata.spec_template_spec_containers_name;
-                        }
-
-                        if (_this.$checkNull(_this.tempnewdata.spec_template_spec_containers_image)) {
-                            container.image = _this.tempnewdata.spec_template_spec_containers_image;
-                        }
-                        if (_this.tempnewdata.commands.length > 0) {
-                            for (var i = _this.tempnewdata.commands.length - 1; i >= 0; i--) {
-                                if (_this.tempnewdata.commands[i] === '') {
-                                    _this.tempnewdata.commands.splice(i, 1);
-                                }
-                            }
-                            if (_this.tempnewdata.commands.length > 0) {
-                                if (_this.$checkUndefined(container.lifecycle)) {
-                                    container.lifecycle = {};
-                                }
-                                if (_this.$checkUndefined(container.lifecycle.postStart)) {
-                                    container.lifecycle.postStart = {};
-                                }
-                                if (_this.$checkUndefined(container.lifecycle.postStart.exec)) {
-                                    container.lifecycle.postStart.exec = {};
-                                }
-                                if (_this.$checkUndefined(container.lifecycle.postStart.exec.command)) {
-                                    container.lifecycle.postStart.exec.command = [];
-                                }
-                                container.lifecycle.postStart.exec.command = this.tempnewdata.commands;
-                            }
-                        }
-
-                        if (_this.tempnewdata.envs.length > 0) {
-                            for (var i = _this.tempnewdata.envs.length - 1; i >= 0; i--) {
-                                if (_this.tempnewdata.envs[i].name === '' || _this.tempnewdata.envs[i].value === '') {
-                                    _this.tempnewdata.envs.splice(i, 1);
-                                }
-                            }
-                            if (_this.tempnewdata.envs.length > 0) {
-                                if (_this.$checkUndefined(container.env)) {
-                                    container.env = [];
-                                }
-                                container.env = _this.tempnewdata.envs;
-                            }
-                        }
-
-                        if (_this.tempnewdata.volumeMounts.length > 0) {
-                            for (var i = _this.tempnewdata.volumeMounts.length - 1; i >= 0; i--) {
-                                if (_this.tempnewdata.volumeMounts[i].name === '' || _this.tempnewdata.volumeMounts[i].mountPath === '') {
-                                    _this.tempnewdata.volumeMounts.splice(i, 1);
-                                }
-                            }
-                            if (_this.tempnewdata.volumeMounts.length > 0) {
-                                if (_this.$checkUndefined(container.volumeMounts)) {
-                                    container.volumeMounts = [];
-                                }
-                                container.volumeMounts = _this.tempnewdata.volumeMounts;
-                            }
-                        }
-                        _this.newdata.spec.template.spec.containers.push(container);
-
-                        if (_this.tempnewdata.volumes.length > 0) {
-                            for (var i = _this.tempnewdata.volumes.length - 1; i >= 0; i--) {
-                                if (_this.tempnewdata.volumes[i].name === '' || _this.tempnewdata.volumes[i].hostPath.path === '') {
-                                    _this.tempnewdata.volumes.splice(i, 1);
-                                }
-                            }
-                            if (_this.tempnewdata.volumes.length > 0) {
-                                if (this.$checkUndefined(this.newdata.spec.template.spec.volumes)) {
-                                    _this.newdata.spec.template.spec.volumes = [];
-                                }
-                                _this.newdata.spec.template.spec.volumes = _this.tempnewdata.volumes;
-                            }
-                        }
-
-                        let str = JSON.stringify(_this.newdata);
-                        this.$http.post(this.httpurl.toString() + '/k8s/createReplicationController', this.$qs.stringify({
-                            'str': str
-                        })).then(function (response) {
-                            _this.$Message.info("添加成功!");
+                        this.kayak.httpUtil.update({url:"k8s/createReplicationController.json",method:"post",params:{'k8scode':JSON.stringify(_this.tempnewdata)},successAlert:false}).then(data=>{
                             _this.newmodel = false;
                             _this.query();
-                        }).catch(function (error) {
-                            if (typeof(error.response) === "undefined") {
-                                _this.$Message.error("错误信息：" + error);
-                            } else {
-                                _this.$Message.error("错误信息：" + error.response.data.message);
-                            }
                         });
                     }
                 });
@@ -9764,12 +10457,1335 @@
                 this.infomodel = true;
                 this.infodata = row.replicationcontroller;
                 this.modelflag = row.modelflag;
+                let s = this.infodata.spec.template.spec.securityContext;
+                let t = JSON.stringify(this.infodata.spec.template.spec.securityContext);
+                let q =  JSON.stringify(this.infodata.spec.template.spec.securityContext).length;
+
             },
             infoclose: function () {
                 this.infomodel = false;
             },
             newinfo: function () {
+                let name = uuid().replace(/-/g,'');
+                this.tempnewdata.volumeMounts.push({name:name,mountPath:''});
+                this.tempnewdata.volumes.push({name:name,hostPath:{path:''}});
                 this.newmodel = true;
+
+            },
+            showmodel_properties: function () {
+                this.showmodel.properties = this.showmodel.properties !== true;
+            },
+            showmodel_status: function () {
+                this.showmodel.status.on = this.showmodel.status.on !== true;
+            },
+            showmodel_status_properties: function () {
+                this.showmodel.status.properties = this.showmodel.status.properties !== true;
+            },
+            showmodel_status_conditions: function () {
+                this.showmodel.status.conditions = this.showmodel.status.conditions !== true;
+            },
+            showmodel_metadata: function () {
+                this.showmodel.metadata.on = this.showmodel.metadata.on !== true;
+            },
+            showmodel_metadata_initializers: function () {
+                this.showmodel.metadata.initializers.on = this.showmodel.metadata.initializers.on !== true;
+            },
+            showmodel_metadata_annotations: function () {
+                this.showmodel.metadata.annotations = this.showmodel.metadata.annotations !== true;
+            },
+            showmodel_metadata_initializers_pending: function () {
+                this.showmodel.metadata.initializers.pending = this.showmodel.metadata.initializers.pending !== true;
+            },
+            showmodel_metadata_ownerReferences: function () {
+                this.showmodel.metadata.ownerReferences = this.showmodel.metadata.ownerReferences !== true;
+            },
+            showmodel_metadata_labels: function () {
+                this.showmodel.metadata.labels = this.showmodel.metadata.labels !== true;
+            },
+            showmodel_metadata_finalizers: function () {
+                this.showmodel.metadata.finalizers = this.showmodel.metadata.finalizers !== true;
+            },
+            showmodel_metadata_properties: function () {
+                this.showmodel.metadata.properties = this.showmodel.metadata.properties !== true;
+            },
+            showmodel_metadata_initializers_result: function () {
+                this.showmodel.metadata.initializers.result.on = this.showmodel.metadata.initializers.result.on !== true;
+            },
+            showmodel_metadata_initializers_result_properties: function () {
+                this.showmodel.metadata.initializers.result.properties = this.showmodel.metadata.initializers.result.properties !== true;
+            },
+            showmodel_metadata_initializers_result_metadata_properties: function () {
+                this.showmodel.metadata.initializers.result.metadata.properties = this.showmodel.metadata.initializers.result.metadata.properties !== true;
+            },
+            showmodel_metadata_initializers_result_metadata: function () {
+                this.showmodel.metadata.initializers.result.metadata.on = this.showmodel.metadata.initializers.result.metadata.on !== true;
+            },
+            showmodel_metadata_initializers_result_details: function () {
+                this.showmodel.metadata.initializers.result.details.on = this.showmodel.metadata.initializers.result.details.on !== true;
+            },
+            showmodel_metadata_initializers_result_details_causes: function () {
+                this.showmodel.metadata.initializers.result.details.causes.on = this.showmodel.metadata.initializers.result.details.causes.on !== true;
+            },
+            showmodel_metadata_initializers_properties: function () {
+                this.showmodel.metadata.initializers.properties = this.showmodel.metadata.initializers.properties !== true;
+            },
+            showmodel_metadata_initializers_result_details_properties: function () {
+                this.showmodel.metadata.initializers.result.details.properties = this.showmodel.metadata.initializers.result.details.properties !== true;
+            },
+            showmodel_spec: function () {
+                this.showmodel.spec.on = this.showmodel.spec.on !== true;
+            },
+            showmodel_spec_selector: function () {
+                this.showmodel.spec.selector = this.showmodel.spec.selector !== true;
+            },
+            showmodel_spec_properties: function () {
+                this.showmodel.spec.properties = this.showmodel.spec.properties !== true;
+            },
+            showmodel_spec_template_properties: function () {
+                this.showmodel.spec.template.properties = this.showmodel.spec.template.properties !== true;
+            },
+            showmodel_spec_template: function () {
+                this.showmodel.spec.template.on = this.showmodel.spec.template.on !== true;
+            },
+            showmodel_spec_template_metadata: function () {
+                this.showmodel.spec.template.metadata.on = this.showmodel.spec.template.metadata.on !== true;
+            },
+            showmodel_spec_template_metadata_finalizers: function () {
+                this.showmodel.spec.template.metadata.finalizers = this.showmodel.spec.template.metadata.finalizers !== true;
+            },
+            showmodel_spec_template_metadata_initializers: function () {
+                this.showmodel.spec.template.metadata.initializers.on = this.showmodel.spec.template.metadata.initializers.on !== true;
+            },
+            showmodel_spec_template_metadata_annotations: function () {
+                this.showmodel.spec.template.metadata.annotations = this.showmodel.spec.template.metadata.annotations !== true;
+            },
+            showmodel_spec_template_metadata_properties: function () {
+                this.showmodel.spec.template.metadata.properties = this.showmodel.spec.template.metadata.properties !== true;
+            },
+            showmodel_spec_template_metadata_labels: function () {
+                this.showmodel.spec.template.metadata.labels = this.showmodel.spec.template.metadata.labels !== true;
+            },
+            showmodel_spec_template_metadata_ownerReferences: function () {
+                this.showmodel.spec.template.metadata.ownerReferences.on = this.showmodel.spec.template.metadata.ownerReferences.on !== true;
+            },
+            showmodel_spec_template_metadata_ownerReferences_properties: function () {
+                this.showmodel.spec.template.metadata.ownerReferences.properties = this.showmodel.spec.template.metadata.ownerReferences.properties !== true;
+            },
+            showmodel_spec_template_metadata_initializers_pending: function () {
+                this.showmodel.spec.template.metadata.initializers.pending = this.showmodel.spec.template.metadata.initializers.pending !== true;
+            },
+            showmodel_spec_template_metadata_initializers_properties: function () {
+                this.showmodel.spec.template.metadata.initializers.properties = this.showmodel.spec.template.metadata.initializers.properties !== true;
+            },
+            showmodel_spec_template_metadata_initializers_result: function () {
+                this.showmodel.spec.template.metadata.initializers.result.on = this.showmodel.spec.template.metadata.initializers.result.on !== true;
+            },
+            showmodel_spec_template_metadata_initializers_result_properties: function () {
+                this.showmodel.spec.template.metadata.initializers.result.properties = this.showmodel.spec.template.metadata.initializers.result.properties !== true;
+            },
+            showmodel_spec_template_metadata_initializers_result_details: function () {
+                this.showmodel.spec.template.metadata.initializers.result.details.on = this.showmodel.spec.template.metadata.initializers.result.details.on !== true;
+            },
+            showmodel_spec_template_metadata_initializers_result_details_properties: function () {
+                this.showmodel.spec.template.metadata.initializers.result.details.properties = this.showmodel.spec.template.metadata.initializers.result.details.properties !== true;
+            },
+            showmodel_spec_template_metadata_initializers_result_details_causes: function () {
+                this.showmodel.spec.template.metadata.initializers.result.details.causes = this.showmodel.spec.template.metadata.initializers.result.details.causes !== true;
+            },
+            showmodel_spec_template_metadata_initializers_result_metadata: function () {
+                this.showmodel.spec.template.metadata.initializers.result.metadata.on = this.showmodel.spec.template.metadata.initializers.result.metadata.on !== true;
+            },
+            showmodel_spec_template_metadata_initializers_result_metadata_properties: function () {
+                this.showmodel.spec.template.metadata.initializers.result.metadata.properties = this.showmodel.spec.template.metadata.initializers.result.metadata.properties !== true;
+            },
+            showmodel_spec_template_spec: function () {
+                this.showmodel.spec.template.spec.on = this.showmodel.spec.template.spec.on !== true;
+            },
+            showmodel_spec_template_spec_containers: function () {
+
+                this.showmodel.spec.template.spec.containers.on = this.showmodel.spec.template.spec.containers.on !== true;
+            },
+            showmodel_spec_template_spec_hostAliases: function () {
+                this.showmodel.spec.template.spec.hostAliases.on = this.showmodel.spec.template.spec.hostAliases.on !== true;
+            },
+            showmodel_spec_template_spec_imagePullSecrets: function () {
+                this.showmodel.spec.template.spec.imagePullSecrets.on = this.showmodel.spec.template.spec.imagePullSecrets.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers: function () {
+                this.showmodel.spec.template.spec.initContainers.on = this.showmodel.spec.template.spec.initContainers.on !== true;
+            },
+            showmodel_spec_template_spec_nodeSelector: function () {
+                this.showmodel.spec.template.spec.nodeSelector.on = this.showmodel.spec.template.spec.nodeSelector.on !== true;
+            },
+            showmodel_spec_template_spec_tolerations: function () {
+                this.showmodel.spec.template.spec.tolerations.on = this.showmodel.spec.template.spec.tolerations.on !== true;
+            },
+            showmodel_spec_template_spec_securityContext: function () {
+                this.showmodel.spec.template.spec.securityContext.on = this.showmodel.spec.template.spec.securityContext.on !== true;
+            },
+            showmodel_spec_template_spec_volumes: function () {
+                this.showmodel.spec.template.spec.volumes.on = this.showmodel.spec.template.spec.volumes.on !== true;
+            },
+            showmodel_spec_template_spec_properties: function () {
+                this.showmodel.spec.template.spec.properties = this.showmodel.spec.template.spec.properties !== true;
+            },
+            showmodel_spec_template_spec_affinity: function () {
+                this.showmodel.spec.template.spec.affinity.on = this.showmodel.spec.template.spec.affinity.on !== true;
+            },
+            showmodel_spec_template_spec_affinity_properties: function () {
+                this.showmodel.spec.template.spec.affinity.properties = this.showmodel.spec.template.spec.affinity.properties !== true;
+            },
+            showmodel_spec_template_spec_affinity_nodeAffinity: function () {
+                this.showmodel.spec.template.spec.affinity.nodeAffinity.on = this.showmodel.spec.template.spec.affinity.nodeAffinity.on !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAntiAffinity: function () {
+                this.showmodel.spec.template.spec.affinity.podAntiAffinity.on = this.showmodel.spec.template.spec.affinity.podAntiAffinity.on !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAffinity: function () {
+                this.showmodel.spec.template.spec.affinity.podAffinity.on = this.showmodel.spec.template.spec.affinity.podAffinity.on !== true;
+            },
+            showmodel_spec_template_spec_affinity_nodeAffinity_properties: function () {
+                this.showmodel.spec.template.spec.affinity.nodeAffinity.properties = this.showmodel.spec.template.spec.affinity.nodeAffinity.properties !== true;
+            },
+            showmodel_spec_template_spec_affinity_nodeAffinity_preferredDuringSchedulingIgnoredDuringExecution: function () {
+                this.showmodel.spec.template.spec.affinity.nodeAffinity.preferredexecution.on = this.showmodel.spec.template.spec.affinity.nodeAffinity.preferredexecution.on !== true;
+            },
+            showmodel_spec_template_spec_affinity_nodeAffinity_preferredexecution_properties: function () {
+                this.showmodel.spec.template.spec.affinity.nodeAffinity.preferredexecution.properties = this.showmodel.spec.template.spec.affinity.nodeAffinity.preferredexecution.properties !== true;
+            },
+            showmodel_spec_template_spec_affinity_nodeAffinity_preferredexecution_preference: function () {
+                this.showmodel.spec.template.spec.affinity.nodeAffinity.preferredexecution.preference.on = this.showmodel.spec.template.spec.affinity.nodeAffinity.preferredexecution.preference.on !== true;
+            },
+            showmodel_spec_template_spec_affinity_nodeAffinity_preferredexecution_preference_matchexpion: function () {
+                this.showmodel.spec.template.spec.affinity.nodeAffinity.preferredexecution.preference.matchexpion.on = this.showmodel.spec.template.spec.affinity.nodeAffinity.preferredexecution.preference.matchexpion.on !== true;
+            },
+            showmodel_spec_template_spec_affinity_nodeAffinity_preferredexecution_preference_properties: function () {
+                this.showmodel.spec.template.spec.affinity.nodeAffinity.preferredexecution.preference.properties = this.showmodel.spec.template.spec.affinity.nodeAffinity.preferredexecution.preference.properties !== true;
+            },
+            showmodel_spec_template_spec_affinity_nodeAffinity_preferredexecution_preference_matchexpion_properties: function () {
+                this.showmodel.spec.template.spec.affinity.nodeAffinity.preferredexecution.preference.matchexpion.properties = this.showmodel.spec.template.spec.affinity.nodeAffinity.preferredexecution.preference.matchexpion.properties !== true;
+            },
+            showmodel_spec_template_spec_affinity_nodeAffinity_preferredexecution_preference_matchexpion_values: function () {
+                this.showmodel.spec.template.spec.affinity.nodeAffinity.preferredexecution.preference.matchexpion.values = this.showmodel.spec.template.spec.affinity.nodeAffinity.preferredexecution.preference.matchexpion.values !== true;
+            },
+            showmodel_spec_template_spec_affinity_nodeAffinity_requiredexecution: function () {
+                this.showmodel.spec.template.spec.affinity.nodeAffinity.requiredexecution.on = this.showmodel.spec.template.spec.affinity.nodeAffinity.requiredexecution.on !== true;
+            },
+            showmodel_spec_template_spec_affinity_nodeAffinity_requiredexecution_properties: function () {
+                this.showmodel.spec.template.spec.affinity.nodeAffinity.requiredexecution.properties = this.showmodel.spec.template.spec.affinity.nodeAffinity.requiredexecution.properties !== true;
+            },
+            showmodel_spec_template_spec_affinity_nodeAffinity_requiredexecution_nodeSelector: function () {
+                this.showmodel.spec.template.spec.affinity.nodeAffinity.requiredexecution.nodeSelector.on = this.showmodel.spec.template.spec.affinity.nodeAffinity.requiredexecution.nodeSelector.on !== true;
+            },
+            showmodel_spec_template_spec_affinity_nodeAffinity_requiredexecution_nodeSelector_properties: function () {
+                this.showmodel.spec.template.spec.affinity.nodeAffinity.requiredexecution.nodeSelector.properties = this.showmodel.spec.template.spec.affinity.nodeAffinity.requiredexecution.nodeSelector.properties !== true;
+            },
+            showmodel_spec_template_spec_affinity_nodeAffinity_requiredexecution_nodeSelector_matchexpreesion: function () {
+                this.showmodel.spec.template.spec.affinity.nodeAffinity.requiredexecution.nodeSelector.matchexpreesion.on = this.showmodel.spec.template.spec.affinity.nodeAffinity.requiredexecution.nodeSelector.matchexpreesion.on !== true;
+            },
+            showmodel_spec_template_spec_affinity_nodeAffinity_requiredexecution_nodeSelector_matchexpreesion_properties: function () {
+                this.showmodel.spec.template.spec.affinity.nodeAffinity.requiredexecution.nodeSelector.matchexpreesion.properties = this.showmodel.spec.template.spec.affinity.nodeAffinity.requiredexecution.nodeSelector.matchexpreesion.properties !== true;
+            },
+            showmodel_spec_template_spec_affinity_nodeAffinity_requiredexecution_nodeSelector_matchexpreesion_values: function () {
+                this.showmodel.spec.template.spec.affinity.nodeAffinity.requiredexecution.nodeSelector.matchexpreesion.values = this.showmodel.spec.template.spec.affinity.nodeAffinity.requiredexecution.nodeSelector.matchexpreesion.values !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAffinity_properties: function () {
+                this.showmodel.spec.template.spec.affinity.podAffinity.properties = this.showmodel.spec.template.spec.affinity.podAffinity.properties !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAffinity_preferredexceution_properties: function () {
+                this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.properties = this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.properties !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAffinity_preferredexecution_podaffinityterm: function () {
+                this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.on = this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.on !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAffinity_preferredexecution_podaffinityterm_namespaces: function () {
+                this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.namespaces = this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.namespaces !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAffinity_preferredexecution: function () {
+                this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.on = this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.on !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAffinity_preferredexecution_podaffinityterm_properties: function () {
+                this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.properties = this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.properties !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAffinity_preferredexecution_podaffinityterm_labels: function () {
+                this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.labels.on = this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.labels.on !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAffinity_preferredexecution_podaffinityterm_labels_properties: function () {
+                this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.labels.properties = this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.labels.properties !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAffinity_preferredexecution_podaffinityterm_labels_matchexpion: function () {
+                this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.labels.matchexpion.on = this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.labels.matchexpion.on !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAffinity_preferredexecution_podaffinityterm_labels_matchexpion_properties: function () {
+                this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.labels.matchexpion.properties = this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.labels.matchexpion.properties !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAffinity_preferredexecution_podaffinityterm_labels_matchexpion_values: function () {
+                this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.labels.matchexpion.values = this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.labels.matchexpion.values !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAffinity_preferredexecution_podaffinityterm_labels_matchlabels: function () {
+                this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.labels.matchlabels = this.showmodel.spec.template.spec.affinity.podAffinity.preferredexecution.podaffinityterm.labels.matchlabels !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAffinity_requiredexecution: function () {
+                this.showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.on = this.showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.on !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAffinity_requiredexecution_properties: function () {
+                this.showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.properties = this.showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.properties !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAffinity_requiredexecution_namespaces: function () {
+                this.showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.namespaces = this.showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.namespaces !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAffinity_requiredexecution_labels: function () {
+                this.showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.labels.on = this.showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.labels.on !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAffinity_requiredexecution_labels_matchlabels: function () {
+                this.showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.labels.matchlabels = this.showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.labels.matchlabels !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAffinity_requiredexecution_labels_matchexpressions: function () {
+                this.showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.labels.matchexpressions.on = this.showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.labels.matchexpressions.on !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAffinity_requiredexecution_labels_properties: function () {
+                this.showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.labels.properties = this.showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.labels.properties !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAffinity_requiredexecution_labels_matchexpressions_properties: function () {
+                this.showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.labels.matchexpressions.properties = this.showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.labels.matchexpressions.properties !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAffinity_requiredexecution_labels_matchexpressions_values: function () {
+                this.showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.labels.matchexpressions.values = this.showmodel.spec.template.spec.affinity.podAffinity.requiredexecution.labels.matchexpressions.values !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAntiAffinity_preferredexecution: function () {
+                this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.on = this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.on !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAntiAffinity_requiredexecution: function () {
+                this.showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.on = this.showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.on !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAntiAffinity_properties: function () {
+                this.showmodel.spec.template.spec.affinity.podAntiAffinity.properties = this.showmodel.spec.template.spec.affinity.podAntiAffinity.properties !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAntiAffinity_preferredexecution_properties: function () {
+                this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.properties = this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.properties !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAntiAffinity_preferredexecution_podaffinityterm: function () {
+                this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.on = this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.on !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAntiAffinity_preferredexecution_podaffinityterm_properties: function () {
+                this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.properties = this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.properties !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAntiAffinity_preferredexecution_podaffinityterm_labels: function () {
+                this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.labels.on = this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.labels.on !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAntiAffinity_preferredexecution_podaffinityterm_labels_matchexpressions: function () {
+                this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.labels.matchexpressions.on = this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.labels.matchexpressions.on !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAntiAffinity_preferredexecution_podaffinityterm_namespaces: function () {
+                this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.namespaces = this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.namespaces !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAntiAffinity_preferredexecution_podaffinityterm_labels_matchlabels: function () {
+                this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.labels.matchlabels = this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.labels.matchlabels !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAntiAffinity_preferredexecution_podaffinityterm_labels_properties: function () {
+                this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.labels.properties = this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.labels.properties !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAntiAffinity_preferredexecution_podaffinityterm_labels_matchexpressions_properties: function () {
+                this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.labels.matchexpressions.properties = this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.labels.matchexpressions.properties !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAntiAffinity_preferredexecution_podaffinityterm_labels_matchexpressions_values: function () {
+                this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.labels.matchexpressions.values = this.showmodel.spec.template.spec.affinity.podAntiAffinity.preferredexecution.podaffinityterm.labels.matchexpressions.values !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAntiAffinity_requiredexecution_properties: function () {
+                this.showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.properties = this.showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.properties !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAntiAffinity_requiredexecution_namespaces: function () {
+                this.showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.namespaces = this.showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.namespaces !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAntiAffinity_requiredexecution_labels: function () {
+                this.showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.labels.on = this.showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.labels.on !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAntiAffinity_requiredexecution_labels_properties: function () {
+                this.showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.labels.properties = this.showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.labels.properties !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAntiAffinity_requiredexecution_labels_matchlabels: function () {
+                this.showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.labels.matchlabels = this.showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.labels.matchlabels !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAntiAffinity_requiredexecution_labels_matchexpressions: function () {
+                this.showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.labels.matchexpressions.on = this.showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.labels.matchexpressions.on !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAntiAffinity_requiredexecution_labels_matchexpressions_properties: function () {
+                this.showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.labels.matchexpressions.properties = this.showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.labels.matchexpressions.properties !== true;
+            },
+            showmodel_spec_template_spec_affinity_podAntiAffinity_requiredexecution_labels_matchexpressions_values: function () {
+                this.showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.labels.matchexpressions.values = this.showmodel.spec.template.spec.affinity.podAntiAffinity.requiredexecution.labels.matchexpressions.values !== true;
+            },
+            showmodel_spec_template_spec_hostAliases_properties: function () {
+                this.showmodel.spec.template.spec.hostAliases.properties = this.showmodel.spec.template.spec.hostAliases.properties !== true;
+            },
+            showmodel_spec_template_spec_hostAliases_hostname: function () {
+                this.showmodel.spec.template.spec.hostAliases.hostname = this.showmodel.spec.template.spec.hostAliases.hostname !== true;
+            },
+            showmodel_spec_template_spec_imagePullSecrets_properties: function () {
+                this.showmodel.spec.template.spec.imagePullSecrets.properties = this.showmodel.spec.template.spec.imagePullSecrets.properties !== true;
+            },
+            showmodel_spec_template_spec_securityContext_properties: function () {
+                this.showmodel.spec.template.spec.securityContext.properties = this.showmodel.spec.template.spec.securityContext.properties !== true;
+            },
+            showmodel_spec_template_spec_securityContext_seLinuxOptions: function () {
+                this.showmodel.spec.template.spec.securityContext.selinuxoptions.on = this.showmodel.spec.template.spec.securityContext.selinuxoptions.on !== true;
+            },
+            showmodel_spec_template_spec_securityContext_selinuxoptions_suppgroups: function () {
+                this.showmodel.spec.template.spec.securityContext.selinuxoptions.suppgroups = this.showmodel.spec.template.spec.securityContext.selinuxoptions.suppgroups !== true;
+            },
+            showmodel_spec_template_spec_securityContext_selinuxoptions_properties: function () {
+                this.showmodel.spec.template.spec.securityContext.selinuxoptions.properties = this.showmodel.spec.template.spec.securityContext.selinuxoptions.properties !== true;
+            },
+            showmodel_spec_template_spec_tolerations_properties: function () {
+                this.showmodel.spec.template.spec.tolerations.properties = this.showmodel.spec.template.spec.tolerations.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_properties: function () {
+                this.showmodel.spec.template.spec.volumes.properties = this.showmodel.spec.template.spec.volumes.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_awsstore_properties: function () {
+                this.showmodel.spec.template.spec.volumes.awsstore.properties = this.showmodel.spec.template.spec.volumes.awsstore.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_configMap_items_properties: function () {
+                this.showmodel.spec.template.spec.volumes.configMap.items.properties = this.showmodel.spec.template.spec.volumes.configMap.items.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_configMap_items: function () {
+                this.showmodel.spec.template.spec.volumes.configMap.items.on = this.showmodel.spec.template.spec.volumes.configMap.items.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_configMap: function () {
+                this.showmodel.spec.template.spec.volumes.configMap.on = this.showmodel.spec.template.spec.volumes.configMap.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_awsstore: function () {
+                this.showmodel.spec.template.spec.volumes.awsstore.on = this.showmodel.spec.template.spec.volumes.awsstore.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_azuredisk: function () {
+                this.showmodel.spec.template.spec.volumes.azuredisk.on = this.showmodel.spec.template.spec.volumes.azuredisk.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_azuredisk_properties: function () {
+                this.showmodel.spec.template.spec.volumes.azuredisk.properties = this.showmodel.spec.template.spec.volumes.azuredisk.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_azurefile: function () {
+                this.showmodel.spec.template.spec.volumes.azurefile.on = this.showmodel.spec.template.spec.volumes.azurefile.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_azurefile_properties: function () {
+                this.showmodel.spec.template.spec.volumes.azurefile.properties = this.showmodel.spec.template.spec.volumes.azurefile.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_cephfs: function () {
+                this.showmodel.spec.template.spec.volumes.cephfs.on = this.showmodel.spec.template.spec.volumes.cephfs.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_cephfs_properties: function () {
+                this.showmodel.spec.template.spec.volumes.cephfs.properties = this.showmodel.spec.template.spec.volumes.cephfs.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_cephfs_monitors: function () {
+                this.showmodel.spec.template.spec.volumes.cephfs.monitors = this.showmodel.spec.template.spec.volumes.cephfs.monitors !== true;
+            },
+            showmodel_spec_template_spec_volumes_cephfs_secretRef: function () {
+                this.showmodel.spec.template.spec.volumes.cephfs.secretRef.on = this.showmodel.spec.template.spec.volumes.cephfs.secretRef.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_cephfs_secretRef_properties: function () {
+                this.showmodel.spec.template.spec.volumes.cephfs.secretRef.properties = this.showmodel.spec.template.spec.volumes.cephfs.secretRef.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_cinder: function () {
+                this.showmodel.spec.template.spec.volumes.cinder.on = this.showmodel.spec.template.spec.volumes.cinder.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_cinder_properties: function () {
+                this.showmodel.spec.template.spec.volumes.cinder.properties = this.showmodel.spec.template.spec.volumes.cinder.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_configMap_properties: function () {
+                this.showmodel.spec.template.spec.volumes.configMap.properties = this.showmodel.spec.template.spec.volumes.configMap.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_downwardAPI: function () {
+                this.showmodel.spec.template.spec.volumes.downwardAPI.on = this.showmodel.spec.template.spec.volumes.downwardAPI.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_downwardAPI_properties: function () {
+                this.showmodel.spec.template.spec.volumes.downwardAPI.properties = this.showmodel.spec.template.spec.volumes.downwardAPI.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_downwardAPI_items_properties: function () {
+                this.showmodel.spec.template.spec.volumes.downwardAPI.items.properties = this.showmodel.spec.template.spec.volumes.downwardAPI.items.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_downwardAPI_items_field: function () {
+                this.showmodel.spec.template.spec.volumes.downwardAPI.items.field.on = this.showmodel.spec.template.spec.volumes.downwardAPI.items.field.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_downwardAPI_items_resource: function () {
+                this.showmodel.spec.template.spec.volumes.downwardAPI.items.resource.on = this.showmodel.spec.template.spec.volumes.downwardAPI.items.resource.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_downwardAPI_items: function () {
+                this.showmodel.spec.template.spec.volumes.downwardAPI.items.on = this.showmodel.spec.template.spec.volumes.downwardAPI.items.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_downwardAPI_items_field_properties: function () {
+                this.showmodel.spec.template.spec.volumes.downwardAPI.items.field.properties = this.showmodel.spec.template.spec.volumes.downwardAPI.items.field.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_downwardAPI_items_resource_properties: function () {
+                this.showmodel.spec.template.spec.volumes.downwardAPI.items.resource.properties = this.showmodel.spec.template.spec.volumes.downwardAPI.items.resource.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_downwardAPI_items_resource_divisor: function () {
+                this.showmodel.spec.template.spec.volumes.downwardAPI.items.resource.divisor.on = this.showmodel.spec.template.spec.volumes.downwardAPI.items.resource.divisor.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_downwardAPI_items_resource_divisor_properties: function () {
+                this.showmodel.spec.template.spec.volumes.downwardAPI.items.resource.divisor.properties = this.showmodel.spec.template.spec.volumes.downwardAPI.items.resource.divisor.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_emptyDir: function () {
+                this.showmodel.spec.template.spec.volumes.emptyDir.on = this.showmodel.spec.template.spec.volumes.emptyDir.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_emptyDir_properties: function () {
+                this.showmodel.spec.template.spec.volumes.emptyDir.properties = this.showmodel.spec.template.spec.volumes.emptyDir.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_emptyDir_sizeLimit: function () {
+                this.showmodel.spec.template.spec.volumes.emptyDir.sizeLimit.on = this.showmodel.spec.template.spec.volumes.emptyDir.sizeLimit.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_emptyDir_sizeLimit_properties: function () {
+                this.showmodel.spec.template.spec.volumes.emptyDir.sizeLimit.properties = this.showmodel.spec.template.spec.volumes.emptyDir.sizeLimit.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_fc: function () {
+                this.showmodel.spec.template.spec.volumes.fc.on = this.showmodel.spec.template.spec.volumes.fc.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_fc_properties: function () {
+                this.showmodel.spec.template.spec.volumes.fc.properties = this.showmodel.spec.template.spec.volumes.fc.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_fc_targetWWNs: function () {
+                this.showmodel.spec.template.spec.volumes.fc.targetWWNs = this.showmodel.spec.template.spec.volumes.fc.targetWWNs !== true;
+            },
+            showmodel_spec_template_spec_volumes_flexVolume: function () {
+                this.showmodel.spec.template.spec.volumes.flexVolume.on = this.showmodel.spec.template.spec.volumes.flexVolume.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_flexVolume_properties: function () {
+                this.showmodel.spec.template.spec.volumes.flexVolume.properties = this.showmodel.spec.template.spec.volumes.flexVolume.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_flexVolume_options: function () {
+                this.showmodel.spec.template.spec.volumes.flexVolume.options = this.showmodel.spec.template.spec.volumes.flexVolume.options !== true;
+            },
+            showmodel_spec_template_spec_volumes_flexVolume_ref: function () {
+                this.showmodel.spec.template.spec.volumes.flexVolume.ref.on = this.showmodel.spec.template.spec.volumes.flexVolume.ref.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_flexVolume_ref_properties: function () {
+                this.showmodel.spec.template.spec.volumes.flexVolume.ref.properties = this.showmodel.spec.template.spec.volumes.flexVolume.ref.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_flocker: function () {
+                this.showmodel.spec.template.spec.volumes.flocker.on = this.showmodel.spec.template.spec.volumes.flocker.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_flocker_properties: function () {
+                this.showmodel.spec.template.spec.volumes.flocker.properties = this.showmodel.spec.template.spec.volumes.flocker.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_gcePersistentDisk: function () {
+                this.showmodel.spec.template.spec.volumes.gcePersistentDisk.on = this.showmodel.spec.template.spec.volumes.gcePersistentDisk.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_gcePersistentDisk_properties: function () {
+                this.showmodel.spec.template.spec.volumes.gcePersistentDisk.properties = this.showmodel.spec.template.spec.volumes.gcePersistentDisk.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_gitRepo: function () {
+                this.showmodel.spec.template.spec.volumes.gitRepo.on = this.showmodel.spec.template.spec.volumes.gitRepo.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_gitRepo_properties: function () {
+                this.showmodel.spec.template.spec.volumes.gitRepo.properties = this.showmodel.spec.template.spec.volumes.gitRepo.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_glusterfs: function () {
+                this.showmodel.spec.template.spec.volumes.glusterfs.on = this.showmodel.spec.template.spec.volumes.glusterfs.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_glusterfs_properties: function () {
+                this.showmodel.spec.template.spec.volumes.glusterfs.properties = this.showmodel.spec.template.spec.volumes.glusterfs.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_iscsi_ref_properties: function () {
+                this.showmodel.spec.template.spec.volumes.iscsi.ref.properties = this.showmodel.spec.template.spec.volumes.iscsi.ref.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_iscsi_ref: function () {
+                this.showmodel.spec.template.spec.volumes.iscsi.ref.on = this.showmodel.spec.template.spec.volumes.iscsi.ref.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_iscsi_portals: function () {
+                this.showmodel.spec.template.spec.volumes.iscsi.portals = this.showmodel.spec.template.spec.volumes.iscsi.portals !== true;
+            },
+            showmodel_spec_template_spec_volumes_iscsi_properties: function () {
+                this.showmodel.spec.template.spec.volumes.iscsi.properties = this.showmodel.spec.template.spec.volumes.iscsi.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_iscsi: function () {
+                this.showmodel.spec.template.spec.volumes.iscsi.on = this.showmodel.spec.template.spec.volumes.iscsi.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_hostPath_properties: function () {
+                this.showmodel.spec.template.spec.volumes.hostPath.properties = this.showmodel.spec.template.spec.volumes.hostPath.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_hostPath: function () {
+                this.showmodel.spec.template.spec.volumes.hostPath.on = this.showmodel.spec.template.spec.volumes.hostPath.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_nfs: function () {
+                this.showmodel.spec.template.spec.volumes.nfs.on = this.showmodel.spec.template.spec.volumes.nfs.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_nfs_properties: function () {
+                this.showmodel.spec.template.spec.volumes.nfs.properties = this.showmodel.spec.template.spec.volumes.nfs.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_persistentVolumeClaim: function () {
+                this.showmodel.spec.template.spec.volumes.persistentVolumeClaim.on = this.showmodel.spec.template.spec.volumes.persistentVolumeClaim.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_persistentVolumeClaim_properties: function () {
+                this.showmodel.spec.template.spec.volumes.persistentVolumeClaim.properties = this.showmodel.spec.template.spec.volumes.persistentVolumeClaim.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_photonPersistentDisk: function () {
+                this.showmodel.spec.template.spec.volumes.photonPersistentDisk.on = this.showmodel.spec.template.spec.volumes.photonPersistentDisk.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_photonPersistentDisk_properties: function () {
+                this.showmodel.spec.template.spec.volumes.photonPersistentDisk.properties = this.showmodel.spec.template.spec.volumes.photonPersistentDisk.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_portworxVolume: function () {
+                this.showmodel.spec.template.spec.volumes.portworxVolume.on = this.showmodel.spec.template.spec.volumes.portworxVolume.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_portworxVolume_properties: function () {
+                this.showmodel.spec.template.spec.volumes.portworxVolume.properties = this.showmodel.spec.template.spec.volumes.portworxVolume.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_projected: function () {
+                this.showmodel.spec.template.spec.volumes.projected.on = this.showmodel.spec.template.spec.volumes.projected.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_projected_properties: function () {
+                this.showmodel.spec.template.spec.volumes.projected.properties = this.showmodel.spec.template.spec.volumes.projected.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_projected_sources: function () {
+                this.showmodel.spec.template.spec.volumes.projected.sources.on = this.showmodel.spec.template.spec.volumes.projected.sources.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_projected_sources_properties: function () {
+                this.showmodel.spec.template.spec.volumes.projected.sources.properties = this.showmodel.spec.template.spec.volumes.projected.sources.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_projected_sources_configMap: function () {
+                this.showmodel.spec.template.spec.volumes.projected.sources.configMap.on = this.showmodel.spec.template.spec.volumes.projected.sources.configMap.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_projected_sources_configMap_properties: function () {
+                this.showmodel.spec.template.spec.volumes.projected.sources.configMap.properties = this.showmodel.spec.template.spec.volumes.projected.sources.configMap.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_projected_sources_configMap_items: function () {
+                this.showmodel.spec.template.spec.volumes.projected.sources.configMap.items.on = this.showmodel.spec.template.spec.volumes.projected.sources.configMap.items.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_projected_sources_downwardAPI: function () {
+                this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.on = this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_projected_sources_downwardAPI_properties: function () {
+                this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.properties = this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_projected_sources_downwardAPI_items: function () {
+                this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.items.on = this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.items.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_projected_sources_downwardAPI_items_properties: function () {
+                this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.items.properties = this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.items.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_projected_sources_downwardAPI_items_fieldref: function () {
+                this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.items.fieldref.on = this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.items.fieldref.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_projected_sources_downwardAPI_items_fieldref_properties: function () {
+                this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.items.fieldref.properties = this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.items.fieldref.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_projected_sources_downwardAPI_items_resourceFieldRef: function () {
+                this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.items.resourceFieldRef.on = this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.items.resourceFieldRef.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_projected_sources_downwardAPI_items_resourceFieldRef_properties: function () {
+                this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.items.resourceFieldRef.properties = this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.items.resourceFieldRef.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_projected_sources_secret: function () {
+                this.showmodel.spec.template.spec.volumes.projected.sources.secret.on = this.showmodel.spec.template.spec.volumes.projected.sources.secret.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_projected_sources_secret_items: function () {
+                this.showmodel.spec.template.spec.volumes.projected.sources.secret.items.on = this.showmodel.spec.template.spec.volumes.projected.sources.secret.items.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_projected_sources_secret_properties: function () {
+                this.showmodel.spec.template.spec.volumes.projected.sources.secret.properties = this.showmodel.spec.template.spec.volumes.projected.sources.secret.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_projected_sources_secret_items_properties: function () {
+                this.showmodel.spec.template.spec.volumes.projected.sources.secret.items.properties = this.showmodel.spec.template.spec.volumes.projected.sources.secret.items.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_projected_sources_configMap_items_properties: function () {
+                this.showmodel.spec.template.spec.volumes.projected.sources.configMap.items.properties = this.showmodel.spec.template.spec.volumes.projected.sources.configMap.items.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_projected_sources_downwardAPI_items_resourceFieldRef_divisor: function () {
+                this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.items.resourceFieldRef.divisor.on = this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.items.resourceFieldRef.divisor.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_projected_sources_downwardAPI_items_resourceFieldRef_divisor_properties: function () {
+                this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.items.resourceFieldRef.divisor.properties = this.showmodel.spec.template.spec.volumes.projected.sources.downwardAPI.items.resourceFieldRef.divisor.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_quobyte: function () {
+                this.showmodel.spec.template.spec.volumes.quobyte.on = this.showmodel.spec.template.spec.volumes.quobyte.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_quobyte_properties: function () {
+                this.showmodel.spec.template.spec.volumes.projected.properties = this.showmodel.spec.template.spec.volumes.projected.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_rbd: function () {
+                this.showmodel.spec.template.spec.volumes.rbd.on = this.showmodel.spec.template.spec.volumes.rbd.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_rbd_properties: function () {
+                this.showmodel.spec.template.spec.volumes.rbd.properties = this.showmodel.spec.template.spec.volumes.rbd.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_rbd_monitors: function () {
+                this.showmodel.spec.template.spec.volumes.rbd.monitors = this.showmodel.spec.template.spec.volumes.rbd.monitors !== true;
+            },
+            showmodel_spec_template_spec_volumes_rbd_secretRef: function () {
+                this.showmodel.spec.template.spec.volumes.rbd.secretRef.on = this.showmodel.spec.template.spec.volumes.rbd.secretRef.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_rbd_secretRef_properties: function () {
+                this.showmodel.spec.template.spec.volumes.rbd.secretRef.properties = this.showmodel.spec.template.spec.volumes.rbd.secretRef.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_scaleIO: function () {
+                this.showmodel.spec.template.spec.volumes.scaleIO.on = this.showmodel.spec.template.spec.volumes.scaleIO.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_scaleIO_properties: function () {
+                this.showmodel.spec.template.spec.volumes.scaleIO.properties = this.showmodel.spec.template.spec.volumes.scaleIO.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_scaleIO_secretRef: function () {
+                this.showmodel.spec.template.spec.volumes.scaleIO.secretRef.on = this.showmodel.spec.template.spec.volumes.scaleIO.secretRef.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_scaleIO_secretRef_properties: function () {
+                this.showmodel.spec.template.spec.volumes.scaleIO.secretRef.properties = this.showmodel.spec.template.spec.volumes.scaleIO.secretRef.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_secret: function () {
+                this.showmodel.spec.template.spec.volumes.secret.on = this.showmodel.spec.template.spec.volumes.secret.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_secret_properties: function () {
+                this.showmodel.spec.template.spec.volumes.secret.properties = this.showmodel.spec.template.spec.volumes.secret.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_secret_items: function () {
+                this.showmodel.spec.template.spec.volumes.secret.items.on = this.showmodel.spec.template.spec.volumes.secret.items.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_secret_item_properties: function () {
+                this.showmodel.spec.template.spec.volumes.secret.items.properties = this.showmodel.spec.template.spec.volumes.secret.items.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_storageos_properties: function () {
+                this.showmodel.spec.template.spec.volumes.storageos.properties = this.showmodel.spec.template.spec.volumes.storageos.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_storageos_secretRef: function () {
+                this.showmodel.spec.template.spec.volumes.storageos.secretRef.on = this.showmodel.spec.template.spec.volumes.storageos.secretRef.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_storageos_secretRef_properties: function () {
+                this.showmodel.spec.template.spec.volumes.storageos.secretRef.properties = this.showmodel.spec.template.spec.volumes.storageos.secretRef.properties !== true;
+            },
+            showmodel_spec_template_spec_volumes_storageos: function () {
+                this.showmodel.spec.template.spec.volumes.storageos.on = this.showmodel.spec.template.spec.volumes.storageos.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_vsphereVolume: function () {
+                this.showmodel.spec.template.spec.volumes.vsphereVolume.on = this.showmodel.spec.template.spec.volumes.vsphereVolume.on !== true;
+            },
+            showmodel_spec_template_spec_volumes_vsphereVolume_properties: function () {
+                this.showmodel.spec.template.spec.volumes.vsphereVolume.properties = this.showmodel.spec.template.spec.volumes.vsphereVolume.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_properties: function () {
+                this.showmodel.spec.template.spec.containers.properties = this.showmodel.spec.template.spec.containers.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_args: function () {
+                this.showmodel.spec.template.spec.containers.args = this.showmodel.spec.template.spec.containers.args !== true;
+            },
+            showmodel_spec_template_spec_containers_command: function () {
+                this.showmodel.spec.template.spec.containers.command = this.showmodel.spec.template.spec.containers.command !== true;
+            },
+            showmodel_spec_template_spec_containers_env: function () {
+                this.showmodel.spec.template.spec.containers.env.on = this.showmodel.spec.template.spec.containers.env.on !== true;
+            },
+            showmodel_spec_template_spec_containers_envFrom: function () {
+                this.showmodel.spec.template.spec.containers.envFrom.on = this.showmodel.spec.template.spec.containers.envFrom.on !== true;
+            },
+            showmodel_spec_template_spec_containers_env_valueFrom: function () {
+                this.showmodel.spec.template.spec.containers.env.valueFrom.on = this.showmodel.spec.template.spec.containers.env.valueFrom.on !== true;
+            },
+            showmodel_spec_template_spec_containers_env_valueFrom_properties: function () {
+                this.showmodel.spec.template.spec.containers.env.valueFrom.properties = this.showmodel.spec.template.spec.containers.env.valueFrom.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_env_properties: function () {
+                this.showmodel.spec.template.spec.containers.env.properties = this.showmodel.spec.template.spec.containers.env.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_env_valueFrom_configMapKeyRef: function () {
+                this.showmodel.spec.template.spec.containers.env.valueFrom.configMapKeyRef.on = this.showmodel.spec.template.spec.containers.env.valueFrom.configMapKeyRef.on !== true;
+            },
+            showmodel_spec_template_spec_containers_env_valueFrom_fieldRef: function () {
+                this.showmodel.spec.template.spec.containers.env.valueFrom.fieldRef.on = this.showmodel.spec.template.spec.containers.env.valueFrom.fieldRef.on !== true;
+            },
+            showmodel_spec_template_spec_containers_env_valueFrom_resourceFieldRef: function () {
+                this.showmodel.spec.template.spec.containers.env.valueFrom.resourceFieldRef.on = this.showmodel.spec.template.spec.containers.env.valueFrom.resourceFieldRef.on !== true;
+            },
+            showmodel_spec_template_spec_containers_env_valueFrom_secretKeyRef: function () {
+                this.showmodel.spec.template.spec.containers.env.valueFrom.secretKeyRef.on = this.showmodel.spec.template.spec.containers.env.valueFrom.secretKeyRef.on !== true;
+            },
+            showmodel_spec_template_spec_containers_env_valueFrom_configMapKeyRef_properties: function () {
+                this.showmodel.spec.template.spec.containers.env.valueFrom.configMapKeyRef.properties = this.showmodel.spec.template.spec.containers.env.valueFrom.configMapKeyRef.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_env_valueFrom_fieldRef_properties: function () {
+                this.showmodel.spec.template.spec.containers.env.valueFrom.fieldRef.properties = this.showmodel.spec.template.spec.containers.env.valueFrom.fieldRef.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_env_valueFrom_resourceFieldRef_divisor: function () {
+                this.showmodel.spec.template.spec.containers.env.valueFrom.resourceFieldRef.divisor.on = this.showmodel.spec.template.spec.containers.env.valueFrom.resourceFieldRef.divisor.on !== true;
+            },
+            showmodel_spec_template_spec_containers_env_valueFrom_resourceFieldRef_divisor_properties: function () {
+                this.showmodel.spec.template.spec.containers.env.valueFrom.resourceFieldRef.divisor.properties = this.showmodel.spec.template.spec.containers.env.valueFrom.resourceFieldRef.divisor.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_env_valueFrom_resourceFieldRef_properties: function () {
+                this.showmodel.spec.template.spec.containers.env.valueFrom.resourceFieldRef.properties = this.showmodel.spec.template.spec.containers.env.valueFrom.resourceFieldRef.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_env_valueFrom_secretKeyRef_properties: function () {
+                this.showmodel.spec.template.spec.containers.env.valueFrom.secretKeyRef.properties = this.showmodel.spec.template.spec.containers.env.valueFrom.secretKeyRef.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_envFrom_configMapRef: function () {
+                this.showmodel.spec.template.spec.containers.envFrom.configMapRef.on = this.showmodel.spec.template.spec.containers.envFrom.configMapRef.on !== true;
+            },
+            showmodel_spec_template_spec_containers_envFrom_secretRef: function () {
+                this.showmodel.spec.template.spec.containers.envFrom.secretRef.on = this.showmodel.spec.template.spec.containers.envFrom.secretRef.on !== true;
+            },
+            showmodel_spec_template_spec_containers_envFrom_secretRef_properties: function () {
+                this.showmodel.spec.template.spec.containers.envFrom.secretRef.properties = this.showmodel.spec.template.spec.containers.envFrom.secretRef.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_envFrom_properties: function () {
+                this.showmodel.spec.template.spec.containers.envFrom.properties = this.showmodel.spec.template.spec.containers.envFrom.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_envFrom_configMapRef_properties: function () {
+                this.showmodel.spec.template.spec.containers.envFrom.configMapRef.properties = this.showmodel.spec.template.spec.containers.envFrom.configMapRef.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_volumeMounts: function () {
+                this.showmodel.spec.template.spec.containers.volumeMounts.on = this.showmodel.spec.template.spec.containers.volumeMounts.on !== true;
+            },
+            showmodel_spec_template_spec_containers_volumeMounts_properties: function () {
+                this.showmodel.spec.template.spec.containers.volumeMounts.properties = this.showmodel.spec.template.spec.containers.volumeMounts.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_ports: function () {
+                this.showmodel.spec.template.spec.containers.ports.on = this.showmodel.spec.template.spec.containers.ports.on !== true;
+            },
+            showmodel_spec_template_spec_containers_ports_properties: function () {
+                this.showmodel.spec.template.spec.containers.ports.properties = this.showmodel.spec.template.spec.containers.ports.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_lifecycle: function () {
+                this.showmodel.spec.template.spec.containers.lifecycle.on = this.showmodel.spec.template.spec.containers.lifecycle.on !== true;
+            },
+            showmodel_spec_template_spec_containers_lifecycle_properties: function () {
+                this.showmodel.spec.template.spec.containers.lifecycle.properties = this.showmodel.spec.template.spec.containers.lifecycle.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_lifecycle_postStart: function () {
+                this.showmodel.spec.template.spec.containers.lifecycle.postStart.on = this.showmodel.spec.template.spec.containers.lifecycle.postStart.on !== true;
+            },
+            showmodel_spec_template_spec_containers_lifecycle_postStart_exec: function () {
+                this.showmodel.spec.template.spec.containers.lifecycle.postStart.exec.on = this.showmodel.spec.template.spec.containers.lifecycle.postStart.exec.on !== true;
+            },
+            showmodel_spec_template_spec_containers_lifecycle_postStart_httpGet: function () {
+                this.showmodel.spec.template.spec.containers.lifecycle.postStart.httpGet.on = this.showmodel.spec.template.spec.containers.lifecycle.postStart.httpGet.on !== true;
+            },
+            showmodel_spec_template_spec_containers_lifecycle_postStart_tcpSocket: function () {
+                this.showmodel.spec.template.spec.containers.lifecycle.postStart.tcpSocket.on = this.showmodel.spec.template.spec.containers.lifecycle.postStart.tcpSocket.on !== true;
+            },
+            showmodel_spec_template_spec_containers_lifecycle_postStart_properties: function () {
+                this.showmodel.spec.template.spec.containers.lifecycle.postStart.properties = this.showmodel.spec.template.spec.containers.lifecycle.postStart.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_lifecycle_preStop: function () {
+                this.showmodel.spec.template.spec.containers.lifecycle.preStop.on = this.showmodel.spec.template.spec.containers.lifecycle.preStop.on !== true;
+            },
+            showmodel_spec_template_spec_containers_livenessProbe: function () {
+                this.showmodel.spec.template.spec.containers.livenessProbe.on = this.showmodel.spec.template.spec.containers.livenessProbe.on !== true;
+            },
+            showmodel_spec_template_spec_containers_readinessProbe: function () {
+                this.showmodel.spec.template.spec.containers.readinessProbe.on = this.showmodel.spec.template.spec.containers.readinessProbe.on !== true;
+            },
+            showmodel_spec_template_spec_containers_resources: function () {
+                this.showmodel.spec.template.spec.containers.resources.on = this.showmodel.spec.template.spec.containers.resources.on !== true;
+            },
+            showmodel_spec_template_spec_containers_securityContext: function () {
+                this.showmodel.spec.template.spec.containers.securityContext.on = this.showmodel.spec.template.spec.containers.securityContext.on !== true;
+            },
+            showmodel_spec_template_spec_containers_lifecycle_postStart_exec_properties: function () {
+                this.showmodel.spec.template.spec.containers.lifecycle.postStart.exec.properties = this.showmodel.spec.template.spec.containers.lifecycle.postStart.exec.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_lifecycle_postStart_exec_command: function () {
+                this.showmodel.spec.template.spec.containers.lifecycle.postStart.exec.command = this.showmodel.spec.template.spec.containers.lifecycle.postStart.exec.command !== true;
+            },
+            showmodel_spec_template_spec_containers_lifecycle_postStart_httpGet_httpHeaders_properties: function () {
+                this.showmodel.spec.template.spec.containers.lifecycle.postStart.httpGet.httpHeaders.properties = this.showmodel.spec.template.spec.containers.lifecycle.postStart.httpGet.httpHeaders.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_lifecycle_postStart_httpGet_httpHeaders: function () {
+                this.showmodel.spec.template.spec.containers.lifecycle.postStart.httpGet.httpHeaders.on = this.showmodel.spec.template.spec.containers.lifecycle.postStart.httpGet.httpHeaders.on !== true;
+            },
+            showmodel_spec_template_spec_containers_lifecycle_postStart_httpGet_properties: function () {
+                this.showmodel.spec.template.spec.containers.lifecycle.postStart.httpGet.properties = this.showmodel.spec.template.spec.containers.lifecycle.postStart.httpGet.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_lifecycle_postStart_httpGet_port: function () {
+                this.showmodel.spec.template.spec.containers.lifecycle.postStart.httpGet.port.on = this.showmodel.spec.template.spec.containers.lifecycle.postStart.httpGet.port.on !== true;
+            },
+            showmodel_spec_template_spec_containers_lifecycle_postStart_httpGet_port_properties: function () {
+                this.showmodel.spec.template.spec.containers.lifecycle.postStart.httpGet.port.properties = this.showmodel.spec.template.spec.containers.lifecycle.postStart.httpGet.port.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_lifecycle_postStart_tcpSocket_properties: function () {
+                this.showmodel.spec.template.spec.containers.lifecycle.postStart.tcpSocket.properties = this.showmodel.spec.template.spec.containers.lifecycle.postStart.tcpSocket.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_lifecycle_postStart_tcpSocket_port: function () {
+                this.showmodel.spec.template.spec.containers.lifecycle.postStart.tcpSocket.port.on = this.showmodel.spec.template.spec.containers.lifecycle.postStart.tcpSocket.port.on !== true;
+            },
+            showmodel_spec_template_spec_containers_lifecycle_postStart_tcpSocket_port_properties: function () {
+                this.showmodel.spec.template.spec.containers.lifecycle.postStart.tcpSocket.port.properties = this.showmodel.spec.template.spec.containers.lifecycle.postStart.tcpSocket.port.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_lifecycle_preStop_exec: function () {
+                this.showmodel.spec.template.spec.containers.lifecycle.preStop.exec.on = this.showmodel.spec.template.spec.containers.lifecycle.preStop.exec.on !== true;
+            },
+            showmodel_spec_template_spec_containers_lifecycle_preStop_exec_properties: function () {
+                this.showmodel.spec.template.spec.containers.lifecycle.preStop.exec.properties = this.showmodel.spec.template.spec.containers.lifecycle.preStop.exec.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_lifecycle_preStop_exec_command: function () {
+                this.showmodel.spec.template.spec.containers.lifecycle.preStop.exec.command = this.showmodel.spec.template.spec.containers.lifecycle.preStop.exec.command !== true;
+            },
+            showmodel_spec_template_spec_containers_lifecycle_preStop_httpGet: function () {
+                this.showmodel.spec.template.spec.containers.lifecycle.preStop.httpGet.on = this.showmodel.spec.template.spec.containers.lifecycle.preStop.httpGet.on !== true;
+            },
+            showmodel_spec_template_spec_containers_lifecycle_preStop_httpGet_properties: function () {
+                this.showmodel.spec.template.spec.containers.lifecycle.preStop.httpGet.properties = this.showmodel.spec.template.spec.containers.lifecycle.preStop.httpGet.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_lifecycle_preStop_httpGet_httpHeaders: function () {
+                this.showmodel.spec.template.spec.containers.lifecycle.preStop.httpGet.httpHeaders.on = this.showmodel.spec.template.spec.containers.lifecycle.preStop.httpGet.httpHeaders.on !== true;
+            },
+            showmodel_spec_template_spec_containers_lifecycle_preStop_httpGet_httpHeaders_properties: function () {
+                this.showmodel.spec.template.spec.containers.lifecycle.preStop.httpGet.httpHeaders.properties = this.showmodel.spec.template.spec.containers.lifecycle.preStop.httpGet.httpHeaders.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_lifecycle_preStop_httpGet_port: function () {
+                this.showmodel.spec.template.spec.containers.lifecycle.preStop.httpGet.port.on = this.showmodel.spec.template.spec.containers.lifecycle.preStop.httpGet.port.on !== true;
+            },
+            showmodel_spec_template_spec_containers_lifecycle_preStop_httpGet_port_properties: function () {
+                this.showmodel.spec.template.spec.containers.lifecycle.preStop.httpGet.port.properties = this.showmodel.spec.template.spec.containers.lifecycle.preStop.httpGet.port.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_lifecycle_preStop_tcpSocket: function () {
+                this.showmodel.spec.template.spec.containers.lifecycle.preStop.tcpSocket.on = this.showmodel.spec.template.spec.containers.lifecycle.preStop.tcpSocket.on !== true;
+            },
+            showmodel_spec_template_spec_containers_lifecycle_preStop_properties: function () {
+                this.showmodel.spec.template.spec.containers.lifecycle.preStop.properties = this.showmodel.spec.template.spec.containers.lifecycle.preStop.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_lifecycle_preStop_tcpSocket_port_properties: function () {
+                this.showmodel.spec.template.spec.containers.lifecycle.preStop.tcpSocket.port.properties = this.showmodel.spec.template.spec.containers.lifecycle.preStop.tcpSocket.port.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_lifecycle_preStop_tcpSocket_properties: function () {
+                this.showmodel.spec.template.spec.containers.lifecycle.preStop.tcpSocket.properties = this.showmodel.spec.template.spec.containers.lifecycle.preStop.tcpSocket.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_lifecycle_preStop_tcpSocket_port: function () {
+                this.showmodel.spec.template.spec.containers.lifecycle.preStop.tcpSocket.port.on = this.showmodel.spec.template.spec.containers.lifecycle.preStop.tcpSocket.port.on !== true;
+            },
+            showmodel_spec_template_spec_containers_livenessProbe_properties: function () {
+                this.showmodel.spec.template.spec.containers.livenessProbe.properties = this.showmodel.spec.template.spec.containers.livenessProbe.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_livenessProbe_exec: function () {
+                this.showmodel.spec.template.spec.containers.livenessProbe.exec.on = this.showmodel.spec.template.spec.containers.livenessProbe.exec.on !== true;
+            },
+            showmodel_spec_template_spec_containers_livenessProbe_exec_properties: function () {
+                this.showmodel.spec.template.spec.containers.livenessProbe.exec.properties = this.showmodel.spec.template.spec.containers.livenessProbe.exec.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_livenessProbe_exec_command: function () {
+                this.showmodel.spec.template.spec.containers.livenessProbe.exec.command = this.showmodel.spec.template.spec.containers.livenessProbe.exec.command !== true;
+            },
+            showmodel_spec_template_spec_containers_livenessProbe_httpGet: function () {
+                this.showmodel.spec.template.spec.containers.livenessProbe.httpGet.on = this.showmodel.spec.template.spec.containers.livenessProbe.httpGet.on !== true;
+            },
+            showmodel_spec_template_spec_containers_livenessProbe_tcpSocket: function () {
+                this.showmodel.spec.template.spec.containers.livenessProbe.tcpSocket.on = this.showmodel.spec.template.spec.containers.livenessProbe.tcpSocket.on !== true;
+            },
+            showmodel_spec_template_spec_containers_livenessProbe_httpGet_properties: function () {
+                this.showmodel.spec.template.spec.containers.livenessProbe.httpGet.properties = this.showmodel.spec.template.spec.containers.livenessProbe.httpGet.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_livenessProbe_httpGet_httpHeaders: function () {
+                this.showmodel.spec.template.spec.containers.livenessProbe.httpGet.httpHeaders.on = this.showmodel.spec.template.spec.containers.livenessProbe.httpGet.httpHeaders.on !== true;
+            },
+            showmodel_spec_template_spec_containers_livenessProbe_httpGet_httpHeaders_properties: function () {
+                this.showmodel.spec.template.spec.containers.livenessProbe.httpGet.httpHeaders.properties = this.showmodel.spec.template.spec.containers.livenessProbe.httpGet.httpHeaders.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_livenessProbe_httpGet_port: function () {
+                this.showmodel.spec.template.spec.containers.livenessProbe.httpGet.port.on = this.showmodel.spec.template.spec.containers.livenessProbe.httpGet.port.on !== true;
+            },
+            showmodel_spec_template_spec_containers_livenessProbe_httpGet_port_properties: function () {
+                this.showmodel.spec.template.spec.containers.livenessProbe.httpGet.port.properties = this.showmodel.spec.template.spec.containers.livenessProbe.httpGet.port.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_livenessProbe_tcpSocket_properties: function () {
+                this.showmodel.spec.template.spec.containers.livenessProbe.tcpSocket.properties = this.showmodel.spec.template.spec.containers.livenessProbe.tcpSocket.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_livenessProbe_tcpSocket_port: function () {
+                this.showmodel.spec.template.spec.containers.livenessProbe.tcpSocket.port.on = this.showmodel.spec.template.spec.containers.livenessProbe.tcpSocket.port.on !== true;
+            },
+            showmodel_spec_template_spec_containers_livenessProbe_tcpSocket_port_properties: function () {
+                this.showmodel.spec.template.spec.containers.livenessProbe.tcpSocket.port.properties = this.showmodel.spec.template.spec.containers.livenessProbe.tcpSocket.port.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_resources_properties: function () {
+                this.showmodel.spec.template.spec.containers.resources.properties = this.showmodel.spec.template.spec.containers.resources.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_resources_limits: function () {
+                this.showmodel.spec.template.spec.containers.resources.limits.on = this.showmodel.spec.template.spec.containers.resources.limits.on !== true;
+            },
+            showmodel_spec_template_spec_containers_resources_requests: function () {
+                this.showmodel.spec.template.spec.containers.resources.requests.on = this.showmodel.spec.template.spec.containers.resources.requests.on !== true;
+            },
+            showmodel_spec_template_spec_containers_resources_limits_key: function () {
+                this.showmodel.spec.template.spec.containers.resources.limits.key.on = this.showmodel.spec.template.spec.containers.resources.limits.key.on !== true;
+            },
+            showmodel_spec_template_spec_containers_resources_limits_key_properties: function () {
+                this.showmodel.spec.template.spec.containers.resources.limits.key.properties = this.showmodel.spec.template.spec.containers.resources.limits.key.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_readinessProbe_properties: function () {
+                this.showmodel.spec.template.spec.containers.readinessProbe.properties = this.showmodel.spec.template.spec.containers.readinessProbe.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_readinessProbe_exec: function () {
+                this.showmodel.spec.template.spec.containers.readinessProbe.exec.on = this.showmodel.spec.template.spec.containers.readinessProbe.exec.on !== true;
+            },
+            showmodel_spec_template_spec_containers_readinessProbe_exec_properties: function () {
+                this.showmodel.spec.template.spec.containers.readinessProbe.exec.properties = this.showmodel.spec.template.spec.containers.readinessProbe.exec.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_readinessProbe_exec_command: function () {
+                this.showmodel.spec.template.spec.containers.readinessProbe.exec.command = this.showmodel.spec.template.spec.containers.readinessProbe.exec.command !== true;
+            },
+            showmodel_spec_template_spec_containers_readinessProbe_httpGet: function () {
+                this.showmodel.spec.template.spec.containers.readinessProbe.httpGet.on = this.showmodel.spec.template.spec.containers.readinessProbe.httpGet.on !== true;
+            },
+            showmodel_spec_template_spec_containers_readinessProbe_httpGet_properties: function () {
+                this.showmodel.spec.template.spec.containers.readinessProbe.httpGet.properties = this.showmodel.spec.template.spec.containers.readinessProbe.httpGet.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_readinessProbe_httpGet_httpHeaders: function () {
+                this.showmodel.spec.template.spec.containers.readinessProbe.httpGet.httpHeaders.on = this.showmodel.spec.template.spec.containers.readinessProbe.httpGet.httpHeaders.on !== true;
+            },
+            showmodel_spec_template_spec_containers_readinessProbe_httpGet_httpHeaders_properties: function () {
+                this.showmodel.spec.template.spec.containers.readinessProbe.httpGet.httpHeaders.properties = this.showmodel.spec.template.spec.containers.readinessProbe.httpGet.httpHeaders.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_readinessProbe_httpGet_port: function () {
+                this.showmodel.spec.template.spec.containers.readinessProbe.httpGet.port.on = this.showmodel.spec.template.spec.containers.readinessProbe.httpGet.port.on !== true;
+            },
+            showmodel_spec_template_spec_containers_readinessProbe_httpGet_port_properties: function () {
+                this.showmodel.spec.template.spec.containers.readinessProbe.httpGet.port.properties = this.showmodel.spec.template.spec.containers.readinessProbe.httpGet.port.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_readinessProbe_tcpSocket: function () {
+                this.showmodel.spec.template.spec.containers.readinessProbe.tcpSocket.on = this.showmodel.spec.template.spec.containers.readinessProbe.tcpSocket.on !== true;
+            },
+            showmodel_spec_template_spec_containers_readinessProbe_tcpSocket_properties: function () {
+                this.showmodel.spec.template.spec.containers.readinessProbe.tcpSocket.properties = this.showmodel.spec.template.spec.containers.readinessProbe.tcpSocket.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_readinessProbe_tcpSocket_port: function () {
+                this.showmodel.spec.template.spec.containers.readinessProbe.tcpSocket.port.on = this.showmodel.spec.template.spec.containers.readinessProbe.tcpSocket.port.on !== true;
+            },
+            showmodel_spec_template_spec_containers_readinessProbe_tcpSocket_port_properties: function () {
+                this.showmodel.spec.template.spec.containers.readinessProbe.tcpSocket.port.properties = this.showmodel.spec.template.spec.containers.readinessProbe.tcpSocket.port.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_securityContext_properties: function () {
+                this.showmodel.spec.template.spec.containers.securityContext.properties = this.showmodel.spec.template.spec.containers.securityContext.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_resources_requests_key: function () {
+                this.showmodel.spec.template.spec.containers.resources.requests.key.on = this.showmodel.spec.template.spec.containers.resources.requests.key.on !== true;
+            },
+            showmodel_spec_template_spec_containers_resources_requests_key_properties: function () {
+                this.showmodel.spec.template.spec.containers.resources.requests.key.properties = this.showmodel.spec.template.spec.containers.resources.requests.key.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_securityContext_capabilities: function () {
+                this.showmodel.spec.template.spec.containers.securityContext.capabilities.on = this.showmodel.spec.template.spec.containers.securityContext.capabilities.on !== true;
+            },
+            showmodel_spec_template_spec_containers_securityContext_capabilities_properties: function () {
+                this.showmodel.spec.template.spec.containers.securityContext.capabilities.properties = this.showmodel.spec.template.spec.containers.securityContext.capabilities.properties !== true;
+            },
+            showmodel_spec_template_spec_containers_securityContext_capabilities_add: function () {
+                this.showmodel.spec.template.spec.containers.securityContext.capabilities.add = this.showmodel.spec.template.spec.containers.securityContext.capabilities.add !== true;
+            },
+            showmodel_spec_template_spec_containers_securityContext_capabilities_drop: function () {
+                this.showmodel.spec.template.spec.containers.securityContext.capabilities.drop = this.showmodel.spec.template.spec.containers.securityContext.capabilities.drop !== true;
+            },
+            showmodel_spec_template_spec_containers_securityContext_seLinuxOptions: function () {
+                this.showmodel.spec.template.spec.containers.securityContext.seLinuxOptions.on = this.showmodel.spec.template.spec.containers.securityContext.seLinuxOptions.on !== true;
+            },
+            showmodel_spec_template_spec_containers_securityContext_seLinuxOptions_properties: function () {
+                this.showmodel.spec.template.spec.containers.securityContext.seLinuxOptions.properties = this.showmodel.spec.template.spec.containers.securityContext.seLinuxOptions.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.properties = this.showmodel.spec.template.spec.initContainers.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_args: function () {
+                this.showmodel.spec.template.spec.initContainers.args = this.showmodel.spec.template.spec.initContainers.args !== true;
+            },
+            showmodel_spec_template_spec_initContainers_command: function () {
+                this.showmodel.spec.template.spec.initContainers.command = this.showmodel.spec.template.spec.initContainers.command !== true;
+            },
+            showmodel_spec_template_spec_initContainers_env: function () {
+                this.showmodel.spec.template.spec.initContainers.env.on = this.showmodel.spec.template.spec.initContainers.env.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_env_valueFrom: function () {
+                this.showmodel.spec.template.spec.initContainers.env.valueFrom.on = this.showmodel.spec.template.spec.initContainers.env.valueFrom.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_env_valueFrom_configMapKeyRef: function () {
+                this.showmodel.spec.template.spec.initContainers.env.valueFrom.configMapKeyRef.on = this.showmodel.spec.template.spec.initContainers.env.valueFrom.configMapKeyRef.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_env_valueFrom_configMapKeyRef_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.env.valueFrom.configMapKeyRef.properties = this.showmodel.spec.template.spec.initContainers.env.valueFrom.configMapKeyRef.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_env_valueFrom_fieldRef: function () {
+                this.showmodel.spec.template.spec.initContainers.env.valueFrom.fieldRef.on = this.showmodel.spec.template.spec.initContainers.env.valueFrom.fieldRef.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_env_valueFrom_fieldRef_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.env.valueFrom.fieldRef.properties = this.showmodel.spec.template.spec.initContainers.env.valueFrom.fieldRef.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_env_valueFrom_resourceFieldRef: function () {
+                this.showmodel.spec.template.spec.initContainers.env.valueFrom.resourceFieldRef.on = this.showmodel.spec.template.spec.initContainers.env.valueFrom.resourceFieldRef.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_env_valueFrom_resourceFieldRef_divisor: function () {
+                this.showmodel.spec.template.spec.initContainers.env.valueFrom.resourceFieldRef.divisor.on = this.showmodel.spec.template.spec.initContainers.env.valueFrom.resourceFieldRef.divisor.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_env_valueFrom_resourceFieldRef_divisor_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.env.valueFrom.resourceFieldRef.divisor.properties = this.showmodel.spec.template.spec.initContainers.env.valueFrom.resourceFieldRef.divisor.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_env_valueFrom_resourceFieldRef_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.env.valueFrom.resourceFieldRef.properties = this.showmodel.spec.template.spec.initContainers.env.valueFrom.resourceFieldRef.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_env_valueFrom_secretKeyRef: function () {
+                this.showmodel.spec.template.spec.initContainers.env.valueFrom.secretKeyRef.on = this.showmodel.spec.template.spec.initContainers.env.valueFrom.secretKeyRef.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_env_valueFrom_secretKeyRef_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.env.valueFrom.secretKeyRef.properties = this.showmodel.spec.template.spec.initContainers.env.valueFrom.secretKeyRef.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_env_valueFrom_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.env.valueFrom.properties = this.showmodel.spec.template.spec.initContainers.env.valueFrom.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_env_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.env.properties = this.showmodel.spec.template.spec.initContainers.env.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_envFrom: function () {
+                this.showmodel.spec.template.spec.initContainers.envFrom.on = this.showmodel.spec.template.spec.initContainers.envFrom.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_envFrom_configMapRef: function () {
+                this.showmodel.spec.template.spec.initContainers.envFrom.configMapRef.on = this.showmodel.spec.template.spec.initContainers.envFrom.configMapRef.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_envFrom_configMapRef_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.envFrom.configMapRef.properties = this.showmodel.spec.template.spec.initContainers.envFrom.configMapRef.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_envFrom_secretRef: function () {
+                this.showmodel.spec.template.spec.initContainers.envFrom.secretRef.on = this.showmodel.spec.template.spec.initContainers.envFrom.secretRef.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_envFrom_secretRef_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.envFrom.secretRef.properties = this.showmodel.spec.template.spec.initContainers.envFrom.secretRef.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_envFrom_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.envFrom.properties = this.showmodel.spec.template.spec.initContainers.envFrom.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_lifecycle: function () {
+                this.showmodel.spec.template.spec.initContainers.lifecycle.on = this.showmodel.spec.template.spec.initContainers.lifecycle.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_lifecycle_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.lifecycle.properties = this.showmodel.spec.template.spec.initContainers.lifecycle.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_lifecycle_postStart: function () {
+                this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.on = this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_lifecycle_postStart_exec: function () {
+                this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.exec.on = this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.exec.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_lifecycle_postStart_exec_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.exec.properties = this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.exec.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_lifecycle_postStart_exec_command: function () {
+                this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.exec.command = this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.exec.command !== true;
+            },
+            showmodel_spec_template_spec_initContainers_lifecycle_postStart_httpGet: function () {
+                this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.httpGet.on = this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.httpGet.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_lifecycle_postStart_httpGet_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.httpGet.properties = this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.httpGet.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_lifecycle_postStart_httpGet_httpHeaders: function () {
+                this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.httpGet.httpHeaders.on = this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.httpGet.httpHeaders.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_lifecycle_postStart_httpGet_httpHeaders_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.httpGet.httpHeaders.properties = this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.httpGet.httpHeaders.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_lifecycle_postStart_httpGet_port: function () {
+                this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.httpGet.port.on = this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.httpGet.port.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_lifecycle_postStart_httpGet_port_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.httpGet.port.properties = this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.httpGet.port.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_lifecycle_postStart_tcpSocket: function () {
+                this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.tcpSocket.on = this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.tcpSocket.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_lifecycle_postStart_tcpSocket_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.tcpSocket.properties = this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.tcpSocket.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_lifecycle_postStart_tcpSocket_port: function () {
+                this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.tcpSocket.port.on = this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.tcpSocket.port.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_lifecycle_postStart_tcpSocket_port_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.tcpSocket.port.properties = this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.tcpSocket.port.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_lifecycle_postStart_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.properties = this.showmodel.spec.template.spec.initContainers.lifecycle.postStart.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_lifecycle_preStop: function () {
+                this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.on = this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_lifecycle_preStop_exec: function () {
+                this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.exec.on = this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.exec.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_lifecycle_preStop_exec_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.exec.properties = this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.exec.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_lifecycle_preStop_exec_command: function () {
+                this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.exec.command = this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.exec.command !== true;
+            },
+            showmodel_spec_template_spec_initContainers_lifecycle_preStop_httpGet: function () {
+                this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.httpGet.on = this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.httpGet.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_lifecycle_preStop_httpGet_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.httpGet.properties = this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.httpGet.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_lifecycle_preStop_httpGet_httpHeaders: function () {
+                this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.httpGet.httpHeaders.on = this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.httpGet.httpHeaders.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_lifecycle_preStop_httpGet_httpHeaders_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.httpGet.httpHeaders.properties = this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.httpGet.httpHeaders.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_lifecycle_preStop_httpGet_port: function () {
+                this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.httpGet.port.on = this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.httpGet.port.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_lifecycle_preStop_httpGet_port_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.httpGet.port.properties = this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.httpGet.port.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_lifecycle_preStop_tcpSocket: function () {
+                this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.tcpSocket.on = this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.tcpSocket.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_lifecycle_preStop_tcpSocket_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.tcpSocket.properties = this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.tcpSocket.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_lifecycle_preStop_tcpSocket_port: function () {
+                this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.tcpSocket.port.on = this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.tcpSocket.port.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_lifecycle_preStop_tcpSocket_port_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.tcpSocket.port.properties = this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.tcpSocket.port.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_lifecycle_preStop_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.properties = this.showmodel.spec.template.spec.initContainers.lifecycle.preStop.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_livenessProbe: function () {
+                this.showmodel.spec.template.spec.initContainers.livenessProbe.on = this.showmodel.spec.template.spec.initContainers.livenessProbe.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_livenessProbe_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.livenessProbe.properties = this.showmodel.spec.template.spec.initContainers.livenessProbe.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_livenessProbe_exec: function () {
+                this.showmodel.spec.template.spec.initContainers.livenessProbe.exec.on = this.showmodel.spec.template.spec.initContainers.livenessProbe.exec.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_livenessProbe_exec_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.livenessProbe.exec.properties = this.showmodel.spec.template.spec.initContainers.livenessProbe.exec.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_livenessProbe_exec_command: function () {
+                this.showmodel.spec.template.spec.initContainers.livenessProbe.exec.command = this.showmodel.spec.template.spec.initContainers.livenessProbe.exec.command !== true;
+            },
+            showmodel_spec_template_spec_initContainers_livenessProbe_httpGet: function () {
+                this.showmodel.spec.template.spec.initContainers.livenessProbe.httpGet.on = this.showmodel.spec.template.spec.initContainers.livenessProbe.httpGet.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_livenessProbe_httpGet_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.livenessProbe.httpGet.properties = this.showmodel.spec.template.spec.initContainers.livenessProbe.httpGet.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_livenessProbe_httpGet_httpHeaders: function () {
+                this.showmodel.spec.template.spec.initContainers.livenessProbe.httpGet.httpHeaders.on = this.showmodel.spec.template.spec.initContainers.livenessProbe.httpGet.httpHeaders.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_livenessProbe_httpGet_httpHeaders_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.livenessProbe.httpGet.httpHeaders.properties = this.showmodel.spec.template.spec.initContainers.livenessProbe.httpGet.httpHeaders.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_livenessProbe_httpGet_port: function () {
+                this.showmodel.spec.template.spec.initContainers.livenessProbe.httpGet.port.on = this.showmodel.spec.template.spec.initContainers.livenessProbe.httpGet.port.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_livenessProbe_httpGet_port_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.livenessProbe.httpGet.port.properties = this.showmodel.spec.template.spec.initContainers.livenessProbe.httpGet.port.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_livenessProbe_tcpSocket: function () {
+                this.showmodel.spec.template.spec.initContainers.livenessProbe.tcpSocket.on = this.showmodel.spec.template.spec.initContainers.livenessProbe.tcpSocket.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_livenessProbe_tcpSocket_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.livenessProbe.tcpSocket.properties = this.showmodel.spec.template.spec.initContainers.livenessProbe.tcpSocket.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_livenessProbe_tcpSocket_port: function () {
+                this.showmodel.spec.template.spec.initContainers.livenessProbe.tcpSocket.port.on = this.showmodel.spec.template.spec.initContainers.livenessProbe.tcpSocket.port.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_livenessProbe_tcpSocket_port_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.livenessProbe.tcpSocket.port.properties = this.showmodel.spec.template.spec.initContainers.livenessProbe.tcpSocket.port.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_ports: function () {
+                this.showmodel.spec.template.spec.initContainers.ports.on = this.showmodel.spec.template.spec.initContainers.ports.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_ports_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.ports.properties = this.showmodel.spec.template.spec.initContainers.ports.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_readinessProbe: function () {
+                this.showmodel.spec.template.spec.initContainers.readinessProbe.on = this.showmodel.spec.template.spec.initContainers.readinessProbe.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_readinessProbe_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.readinessProbe.properties = this.showmodel.spec.template.spec.initContainers.readinessProbe.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_readinessProbe_exec: function () {
+                this.showmodel.spec.template.spec.initContainers.readinessProbe.exec.on = this.showmodel.spec.template.spec.initContainers.readinessProbe.exec.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_readinessProbe_exec_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.readinessProbe.exec.properties = this.showmodel.spec.template.spec.initContainers.readinessProbe.exec.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_readinessProbe_httpGet: function () {
+                this.showmodel.spec.template.spec.initContainers.readinessProbe.httpGet.on = this.showmodel.spec.template.spec.initContainers.readinessProbe.httpGet.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_readinessProbe_exec_command: function () {
+                this.showmodel.spec.template.spec.initContainers.readinessProbe.exec.command = this.showmodel.spec.template.spec.initContainers.readinessProbe.exec.command !== true;
+            },
+            showmodel_spec_template_spec_initContainers_readinessProbe_httpGet_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.readinessProbe.httpGet.properties = this.showmodel.spec.template.spec.initContainers.readinessProbe.httpGet.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_readinessProbe_httpGet_httpHeaders: function () {
+                this.showmodel.spec.template.spec.initContainers.readinessProbe.httpGet.httpHeaders.on = this.showmodel.spec.template.spec.initContainers.readinessProbe.httpGet.httpHeaders.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_readinessProbe_httpGet_httpHeaders_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.readinessProbe.httpGet.httpHeaders.properties = this.showmodel.spec.template.spec.initContainers.readinessProbe.httpGet.httpHeaders.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_readinessProbe_httpGet_port: function () {
+                this.showmodel.spec.template.spec.initContainers.readinessProbe.httpGet.port.on = this.showmodel.spec.template.spec.initContainers.readinessProbe.httpGet.port.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_readinessProbe_httpGet_port_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.readinessProbe.httpGet.port.properties = this.showmodel.spec.template.spec.initContainers.readinessProbe.httpGet.port.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_readinessProbe_tcpSocket: function () {
+                this.showmodel.spec.template.spec.initContainers.readinessProbe.tcpSocket.on = this.showmodel.spec.template.spec.initContainers.readinessProbe.tcpSocket.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_readinessProbe_tcpSocket_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.readinessProbe.tcpSocket.properties = this.showmodel.spec.template.spec.initContainers.readinessProbe.tcpSocket.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainer_readinessProbe_tcpSocket_port: function () {
+                this.showmodel.spec.template.spec.containers.readinessProbe.tcpSocket.port.on = this.showmodel.spec.template.spec.containers.readinessProbe.tcpSocket.port.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_readinessProbe_tcpSocket_port_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.readinessProbe.tcpSocket.port.properties = this.showmodel.spec.template.spec.initContainers.readinessProbe.tcpSocket.port.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_resources: function () {
+                this.showmodel.spec.template.spec.initContainers.resources.on = this.showmodel.spec.template.spec.initContainers.resources.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_resources_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.resources.properties = this.showmodel.spec.template.spec.initContainers.resources.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_resources_limits: function () {
+                this.showmodel.spec.template.spec.initContainers.resources.limits.on = this.showmodel.spec.template.spec.initContainers.resources.limits.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_resources_limits_key: function () {
+                this.showmodel.spec.template.spec.initContainers.resources.limits.key.on = this.showmodel.spec.template.spec.initContainers.resources.limits.key.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_resources_limits_key_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.resources.limits.key.properties = this.showmodel.spec.template.spec.initContainers.resources.limits.key.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_resources_requests: function () {
+                this.showmodel.spec.template.spec.initContainers.resources.requests.on = this.showmodel.spec.template.spec.initContainers.resources.requests.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_resources_requests_key: function () {
+                this.showmodel.spec.template.spec.initContainers.resources.requests.key.on = this.showmodel.spec.template.spec.initContainers.resources.requests.key.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_resources_requests_key_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.resources.requests.key.properties = this.showmodel.spec.template.spec.initContainers.resources.requests.key.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_securityContext: function () {
+                this.showmodel.spec.template.spec.initContainers.securityContext.on = this.showmodel.spec.template.spec.initContainers.securityContext.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_securityContext_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.securityContext.properties = this.showmodel.spec.template.spec.initContainers.securityContext.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_securityContext_capabilities: function () {
+                this.showmodel.spec.template.spec.initContainers.securityContext.capabilities.on = this.showmodel.spec.template.spec.initContainers.securityContext.capabilities.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_securityContext_capabilities_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.securityContext.capabilities.properties = this.showmodel.spec.template.spec.initContainers.securityContext.capabilities.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_securityContext_capabilities_add: function () {
+                this.showmodel.spec.template.spec.initContainers.securityContext.capabilities.add = this.showmodel.spec.template.spec.initContainers.securityContext.capabilities.add !== true;
+            },
+            showmodel_spec_template_spec_initContainers_securityContext_capabilities_drop: function () {
+                this.showmodel.spec.template.spec.initContainers.securityContext.capabilities.drop = this.showmodel.spec.template.spec.initContainers.securityContext.capabilities.drop !== true;
+            },
+            showmodel_spec_template_spec_initContainers_securityContext_seLinuxOptions: function () {
+                this.showmodel.spec.template.spec.initContainers.securityContext.seLinuxOptions.on = this.showmodel.spec.template.spec.initContainers.securityContext.seLinuxOptions.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_securityContext_seLinuxOptions_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.securityContext.seLinuxOptions.properties = this.showmodel.spec.template.spec.initContainers.securityContext.seLinuxOptions.properties !== true;
+            },
+            showmodel_spec_template_spec_initContainers_volumeMounts: function () {
+                this.showmodel.spec.template.spec.initContainers.volumeMounts.on = this.showmodel.spec.template.spec.initContainers.volumeMounts.on !== true;
+            },
+            showmodel_spec_template_spec_initContainers_volumeMounts_properties: function () {
+                this.showmodel.spec.template.spec.initContainers.volumeMounts.properties = this.showmodel.spec.template.spec.initContainers.volumeMounts.properties !== true;
             },
             addnewdataspecselector: function () {
                 this.tempnewdata.tempselector.push(['','']);
@@ -9809,10 +11825,13 @@
                 this.tempnewdata.commands.splice(cindex, 1);
             },
             addnewdataspectemplatespeccontainersvolumeMounts: function () {
-                this.tempnewdata.volumeMounts.push({name:'',mountPath: ''});
+                let name = uuid().replace(/-/g,'');
+                this.tempnewdata.volumeMounts.push({name:name,mountPath:''});
+                this.tempnewdata.volumes.push({name:name,hostPath:{path:''}});
             },
             delnewdataspectemplatespeccontainersvolumeMounts: function (index) {
                 this.tempnewdata.volumeMounts.splice(index, 1);
+                this.tempnewdata.volumes.splice(index,1);
             },
             changebase: function () {
                 this.newdata.metadata.name = this.newdata.spec.template.spec.hostname + '-' + this.newdata.spec.template.spec.subdomain;
@@ -9825,10 +11844,24 @@
             delnewdataspectemplatespeccontainersports: function (index) {
                 this.tempnewdata.ports.splice(index, 1);
             },
+            setTempnewdataValue:function () {
+                let tmpval = this.tempnewdata.spec_template_spec_hostname + '-' + this.tempnewdata.spec_template_spec_subdomain;
+                this.tempnewdata.metadata_name = tmpval;
+                this.tempnewdata.tempselector[0][1] = tmpval;
+                this.tempnewdata.templabels[0][1] = tmpval;
+                this.tempnewdata.spec_template_spec_containers_name = tmpval;
+                this.tempnewdata.commands[1] =  this.tempnewdata.spec_template_spec_hostname + '.' + this.tempnewdata.spec_template_spec_subdomain;
+            }
 
 
         },
         mounted() {
+            this.kayak.dict.dict("rc_nodeSelector").then(data=>{
+                this.rcNodeSelector = data;
+            });
+            this.kayak.dict.dict("rc_image").then(data=>{
+                this.rcImages = data;
+            });
             this.query();
         }
     }
